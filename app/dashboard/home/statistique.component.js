@@ -10,10 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var initDemo = require('../../../assets/js/charts.js');
-var HomeComponent = (function () {
-    function HomeComponent() {
+var StatistiqueComponent = (function () {
+    function StatistiqueComponent() {
     }
-    HomeComponent.prototype.ngOnInit = function () {
+    StatistiqueComponent.prototype.ngOnInit = function () {
         // $('[data-toggle="checkbox"]').each(function () {
         //     if($(this).data('toggle') == 'switch') return;
         //
@@ -22,15 +22,15 @@ var HomeComponent = (function () {
         // });
         initDemo();
     };
-    HomeComponent = __decorate([
+    StatistiqueComponent = __decorate([
         core_1.Component({
-            selector: 'home-cmp',
+            selector: 'statistique-cmp',
             moduleId: module.id,
-            templateUrl: 'home.component.html'
+            templateUrl: 'statistique.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], HomeComponent);
-    return HomeComponent;
+    ], StatistiqueComponent);
+    return StatistiqueComponent;
 }());
-exports.HomeComponent = HomeComponent;
-//# sourceMappingURL=home.component.js.map
+exports.StatistiqueComponent = StatistiqueComponent;
+//# sourceMappingURL=statistique.component.js.map

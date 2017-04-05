@@ -4,12 +4,12 @@ import initDemo = require('../../../assets/js/charts.js');
 declare var $:any;
 
 @Component({
-    selector: 'home-cmp',
+    selector: 'statistique-cmp',
     moduleId: module.id,
-    templateUrl: 'home.component.html'
+    templateUrl: 'statistique.component.html'
 })
 
-export class HomeComponent implements OnInit{
+export class StatistiqueComponent implements OnInit{
     ngOnInit(){
         // $('[data-toggle="checkbox"]').each(function () {
         //     if($(this).data('toggle') == 'switch') return;
