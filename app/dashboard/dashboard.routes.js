@@ -6,6 +6,7 @@ var gestionUtil_component_1 = require('./GestionUtil/gestionUtil.component');
 var notifications_component_1 = require('./notifications/notifications.component');
 var typography_component_1 = require('./typography/typography.component');
 var maps_component_1 = require('./maps/maps.component');
+var login_component_1 = require('./login/login.component');
 exports.MODULE_ROUTES = [
     { path: 'dashboard', component: statistique_component_1.StatistiqueComponent },
     { path: 'parametrage', component: parametrage_component_1.ParametrageComponent },
@@ -14,6 +15,7 @@ exports.MODULE_ROUTES = [
     { path: 'notifications', component: notifications_component_1.NotificationsComponent },
     { path: 'typography', component: typography_component_1.TypographyComponent },
     { path: 'maps', component: maps_component_1.MapsComponent },
+    { path: 'login', component: login_component_1.LoginComponent },
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 exports.MODULE_COMPONENTS = [
@@ -24,5 +26,6 @@ exports.MODULE_COMPONENTS = [
     notifications_component_1.NotificationsComponent,
     typography_component_1.TypographyComponent,
     maps_component_1.MapsComponent,
+    login_component_1.LoginComponent,
 ];
 //# sourceMappingURL=dashboard.routes.js.map

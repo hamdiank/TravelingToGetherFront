@@ -7,7 +7,7 @@ import { GestionUtilComponent } from './GestionUtil/gestionUtil.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { TypographyComponent } from './typography/typography.component';
 import { MapsComponent } from './maps/maps.component';
-
+import { LoginComponent } from './login/login.component';
 
 export const MODULE_ROUTES: Route[] =[
     { path: 'dashboard', component: StatistiqueComponent },
@@ -17,6 +17,7 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'notifications', component: NotificationsComponent },
     { path: 'typography', component: TypographyComponent },
     { path: 'maps', component: MapsComponent },
+    { path: 'login', component: LoginComponent },
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 ]
 
@@ -28,5 +29,6 @@ export const MODULE_COMPONENTS = [
     NotificationsComponent,
     TypographyComponent,
     MapsComponent,
+    LoginComponent,
   
 ]
