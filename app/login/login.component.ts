@@ -22,8 +22,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login() {
-    this.router.navigate(['/']);
+  login(event) {
+     event.preventDefault();
+    this.router.navigate(['dashboard']);
   }
 
 }

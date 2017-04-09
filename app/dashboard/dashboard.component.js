@@ -9,16 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var common_1 = require('@angular/common');
 var DashboardComponent = (function () {
-    function DashboardComponent() {
+    function DashboardComponent(location) {
+        this.location = location;
     }
+    DashboardComponent.prototype.ngOnInit = function () {
+        $.getScript('../assets/js/material-dashboard.js');
+        $.getScript('../assets/js/initMenu.js');
+    };
     DashboardComponent = __decorate([
         core_1.Component({
             selector: 'dashboard-cmp',
             moduleId: module.id,
             templateUrl: 'dashboard.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [common_1.Location])
     ], DashboardComponent);
     return DashboardComponent;
 }());

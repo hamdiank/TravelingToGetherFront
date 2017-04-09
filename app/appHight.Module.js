@@ -9,35 +9,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
 var router_1 = require('@angular/router');
-var app_component_1 = require('./app.component');
-var dashboard_component_1 = require('./dashboard/dashboard.component');
-var dashboard_module_1 = require('./dashboard/dashboard.module');
+var appHight_component_1 = require('./appHight.component');
+var appHight_routes_1 = require('./appHight.routes');
+var platform_browser_1 = require('@angular/platform-browser');
 var sidebar_module_1 = require('./sidebar/sidebar.module');
 var footer_module_1 = require('./shared/footer/footer.module');
 var navbar_module_1 = require('./shared/navbar/navbar.module');
 var common_1 = require('@angular/common');
-var AppModule = (function () {
-    function AppModule() {
+var AppHightModule = (function () {
+    function AppHightModule() {
     }
-    AppModule = __decorate([
+    AppHightModule = __decorate([
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
-                dashboard_module_1.DashboardModule,
                 sidebar_module_1.SidebarModule,
                 navbar_module_1.NavbarModule,
                 footer_module_1.FooterModule,
-                router_1.RouterModule.forRoot([])
+                router_1.RouterModule.forRoot(appHight_routes_1.MODULE_ROUTES)
             ],
-            declarations: [app_component_1.AppComponent, dashboard_component_1.DashboardComponent],
+            declarations: [appHight_component_1.AppHightComponent, appHight_routes_1.MODULE_COMPONENTS],
+            bootstrap: [appHight_component_1.AppHightComponent],
+            exports: [],
             providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }],
-            bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], AppHightModule);
+    return AppHightModule;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.AppHightModule = AppHightModule;
+//# sourceMappingURL=appHight.Module.js.map

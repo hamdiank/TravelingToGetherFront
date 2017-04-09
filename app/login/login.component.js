@@ -9,24 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var common_1 = require('@angular/common');
-var AppComponent = (function () {
-    function AppComponent(location) {
-        this.location = location;
+var router_1 = require("@angular/router");
+var LoginComponent = (function () {
+    function LoginComponent(router) {
+        this.router = router;
     }
-    AppComponent.prototype.ngOnInit = function () {
-        $.getScript('../assets/js/material-dashboard.js');
-        $.getScript('../assets/js/initMenu.js');
+    LoginComponent.prototype.ngOnInit = function () {
     };
-    AppComponent = __decorate([
+    LoginComponent.prototype.login = function (event) {
+        event.preventDefault();
+        this.router.navigate(['dashboard']);
+    };
+    LoginComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
+            selector: 'login-cmp',
             moduleId: module.id,
-            templateUrl: 'app.component.html'
+            templateUrl: './login.component.html',
         }), 
-        __metadata('design:paramtypes', [common_1.Location])
-    ], AppComponent);
-    return AppComponent;
+        __metadata('design:paramtypes', [router_1.Router])
+    ], LoginComponent);
+    return LoginComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.LoginComponent = LoginComponent;
+//# sourceMappingURL=login.component.js.map
