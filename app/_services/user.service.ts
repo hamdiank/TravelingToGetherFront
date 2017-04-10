@@ -15,7 +15,7 @@ export class UserService {
 
     getAll() {
     console.log("start api/user eehdf ......")
-        return this.http.get(this.config.apiUrl +'/api/users', this.jwt()).map((response: Response) => response.json());
+        return this.http.get(this.config.apiUrl +'/utilisateurs', this.jwt()).map((response: Response) => response.json());
     }
     
 
@@ -29,7 +29,7 @@ export class UserService {
     }
 
     update(user: User) {
-        return this.http.put(this.config.apiUrl + '/users/' + user._id, user, this.jwt());
+        return this.http.put(this.config.apiUrl + '/users/' + user.idUtilisateur, user, this.jwt());
     }
 
     delete(_id: string) {

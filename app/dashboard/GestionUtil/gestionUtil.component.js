@@ -9,16 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var index_1 = require("../../_services/index");
 var GestionUtilComponent = (function () {
-    function GestionUtilComponent() {
+    function GestionUtilComponent(userService) {
+        this.userService = userService;
     }
+    GestionUtilComponent.prototype.ngOnInit = function () {
+        this.ListUtilisateur();
+    };
+    GestionUtilComponent.prototype.ListUtilisateur = function () {
+        var _this = this;
+        this.userService.getAll().
+            subscribe(function (users) {
+            _this.users = users;
+            console.log(users);
+        }, function (error) {
+            console.log(error);
+        });
+    };
     GestionUtilComponent = __decorate([
         core_1.Component({
             selector: 'gestionUtil-cmp',
             moduleId: module.id,
             templateUrl: 'gestionUtil.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [index_1.UserService])
     ], GestionUtilComponent);
     return GestionUtilComponent;
 }());

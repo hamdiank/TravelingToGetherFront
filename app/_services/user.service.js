@@ -18,7 +18,7 @@ var UserService = (function () {
     }
     UserService.prototype.getAll = function () {
         console.log("start api/user eehdf ......");
-        return this.http.get(this.config.apiUrl + '/api/users', this.jwt()).map(function (response) { return response.json(); });
+        return this.http.get(this.config.apiUrl + '/utilisateurs', this.jwt()).map(function (response) { return response.json(); });
     };
     UserService.prototype.getById = function (_id) {
         return this.http.get(this.config.apiUrl + '/users/' + _id, this.jwt()).map(function (response) { return response.json(); });
@@ -27,7 +27,7 @@ var UserService = (function () {
         return this.http.post(this.config.apiUrl + '/register', user, this.jwt());
     };
     UserService.prototype.update = function (user) {
-        return this.http.put(this.config.apiUrl + '/users/' + user._id, user, this.jwt());
+        return this.http.put(this.config.apiUrl + '/users/' + user.idUtilisateur, user, this.jwt());
     };
     UserService.prototype.delete = function (_id) {
         return this.http.delete(this.config.apiUrl + '/deluser/' + _id, this.jwt());
