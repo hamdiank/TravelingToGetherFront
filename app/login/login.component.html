@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
          <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-          <form method="#" action="#" >
+          <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
                                 <div class="card card-login card-hidden">
                                     <div class="card-header text-center" data-background-color="red">
                                         <h4 class="card-title">Login</h4>
@@ -18,6 +18,7 @@
                                             </a>
                                         </div>
                                     </div>
+
                                     <p class="category text-center">
                                         Or Be Classical
                                     </p>
@@ -26,9 +27,9 @@
                                             <span class="input-group-addon">
                                                 <i class="material-icons">face</i>
                                             </span>
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">First Name</label>
-                                                <input type="text" class="form-control">
+                                            <div class="form-group label-floating" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                                                <label class="control-label">Username</label>
+                                                <input type="text" class="form-control" name="username"  [(ngModel)]="model.username" #username="ngModel" required>
                                             </div>
                                         </div>
                                         <div class="input-group">
@@ -44,14 +45,14 @@
                                             <span class="input-group-addon">
                                                 <i class="material-icons">lock_outline</i>
                                             </span>
-                                            <div class="form-group label-floating">
+                                            <div class="form-group label-floating" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
                                                 <label class="control-label">Password</label>
-                                                <input type="password" class="form-control">
+                                                <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required >
                                             </div>
                                         </div>
                                     </div>
                                     <div class="footer text-center">
-                                        <button type="submit" class="btn btn-rose btn-simple btn-wd btn-lg" [routerLink]="['/']">Let's go</button>
+                                        <button type="submit" class="btn btn-danger btn-simple btn-wd btn-lg" >Let's go</button>
                                     </div>
                                 </div>
                             </form>

@@ -8,6 +8,7 @@ import { StatistiqueComponent } from './dashboard/stat/statistique.component';
 import { ParametrageComponent } from './dashboard/parametrage/parametrage.component';
 
 import { GestionUtilComponent } from './dashboard/GestionUtil/gestionUtil.component';
+import { AuthGuard } from "./_guards/index";
 
 export const MODULE_ROUTES: Route[] =[
       { path: 'login', component: LoginComponent },
@@ -16,10 +17,10 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'Statistiques', component: StatistiqueComponent },
     { path: 'parametrage', component: ParametrageComponent },
     { path: 'GestionUtil', component: GestionUtilComponent },
-    { path: 'login', component: LoginComponent }
-    ] },
+    ],canActivate: [AuthGuard] },
     
-    { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full'}
+    { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuard]}
+    
 ]
 
 export const MODULE_COMPONENTS = [

@@ -1,30 +1,43 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import { Router, ActivatedRoute } from '@angular/router';
 
+import { AlertService, AuthenticationService } from '../_services/index';
 
 @Component({
-  selector: 'login-cmp',
-   moduleId: module.id,
-  templateUrl: './login.component.html',
-  
-  
- 
+    moduleId: module.id,
+    templateUrl: 'login.component.html'
 })
+
 export class LoginComponent implements OnInit {
+    model: any = {};
+    loading = false;
+    returnUrl: string;
 
-  email: string;
-  password: string;
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private authenticationService: AuthenticationService,
+        private alertService: AlertService) { }
 
-  constructor(
-    private router: Router
-  ) { }
+    ngOnInit() {
+        // reset login status
+        this.authenticationService.logout();
 
-  ngOnInit() {
-  }
+        // get return url from route parameters or default to '/'
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    }
 
-  login(event) {
-     event.preventDefault();
-    this.router.navigate(['dashboard']);
-  }
-
+    login() {
+        this.loading = true;
+        this.authenticationService.login(this.model.username, this.model.password)
+            .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                    console.log(this.returnUrl);
+                },
+                error => {
+                    this.alertService.error(error._body);
+                    this.loading = false;
+                });
+    }
 }

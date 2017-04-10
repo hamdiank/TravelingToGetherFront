@@ -5,12 +5,12 @@ import {} from './dashboard/dashboard.component'
 
 @Component({
     moduleId: module.id,
-    selector: 'my-happ',
-    templateUrl: 'appHight.component.html'
+    selector: 'my-app',
+    templateUrl: 'app.component.html'
     
 })
 
-export class AppHightComponent implements OnInit {
+export class AppComponent implements OnInit {
     ngOnInit(){
         $.getScript('../assets/js/material-dashboard.js');
         $.getScript('../assets/js/initMenu.js');

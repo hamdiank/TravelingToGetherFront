@@ -9,22 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppHightComponent = (function () {
-    function AppHightComponent() {
+var common_1 = require('@angular/common');
+var login_component_1 = require('./login.component');
+var forms_1 = require('@angular/forms');
+var LoginModule = (function () {
+    function LoginModule() {
     }
-    AppHightComponent.prototype.ngOnInit = function () {
-        $.getScript('../assets/js/material-dashboard.js');
-        $.getScript('../assets/js/initMenu.js');
-    };
-    AppHightComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'my-happ',
-            templateUrl: 'appHight.component.html'
+    LoginModule = __decorate([
+        core_1.NgModule({
+            imports: [common_1.CommonModule, forms_1.ReactiveFormsModule],
+            declarations: [login_component_1.LoginComponent],
+            exports: [login_component_1.LoginComponent],
         }), 
         __metadata('design:paramtypes', [])
-    ], AppHightComponent);
-    return AppHightComponent;
+    ], LoginModule);
+    return LoginModule;
 }());
-exports.AppHightComponent = AppHightComponent;
-//# sourceMappingURL=appHight.component.js.map
+exports.LoginModule = LoginModule;
+//# sourceMappingURL=login.module.js.map

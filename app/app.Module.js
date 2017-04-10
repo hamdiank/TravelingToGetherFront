@@ -10,33 +10,46 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var appHight_component_1 = require('./appHight.component');
-var appHight_routes_1 = require('./appHight.routes');
+var app_component_1 = require('./app.component');
+var app_routes_1 = require('./app.routes');
 var platform_browser_1 = require('@angular/platform-browser');
 var sidebar_module_1 = require('./sidebar/sidebar.module');
 var footer_module_1 = require('./shared/footer/footer.module');
 var navbar_module_1 = require('./shared/navbar/navbar.module');
+var forms_1 = require('@angular/forms');
 var common_1 = require('@angular/common');
-var AppHightModule = (function () {
-    function AppHightModule() {
+var app_config_1 = require("./app.config");
+var index_1 = require("./_guards/index");
+var index_2 = require("./_services/index");
+var http_1 = require("@angular/http");
+var AppModule = (function () {
+    function AppModule() {
     }
-    AppHightModule = __decorate([
+    AppModule = __decorate([
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
+                forms_1.FormsModule,
+                http_1.HttpModule,
                 sidebar_module_1.SidebarModule,
                 navbar_module_1.NavbarModule,
                 footer_module_1.FooterModule,
-                router_1.RouterModule.forRoot(appHight_routes_1.MODULE_ROUTES)
+                forms_1.FormsModule,
+                forms_1.ReactiveFormsModule,
+                router_1.RouterModule.forRoot(app_routes_1.MODULE_ROUTES)
             ],
-            declarations: [appHight_component_1.AppHightComponent, appHight_routes_1.MODULE_COMPONENTS],
-            bootstrap: [appHight_component_1.AppHightComponent],
+            declarations: [app_component_1.AppComponent, app_routes_1.MODULE_COMPONENTS],
+            bootstrap: [app_component_1.AppComponent],
             exports: [],
-            providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }],
+            providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }, app_config_1.AppConfig,
+                index_1.AuthGuard,
+                index_2.AlertService,
+                index_2.AuthenticationService,
+                index_2.UserService],
         }), 
         __metadata('design:paramtypes', [])
-    ], AppHightModule);
-    return AppHightModule;
+    ], AppModule);
+    return AppModule;
 }());
-exports.AppHightModule = AppHightModule;
-//# sourceMappingURL=appHight.Module.js.map
+exports.AppModule = AppModule;
+//# sourceMappingURL=app.module.js.map
