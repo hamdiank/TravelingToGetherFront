@@ -5,8 +5,10 @@ var statistique_component_1 = require('./dashboard/stat/statistique.component');
 var parametrage_component_1 = require('./dashboard/parametrage/parametrage.component');
 var gestionUtil_component_1 = require('./dashboard/GestionUtil/gestionUtil.component');
 var index_1 = require("./_guards/index");
+var inscription_component_1 = require("./inscription/inscription.component");
 exports.MODULE_ROUTES = [
     { path: 'login', component: login_component_1.LoginComponent },
+    { path: 'register', component: inscription_component_1.InscriptionComponent },
     { path: 'dashboard', component: dashboard_component_1.DashboardComponent, children: [
             { path: 'Statistiques', component: statistique_component_1.StatistiqueComponent },
             { path: 'parametrage', component: parametrage_component_1.ParametrageComponent },
@@ -16,6 +18,6 @@ exports.MODULE_ROUTES = [
 ];
 exports.MODULE_COMPONENTS = [
     statistique_component_1.StatistiqueComponent, dashboard_component_1.DashboardComponent, gestionUtil_component_1.GestionUtilComponent,
-    parametrage_component_1.ParametrageComponent, login_component_1.LoginComponent,
+    parametrage_component_1.ParametrageComponent, login_component_1.LoginComponent, inscription_component_1.InscriptionComponent
 ];
 //# sourceMappingURL=app.routes.js.map

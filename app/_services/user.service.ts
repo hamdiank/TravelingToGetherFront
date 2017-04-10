@@ -3,6 +3,7 @@ import { Http, Headers, RequestOptions,Response } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 import { AppConfig } from '../app.config';
 import { User } from '../_models/index';
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class UserService {
@@ -10,8 +11,6 @@ export class UserService {
 
     }
     
-        
-
 
     getAll() {
     console.log("start api/user eehdf ......")
@@ -23,9 +22,17 @@ export class UserService {
         return this.http.get(this.config.apiUrl + '/users/' + _id, this.jwt()).map((response: Response) => response.json());
     }
 
-    create(user: User) {
+    addUser(user: User) {
+        let bodyString = JSON.stringify(user); // Stringify payload
+        let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+        let options       = new RequestOptions({ headers: headers }); // Create a request option
+
+        return this.http.post('http://localhost:8088/utilisateurs', bodyString, this.jwt()) // ...using post request
+                        
+                         //.map((res:Response) => res.json()) // ...and calling .json() on the response to return data
+                     //    .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
        
-        return this.http.post(this.config.apiUrl + '/register',user,this.jwt());
+        //return this.http.post(this.config.apiUrl + '/register',user,this.jwt());
     }
 
     update(user: User) {

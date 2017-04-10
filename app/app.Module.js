@@ -22,6 +22,7 @@ var app_config_1 = require("./app.config");
 var index_1 = require("./_guards/index");
 var index_2 = require("./_services/index");
 var http_1 = require("@angular/http");
+var inscription_component_1 = require("./inscription/inscription.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -38,7 +39,7 @@ var AppModule = (function () {
                 forms_1.ReactiveFormsModule,
                 router_1.RouterModule.forRoot(app_routes_1.MODULE_ROUTES)
             ],
-            declarations: [app_component_1.AppComponent, app_routes_1.MODULE_COMPONENTS],
+            declarations: [app_component_1.AppComponent, app_routes_1.MODULE_COMPONENTS, inscription_component_1.InscriptionComponent],
             bootstrap: [app_component_1.AppComponent],
             exports: [],
             providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }, app_config_1.AppConfig,

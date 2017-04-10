@@ -15,6 +15,7 @@ import { AppConfig } from "./app.config";
 import { AuthGuard } from "./_guards/index";
 import { AlertService, UserService, AuthenticationService } from "./_services/index";
 import { HttpModule } from "@angular/http";
+import { InscriptionComponent } from "./inscription/inscription.component";
 @NgModule({
     imports: [ 
         BrowserModule,
@@ -27,7 +28,7 @@ import { HttpModule } from "@angular/http";
     ReactiveFormsModule,
         RouterModule.forRoot(MODULE_ROUTES)
     ],
-    declarations: [AppComponent, MODULE_COMPONENTS ],
+    declarations: [AppComponent, MODULE_COMPONENTS, InscriptionComponent ],
     bootstrap:    [ AppComponent ],
     exports: [],
     providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, AppConfig,

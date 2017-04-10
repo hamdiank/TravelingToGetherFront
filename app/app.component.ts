@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginComponent} from './login/login.component';
+
+import {InscriptionComponent} from './inscription/inscription.component';
+
 import {} from './dashboard/dashboard.component'
 
 
