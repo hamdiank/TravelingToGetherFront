@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"version":3,"file":"user.js","sourceRoot":"","sources":["user.ts"],"names":[],"mappings":";AAAA;IAAA;IAUA,CAAC;IAAD,WAAC;AAAD,CAAC,AAVD,IAUC;AAVY,YAAI,OAUhB,CAAA"}
-=======
-{"version":3,"file":"user.js","sourceRoot":"","sources":["user.ts"],"names":[],"mappings":";AAAA;IAAA;IAQA,CAAC;IAAD,WAAC;AAAD,CAAC,AARD,IAQC;AARY,YAAI,OAQhB,CAAA"}
->>>>>>> 4559c22ab60b41372853cb946e201eb8e5df8ae0
+{"version":3,"file":"user.js","sourceRoot":"","sources":["user.ts"],"names":[],"mappings":";AAAA;IAAA;IAWA,CAAC;IAAD,WAAC;AAAD,CAAC,AAXD,IAWC;AAXY,YAAI,OAWhB,CAAA"}
