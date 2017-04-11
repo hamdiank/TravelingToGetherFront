@@ -18,14 +18,14 @@ var InscriptionComponent = (function () {
         this._userService = userService;
         this._router = router;
     }
-    InscriptionComponent.prototype.ngOnInit = function () {
-        // $.getScript('../../../assets/js/material-dashboard.js');
-    };
     InscriptionComponent.prototype.onSubmit = function () {
         console.log("aaaaaaaaaaaa");
+        //console.log(this.user);
         this._userService.addUser(this.user).subscribe(function (result) {
             console.log("added");
         });
+    };
+    InscriptionComponent.prototype.ngOnInit = function () {
     };
     InscriptionComponent = __decorate([
         core_1.Component({

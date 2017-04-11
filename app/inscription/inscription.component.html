@@ -9,22 +9,25 @@
                     <p class="category">Complete your Inscription</p>
                 </div>
                 <div class="card-content">
-                    <form #myForm="ngForm" (ngSubmit)="onSubmit()">
+                    <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group form-black label-floating is-empty">
                                     <label class="control-label">First Name</label>
-                                    <input type="text" class="form-control" 
-                                      [(ngModel)]="user.nom" name="nom" 
-                                    />
+                                    <input type="text" class="form-control" required 
+                                     #nom="ngForm"
+                                    ngControl="nom">
+                                    <span [hidden]="nom.valid || nom.untouched" class="text-danger">Vous devez entrer un nom !</span>
+                                    >
+                                   
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group form-black label-floating is-empty">
                                     <label class="control-label">Last Name</label>
                                     <input type="text" class="form-control" 
-                                         [(ngModel)]="user.prenom" #prenom="ngModel" required name="prenom"
+                                        
                                     >
                                 </div>
                             </div>
@@ -36,7 +39,7 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <label class="control-label">User Name</label>
                                     <input type="text" class="form-control" 
-                                        [(ngModel)]="user.login" #login="ngModel" required name="login"
+                                       
                                     >
                                 </div>
                             </div>
@@ -44,7 +47,7 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <label class="control-label">Password</label>
                                     <input type="password" class="form-control" name="password" 
-                                        [(ngModel)]="user.password" #password="ngModel" required name="password"
+                                      
                                     >
                                 </div>
                             </div>

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from "../_services/user.service";
 import { Router } from "@angular/router";
 import { User } from "../_models/user";
+import {NgModule} from '@angular/core';
+import  {FormsModule}from '@angular/forms';
+import {NgForm} from '@angular/forms';
 
 @Component({
     selector: 'user-cmp',
@@ -11,11 +14,7 @@ import { User } from "../_models/user";
 })
 
 export class InscriptionComponent implements OnInit{
-    ngOnInit(){
-        // $.getScript('../../../assets/js/material-dashboard.js');
-
-    }
-      public user:  User;
+      public user: User;
     _userService: UserService;
     _router: Router;
     constructor(private userService: UserService, private router: Router){
@@ -24,8 +23,11 @@ export class InscriptionComponent implements OnInit{
     }
         onSubmit(){  
             console.log("aaaaaaaaaaaa");
+            //console.log(this.user);
              this._userService.addUser(this.user).subscribe( result=> {
                 console.log("added");
              });
+        }
+       ngOnInit() {
         }
 }

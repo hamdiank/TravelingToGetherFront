@@ -27,10 +27,9 @@ export class UserService {
         let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         let options       = new RequestOptions({ headers: headers }); // Create a request option
 
-        return this.http.post('http://localhost:8088/utilisateurs', bodyString, this.jwt()) // ...using post request
-                        
-                         //.map((res:Response) => res.json()) // ...and calling .json() on the response to return data
-                     //    .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+        return this.http.post('http://localhost:8088/utilisateurs', bodyString, options) // ...using post request
+                        .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
+                        .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
        
         //return this.http.post(this.config.apiUrl + '/register',user,this.jwt());
     }

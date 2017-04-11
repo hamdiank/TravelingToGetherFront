@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var app_config_1 = require('../app.config');
+var Observable_1 = require("rxjs/Observable");
 var UserService = (function () {
     function UserService(http, config) {
         this.http = http;
@@ -27,9 +28,9 @@ var UserService = (function () {
         var bodyString = JSON.stringify(user); // Stringify payload
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         var options = new http_1.RequestOptions({ headers: headers }); // Create a request option
-        return this.http.post('http://localhost:8088/utilisateurs', bodyString, this.jwt()); // ...using post request
-        //.map((res:Response) => res.json()) // ...and calling .json() on the response to return data
-        //    .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+        return this.http.post('http://localhost:8088/utilisateurs', bodyString, options) // ...using post request
+            .map(function (res) { return res.json(); }) // ...and calling .json() on the response to return data
+            .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Server error'); }); //...errors if any
         //return this.http.post(this.config.apiUrl + '/register',user,this.jwt());
     };
     UserService.prototype.update = function (user) {
