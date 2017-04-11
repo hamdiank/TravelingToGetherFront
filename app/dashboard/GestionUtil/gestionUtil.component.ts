@@ -22,8 +22,6 @@ export class GestionUtilComponent implements OnInit{
 
     ngOnInit() {
         
-
-
     }
 
  getRowuser(message:User){

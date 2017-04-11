@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PaysService } from "../../_services/index";
+import { Pays } from "../../_models/index";
 
 @Component({
     selector: 'parametrage-cmp',
@@ -7,8 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ParametrageComponent implements OnInit{
-    ngOnInit(){
-        // $.getScript('../../../assets/js/material-dashboard.js');
-
+  pays :Pays[];
+  constructor(private  paysService:  PaysService) { 
+        
     }
+  
+   ngOnInit(){
+        // $.getScript('../../../assets/js/material-dashboard.js');
+    this.ListPays();
+}
+
+
+
+ListPays(){
+     this.paysService.getAll().
+    subscribe(pays => { 
+        this.pays=pays;
+        console.log(pays) ;
+    },
+    error =>{
+        console.log(error);
+    }
+    
+    );
+
+
+
+
+}
 }

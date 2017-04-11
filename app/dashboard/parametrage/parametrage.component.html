@@ -20,14 +20,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr *ngFor="let pay of pays">
                                         <td>1</td>
-                                        <td>Dakota Rice</td>
+                                        <td>{{pays.nom}}</td>
                                         <td>
                                 <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
                                     <i class="fa fa-edit"></i>
                                 </button>
-                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
                                                         <i class="material-icons">close</i>
                                                     </button>
                                         </td>
@@ -55,6 +55,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Nom</th>
+                                        <th>Pays</th>
                                         <th>Action</th>
                                         
                                     </tr>
@@ -63,11 +64,12 @@
                                     <tr>
                                         <td>1</td>
                                         <td>Dakota Rice</td>
+                                        <td>jklg</td>
                                         <td>
                                     <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
                                         <i class="fa fa-edit"></i>
                                     </button>
-                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
                                                         <i class="material-icons">close</i>
                                                     </button>
                                         </td>
@@ -96,6 +98,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Nom</th>
+                                        <th>Pays</th>
                                         <th>Action</th>
                                         
                                     </tr>
@@ -104,11 +107,12 @@
                                     <tr>
                                         <td>1</td>
                                         <td>Dakota Rice</td>
+                                        <td>France</td>
                                         <td>
                                     <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
                                             <i class="fa fa-edit"></i>
                                     </button>
-                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
                                              <i class="material-icons">close</i>
                                     </button>
                          </td>
@@ -137,6 +141,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Nom</th>
+                                        <th>Pays</th>
                                         <th>Action</th>
                                         
                                     </tr>
@@ -145,10 +150,14 @@
                                     <tr>
                                         <td>1</td>
                                         <td>Dakota Rice</td>
+                                        <td>Tunisie</td>
                                         <td>
                         <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
                                 <i class="fa fa-edit"></i>
                          </button>
+                        <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                <i class="material-icons">close</i>
+                        </button>
                                         </td>
                                         
                                     </tr>
@@ -183,7 +192,7 @@
   </div>
 </div>
 
-  <!--                        -->
+  <!--                      -->
 
         </div>
   </div>
