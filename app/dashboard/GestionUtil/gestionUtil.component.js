@@ -15,17 +15,45 @@ var GestionUtilComponent = (function () {
         this.userService = userService;
     }
     GestionUtilComponent.prototype.ngOnInit = function () {
-        this.ListUtilisateur();
     };
-    GestionUtilComponent.prototype.ListUtilisateur = function () {
+    GestionUtilComponent.prototype.getRowuser = function (message) {
+        this.userM = message;
+        this.nom = this.userM.nom;
+        this.prenom = this.userM.prenom;
+        this.login = this.userM.login;
+        this.etat = this.userM.etat;
+        console.log("userM nom   " + this.nom);
+        //service get user et afficher dans Modal 
+    };
+    GestionUtilComponent.prototype.setBloquer = function () {
         var _this = this;
-        this.userService.getAll().
-            subscribe(function (users) {
-            _this.users = users;
-            console.log(users);
-        }, function (error) {
-            console.log(error);
-        });
+        console.log(this.userM.etat);
+        if (this.userM.etat != false) {
+            this.userM.etat = false;
+            this.userService.update(this.userM).
+                subscribe(function (reultat) {
+                _this.etat = _this.userM.etat;
+                console.log(_this.userM);
+            }, function (error) {
+                console.log(error);
+            });
+        }
+        console.log(this.etat);
+    };
+    GestionUtilComponent.prototype.setDebloquer = function () {
+        var _this = this;
+        console.log(this.etat);
+        if (this.etat != true) {
+            this.userM.etat = true;
+            this.userService.update(this.userM).
+                subscribe(function (reultat) {
+                _this.etat = _this.userM.etat;
+                console.log(_this.userM);
+            }, function (error) {
+                console.log(error);
+            });
+        }
+        console.log(this.etat);
     };
     GestionUtilComponent = __decorate([
         core_1.Component({

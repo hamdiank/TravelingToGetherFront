@@ -6,5 +6,6 @@
     prenom: string;
     role: string;
     email:string;
+    etat:boolean;
     
 }
