@@ -15,7 +15,11 @@ import { AppConfig } from "./app.config";
 import { AuthGuard } from "./_guards/index";
 import { AlertService, UserService, AuthenticationService } from "./_services/index";
 import { HttpModule } from "@angular/http";
+
 import { TableComponent } from "./dashboard/GestionUtil/table.component";
+
+import { InscriptionComponent } from "./inscription/inscription.component";
+
 @NgModule({
     imports: [ 
         BrowserModule,
@@ -28,7 +32,9 @@ import { TableComponent } from "./dashboard/GestionUtil/table.component";
     ReactiveFormsModule,
         RouterModule.forRoot(MODULE_ROUTES)
     ],
-    declarations: [AppComponent, MODULE_COMPONENTS ,TableComponent],
+
+    declarations: [AppComponent, MODULE_COMPONENTS ,TableComponent, InscriptionComponent ],
+
     bootstrap:    [ AppComponent ],
     exports: [],
     providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, AppConfig,
