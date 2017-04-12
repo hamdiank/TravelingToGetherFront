@@ -9,11 +9,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var index_1 = require("../../_services/index");
+var avion_service_1 = require("../../_services/avion.service");
 var ParametrageComponent = (function () {
-    function ParametrageComponent() {
+    function ParametrageComponent(paysService, avionService) {
+        this.paysService = paysService;
+        this.avionService = avionService;
     }
     ParametrageComponent.prototype.ngOnInit = function () {
-        // $.getScript('../../../assets/js/material-dashboard.js');
+        this.ListPays();
+        this.getAvions();
+    };
+    ParametrageComponent.prototype.ListPays = function () {
+        var _this = this;
+        this.paysService.getAll().
+            subscribe(function (pays) {
+            _this.pays = pays;
+            console.log(pays);
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    ParametrageComponent.prototype.getAvions = function () {
+        var _this = this;
+        this.avionService.getAvions().subscribe(function (avions) {
+            _this.avions = avions;
+            console.log("aaaaaaaaaaa");
+        });
+    };
+    //    console.log(this.avions);
+    //    console.log(typeof(this.avions));
+    ParametrageComponent.prototype.delete = function (avion) {
+        console.log(typeof (avion.id));
+        this.avionService.delete(avion.id);
+        console.log(avion.type + "supprimé!!!!!!");
     };
     ParametrageComponent = __decorate([
         core_1.Component({
@@ -21,7 +50,7 @@ var ParametrageComponent = (function () {
             moduleId: module.id,
             templateUrl: 'parametrage.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [index_1.PaysService, avion_service_1.AvionService])
     ], ParametrageComponent);
     return ParametrageComponent;
 }());

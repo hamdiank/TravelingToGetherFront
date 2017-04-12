@@ -10,11 +10,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppConfig } from "./app.config";
 import { AuthGuard } from "./_guards/index";
-import { AlertService, UserService, AuthenticationService } from "./_services/index";
+import { AlertService, UserService, AuthenticationService, PaysService } from "./_services/index";
 import { HttpModule } from "@angular/http";
+
+import { TableComponent } from "./dashboard/GestionUtil/table.component";
+
 import { InscriptionComponent } from "./inscription/inscription.component";
+
 import { LoginComponent } from "./login/login.component";
 import { NgModule } from "@angular/core";
+import { ParametrageComponent } from "./dashboard/parametrage/parametrage.component";
+import { AvionService } from "./_services/avion.service";
+
+
+
 @NgModule({
     imports: [ 
         BrowserModule,
@@ -26,14 +35,17 @@ import { NgModule } from "@angular/core";
         ReactiveFormsModule,
         RouterModule.forRoot(MODULE_ROUTES)
     ],
-    declarations: [AppComponent, MODULE_COMPONENTS, LoginComponent, InscriptionComponent],
+
+    declarations: [AppComponent, MODULE_COMPONENTS, LoginComponent,TableComponent, InscriptionComponent, ParametrageComponent],
+
     bootstrap:    [ AppComponent ],
     exports: [],
     providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, AppConfig,
         AuthGuard,
         AlertService,
         AuthenticationService,
-        UserService]
+        UserService,PaysService,
+        AvionService]
 })
 export class AppModule {
 

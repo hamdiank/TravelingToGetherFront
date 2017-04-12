@@ -21,9 +21,12 @@ var app_config_1 = require("./app.config");
 var index_1 = require("./_guards/index");
 var index_2 = require("./_services/index");
 var http_1 = require("@angular/http");
+var table_component_1 = require("./dashboard/GestionUtil/table.component");
 var inscription_component_1 = require("./inscription/inscription.component");
 var login_component_1 = require("./login/login.component");
 var core_1 = require("@angular/core");
+var parametrage_component_1 = require("./dashboard/parametrage/parametrage.component");
+var avion_service_1 = require("./_services/avion.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -39,14 +42,15 @@ var AppModule = (function () {
                 forms_1.ReactiveFormsModule,
                 router_1.RouterModule.forRoot(app_routes_1.MODULE_ROUTES)
             ],
-            declarations: [app_component_1.AppComponent, app_routes_1.MODULE_COMPONENTS, login_component_1.LoginComponent, inscription_component_1.InscriptionComponent],
+            declarations: [app_component_1.AppComponent, app_routes_1.MODULE_COMPONENTS, login_component_1.LoginComponent, table_component_1.TableComponent, inscription_component_1.InscriptionComponent, parametrage_component_1.ParametrageComponent],
             bootstrap: [app_component_1.AppComponent],
             exports: [],
             providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }, app_config_1.AppConfig,
                 index_1.AuthGuard,
                 index_2.AlertService,
                 index_2.AuthenticationService,
-                index_2.UserService]
+                index_2.UserService, index_2.PaysService,
+                avion_service_1.AvionService]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);
