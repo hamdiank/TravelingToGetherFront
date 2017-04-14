@@ -11,8 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var index_1 = require("../../_services/index");
 var ParametrageComponent = (function () {
-    function ParametrageComponent(paysService) {
+    function ParametrageComponent(paysService, pagerService) {
         this.paysService = paysService;
+        this.pagerService = pagerService;
+        this.model = {};
+        // pager object
+        this.pager = {};
     }
     ParametrageComponent.prototype.ngOnInit = function () {
         // $.getScript('../../../assets/js/material-dashboard.js');
@@ -23,10 +27,41 @@ var ParametrageComponent = (function () {
         this.paysService.getAll().
             subscribe(function (pays) {
             _this.pays = pays;
+            // initialize to page 1
+            _this.setPage(1);
             console.log(pays);
         }, function (error) {
             console.log(error);
         });
+    };
+    ParametrageComponent.prototype.supprimer = function (id) {
+        var _this = this;
+        console.log(id);
+        this.paysService.delete(id).subscribe(function (resultat) {
+            _this.ListPays();
+        });
+    };
+    ParametrageComponent.prototype.modifier = function () {
+        var _this = this;
+        console.log(this.model.nom);
+        this.paysM.nom = this.model.nom;
+        this.paysService.update(this.paysM).subscribe(function (result) {
+            _this.ListPays();
+        });
+    };
+    ParametrageComponent.prototype.getPays = function (pays) {
+        this.paysM = pays;
+        this.nomM = this.paysM.nom;
+    };
+    ParametrageComponent.prototype.setPage = function (page) {
+        console.log();
+        if (page < 1 || page > this.pager.totalPages) {
+            return;
+        }
+        // get pager object from service
+        this.pager = this.pagerService.getPager(this.pays.length, page);
+        // get current page of items
+        this.pagedItems = this.pays.slice(this.pager.startIndex, this.pager.endIndex + 1);
     };
     ParametrageComponent = __decorate([
         core_1.Component({
@@ -34,7 +69,7 @@ var ParametrageComponent = (function () {
             moduleId: module.id,
             templateUrl: 'parametrage.component.html'
         }), 
-        __metadata('design:paramtypes', [index_1.PaysService])
+        __metadata('design:paramtypes', [index_1.PaysService, index_1.PagerService])
     ], ParametrageComponent);
     return ParametrageComponent;
 }());

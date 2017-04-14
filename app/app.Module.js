@@ -47,7 +47,7 @@ var AppModule = (function () {
                 index_1.AuthGuard,
                 index_2.AlertService,
                 index_2.AuthenticationService,
-                index_2.UserService, index_2.PaysService],
+                index_2.UserService, index_2.PaysService, index_2.PagerService],
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

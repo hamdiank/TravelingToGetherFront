@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions,Headers ,Response} from "@angular/http";
 import { AppConfig } from "../app.config";
+import { Pays } from "../_models/Pays";
 
 
 @Injectable()
@@ -16,10 +17,13 @@ getAll() {
     }
 
 delete(_id: string) {
-        return this.http.delete(this.config.apiUrl + '/delPays/' + _id, this.jwt());
+        return this.http.delete(this.config.apiUrl + '/admin/pays/delPays/' + _id, this.jwt());
     }
 
+update(pays:Pays){
+        return this.http.put(this.config.apiUrl + '/admin/pays/updatePays/' + pays.idPays, pays, this.jwt());
 
+}
 
 
 private jwt() {

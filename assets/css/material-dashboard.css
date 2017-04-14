@@ -16,6 +16,9 @@
 /* ANIMATION */
 /* SHADOWS */
 /* Shadows (from mdl http://www.getmdl.io/) */
+a {
+    cursor: pointer;
+}
 .noUi-target,
 .noUi-target * {
   -webkit-touch-callout: none;

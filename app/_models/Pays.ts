@@ -1,6 +1,6 @@
 
 export class Pays {
-    id: string;
+    idPays: string;
     nom:string;
     cities :string[];
     aeroports: string[];

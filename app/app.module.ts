@@ -13,7 +13,7 @@ import {
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppConfig } from "./app.config";
 import { AuthGuard } from "./_guards/index";
-import { AlertService, UserService, AuthenticationService, PaysService } from "./_services/index";
+import { AlertService, UserService, AuthenticationService, PaysService, PagerService } from "./_services/index";
 import { HttpModule } from "@angular/http";
 
 import { TableComponent } from "./dashboard/GestionUtil/table.component";
@@ -41,6 +41,6 @@ import { InscriptionComponent } from "./inscription/inscription.component";
         AuthGuard,
         AlertService,
         AuthenticationService,
-        UserService,PaysService],
+        UserService,PaysService,PagerService],
 })
 export class AppModule { }
