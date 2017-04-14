@@ -1,64 +1,34 @@
 <div class="main-content">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header" data-background-color="orange">
-                        <h4 class="title">Liste Des Utilisateurs</h4>
-                        <p class="category"></p>
-                    </div>
-                    <div class="card-content table-responsive">
-                        <table class="table table-hover">
-                            <thead class="text-warning">
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Prenom</th>
-                                    <th>Email</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Dakota Rice</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td class="td-actions text-right">
-                <button type="button" rel="tooltip" title="plus d'info" class="btn btn-info btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
-                    <i class="fa fa-info-circle"></i>
-                </button>
-                <button type="button" rel="tooltip" title="bloquer utilisateur" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal2">
-                    <i class="fa fa-lock"></i>
-                </button>
-                <button type="button" rel="tooltip" title="debloquer utilisateur" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal3">
-                    <i class="fa fa-unlock"></i>
-                </button>
-            </td>
-                                    
-                                </tr>
-                            
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div>
-            </div>
-
-           
-        </div>
-
+        
+<tab (serveId)="getRowuser($event)"></tab>
         <!-- Modal Core -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel"></h4>
       </div>
       <div class="modal-body">
         
+     <div class="card card-profile">
+                <div class="card-avatar">
+                    <a href="#pablo">
+                        <img class="img" src="../assets/img/faces/marc.jpg" />
+                    </a>
+                </div>
+
+                <div class="content">
+                    <h6 class="category text-gray">{{login}}</h6>
+                    <h4 class="card-title">{{nom}} {{prenom}}</h4>
+                    <p class="card-content">
+                        Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                    </p>
+                </div>
+            </div>
+       
         
-        
-        Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
       </div>
       <div class="modal-footer">
       
@@ -85,7 +55,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+        <button (click)="setBloquer()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
       </div>
     </div>
   </div>
@@ -108,7 +78,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+        <button (click)="setDebloquer()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
       </div>
     </div>
   </div>

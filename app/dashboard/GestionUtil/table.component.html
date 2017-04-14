@@ -1,0 +1,47 @@
+<div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="orange">
+                        <h4 class="title">Liste Des Utilisateurs</h4>
+                        <p class="category"></p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-warning">
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Email</th>
+                                    <th>Action</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let user of users">
+                                    <td>{{user.nom}}</td>
+                                    <td>{{user.prenom}}</td>
+                                    <td>{{user.email}}</td>
+                                   
+                                    <td class="td-actions text-right">
+                <button (click)="modifier(user)" type="button" rel="tooltip" title="plus d'info" class="btn btn-info btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                    <i class="fa fa-info-circle"></i>
+                </button>
+                <button [disabled]="user.etat==false" (click)="modifier(user)" type="button" rel="tooltip" title="bloquer utilisateur" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal2" >
+                    <i class="fa fa-lock"></i>
+                </button>
+                <button [disabled]="user.etat==true" (click)="modifier(user)" type="button" rel="tooltip" title="debloquer utilisateur" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal3">
+                    <i class="fa fa-unlock"></i>
+                </button>
+            </td>
+                                    
+                                </tr>
+                            
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+           
+        </div>

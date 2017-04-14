@@ -18,16 +18,22 @@ var UserService = (function () {
     }
     UserService.prototype.getAll = function () {
         console.log("start api/user eehdf ......");
-        return this.http.get(this.config.apiUrl + '/api/users', this.jwt()).map(function (response) { return response.json(); });
+        return this.http.get(this.config.apiUrl + '/utilisateurs', this.jwt()).map(function (response) { return response.json(); });
     };
     UserService.prototype.getById = function (_id) {
-        return this.http.get(this.config.apiUrl + '/users/' + _id, this.jwt()).map(function (response) { return response.json(); });
+        return this.http.get(this.config.apiUrl + '/utilisateur/' + _id, this.jwt()).map(function (response) { return response.json(); });
     };
-    UserService.prototype.create = function (user) {
-        return this.http.post(this.config.apiUrl + '/register', user, this.jwt());
+    UserService.prototype.addUser = function (user) {
+        var bodyString = JSON.stringify(user); // Stringify payload
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+        var options = new http_1.RequestOptions({ headers: headers }); // Create a request option
+        return this.http.post('http://localhost:8088/utilisateurs', bodyString, this.jwt()); // ...using post request
+        //.map((res:Response) => res.json()) // ...and calling .json() on the response to return data
+        //    .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+        //return this.http.post(this.config.apiUrl + '/register',user,this.jwt());
     };
     UserService.prototype.update = function (user) {
-        return this.http.put(this.config.apiUrl + '/users/' + user._id, user, this.jwt());
+        return this.http.put(this.config.apiUrl + '/utilisateur/' + user.idUtilisateur, user, this.jwt());
     };
     UserService.prototype.delete = function (_id) {
         return this.http.delete(this.config.apiUrl + '/deluser/' + _id, this.jwt());
