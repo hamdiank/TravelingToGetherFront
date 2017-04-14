@@ -23,14 +23,36 @@ var UserService = (function () {
     UserService.prototype.getById = function (_id) {
         return this.http.get(this.config.apiUrl + '/utilisateur/' + _id, this.jwt()).map(function (response) { return response.json(); });
     };
-    UserService.prototype.addUser = function (user) {
-        var bodyString = JSON.stringify(user); // Stringify payload
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-        var options = new http_1.RequestOptions({ headers: headers }); // Create a request option
-        return this.http.post('http://localhost:8088/utilisateurs', bodyString, this.jwt()); // ...using post request
-        //.map((res:Response) => res.json()) // ...and calling .json() on the response to return data
-        //    .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
-        //return this.http.post(this.config.apiUrl + '/register',user,this.jwt());
+    /*
+        addUser(user: User) {
+            let bodyString = JSON.stringify(user); // Stringify payload
+            let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+            let options       = new RequestOptions({ headers: headers }); // Create a request option
+    
+            return this.http.post('http://localhost:8088/utilisateurs', bodyString, this.jwt()) // ...using post request
+                            
+                             //.map((res:Response) => res.json()) // ...and calling .json() on the response to return data
+                         //    .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+           
+            //return this.http.post(this.config.apiUrl + '/register',user,this.jwt());
+    */
+    UserService.prototype.addUser = function (firstname, lastname, username, password) {
+        var headers = new http_1.Headers();
+        console.log(headers);
+        var body = { "nom": firstname, "prenom": lastname, "login": username, "motDePasse": password };
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(this.config.apiUrl + '/utilisateurs', body, options)
+            .map(function (response) {
+            console.log("becem 1");
+            var x = JSON.parse(JSON.stringify(response));
+            console.log("becem 2");
+            var token = x._body;
+            console.log("becem 3");
+            if (token) {
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('currentUser', JSON.stringify(token));
+            }
+        });
     };
     UserService.prototype.update = function (user) {
         return this.http.put(this.config.apiUrl + '/utilisateur/' + user.idUtilisateur, user, this.jwt());

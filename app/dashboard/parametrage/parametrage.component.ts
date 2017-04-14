@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+
 import { PaysService, PagerService } from "../../_services/index";
 import { Pays } from "../../_models/index";
 import * as _ from 'underscore';
+
+import { AvionService } from "../../_services/avion.service";
+import { Avion } from "../../_models/avion";
+
+
 @Component({
     selector: 'parametrage-cmp',
     moduleId: module.id,
@@ -10,12 +16,13 @@ import * as _ from 'underscore';
 
 export class ParametrageComponent implements OnInit{
   pays :Pays[];
+
 idM:string;
 paysM:Pays;
 nomM:string;
 model:any={};
 
-
+avions: Avion[];
 
     // pager object
     pager: any = {};
@@ -23,13 +30,14 @@ model:any={};
     // paged items
     pagedItems: Pays[];
 
-  constructor(private  paysService:  PaysService,private  pagerService:  PagerService) { 
+  constructor(private  paysService:  PaysService,private  pagerService:  PagerService, private avionService: AvionService) { 
         
     }
   
    ngOnInit(){
         // $.getScript('../../../assets/js/material-dashboard.js');
     this.ListPays();
+    this.getAvions();
 }
 
 
@@ -89,5 +97,33 @@ setPage(page: number) {
 
         // get current page of items
         this.pagedItems = this.pays.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    }
+
 }
+  
+
+
+getAvions(){
+    this.avionService.getAvions().subscribe( avions=> { this.avions=avions;
+    console.log("aaaaaaaaaaa");    
+}
+    );
+
+}
+//    console.log(this.avions);
+//    console.log(typeof(this.avions));
+
+
+delete(avion: Avion){
+    console.log(typeof(avion.id));
+    
+    this.avionService.delete(avion.id);
+    console.log(avion.type+"supprimé!!!!!!");
+
+
+}
+}
+
+
+
+
+

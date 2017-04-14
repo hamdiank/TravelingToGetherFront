@@ -21,6 +21,7 @@ export class UserService {
         return this.http.get(this.config.apiUrl + '/utilisateur/' + _id, this.jwt()).map((response: Response) => response.json());
     }
 
+/*
     addUser(user: User) {
         let bodyString = JSON.stringify(user); // Stringify payload
         let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
@@ -32,6 +33,37 @@ export class UserService {
                      //    .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
        
         //return this.http.post(this.config.apiUrl + '/register',user,this.jwt());
+*/
+    addUser(firstname: String,lastname: String,username: String,password: String) {
+ 
+        let headers = new Headers();
+           
+           console.log(headers);
+     
+        let body={"nom": firstname,"prenom": lastname, "login": username, "motDePasse": password };
+      
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(this.config.apiUrl + '/utilisateurs',body,options)
+            .map((response: Response) => {
+                console.log("becem 1")
+                 let x = JSON.parse(JSON.stringify(response));
+                console.log("becem 2");
+               
+              let token = x._body ;
+                console.log("becem 3");
+
+                if (token ) {
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    localStorage.setItem('currentUser', JSON.stringify(token));
+                      //this.router.navigate(['/dashboard/statistique']);
+              //    console.log (localStorage.getItem('currentUser'));
+                   //console.log (user.user.username);
+
+
+                }
+            });
+    
+
     }
 
     update(user: User) {

@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var app_component_1 = require('./app.component');
 var app_routes_1 = require('./app.routes');
@@ -24,6 +23,10 @@ var index_2 = require("./_services/index");
 var http_1 = require("@angular/http");
 var table_component_1 = require("./dashboard/GestionUtil/table.component");
 var inscription_component_1 = require("./inscription/inscription.component");
+var login_component_1 = require("./login/login.component");
+var core_1 = require("@angular/core");
+var parametrage_component_1 = require("./dashboard/parametrage/parametrage.component");
+var avion_service_1 = require("./_services/avion.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -36,18 +39,17 @@ var AppModule = (function () {
                 sidebar_module_1.SidebarModule,
                 navbar_module_1.NavbarModule,
                 footer_module_1.FooterModule,
-                forms_1.FormsModule,
                 forms_1.ReactiveFormsModule,
                 router_1.RouterModule.forRoot(app_routes_1.MODULE_ROUTES)
             ],
-            declarations: [app_component_1.AppComponent, app_routes_1.MODULE_COMPONENTS, table_component_1.TableComponent, inscription_component_1.InscriptionComponent],
+            declarations: [app_component_1.AppComponent, app_routes_1.MODULE_COMPONENTS, login_component_1.LoginComponent, table_component_1.TableComponent, inscription_component_1.InscriptionComponent, parametrage_component_1.ParametrageComponent],
             bootstrap: [app_component_1.AppComponent],
             exports: [],
             providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }, app_config_1.AppConfig,
                 index_1.AuthGuard,
                 index_2.AlertService,
                 index_2.AuthenticationService,
-                index_2.UserService, index_2.PaysService, index_2.PagerService],
+                index_2.UserService, index_2.PaysService, index_2.PagerService, avion_service_1.AvionService],
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

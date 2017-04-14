@@ -10,10 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var index_1 = require("../../_services/index");
+var avion_service_1 = require("../../_services/avion.service");
 var ParametrageComponent = (function () {
-    function ParametrageComponent(paysService, pagerService) {
+    function ParametrageComponent(paysService, pagerService, avionService) {
         this.paysService = paysService;
         this.pagerService = pagerService;
+        this.avionService = avionService;
         this.model = {};
         // pager object
         this.pager = {};
@@ -21,6 +23,7 @@ var ParametrageComponent = (function () {
     ParametrageComponent.prototype.ngOnInit = function () {
         // $.getScript('../../../assets/js/material-dashboard.js');
         this.ListPays();
+        this.getAvions();
     };
     ParametrageComponent.prototype.ListPays = function () {
         var _this = this;
@@ -63,13 +66,27 @@ var ParametrageComponent = (function () {
         // get current page of items
         this.pagedItems = this.pays.slice(this.pager.startIndex, this.pager.endIndex + 1);
     };
+    ParametrageComponent.prototype.getAvions = function () {
+        var _this = this;
+        this.avionService.getAvions().subscribe(function (avions) {
+            _this.avions = avions;
+            console.log("aaaaaaaaaaa");
+        });
+    };
+    //    console.log(this.avions);
+    //    console.log(typeof(this.avions));
+    ParametrageComponent.prototype.delete = function (avion) {
+        console.log(typeof (avion.id));
+        this.avionService.delete(avion.id);
+        console.log(avion.type + "supprimé!!!!!!");
+    };
     ParametrageComponent = __decorate([
         core_1.Component({
             selector: 'parametrage-cmp',
             moduleId: module.id,
             templateUrl: 'parametrage.component.html'
         }), 
-        __metadata('design:paramtypes', [index_1.PaysService, index_1.PagerService])
+        __metadata('design:paramtypes', [index_1.PaysService, index_1.PagerService, avion_service_1.AvionService])
     ], ParametrageComponent);
     return ParametrageComponent;
 }());

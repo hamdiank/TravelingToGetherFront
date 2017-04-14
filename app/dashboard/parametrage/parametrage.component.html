@@ -20,13 +20,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                     <tr *ngFor="let pay of pagedItems">
                                         <td>{{pay.idPays}}</td>
                                         <td>{{pay.nom}}</td>
+
                                         <td>
                                 <button (click)="getPays(pay)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
                                     <i class="fa fa-edit"></i>
                                 </button>
+
                                 <button (click)="supprimer(pay.idPays)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
                                                         <i class="material-icons">close</i>
                                                     </button>
@@ -87,7 +90,9 @@
                                     <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
                                         <i class="fa fa-edit"></i>
                                     </button>
+
                                     <button  type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+
                                                         <i class="material-icons">close</i>
                                                     </button>
                                         </td>
@@ -134,6 +139,91 @@
                                              <i class="material-icons">close</i>
                                     </button>
                          </td>
+
+                                        
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+<!-- liste des types d'avions et la liste des types de train -->
+  <div class="col-md-6">
+         <div class="card" >
+                        <div class="card-header" data-background-color="purple">
+                            <h4 class="title">Liste Des Types d'Avion</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <button type="button" class=" btn btn-primary btn-round ">
+                                 <i class="material-icons">add</i>
+                             </button>
+                            <table class="table table-hover">
+                                <thead class="text-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Type</th>
+                                        <th>Action</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let avion of avions">
+                                        <td>{{avion.id}}</td>
+                                        <td>{{avion.type}}</td>
+                                        <td>
+                                            <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                                                    <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" (click)="delete(avion)" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                                    <i class="material-icons">close</i>
+                                            </button>
+                                        </td>
+                                    </tr>
+        
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+             </div>
+
+             <div class="row">
+         <div class="col-md-6">
+         <div class="card" >
+                        <div class="card-header" data-background-color="blue">
+                            <h4 class="title">Liste Des Types de Train</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <button type="button" class=" btn btn-info btn-round ">
+                                 <i class="material-icons">add</i>
+                             </button>
+                            <table class="table table-hover">
+                                <thead class="text-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th>Pays</th>
+                                        <th>Action</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Dakota Rice</td>
+                                        <td>France</td>
+                                        <td>
+                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                                            <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                             <i class="material-icons">close</i>
+                                    </button>
+                         </td>
+
                                         
                                     </tr>
                                     
