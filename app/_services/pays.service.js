@@ -21,7 +21,10 @@ var PaysService = (function () {
         return this.http.get(this.config.apiUrl + '/admin/pays/all', this.jwt()).map(function (response) { return response.json(); });
     };
     PaysService.prototype.delete = function (_id) {
-        return this.http.delete(this.config.apiUrl + '/delPays/' + _id, this.jwt());
+        return this.http.delete(this.config.apiUrl + '/admin/pays/delPays/' + _id, this.jwt());
+    };
+    PaysService.prototype.update = function (pays) {
+        return this.http.put(this.config.apiUrl + '/admin/pays/updatePays/' + pays.idPays, pays, this.jwt());
     };
     PaysService.prototype.jwt = function () {
         // create authorization header with jwt token

@@ -10,7 +10,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppConfig } from "./app.config";
 import { AuthGuard } from "./_guards/index";
-import { AlertService, UserService, AuthenticationService, PaysService } from "./_services/index";
+
+import { AlertService, UserService, AuthenticationService, PaysService, PagerService } from "./_services/index";
+
 import { HttpModule } from "@angular/http";
 
 import { TableComponent } from "./dashboard/GestionUtil/table.component";
@@ -36,7 +38,9 @@ import { AvionService } from "./_services/avion.service";
         RouterModule.forRoot(MODULE_ROUTES)
     ],
 
+
     declarations: [AppComponent, MODULE_COMPONENTS, LoginComponent,TableComponent, InscriptionComponent, ParametrageComponent],
+
 
     bootstrap:    [ AppComponent ],
     exports: [],
@@ -44,8 +48,9 @@ import { AvionService } from "./_services/avion.service";
         AuthGuard,
         AlertService,
         AuthenticationService,
-        UserService,PaysService,
-        AvionService]
+
+        UserService,PaysService,PagerService,AvionService],
+
 })
 export class AppModule {
 

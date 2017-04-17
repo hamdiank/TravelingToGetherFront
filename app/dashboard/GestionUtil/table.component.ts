@@ -33,8 +33,14 @@ export class TableComponent implements OnInit {
     }
     
     );
+<<<<<<< HEAD
+   
+}
+ modifier(user : User):void{
+=======
 }
  modifier(user : User):void {
+>>>>>>> cebef78c18c6f48e28bfda477c498652eba86904
      console.log("eehjeh: "+user)
     this.serveId.emit(user);
 }

@@ -6,4 +6,5 @@ __export(require('./alert.service'));
 __export(require('./authentication.service'));
 __export(require('./user.service'));
 __export(require('./pays.service'));
+__export(require('./pager.service'));
 //# sourceMappingURL=index.js.map
