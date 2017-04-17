@@ -46,9 +46,10 @@
                 <li [ngClass]="{disabled:pager.currentPage === 1}">
                     <a (click)="setPage(pager.currentPage - 1)">Previous</a>
                 </li>
+              <!--
                 <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
                     <a (click)="setPage(page)">{{page}}</a>
-                </li>
+                </li> -->
                 <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
                     <a (click)="setPage(pager.currentPage + 1)">Next</a>
                 </li>
