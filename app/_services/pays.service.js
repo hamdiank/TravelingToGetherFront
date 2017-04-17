@@ -26,6 +26,9 @@ var PaysService = (function () {
     PaysService.prototype.update = function (pays) {
         return this.http.put(this.config.apiUrl + '/admin/pays/updatePays/' + pays.idPays, pays, this.jwt());
     };
+    PaysService.prototype.add = function (nomPays) {
+        return this.http.post(this.config.apiUrl + '/admin/pays/addPays/' + nomPays, this.jwt());
+    };
     PaysService.prototype.jwt = function () {
         // create authorization header with jwt token
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));

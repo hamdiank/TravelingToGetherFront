@@ -28,6 +28,11 @@ update(pays:Pays){
 
 }
 
+add(nomPays:string){
+       return this.http.post(this.config.apiUrl + '/admin/pays/addPays/'+nomPays, this.jwt());
+
+}
+
 
 private jwt() {
         // create authorization header with jwt token

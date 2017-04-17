@@ -17,6 +17,8 @@ var ParametrageComponent = (function () {
         this.pagerService = pagerService;
         this.avionService = avionService;
         this.model = {};
+        this.model2 = {};
+        this.model3 = {};
         // pager object
         this.pager = {};
     }
@@ -35,6 +37,31 @@ var ParametrageComponent = (function () {
             console.log(pays);
         }, function (error) {
             console.log(error);
+        });
+    };
+    ParametrageComponent.prototype.addPays = function () {
+        var _this = this;
+        console.log(this.model2.nomPays);
+        this.paysService.add(this.model2.nomPays).subscribe(function (result) {
+            _this.ListPays();
+        });
+    };
+    ParametrageComponent.prototype.ajouterParametre = function () {
+        var _this = this;
+        if (this.model3.ville == null || this.model3.ville == "")
+            console.log("ville null ");
+        else
+            this.paysM.cities.push(this.model3.ville);
+        if (this.model3.aeroport == null || this.model3.aeroport == "")
+            console.log("aeroport null ");
+        else
+            this.paysM.aeroports.push(this.model3.aeroport);
+        if (this.model3.station == null || this.model3.station == "")
+            console.log("aeroport null ");
+        else
+            this.paysM.stations.push(this.model3.stations);
+        this.paysService.update(this.paysM).subscribe(function (result) {
+            _this.ListPays();
         });
     };
     ParametrageComponent.prototype.supprimer = function (id) {

@@ -21,7 +21,8 @@ idM:string;
 paysM:Pays;
 nomM:string;
 model:any={};
-
+model2:any={};
+model3:any={};
 avions: Avion[];
 
     // pager object
@@ -55,6 +56,31 @@ ListPays(){
     }
     
     );
+}
+addPays(){
+    console.log(this.model2.nomPays);
+    this.paysService.add(this.model2.nomPays).subscribe(result=>{
+   
+   this.ListPays();
+
+    });
+}
+ajouterParametre(){
+    if(this.model3.ville==null || this.model3.ville=="")
+    console.log("ville null ");
+    else this.paysM.cities.push(this.model3.ville);
+    if(this.model3.aeroport==null || this.model3.aeroport=="")
+    console.log("aeroport null ");
+    else this.paysM.aeroports.push(this.model3.aeroport);
+    
+    if(this.model3.station==null || this.model3.station=="")
+    console.log("aeroport null ");
+    else this.paysM.stations.push(this.model3.stations);
+
+    this.paysService.update(this.paysM).subscribe(result=>{
+    this.ListPays();
+    });
+
 }
 supprimer(id:string){
     

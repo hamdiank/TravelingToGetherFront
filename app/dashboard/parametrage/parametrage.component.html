@@ -2,14 +2,29 @@
 <div class="container-fluid">
     <div class="row">
          <div class="col-md-6">
-         <div class="card" style="height: 60rem;">
+         <div class="card" style="height: 65rem;">
                         <div class="card-header" data-background-color="green">
                             <h4 class="title">Liste Des Pays</h4>           
                         </div>
                         <div class="card-content table-responsive">
-                            <button type="button" class=" btn btn-success btn-round ">
-                                 <i class="material-icons">add</i>
-                             </button>
+                           <form class="navbar-form navbar-right" role="search">
+                <div class="form-group form-black is-empty">
+                    <input type="text" class="form-control" placeholder="chercher">
+                    <span class="material-input"></span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-round btn-just-icon">
+                    <i class="material-icons">search</i><div class="ripple-container"></div>
+                </button>
+            </form>
+                   <form class="navbar-form navbar-right" (ngSubmit)="addPays()">
+                <div class="form-group form-black is-empty">
+                    <input type="text" class="form-control" placeholder="ajouter Pays" [(ngModel)]="model2.nomPays" #nomPays="ngModel" required name="nomPays">
+                    <span class="material-input"></span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-round btn-just-icon">
+                    <i class="material-icons">add</i><div class="ripple-container"></div>
+                </button>
+            </form>
                             <table class="table table-hover">
                                 <thead class="text-success">
                                     <tr>
@@ -33,6 +48,9 @@
                                 <button (click)="supprimer(pay.idPays)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
                                                         <i class="material-icons">close</i>
                                                     </button>
+                                 <button (click)="getPays(pay)" type="button" rel="tooltip" title="Supprimer" class="btn btn-info btn-simple btn-xs" data-toggle="modal" data-target="#myModal2">
+                                                        <i class="material-icons">add</i>
+                                                    </button>                    
                                         </td>
                                         
                                     </tr>
@@ -280,7 +298,7 @@
 
 
 
-              <!-- Modal Core -->
+              <!-- Modal pays -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -288,21 +306,73 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Modifier</h4>
       </div>
+      <form #myForm="ngForm" (ngSubmit)="modifier()">
       <div class="modal-body">
-        <form #myForm="ngForm" (ngSubmit)="modifier()">
+        
          <div class="row">
 	<div class="form-group col-sm-4">
     	<input type="text" value="{{nomM}}" placeholder="" class="form-control"  [(ngModel)]="model.nom" #nom="ngModel" required name="nom"/>
 	</div>
          </div> 
          
-      <button type="submit" class="btn btn-primary">Modifier</button>
-        </form>
+     
       </div>
       
-      <div class="modal-footer">
-        <button type="button" class="btn btn-info btn-simple" data-dismiss="modal">Fermer</button>
+              <div class="modal-footer">
+      <button type="submit" class="btn btn-success btn-round" >Modifier</button>
+      <button type="reset" class="btn btn-danger btn-round"  data-dismiss="modal">Annuler</button>
+             </div>
+       </form>
+    </div>
+  </div>
+</div>
+
+  <!--                      -->
+
+
+
+
+              <!-- Modal pays parametre -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modifier</h4>
       </div>
+      <form #myForm="ngForm" (ngSubmit)="ajouterParametre()">
+      <div class="modal-body">
+        
+         <div class="row">
+             <div class="col-sm-4">
+	<div class="form-group label-floating">
+		<label class="control-label">Ville</label>
+		<input type="text" class="form-control" [(ngModel)]="model3.ville" #ville="ngModel"  name="ville">
+	</div>
+</div>
+<div class="col-sm-4">
+	<div class="form-group label-floating">
+		<label class="control-label">Aeroport</label>
+		<input type="text" class="form-control" [(ngModel)]="model3.aeroport" #aeroport="ngModel"  name="aeroport">
+	</div>
+</div>
+<div class="col-sm-4">
+	<div class="form-group label-floating">
+		<label class="control-label">Station Metro</label>
+		<input type="text"  placeholder="" class="form-control"  [(ngModel)]="model3.station" #station="ngModel"  name="station"/>
+	</div>
+</div>
+	
+         </div> 
+         
+     
+      </div>
+      
+              <div class="modal-footer">
+      <button type="submit" class="btn btn-success btn-round" >Ajouter</button>
+      <button type="reset" class="btn btn-danger btn-round"  data-dismiss="modal">Annuler</button>
+             </div>
+       </form>
     </div>
   </div>
 </div>

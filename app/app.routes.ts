@@ -9,12 +9,9 @@ import { ParametrageComponent } from './dashboard/parametrage/parametrage.compon
 
 import { GestionUtilComponent } from './dashboard/GestionUtil/gestionUtil.component';
 import { AuthGuard } from "./_guards/index";
-import { InscriptionComponent } from "./inscription/inscription.component";
-
 export const MODULE_ROUTES: Route[] =[
       { path: 'login', component: LoginComponent },
-       { path: 'register', component: InscriptionComponent },
-     
+   
     { path: 'dashboard' ,component: DashboardComponent ,children: [
     { path: 'Statistiques', component: StatistiqueComponent },
     { path: 'parametrage', component: ParametrageComponent },
@@ -27,7 +24,7 @@ export const MODULE_ROUTES: Route[] =[
 
 export const MODULE_COMPONENTS = [
     StatistiqueComponent,DashboardComponent,GestionUtilComponent,
-ParametrageComponent, LoginComponent,InscriptionComponent
+ParametrageComponent, LoginComponent
  
   
   

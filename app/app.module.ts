@@ -17,7 +17,7 @@ import { HttpModule } from "@angular/http";
 
 import { TableComponent } from "./dashboard/GestionUtil/table.component";
 
-import { InscriptionComponent } from "./inscription/inscription.component";
+
 
 import { LoginComponent } from "./login/login.component";
 import { NgModule } from "@angular/core";
@@ -39,7 +39,7 @@ import { AvionService } from "./_services/avion.service";
     ],
 
 
-    declarations: [AppComponent, MODULE_COMPONENTS, LoginComponent,TableComponent, InscriptionComponent, ParametrageComponent],
+    declarations: [AppComponent, MODULE_COMPONENTS, LoginComponent,TableComponent, ParametrageComponent],
 
 
     bootstrap:    [ AppComponent ],
