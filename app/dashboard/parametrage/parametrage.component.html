@@ -1,13 +1,19 @@
-<div class="main-content">
-<div class="container-fluid">
+                           
+<div class="main-content">     
+                                <div class="center">
+                    <app-loader [loading]="loading"></app-loader>
+                                </div> 
+<div *ngIf="!loading" class="container-fluid" >
+                              
     <div class="row">
          <div class="col-md-6">
-         <div class="card" style="height: 65rem;">
+                                
+         <div  class="card" style="height: 65rem;" >
                         <div class="card-header" data-background-color="green">
                             <h4 class="title">Liste Des Pays</h4>           
                         </div>
                         <div class="card-content table-responsive">
-                           <form class="navbar-form navbar-right" role="search">
+                           <form class="navbar-form navbar-right " role="search">
                 <div class="form-group form-black is-empty">
                     <input type="text" class="form-control" placeholder="chercher">
                     <span class="material-input"></span>
@@ -25,7 +31,9 @@
                     <i class="material-icons">add</i><div class="ripple-container"></div>
                 </button>
             </form>
-                            <table class="table table-hover">
+                               
+
+                            <table  class="table table-hover">
                                 <thead class="text-success">
                                     <tr>
                                         <th>ID</th>
@@ -34,7 +42,7 @@
                                         
                                     </tr>
                                 </thead>
-                                <tbody>
+                              <tbody>          
 
                                     <tr *ngFor="let pay of pagedItems">
                                         <td>{{pay.idPays}}</td>
@@ -56,7 +64,8 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <!-- pager -->
+                            <!--               pager            -->
+
             <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
                 <li [ngClass]="{disabled:pager.currentPage === 1}">
                     <a (click)="setPage(1)">First</a>
@@ -90,7 +99,8 @@
                             
                             <table class="table table-hover">
                                 <thead class="text-success">
-                                    <tr>
+                                 <tr > 
+                                    
                                         <th>ID</th>
                                         <th>Nom</th>
                                         <th>Pays</th>
@@ -99,9 +109,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
+                                    <tr >
+                                        <td></td>
+                                        <td></td>
                                         <td>jklg</td>
                                         <td>
                                     <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
@@ -115,7 +125,7 @@
                                         </td>
                                         
                                     </tr>
-                                   
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -157,6 +167,66 @@
 
                                         
                                     </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Dakota Rice</td>
+                                        <td>France</td>
+                                        <td>
+                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                                            <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                             <i class="material-icons">close</i>
+                                    </button>
+                         </td>
+
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Dakota Rice</td>
+                                        <td>France</td>
+                                        <td>
+                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                                            <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                             <i class="material-icons">close</i>
+                                    </button>
+                         </td>
+
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Dakota Rice</td>
+                                        <td>France</td>
+                                        <td>
+                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                                            <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                             <i class="material-icons">close</i>
+                                    </button>
+                         </td>
+
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Dakota Rice</td>
+                                        <td>France</td>
+                                        <td>
+                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                                            <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                             <i class="material-icons">close</i>
+                                    </button>
+                         </td>
+
+                                        
+                                    </tr>
                                     
                                 </tbody>
                             </table>
@@ -181,16 +251,16 @@
                     <i class="material-icons">search</i><div class="ripple-container"></div>
                 </button>
             </form>
-            
-                           <form #myForm3="ngForm" class="navbar-form navbar-right" (ngSubmit)="addAvion()">
+            <form  (ngSubmit)="addAvion()" class="navbar-form navbar-right">
                 <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" placeholder="ajouter type avion" [(ngModel)]="model4.avion" #avion="ngModel" required name="avion">
+                    <input type="text" class="form-control" placeholder="ajouter type avion" [(ngModel)]="model4.typeAvion" #typeAvion="ngModel" required name="typeAvion">
                     <span class="material-input"></span>
                 </div>
                 <button type="submit" class="btn btn-default btn-round btn-just-icon">
                     <i class="material-icons">add</i><div class="ripple-container"></div>
                 </button>
             </form>
+                       
                             <table class="table table-hover">
                                 <thead class="text-success">
                                     <tr>
@@ -314,7 +384,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Modifier</h4>
       </div>
-      <form #myForm="ngForm" (ngSubmit)="modifierPays()">
+      <form #myForm2="ngForm" (ngSubmit)="modifierPays()">
       <div class="modal-body">
         
          <div class="row">
@@ -328,7 +398,7 @@
       
               <div class="modal-footer">
       <button type="submit" class="btn btn-success btn-round" >Modifier</button>
-      <button type="reset" class="btn btn-danger btn-round"  data-dismiss="modal">Annuler</button>
+      <button type="reset" class="btn btn-danger btn-round"  data-dismiss="modal">Fermer</button>
              </div>
        </form>
     </div>
@@ -346,7 +416,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Modifier</h4>
       </div>
-      <form #myForm="ngForm" (ngSubmit)="ajouterParametre()">
+      <form #f="ngForm" (ngSubmit)="ajouterParametre()">
       <div class="modal-body">
         
          <div class="row">
@@ -376,12 +446,14 @@
       
               <div class="modal-footer">
       <button type="submit" class="btn btn-success btn-round" >Ajouter</button>
-      <button type="reset" class="btn btn-danger btn-round"  data-dismiss="modal">Annuler</button>
+      <button type="reset" class="btn btn-danger btn-round"  data-dismiss="modal">Fermer</button>
              </div>
        </form>
     </div>
   </div>
 </div>
+
+
 
   <!--  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù         -->
 
@@ -410,7 +482,7 @@
       
               <div class="modal-footer">
       <button type="submit" class="btn btn-success btn-round" >Modifier</button>
-      <button type="reset" class="btn btn-danger btn-round"  data-dismiss="modal">Annuler</button>
+      <button type="reset" class="btn btn-danger btn-round"  data-dismiss="modal">Fermer</button>
              </div>
        </form>
     </div>

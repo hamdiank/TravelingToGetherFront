@@ -6,7 +6,8 @@ import * as _ from 'underscore';
 
 import { AvionService } from "../../_services/avion.service";
 import { Avion } from "../../_models/avion";
-
+import { LoaderComponent } from "../../shared/loader/loader.component";
+import{ValuesPipe}from "./valuesPipe"
 
 @Component({
     selector: 'parametrage-cmp',
@@ -15,6 +16,7 @@ import { Avion } from "../../_models/avion";
 })
 
 export class ParametrageComponent implements OnInit{
+  loading: boolean =false;
   pays :Pays[];
 
 idM:string;
@@ -25,6 +27,7 @@ model2:any={};
 model3:any={};
 model4:any={};
 avions: Avion[];
+returnArray = [];
 avion:Avion;
     // pager object
     pager: any = {};
@@ -38,27 +41,43 @@ avion:Avion;
   
    ngOnInit(){
         // $.getScript('../../../assets/js/material-dashboard.js');
-    this.ListPays();
-    this.ListAvions();
+     
+     console.log("loading on");
+     this.loading = true; 
    
+    this.ListPays();
+   
+  //  this.ListAvions();
+  
+    // this.getville();
 }
 
-
+     //////////////////////////////////////////////////////////////////////////////////////////////
 
 ListPays(){
      this.paysService.getAll().
     subscribe(pays => { 
-        this.pays=pays;
+       
+         this.pays=pays;
            // initialize to page 1
-        this.setPage(1);
-        console.log(pays) ;
+         this.setPage(1);
+         console.log(pays) ;
+
+         this.loading = false;
+         console.log("loading off");
+        this.getville();
+        
     },
     error =>{
+        this.loading = false;
         console.log(error);
     }
     
     );
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
 addPays(){
     console.log(this.model2.nomPays);
     this.paysService.add(this.model2.nomPays).subscribe(result=>{
@@ -67,6 +86,9 @@ addPays(){
 
     });
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
 ajouterParametre(){
     if(this.model3.ville==null || this.model3.ville=="")
     console.log("ville null ");
@@ -84,6 +106,9 @@ ajouterParametre(){
     });
 
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
 supprimer(id:string){
     
 console.log(id);
@@ -94,6 +119,7 @@ this.ListPays();
 
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 modifierPays(){
     console.log(this.model.nom);
@@ -105,6 +131,8 @@ modifierPays(){
 }) ;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 getPays(pays:Pays){
 
 
@@ -113,6 +141,29 @@ this.nomM=this.paysM.nom;
 
 }
 
+////////////////////////////////////////////////////////////////
+
+getville(){
+
+this.pays.forEach(element => {
+    
+    for (var index = 0; index < element.cities.length; index++) {
+         
+        
+    this.returnArray.push({
+                key: element.nom,
+                val: element.cities[index]
+            });
+}
+
+});
+
+ 
+//console.log("blabla +"+this.returnArray);
+
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 setPage(page: number) {
       console.log()
@@ -146,11 +197,12 @@ modifierAvion(){
 
 }
 addAvion(){
-this.avion.type=this.model4.avion;
+this.avion.type=this.model4.typeAvion;
 console.log(this.avion.type);
-this.avionService.add(this.avion).subscribe(result=>{
+/*this.avionService.add(this.avion).subscribe(result=>{
 this.ListAvions();
-});
+});*/
+ 
 }
 
 deleteAvion(avion: Avion){

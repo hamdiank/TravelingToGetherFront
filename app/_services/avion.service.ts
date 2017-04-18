@@ -13,7 +13,7 @@ export class AvionService {
     }
     
 
-    getAvions() {
+     getAvions() {
     
         return this.http.get(this.config.apiUrl +'/avions',
          this.jwt())
@@ -21,7 +21,7 @@ export class AvionService {
     }
     
 
-    getById(_id: string) {
+     getById(_id: string) {
         return this.http.get(this.config.apiUrl + '/avions/' + _id, this.jwt()).map((response: Response) => response.json());
     }
 
@@ -29,7 +29,7 @@ export class AvionService {
          console.log("i am in AvionService" + id )
    return this.http.delete(this.config.apiUrl+'/avions/'+ id ,this.jwt()).map((response: Response) => response.json());
   }
-  add(avion:Avion){
+     add(avion:Avion){
    return this.http.post(this.config.apiUrl+'/avions/',avion ,this.jwt());
 
   }

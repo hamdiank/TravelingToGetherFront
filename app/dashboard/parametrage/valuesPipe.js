@@ -9,25 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var ObjectPipe = (function () {
-    function ObjectPipe() {
+var ValuesPipe = (function () {
+    function ValuesPipe() {
     }
-    ObjectPipe.prototype.transform = function (value, args) {
+    ValuesPipe.prototype.transform = function (value, args) {
         var keys = [];
         for (var key in value) {
             keys.push({ key: key, value: value[key] });
         }
-        console.log(keys);
         return keys;
     };
-    ObjectPipe = __decorate([
-        core_1.Pipe({
-            name: 'objectPipe'
-        }),
+    ValuesPipe = __decorate([
+        core_1.Pipe({ name: 'values', pure: false }),
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])
-    ], ObjectPipe);
-    return ObjectPipe;
+    ], ValuesPipe);
+    return ValuesPipe;
 }());
-exports.ObjectPipe = ObjectPipe;
-//# sourceMappingURL=objectPipe.js.map
+exports.ValuesPipe = ValuesPipe;
+//# sourceMappingURL=valuesPipe.js.map

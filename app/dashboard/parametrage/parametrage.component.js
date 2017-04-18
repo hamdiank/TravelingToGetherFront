@@ -16,18 +16,24 @@ var ParametrageComponent = (function () {
         this.paysService = paysService;
         this.pagerService = pagerService;
         this.avionService = avionService;
+        this.loading = false;
         this.model = {};
         this.model2 = {};
         this.model3 = {};
         this.model4 = {};
+        this.returnArray = [];
         // pager object
         this.pager = {};
     }
     ParametrageComponent.prototype.ngOnInit = function () {
         // $.getScript('../../../assets/js/material-dashboard.js');
+        console.log("loading on");
+        this.loading = true;
         this.ListPays();
-        this.ListAvions();
+        //  this.ListAvions();
+        // this.getville();
     };
+    //////////////////////////////////////////////////////////////////////////////////////////////
     ParametrageComponent.prototype.ListPays = function () {
         var _this = this;
         this.paysService.getAll().
@@ -36,10 +42,15 @@ var ParametrageComponent = (function () {
             // initialize to page 1
             _this.setPage(1);
             console.log(pays);
+            _this.loading = false;
+            console.log("loading off");
+            _this.getville();
         }, function (error) {
+            _this.loading = false;
             console.log(error);
         });
     };
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     ParametrageComponent.prototype.addPays = function () {
         var _this = this;
         console.log(this.model2.nomPays);
@@ -47,6 +58,7 @@ var ParametrageComponent = (function () {
             _this.ListPays();
         });
     };
+    //////////////////////////////////////////////////////////////////////////////////////////
     ParametrageComponent.prototype.ajouterParametre = function () {
         var _this = this;
         if (this.model3.ville == null || this.model3.ville == "")
@@ -65,6 +77,7 @@ var ParametrageComponent = (function () {
             _this.ListPays();
         });
     };
+    /////////////////////////////////////////////////////////////////////////////////////////
     ParametrageComponent.prototype.supprimer = function (id) {
         var _this = this;
         console.log(id);
@@ -72,6 +85,7 @@ var ParametrageComponent = (function () {
             _this.ListPays();
         });
     };
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
     ParametrageComponent.prototype.modifierPays = function () {
         var _this = this;
         console.log(this.model.nom);
@@ -80,10 +94,25 @@ var ParametrageComponent = (function () {
             _this.ListPays();
         });
     };
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
     ParametrageComponent.prototype.getPays = function (pays) {
         this.paysM = pays;
         this.nomM = this.paysM.nom;
     };
+    ////////////////////////////////////////////////////////////////
+    ParametrageComponent.prototype.getville = function () {
+        var _this = this;
+        this.pays.forEach(function (element) {
+            for (var index = 0; index < element.cities.length; index++) {
+                _this.returnArray.push({
+                    key: element.nom,
+                    val: element.cities[index]
+                });
+            }
+        });
+        //console.log("blabla +"+this.returnArray);
+    };
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
     ParametrageComponent.prototype.setPage = function (page) {
         console.log();
         if (page < 1 || page > this.pager.totalPages) {
@@ -108,12 +137,11 @@ var ParametrageComponent = (function () {
     ParametrageComponent.prototype.modifierAvion = function () {
     };
     ParametrageComponent.prototype.addAvion = function () {
-        var _this = this;
-        this.avion.type = this.model4.avion;
+        this.avion.type = this.model4.typeAvion;
         console.log(this.avion.type);
-        this.avionService.add(this.avion).subscribe(function (result) {
-            _this.ListAvions();
-        });
+        /*this.avionService.add(this.avion).subscribe(result=>{
+        this.ListAvions();
+        });*/
     };
     ParametrageComponent.prototype.deleteAvion = function (avion) {
         var _this = this;

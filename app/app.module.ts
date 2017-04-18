@@ -23,6 +23,9 @@ import { LoginComponent } from "./login/login.component";
 import { NgModule } from "@angular/core";
 import { ParametrageComponent } from "./dashboard/parametrage/parametrage.component";
 import { AvionService } from "./_services/avion.service";
+import { LoaderComponent } from "./shared/loader/loader.component";
+import { ValuesPipe } from "./dashboard/parametrage/valuesPipe";
+
 
 
 
@@ -39,7 +42,7 @@ import { AvionService } from "./_services/avion.service";
     ],
 
 
-    declarations: [AppComponent, MODULE_COMPONENTS, LoginComponent,TableComponent, ParametrageComponent],
+    declarations: [AppComponent, MODULE_COMPONENTS, LoginComponent,TableComponent, ParametrageComponent,LoaderComponent,ValuesPipe],
 
 
     bootstrap:    [ AppComponent ],
@@ -47,7 +50,7 @@ import { AvionService } from "./_services/avion.service";
     providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, AppConfig,
         AuthGuard,
         AlertService,
-        AuthenticationService,
+        AuthenticationService,ValuesPipe,
 
         UserService,PaysService,PagerService,AvionService],
 
