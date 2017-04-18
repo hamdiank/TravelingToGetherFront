@@ -19,13 +19,14 @@ var ParametrageComponent = (function () {
         this.model = {};
         this.model2 = {};
         this.model3 = {};
+        this.model4 = {};
         // pager object
         this.pager = {};
     }
     ParametrageComponent.prototype.ngOnInit = function () {
         // $.getScript('../../../assets/js/material-dashboard.js');
         this.ListPays();
-        this.getAvions();
+        this.ListAvions();
     };
     ParametrageComponent.prototype.ListPays = function () {
         var _this = this;
@@ -71,7 +72,7 @@ var ParametrageComponent = (function () {
             _this.ListPays();
         });
     };
-    ParametrageComponent.prototype.modifier = function () {
+    ParametrageComponent.prototype.modifierPays = function () {
         var _this = this;
         console.log(this.model.nom);
         this.paysM.nom = this.model.nom;
@@ -93,7 +94,9 @@ var ParametrageComponent = (function () {
         // get current page of items
         this.pagedItems = this.pays.slice(this.pager.startIndex, this.pager.endIndex + 1);
     };
-    ParametrageComponent.prototype.getAvions = function () {
+    /*---------------------------------------------------------------------------------*/
+    /*---------------------------------------------------------------------------------*/
+    ParametrageComponent.prototype.ListAvions = function () {
         var _this = this;
         this.avionService.getAvions().subscribe(function (avions) {
             _this.avions = avions;
@@ -102,10 +105,21 @@ var ParametrageComponent = (function () {
     };
     //    console.log(this.avions);
     //    console.log(typeof(this.avions));
-    ParametrageComponent.prototype.delete = function (avion) {
-        console.log(typeof (avion.id));
-        this.avionService.delete(avion.id);
-        console.log(avion.type + "supprimé!!!!!!");
+    ParametrageComponent.prototype.modifierAvion = function () {
+    };
+    ParametrageComponent.prototype.addAvion = function () {
+        var _this = this;
+        this.avion.type = this.model4.avion;
+        console.log(this.avion.type);
+        this.avionService.add(this.avion).subscribe(function (result) {
+            _this.ListAvions();
+        });
+    };
+    ParametrageComponent.prototype.deleteAvion = function (avion) {
+        var _this = this;
+        this.avionService.delete(avion.id).subscribe(function (result) {
+            _this.ListAvions();
+        });
     };
     ParametrageComponent = __decorate([
         core_1.Component({

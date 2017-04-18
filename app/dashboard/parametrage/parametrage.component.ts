@@ -23,8 +23,9 @@ nomM:string;
 model:any={};
 model2:any={};
 model3:any={};
+model4:any={};
 avions: Avion[];
-
+avion:Avion;
     // pager object
     pager: any = {};
 
@@ -38,7 +39,8 @@ avions: Avion[];
    ngOnInit(){
         // $.getScript('../../../assets/js/material-dashboard.js');
     this.ListPays();
-    this.getAvions();
+    this.ListAvions();
+   
 }
 
 
@@ -93,7 +95,7 @@ this.ListPays();
 }
 
 
-modifier(){
+modifierPays(){
     console.log(this.model.nom);
     this.paysM.nom=this.model.nom;
    this.paysService.update(this.paysM).subscribe(result=>{
@@ -126,10 +128,12 @@ setPage(page: number) {
 
 }
   
+/*---------------------------------------------------------------------------------*/ 
+/*---------------------------------------------------------------------------------*/ 
 
-
-getAvions(){
-    this.avionService.getAvions().subscribe( avions=> { this.avions=avions;
+ListAvions(){
+    this.avionService.getAvions().subscribe( avions=> { 
+        this.avions=avions;
     console.log("aaaaaaaaaaa");    
 }
     );
@@ -138,12 +142,24 @@ getAvions(){
 //    console.log(this.avions);
 //    console.log(typeof(this.avions));
 
+modifierAvion(){
 
-delete(avion: Avion){
-    console.log(typeof(avion.id));
+}
+addAvion(){
+this.avion.type=this.model4.avion;
+console.log(this.avion.type);
+this.avionService.add(this.avion).subscribe(result=>{
+this.ListAvions();
+});
+}
+
+deleteAvion(avion: Avion){
+   
     
-    this.avionService.delete(avion.id);
-    console.log(avion.type+"supprimé!!!!!!");
+    this.avionService.delete(avion.id).subscribe(result=>{
+    this.ListAvions();
+    });
+    
 
 
 }

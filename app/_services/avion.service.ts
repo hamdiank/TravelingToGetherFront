@@ -14,11 +14,10 @@ export class AvionService {
     
 
     getAvions() {
-    console.log("becem");
+    
         return this.http.get(this.config.apiUrl +'/avions',
          this.jwt())
-        .map((response: Response) => response.json()
-        );
+        .map((response: Response) => response.json());
     }
     
 
@@ -28,7 +27,11 @@ export class AvionService {
 
      delete(id: number) {
          console.log("i am in AvionService" + id )
-   return this.http.delete('http://localhost:8088/avions/'+ id ,this.jwt()).map((response: Response) => response.json());
+   return this.http.delete(this.config.apiUrl+'/avions/'+ id ,this.jwt()).map((response: Response) => response.json());
+  }
+  add(avion:Avion){
+   return this.http.post(this.config.apiUrl+'/avions/',avion ,this.jwt());
+
   }
 
     // private helper methods

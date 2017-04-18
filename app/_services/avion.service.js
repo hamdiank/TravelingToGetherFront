@@ -18,7 +18,6 @@ var AvionService = (function () {
         this.config = config;
     }
     AvionService.prototype.getAvions = function () {
-        console.log("becem");
         return this.http.get(this.config.apiUrl + '/avions', this.jwt())
             .map(function (response) { return response.json(); });
     };
@@ -27,7 +26,10 @@ var AvionService = (function () {
     };
     AvionService.prototype.delete = function (id) {
         console.log("i am in AvionService" + id);
-        return this.http.delete('http://localhost:8088/avions/' + id, this.jwt()).map(function (response) { return response.json(); });
+        return this.http.delete(this.config.apiUrl + '/avions/' + id, this.jwt()).map(function (response) { return response.json(); });
+    };
+    AvionService.prototype.add = function (avion) {
+        return this.http.post(this.config.apiUrl + '/avions/', avion, this.jwt());
     };
     // private helper methods
     AvionService.prototype.jwt = function () {
