@@ -2,10 +2,8 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions,Headers ,Response} from "@angular/http";
 import { AppConfig } from "../app.config";
-<<<<<<< HEAD
 import { Pays } from "../_models/Pays";
-=======
->>>>>>> cebef78c18c6f48e28bfda477c498652eba86904
+
 
 
 @Injectable()
@@ -20,7 +18,6 @@ getAll() {
     }
 
 delete(_id: string) {
-<<<<<<< HEAD
         return this.http.delete(this.config.apiUrl + '/admin/pays/delPays/' + _id, this.jwt());
     }
 
@@ -28,12 +25,8 @@ update(pays:Pays){
         return this.http.put(this.config.apiUrl + '/admin/pays/updatePays/' + pays.idPays, pays, this.jwt());
 
 }
-=======
-        return this.http.delete(this.config.apiUrl + '/delPays/' + _id, this.jwt());
-    }
 
-
->>>>>>> cebef78c18c6f48e28bfda477c498652eba86904
+    
 
 
 private jwt() {

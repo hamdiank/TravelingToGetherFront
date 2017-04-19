@@ -27,6 +27,10 @@ var login_component_1 = require("./login/login.component");
 var core_1 = require("@angular/core");
 var parametrage_component_1 = require("./dashboard/parametrage/parametrage.component");
 var avion_service_1 = require("./_services/avion.service");
+var accueil_component_1 = require("./dashboardutil/accueil/accueil.component");
+var sidebar_module_2 = require("./sidebarutil/sidebar.module");
+var annonceCovoi_component_1 = require("./dashboardutil/annonceCovoi/annonceCovoi.component");
+var annonceCovoi_service_1 = require("./_services/annonceCovoi.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -37,19 +41,21 @@ var AppModule = (function () {
                 forms_1.FormsModule,
                 http_1.HttpModule,
                 sidebar_module_1.SidebarModule,
+                sidebar_module_2.SidebarUtilModule,
                 navbar_module_1.NavbarModule,
                 footer_module_1.FooterModule,
                 forms_1.ReactiveFormsModule,
                 router_1.RouterModule.forRoot(app_routes_1.MODULE_ROUTES)
             ],
-            declarations: [app_component_1.AppComponent, app_routes_1.MODULE_COMPONENTS, login_component_1.LoginComponent, table_component_1.TableComponent, inscription_component_1.InscriptionComponent, parametrage_component_1.ParametrageComponent],
+            declarations: [app_component_1.AppComponent, app_routes_1.MODULE_COMPONENTS, login_component_1.LoginComponent, table_component_1.TableComponent, inscription_component_1.InscriptionComponent,
+                parametrage_component_1.ParametrageComponent, accueil_component_1.AccueilComponent, annonceCovoi_component_1.AnnonceCovoiComponent],
             bootstrap: [app_component_1.AppComponent],
             exports: [],
             providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }, app_config_1.AppConfig,
                 index_1.AuthGuard,
                 index_2.AlertService,
                 index_2.AuthenticationService,
-                index_2.UserService, index_2.PaysService, index_2.PagerService, avion_service_1.AvionService],
+                index_2.UserService, index_2.PaysService, index_2.PagerService, avion_service_1.AvionService, annonceCovoi_service_1.AnnonceCovoiService],
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

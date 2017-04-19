@@ -10,6 +10,9 @@ import { ParametrageComponent } from './dashboard/parametrage/parametrage.compon
 import { GestionUtilComponent } from './dashboard/GestionUtil/gestionUtil.component';
 import { AuthGuard } from "./_guards/index";
 import { InscriptionComponent } from "./inscription/inscription.component";
+import { DashboardUtilComponent } from "./dashboardutil/dashboardutil.component";
+import { AccueilComponent } from "./dashboardutil/accueil/accueil.component";
+import { AnnonceCovoiComponent } from "./dashboardutil/annonceCovoi/annonceCovoi.component";
 
 export const MODULE_ROUTES: Route[] =[
       { path: 'login', component: LoginComponent },
@@ -20,14 +23,19 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'parametrage', component: ParametrageComponent },
     { path: 'GestionUtil', component: GestionUtilComponent },
     ],canActivate: [AuthGuard] },
+// path for userDashboard
+    { path: 'dashboardutil' ,component: DashboardUtilComponent ,children: [
+    { path: 'Accueil', component: AccueilComponent },
+    { path: 'AnnonceCovoi', component: AnnonceCovoiComponent }
+    ],canActivate: [AuthGuard] },
     
-    { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuard]}
+    { path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard]}
     
 ]
 
 export const MODULE_COMPONENTS = [
     StatistiqueComponent,DashboardComponent,GestionUtilComponent,
-ParametrageComponent, LoginComponent,InscriptionComponent
+ParametrageComponent, LoginComponent,InscriptionComponent,DashboardUtilComponent
  
   
   

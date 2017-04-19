@@ -7,4 +7,5 @@ __export(require('./authentication.service'));
 __export(require('./user.service'));
 __export(require('./pays.service'));
 __export(require('./pager.service'));
+__export(require('./annonceCovoi.service'));
 //# sourceMappingURL=index.js.map

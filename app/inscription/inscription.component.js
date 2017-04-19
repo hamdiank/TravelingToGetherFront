@@ -15,17 +15,19 @@ var InscriptionComponent = (function () {
     function InscriptionComponent(userService, router) {
         this.userService = userService;
         this.router = router;
-        this._userService = userService;
-        this._router = router;
+        this.model = {};
     }
-    InscriptionComponent.prototype.ngOnInit = function () {
-        // $.getScript('../../../assets/js/material-dashboard.js');
-    };
     InscriptionComponent.prototype.onSubmit = function () {
+        var _this = this;
         console.log("aaaaaaaaaaaa");
-        this._userService.addUser(this.user).subscribe(function (result) {
-            console.log("added");
+        //console.log(this.user);
+        this.userService.addUser(this.model.firstname, this.model.lastname, this.model.username, this.model.password)
+            .subscribe(function (data) {
+            _this.router.navigate(['dashboardutil/Accueil']);
+            console.log(_this.url);
         });
+    };
+    InscriptionComponent.prototype.ngOnInit = function () {
     };
     InscriptionComponent = __decorate([
         core_1.Component({

@@ -1,0 +1,93 @@
+<div class="main-content">
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats" >
+                        <div class="card-header" data-background-color="red">
+                           <i class="material-icons">directions_car</i>
+                        </div>
+                        <div class="card-content">
+                            <p class="category">Annonces de Covoiturage</p>
+                        </div>
+                        <div class="card-footer">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!-- tableau des annonces de covoiturage-->
+<div class="row">
+         <div class="card" >
+                        <div class="card-header" data-background-color="blue">
+                            <h4 class="title">Liste Des Annonces</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <button type="button" class=" btn btn-info btn-round ">
+                                 <i class="material-icons">add</i>
+                             </button>
+
+                             
+                            <table class="table">
+                                <thead class="text-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Date Publication</th>
+                                        <th>Date Départ </th>
+                                        <th>Addresse Départ</th>
+                                        <th>Addresse Arrivée</th>
+                                        <th> Utilisateur </th>
+                                        <th>Nombres de Places</th>
+                                        <th>Cotisation</th>
+                                        <th>Action</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>19/04/2017</td>
+                                        <td>19/04/2017</td>
+                                        <td>Sfax</td>
+                                        <td>Tunis</td>
+                                        <td>Alex<i class="fa fa-user"></i></td>
+                                        <td>3 Places</td>
+                                        <td>15 D</td> 
+                                        <td>
+                                            <button type="button" rel="tooltip" title="Réserver" class="btn btn-info"
+                                            data-toggle="modal" data-target="#myModal">Réserver
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr *ngFor="let annonceCovoi of annoncesCovoi">
+                                        <td>{{annonceCovoi.id}}</td>
+                                        <td>19/04/2017</td>
+                                        <td>19/04/2017</td>
+                                        <td>Sfax</td>
+                                        <td>Tunis</td>
+                                        <td>Alex<i class="fa fa-user"></i></td>
+                                        <td>3 Places</td>
+                                        <td>15 D</td>
+                                        
+                                        <td>
+    
+                                    <button type="button" rel="tooltip" title="Réserver" class="btn btn-info"
+                                     data-toggle="modal" data-target="#myModal">Réserver
+                                    </button>
+                                   
+                         </td>
+
+                                        
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+             </div>
+<!-- fin du tableau -->
+

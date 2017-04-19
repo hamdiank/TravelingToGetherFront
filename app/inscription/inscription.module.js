@@ -19,7 +19,7 @@ var InscriptionModule = (function () {
         core_1.NgModule({
             imports: [common_1.CommonModule, forms_1.ReactiveFormsModule],
             declarations: [inscription_component_1.InscriptionComponent],
-            exports: [inscription_component_1.InscriptionComponent],
+            exports: [inscription_component_1.InscriptionComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], InscriptionModule);

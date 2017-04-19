@@ -23,6 +23,10 @@ import { LoginComponent } from "./login/login.component";
 import { NgModule } from "@angular/core";
 import { ParametrageComponent } from "./dashboard/parametrage/parametrage.component";
 import { AvionService } from "./_services/avion.service";
+import { AccueilComponent } from "./dashboardutil/accueil/accueil.component";
+import { SidebarUtilModule } from "./sidebarutil/sidebar.module";
+import { AnnonceCovoiComponent } from "./dashboardutil/annonceCovoi/annonceCovoi.component";
+import { AnnonceCovoiService } from "./_services/annonceCovoi.service";
 
 
 
@@ -32,14 +36,17 @@ import { AvionService } from "./_services/avion.service";
         FormsModule,
         HttpModule,
         SidebarModule,
+        SidebarUtilModule,
         NavbarModule,
         FooterModule,
         ReactiveFormsModule,
+
         RouterModule.forRoot(MODULE_ROUTES)
     ],
 
 
-    declarations: [AppComponent, MODULE_COMPONENTS, LoginComponent,TableComponent, InscriptionComponent, ParametrageComponent],
+    declarations: [AppComponent, MODULE_COMPONENTS, LoginComponent,TableComponent, InscriptionComponent, 
+    ParametrageComponent, AccueilComponent, AnnonceCovoiComponent],
 
 
     bootstrap:    [ AppComponent ],
@@ -49,7 +56,7 @@ import { AvionService } from "./_services/avion.service";
         AlertService,
         AuthenticationService,
 
-        UserService,PaysService,PagerService,AvionService],
+        UserService,PaysService,PagerService,AvionService, AnnonceCovoiService],
 
 })
 export class AppModule {
