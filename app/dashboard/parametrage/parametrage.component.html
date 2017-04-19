@@ -8,30 +8,20 @@
     <div class="row">
          <div class="col-md-6">
                                 
-         <div  class="card" style="height: 65rem;" >
+         <div  class="card" style="height: 63rem;" >
+                  
                         <div class="card-header" data-background-color="green">
-                            <h4 class="title">Liste Des Pays</h4>           
+                   
+                            <h4 class="title">Liste Des Pays</h4>  
+                                     
                         </div>
                         <div class="card-content table-responsive">
-                           <form class="navbar-form navbar-right " role="search">
+                          
                 <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" placeholder="chercher">
+                    <input type="text" class="form-control" [(ngModel)]="textFilter" placeholder="chercher" name="chercherPays">
                     <span class="material-input"></span>
                 </div>
-                <button type="submit" class="btn btn-default btn-round btn-just-icon">
-                    <i class="material-icons">search</i><div class="ripple-container"></div>
-                </button>
-            </form>
-                   <form class="navbar-form navbar-right" (ngSubmit)="addPays()">
-                <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" placeholder="ajouter Pays" [(ngModel)]="model2.nomPays" #nomPays="ngModel" required name="nomPays">
-                    <span class="material-input"></span>
-                </div>
-                <button type="submit" class="btn btn-default btn-round btn-just-icon">
-                    <i class="material-icons">add</i><div class="ripple-container"></div>
-                </button>
-            </form>
-                               
+                 
 
                             <table  class="table table-hover">
                                 <thead class="text-success">
@@ -44,7 +34,7 @@
                                 </thead>
                               <tbody>          
 
-                                    <tr *ngFor="let pay of pagedItems">
+                                    <tr *ngFor="let pay of pagedItems  | FilterPipe: textFilter">
                                         <td>{{pay.idPays}}</td>
                                         <td>{{pay.nom}}</td>
 
@@ -251,7 +241,7 @@
                     <i class="material-icons">search</i><div class="ripple-container"></div>
                 </button>
             </form>
-            <form  (ngSubmit)="addAvion()" class="navbar-form navbar-right">
+            <form  class="navbar-form navbar-right" (ngSubmit)="addAvion()">
                 <div class="form-group form-black is-empty">
                     <input type="text" class="form-control" placeholder="ajouter type avion" [(ngModel)]="model4.typeAvion" #typeAvion="ngModel" required name="typeAvion">
                     <span class="material-input"></span>

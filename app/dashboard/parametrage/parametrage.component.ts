@@ -7,7 +7,9 @@ import * as _ from 'underscore';
 import { AvionService } from "../../_services/avion.service";
 import { Avion } from "../../_models/avion";
 import { LoaderComponent } from "../../shared/loader/loader.component";
-import{ValuesPipe}from "./valuesPipe"
+import{ValuesPipe}from "./valuesPipe";
+import {FilterPipe} from './pipe'
+
 
 @Component({
     selector: 'parametrage-cmp',
@@ -16,9 +18,9 @@ import{ValuesPipe}from "./valuesPipe"
 })
 
 export class ParametrageComponent implements OnInit{
+    textFilter:string;
   loading: boolean =false;
   pays :Pays[];
-
 idM:string;
 paysM:Pays;
 nomM:string;

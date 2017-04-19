@@ -25,6 +25,8 @@ import { ParametrageComponent } from "./dashboard/parametrage/parametrage.compon
 import { AvionService } from "./_services/avion.service";
 import { LoaderComponent } from "./shared/loader/loader.component";
 import { ValuesPipe } from "./dashboard/parametrage/valuesPipe";
+import { FilterPipe } from "./dashboard/parametrage/pipe";
+
 
 
 
@@ -42,7 +44,7 @@ import { ValuesPipe } from "./dashboard/parametrage/valuesPipe";
     ],
 
 
-    declarations: [AppComponent, MODULE_COMPONENTS, LoginComponent,TableComponent, ParametrageComponent,LoaderComponent,ValuesPipe],
+    declarations: [AppComponent, MODULE_COMPONENTS, LoginComponent,TableComponent, ParametrageComponent,LoaderComponent,ValuesPipe,FilterPipe],
 
 
     bootstrap:    [ AppComponent ],
