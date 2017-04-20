@@ -42,7 +42,7 @@ var AuthenticationService = (function () {
             //console.log(JSON.stringify(user));
             if (token) {
                 //get the user id
-                console.log("decooooded: " + _this.jwtHelper.decodeToken(token).role);
+                //  console.log("decooooded: "+this.jwtHelper.decodeToken(token).role) ;
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentToken', JSON.stringify(token));
                 localStorage.setItem('currentUserId', _this.jwtHelper.decodeToken(token).userId);
