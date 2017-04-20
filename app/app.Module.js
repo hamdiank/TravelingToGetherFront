@@ -19,6 +19,7 @@ var forms_1 = require('@angular/forms');
 var common_1 = require('@angular/common');
 var app_config_1 = require("./app.config");
 var index_1 = require("./_guards/index");
+var angular2_jwt_1 = require('angular2-jwt');
 var index_2 = require("./_services/index");
 var http_1 = require("@angular/http");
 var table_component_1 = require("./dashboard/GestionUtil/table.component");
@@ -51,7 +52,7 @@ var AppModule = (function () {
                 index_1.AuthGuard,
                 index_2.AlertService,
                 index_2.AuthenticationService, valuesPipe_1.ValuesPipe,
-                index_2.UserService, index_2.PaysService, index_2.PagerService, avion_service_1.AvionService],
+                index_2.UserService, index_2.PaysService, index_2.PagerService, avion_service_1.AvionService, angular2_jwt_1.JwtHelper],
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

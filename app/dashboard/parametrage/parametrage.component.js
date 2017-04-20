@@ -31,7 +31,6 @@ var ParametrageComponent = (function () {
         this.loading = true;
         this.ListPays();
         //  this.ListAvions();
-        // this.getville();
     };
     //////////////////////////////////////////////////////////////////////////////////////////////
     ParametrageComponent.prototype.ListPays = function () {
@@ -44,7 +43,6 @@ var ParametrageComponent = (function () {
             console.log(pays);
             _this.loading = false;
             console.log("loading off");
-            _this.getville();
         }, function (error) {
             _this.loading = false;
             console.log(error);
@@ -100,18 +98,6 @@ var ParametrageComponent = (function () {
         this.nomM = this.paysM.nom;
     };
     ////////////////////////////////////////////////////////////////
-    ParametrageComponent.prototype.getville = function () {
-        var _this = this;
-        this.pays.forEach(function (element) {
-            for (var index = 0; index < element.cities.length; index++) {
-                _this.returnArray.push({
-                    key: element.nom,
-                    val: element.cities[index]
-                });
-            }
-        });
-        //console.log("blabla +"+this.returnArray);
-    };
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     ParametrageComponent.prototype.setPage = function (page) {
         console.log();

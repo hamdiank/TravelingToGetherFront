@@ -12,14 +12,17 @@ var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var router_1 = require('@angular/router');
 require('rxjs/add/operator/map');
+var angular2_jwt_1 = require('angular2-jwt');
 var app_config_1 = require('../app.config');
 var AuthenticationService = (function () {
     function AuthenticationService(router, http, config) {
         this.router = router;
         this.http = http;
         this.config = config;
+        this.jwtHelper = new angular2_jwt_1.JwtHelper();
     }
     AuthenticationService.prototype.login = function (username, password) {
+        var _this = this;
         var headers = new http_1.Headers();
         console.log(headers);
         var body = {
@@ -38,8 +41,12 @@ var AuthenticationService = (function () {
             //  console.log(token);
             //console.log(JSON.stringify(user));
             if (token) {
+                //get the user id
+                console.log("decooooded: " + _this.jwtHelper.decodeToken(token).role);
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(token));
+                localStorage.setItem('currentToken', JSON.stringify(token));
+                localStorage.setItem('currentUserId', _this.jwtHelper.decodeToken(token).userId);
+                localStorage.setItem('currentUserRole', _this.jwtHelper.decodeToken(token).role);
             }
         });
     };

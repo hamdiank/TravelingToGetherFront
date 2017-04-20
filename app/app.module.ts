@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppConfig } from "./app.config";
 import { AuthGuard } from "./_guards/index";
+import { JwtHelper } from 'angular2-jwt';
 
 import { AlertService, UserService, AuthenticationService, PaysService, PagerService } from "./_services/index";
 
@@ -54,7 +55,7 @@ import { FilterPipe } from "./dashboard/parametrage/pipe";
         AlertService,
         AuthenticationService,ValuesPipe,
 
-        UserService,PaysService,PagerService,AvionService],
+        UserService,PaysService,PagerService,AvionService,JwtHelper],
 
 })
 export class AppModule {

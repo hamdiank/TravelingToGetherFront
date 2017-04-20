@@ -2,12 +2,16 @@
 import { Http, Headers, Response ,RequestOptions} from '@angular/http';
 import {Router} from '@angular/router'
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
+import { JwtHelper } from 'angular2-jwt';
 
 import { AppConfig } from '../app.config';
+import { User } from "../_models/index";
 
 @Injectable()
 export class AuthenticationService {
+      jwtHelper: JwtHelper = new JwtHelper();
+user:User;
     constructor(public router: Router,private http: Http, private config: AppConfig) { }
 
     login(username: string, password: string) {
@@ -28,6 +32,7 @@ export class AuthenticationService {
                 console.log("rrrrrrrggghgjhj");
                 // login successful if there's a jwt token in the response
               let token = x._body ;
+
                 console.log("rrrrrrrggghgjhj");
               //  console.log(token);
                 //console.log(JSON.stringify(user));
@@ -35,8 +40,19 @@ export class AuthenticationService {
             
                 
                 if (token ) {
+                  //get the user id
+           //  console.log("decooooded: "+this.jwtHelper.decodeToken(token).role) ;
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(token));
+                    localStorage.setItem('currentToken', JSON.stringify(token));
+                    localStorage.setItem('currentUserId', this.jwtHelper.decodeToken(token).userId);
+                     localStorage.setItem('currentUserRole', this.jwtHelper.decodeToken(token).role);
+
+
+
+
+
+
+
                       //this.router.navigate(['/dashboard/statistique']);
               //    console.log (localStorage.getItem('currentUser'));
                    //console.log (user.user.username);

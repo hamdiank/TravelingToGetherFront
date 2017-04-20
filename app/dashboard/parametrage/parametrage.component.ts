@@ -51,7 +51,6 @@ avion:Avion;
    
   //  this.ListAvions();
   
-    // this.getville();
 }
 
      //////////////////////////////////////////////////////////////////////////////////////////////
@@ -67,7 +66,7 @@ ListPays(){
 
          this.loading = false;
          console.log("loading off");
-        this.getville();
+       
         
     },
     error =>{
@@ -145,25 +144,8 @@ this.nomM=this.paysM.nom;
 
 ////////////////////////////////////////////////////////////////
 
-getville(){
-
-this.pays.forEach(element => {
-    
-    for (var index = 0; index < element.cities.length; index++) {
-         
-        
-    this.returnArray.push({
-                key: element.nom,
-                val: element.cities[index]
-            });
-}
-
-});
 
  
-//console.log("blabla +"+this.returnArray);
-
-}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
