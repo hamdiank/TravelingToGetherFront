@@ -45,12 +45,12 @@ export class UserService {
         let options = new RequestOptions({ headers: headers });
         return this.http.post(this.config.apiUrl + '/utilisateurs',body,options)
             .map((response: Response) => {
-                console.log("becem 1")
+                console.log("bk 1")
                  let x = JSON.parse(JSON.stringify(response));
-                console.log("becem 2");
+                console.log("bk 2");
                
               let token = x._body ;
-                console.log("becem 3");
+                console.log("bk 3");
 
                 if (token ) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes

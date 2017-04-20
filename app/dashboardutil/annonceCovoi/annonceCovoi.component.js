@@ -20,8 +20,17 @@ var AnnonceCovoiComponent = (function () {
             _this.annoncesCovoi = annoncesCovoi;
         });
         console.log("aaaaaaaaaaa");
+        /*   console.log (localStorage.getItem('currentUser'));
+                    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                    console.log(currentUser)
+                      this.id=currentUser;
+                   //   console.log(currentUser.json().idUtilisateur)   */
     };
     AnnonceCovoiComponent.prototype.ngOnInit = function () {
+        console.log(localStorage.getItem('currentUser'));
+        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.id = currentUser.idUtilisateur;
+        console.log(currentUser.idUtilisateur);
         console.log("asx");
         this.getAnnoncesCovoi();
     };

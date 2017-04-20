@@ -25,7 +25,10 @@ export class AuthenticationService {
             .map((response: Response) => {
                 console.log("start kkkk")
                  let x = JSON.parse(JSON.stringify(response));
-                console.log("rrrrrrrggghgjhj");
+                console.log(x);
+
+// to load the id of our user
+
                 // login successful if there's a jwt token in the response
               let token = x._body ;
                 console.log("rrrrrrrggghgjhj");

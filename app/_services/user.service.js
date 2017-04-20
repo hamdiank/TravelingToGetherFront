@@ -43,11 +43,11 @@ var UserService = (function () {
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http.post(this.config.apiUrl + '/utilisateurs', body, options)
             .map(function (response) {
-            console.log("becem 1");
+            console.log("bk 1");
             var x = JSON.parse(JSON.stringify(response));
-            console.log("becem 2");
+            console.log("bk 2");
             var token = x._body;
-            console.log("becem 3");
+            console.log("bk 3");
             if (token) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(token));

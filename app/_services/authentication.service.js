@@ -31,7 +31,8 @@ var AuthenticationService = (function () {
             .map(function (response) {
             console.log("start kkkk");
             var x = JSON.parse(JSON.stringify(response));
-            console.log("rrrrrrrggghgjhj");
+            console.log(x);
+            // to load the id of our user
             // login successful if there's a jwt token in the response
             var token = x._body;
             console.log("rrrrrrrggghgjhj");

@@ -13,19 +13,27 @@ declare var $:any;
 
 export class AnnonceCovoiComponent implements OnInit {
     annoncesCovoi: AnnonceCovoi[];
+
+    id: String;
     constructor(private annonceCovoiService: AnnonceCovoiService){}
 getAnnoncesCovoi(){
     this.annonceCovoiService.getAnnoncesCovoi().subscribe( annoncesCovoi=> { this.annoncesCovoi=annoncesCovoi
     
     });
-    console.log("aaaaaaaaaaa");    
+    console.log("aaaaaaaaaaa"); 
+  /*   console.log (localStorage.getItem('currentUser'));
+              let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+              console.log(currentUser)
+                this.id=currentUser;
+             //   console.log(currentUser.json().idUtilisateur)   */
 }
 
         ngOnInit() {
+             console.log (localStorage.getItem('currentUser'));
+             let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+              this.id=currentUser.idUtilisateur;
+               console.log(currentUser.idUtilisateur)
             console.log("asx")
            this.getAnnoncesCovoi();
         }
-
-
- 
 }
