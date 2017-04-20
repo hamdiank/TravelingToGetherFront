@@ -27,10 +27,9 @@ var AnnonceCovoiComponent = (function () {
                    //   console.log(currentUser.json().idUtilisateur)   */
     };
     AnnonceCovoiComponent.prototype.ngOnInit = function () {
-        console.log(localStorage.getItem('currentUser'));
-        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        this.id = currentUser.idUtilisateur;
-        console.log(currentUser.idUtilisateur);
+        var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
+        this.id = currentUserId;
+        console.log(this.id);
         console.log("asx");
         this.getAnnoncesCovoi();
     };

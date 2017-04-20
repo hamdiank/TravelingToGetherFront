@@ -11,25 +11,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require("@angular/http");
 var app_config_1 = require("../app.config");
-var PaysService = (function () {
-    function PaysService(http, config) {
+var CityService = (function () {
+    function CityService(http, config) {
         this.http = http;
         this.config = config;
     }
-    PaysService.prototype.getAll = function () {
+    CityService.prototype.getAll = function () {
         console.log("start api/user eehdf ......");
-        return this.http.get(this.config.apiUrl + '/admin/pays/all', this.jwt()).map(function (response) { return response.json(); });
+        return this.http.get(this.config.apiUrl + '/city/all', this.jwt()).map(function (response) { return response.json(); });
     };
-    PaysService.prototype.delete = function (_id) {
-        return this.http.delete(this.config.apiUrl + '/admin/pays/delPays/' + _id, this.jwt());
+    CityService.prototype.delete = function (_id) {
+        return this.http.delete(this.config.apiUrl + '/city/delCity/' + _id, this.jwt());
     };
-    PaysService.prototype.update = function (pays) {
-        return this.http.put(this.config.apiUrl + '/admin/pays/updatePays/' + pays.idPays, pays, this.jwt());
+    CityService.prototype.update = function (city) {
+        return this.http.put(this.config.apiUrl + '/city/updateCity/' + city.idCity, city, this.jwt());
     };
-    PaysService.prototype.add = function (nomPays) {
-        return this.http.post(this.config.apiUrl + '/admin/pays/addPays/' + nomPays, this.jwt());
-    };
-    PaysService.prototype.jwt = function () {
+    CityService.prototype.jwt = function () {
         // create authorization header with jwt token
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser && currentUser.token) {
@@ -41,11 +38,11 @@ var PaysService = (function () {
             return new http_1.RequestOptions({ headers: headers });
         }
     };
-    PaysService = __decorate([
+    CityService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http, app_config_1.AppConfig])
-    ], PaysService);
-    return PaysService;
+    ], CityService);
+    return CityService;
 }());
-exports.PaysService = PaysService;
-//# sourceMappingURL=pays.service.js.map
+exports.CityService = CityService;
+//# sourceMappingURL=city.service.js.map

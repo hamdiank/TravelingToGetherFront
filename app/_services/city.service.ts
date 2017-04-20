@@ -1,34 +1,34 @@
 
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions,Headers ,Response} from "@angular/http";
+import { Http, RequestOptions ,Headers ,Response} from "@angular/http";
 import { AppConfig } from "../app.config";
-import { Pays } from "../_models/Pays";
-
-
+import { City } from "../_models/city";
 
 @Injectable()
-export class PaysService {
+export class CityService {
 
     constructor(private http: Http, private config: AppConfig) { }
 
-
 getAll() {
     console.log("start api/user eehdf ......")
-        return this.http.get(this.config.apiUrl +'/admin/pays/all', this.jwt()).map((response: Response) => response.json());
+        return this.http.get(this.config.apiUrl +'/city/all', this.jwt()).map((response: Response) => response.json());
     }
 
 delete(_id: string) {
-        return this.http.delete(this.config.apiUrl + '/admin/pays/delPays/' + _id, this.jwt());
+
+        return this.http.delete(this.config.apiUrl + '/city/delCity/' + _id, this.jwt());
     }
 
-update(pays:Pays){
-        return this.http.put(this.config.apiUrl + '/admin/pays/updatePays/' + pays.idPays, pays, this.jwt());
-}
 
-add(nomPays:string){
-       return this.http.post(this.config.apiUrl + '/admin/pays/addPays/'+nomPays, this.jwt());
+update(city:City){
+        return this.http.put(this.config.apiUrl + '/city/updateCity/' + city.idCity, city, this.jwt());
 
 }
+
+
+
+
+
 
 
 
@@ -45,5 +45,4 @@ private jwt() {
             return new RequestOptions({ headers: headers });
         }
     }
-
-    }
+}

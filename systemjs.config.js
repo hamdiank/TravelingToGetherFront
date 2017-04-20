@@ -11,6 +11,7 @@
     },
     // map tells the System loader where to look for things
     map: {
+      
       // our app is within the app folder
       app: 'app',
       // angular bundles
@@ -26,7 +27,8 @@
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-      'underscore':                 'npm:underscore/underscore.js'
+      'underscore':                 'npm:underscore/underscore.js',
+      'angular2-jwt': 'npm:angular2-jwt/angular2-jwt.js',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -36,8 +38,10 @@
       },
       rxjs: {
         defaultExtension: 'js'
-      }
-      
+      },
+      "angular2-jwt": {
+                defaultExtension: "js"
+            },
     }
   });
 })(this);

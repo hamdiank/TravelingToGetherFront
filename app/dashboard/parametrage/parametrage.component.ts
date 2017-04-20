@@ -6,6 +6,9 @@ import * as _ from 'underscore';
 
 import { AvionService } from "../../_services/avion.service";
 import { Avion } from "../../_models/avion";
+import { LoaderComponent } from "../../shared/loader/loader.component";
+import{ValuesPipe}from "./valuesPipe";
+import {FilterPipe} from './pipe'
 
 
 @Component({
@@ -15,15 +18,19 @@ import { Avion } from "../../_models/avion";
 })
 
 export class ParametrageComponent implements OnInit{
+    textFilter:string;
+  loading: boolean =false;
   pays :Pays[];
-
 idM:string;
 paysM:Pays;
 nomM:string;
 model:any={};
-
+model2:any={};
+model3:any={};
+model4:any={};
 avions: Avion[];
-
+returnArray = [];
+avion:Avion;
     // pager object
     pager: any = {};
 
@@ -36,26 +43,73 @@ avions: Avion[];
   
    ngOnInit(){
         // $.getScript('../../../assets/js/material-dashboard.js');
+     
+     console.log("loading on");
+     this.loading = true; 
+   
     this.ListPays();
-    this.getAvions();
+   
+  //  this.ListAvions();
+  
 }
 
-
+     //////////////////////////////////////////////////////////////////////////////////////////////
 
 ListPays(){
      this.paysService.getAll().
     subscribe(pays => { 
-        this.pays=pays;
+       
+         this.pays=pays;
            // initialize to page 1
-        this.setPage(1);
-        console.log(pays) ;
+         this.setPage(1);
+         console.log(pays) ;
+
+         this.loading = false;
+         console.log("loading off");
+       
+        
     },
     error =>{
+        this.loading = false;
         console.log(error);
     }
     
     );
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+addPays(){
+    console.log(this.model2.nomPays);
+    this.paysService.add(this.model2.nomPays).subscribe(result=>{
+   
+   this.ListPays();
+
+    });
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+ajouterParametre(){
+    if(this.model3.ville==null || this.model3.ville=="")
+    console.log("ville null ");
+    else this.paysM.cities.push(this.model3.ville);
+    if(this.model3.aeroport==null || this.model3.aeroport=="")
+    console.log("aeroport null ");
+    else this.paysM.aeroports.push(this.model3.aeroport);
+    
+    if(this.model3.station==null || this.model3.station=="")
+    console.log("aeroport null ");
+    else this.paysM.stations.push(this.model3.stations);
+
+    this.paysService.update(this.paysM).subscribe(result=>{
+    this.ListPays();
+    });
+
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
 supprimer(id:string){
     
 console.log(id);
@@ -66,8 +120,9 @@ this.ListPays();
 
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-modifier(){
+modifierPays(){
     console.log(this.model.nom);
     this.paysM.nom=this.model.nom;
    this.paysService.update(this.paysM).subscribe(result=>{
@@ -77,6 +132,8 @@ modifier(){
 }) ;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 getPays(pays:Pays){
 
 
@@ -85,6 +142,12 @@ this.nomM=this.paysM.nom;
 
 }
 
+////////////////////////////////////////////////////////////////
+
+
+ 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 setPage(page: number) {
       console.log()
@@ -100,10 +163,12 @@ setPage(page: number) {
 
 }
   
+/*---------------------------------------------------------------------------------*/ 
+/*---------------------------------------------------------------------------------*/ 
 
-
-getAvions(){
-    this.avionService.getAvions().subscribe( avions=> { this.avions=avions;
+ListAvions(){
+    this.avionService.getAvions().subscribe( avions=> { 
+        this.avions=avions;
     console.log("aaaaaaaaaaa");    
 }
     );
@@ -112,12 +177,25 @@ getAvions(){
 //    console.log(this.avions);
 //    console.log(typeof(this.avions));
 
+modifierAvion(){
 
-delete(avion: Avion){
-    console.log(typeof(avion.id));
+}
+addAvion(){
+this.avion.type=this.model4.typeAvion;
+console.log(this.avion.type);
+/*this.avionService.add(this.avion).subscribe(result=>{
+this.ListAvions();
+});*/
+ 
+}
+
+deleteAvion(avion: Avion){
+   
     
-    this.avionService.delete(avion.id);
-    console.log(avion.type+"supprimé!!!!!!");
+    this.avionService.delete(avion.id).subscribe(result=>{
+    this.ListAvions();
+    });
+    
 
 
 }

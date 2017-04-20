@@ -11,8 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var index_1 = require("../../_services/index");
 var TableComponent = (function () {
-    function TableComponent(userService) {
+    function TableComponent(userService, pagerService) {
         this.userService = userService;
+        this.pagerService = pagerService;
+        this.pager = {};
         this.serveId = new core_1.EventEmitter();
     }
     TableComponent.prototype.ngOnInit = function () {
@@ -23,6 +25,7 @@ var TableComponent = (function () {
         this.userService.getAll().
             subscribe(function (users) {
             _this.users = users;
+            _this.setPage(1);
             console.log(users);
         }, function (error) {
             console.log(error);
@@ -32,6 +35,17 @@ var TableComponent = (function () {
         console.log("eehjeh: " + user);
         this.serveId.emit(user);
     };
+    TableComponent.prototype.setPage = function (page) {
+        console.log();
+        if (page < 1 || page > this.pager.totalPages) {
+            return;
+        }
+        // get pager object from service
+        this.pager = this.pagerService.getPager(this.users.length, page);
+        // get current page of items
+        this.pagedItems = this.users.slice(this.pager.startIndex, this.pager.endIndex + 1);
+        console.log(this.pagedItems);
+    };
     TableComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -39,7 +53,7 @@ var TableComponent = (function () {
             outputs: ['serveId'],
             templateUrl: 'table.component.html'
         }), 
-        __metadata('design:paramtypes', [index_1.UserService])
+        __metadata('design:paramtypes', [index_1.UserService, index_1.PagerService])
     ], TableComponent);
     return TableComponent;
 }());

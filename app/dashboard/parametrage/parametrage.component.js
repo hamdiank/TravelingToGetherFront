@@ -16,15 +16,23 @@ var ParametrageComponent = (function () {
         this.paysService = paysService;
         this.pagerService = pagerService;
         this.avionService = avionService;
+        this.loading = false;
         this.model = {};
+        this.model2 = {};
+        this.model3 = {};
+        this.model4 = {};
+        this.returnArray = [];
         // pager object
         this.pager = {};
     }
     ParametrageComponent.prototype.ngOnInit = function () {
         // $.getScript('../../../assets/js/material-dashboard.js');
+        console.log("loading on");
+        this.loading = true;
         this.ListPays();
-        this.getAvions();
+        //  this.ListAvions();
     };
+    //////////////////////////////////////////////////////////////////////////////////////////////
     ParametrageComponent.prototype.ListPays = function () {
         var _this = this;
         this.paysService.getAll().
@@ -33,10 +41,41 @@ var ParametrageComponent = (function () {
             // initialize to page 1
             _this.setPage(1);
             console.log(pays);
+            _this.loading = false;
+            console.log("loading off");
         }, function (error) {
+            _this.loading = false;
             console.log(error);
         });
     };
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ParametrageComponent.prototype.addPays = function () {
+        var _this = this;
+        console.log(this.model2.nomPays);
+        this.paysService.add(this.model2.nomPays).subscribe(function (result) {
+            _this.ListPays();
+        });
+    };
+    //////////////////////////////////////////////////////////////////////////////////////////
+    ParametrageComponent.prototype.ajouterParametre = function () {
+        var _this = this;
+        if (this.model3.ville == null || this.model3.ville == "")
+            console.log("ville null ");
+        else
+            this.paysM.cities.push(this.model3.ville);
+        if (this.model3.aeroport == null || this.model3.aeroport == "")
+            console.log("aeroport null ");
+        else
+            this.paysM.aeroports.push(this.model3.aeroport);
+        if (this.model3.station == null || this.model3.station == "")
+            console.log("aeroport null ");
+        else
+            this.paysM.stations.push(this.model3.stations);
+        this.paysService.update(this.paysM).subscribe(function (result) {
+            _this.ListPays();
+        });
+    };
+    /////////////////////////////////////////////////////////////////////////////////////////
     ParametrageComponent.prototype.supprimer = function (id) {
         var _this = this;
         console.log(id);
@@ -44,7 +83,8 @@ var ParametrageComponent = (function () {
             _this.ListPays();
         });
     };
-    ParametrageComponent.prototype.modifier = function () {
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ParametrageComponent.prototype.modifierPays = function () {
         var _this = this;
         console.log(this.model.nom);
         this.paysM.nom = this.model.nom;
@@ -52,10 +92,13 @@ var ParametrageComponent = (function () {
             _this.ListPays();
         });
     };
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
     ParametrageComponent.prototype.getPays = function (pays) {
         this.paysM = pays;
         this.nomM = this.paysM.nom;
     };
+    ////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
     ParametrageComponent.prototype.setPage = function (page) {
         console.log();
         if (page < 1 || page > this.pager.totalPages) {
@@ -66,7 +109,9 @@ var ParametrageComponent = (function () {
         // get current page of items
         this.pagedItems = this.pays.slice(this.pager.startIndex, this.pager.endIndex + 1);
     };
-    ParametrageComponent.prototype.getAvions = function () {
+    /*---------------------------------------------------------------------------------*/
+    /*---------------------------------------------------------------------------------*/
+    ParametrageComponent.prototype.ListAvions = function () {
         var _this = this;
         this.avionService.getAvions().subscribe(function (avions) {
             _this.avions = avions;
@@ -75,10 +120,20 @@ var ParametrageComponent = (function () {
     };
     //    console.log(this.avions);
     //    console.log(typeof(this.avions));
-    ParametrageComponent.prototype.delete = function (avion) {
-        console.log(typeof (avion.id));
-        this.avionService.delete(avion.id);
-        console.log(avion.type + "supprimé!!!!!!");
+    ParametrageComponent.prototype.modifierAvion = function () {
+    };
+    ParametrageComponent.prototype.addAvion = function () {
+        this.avion.type = this.model4.typeAvion;
+        console.log(this.avion.type);
+        /*this.avionService.add(this.avion).subscribe(result=>{
+        this.ListAvions();
+        });*/
+    };
+    ParametrageComponent.prototype.deleteAvion = function (avion) {
+        var _this = this;
+        this.avionService.delete(avion.id).subscribe(function (result) {
+            _this.ListAvions();
+        });
     };
     ParametrageComponent = __decorate([
         core_1.Component({

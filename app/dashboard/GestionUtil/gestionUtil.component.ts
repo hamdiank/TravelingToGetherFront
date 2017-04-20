@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { User } from "../../_models/index";
-import { UserService } from "../../_services/index";
+import { User, Pays } from "../../_models/index";
+import { UserService, PagerService } from "../../_services/index";
 
 @Component({
     selector: 'gestionUtil-cmp',
@@ -16,6 +16,7 @@ export class GestionUtilComponent implements OnInit{
     prenom:string;
     login:string;
     etat:boolean;
+     
     constructor(private  userService:  UserService) {
         
     }
@@ -65,6 +66,11 @@ setDebloquer(){
 }
     console.log(this.etat);
 }
+
+
+
+
+
 }
 
 

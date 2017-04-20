@@ -29,10 +29,9 @@ getAnnoncesCovoi(){
 }
 
         ngOnInit() {
-             console.log (localStorage.getItem('currentUser'));
-             let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-              this.id=currentUser.idUtilisateur;
-               console.log(currentUser.idUtilisateur)
+             let currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
+              this.id=currentUserId;
+               console.log(this.id)
             console.log("asx")
            this.getAnnoncesCovoi();
         }

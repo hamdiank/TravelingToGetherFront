@@ -1,16 +1,29 @@
-<div class="main-content">
-<div class="container-fluid">
+                           
+<div class="main-content">     
+                                <div class="center">
+                    <app-loader [loading]="loading"></app-loader>
+                                </div> 
+<div *ngIf="!loading" class="container-fluid" >
+                              
     <div class="row">
          <div class="col-md-6">
-         <div class="card" style="height: 60rem;">
+                                
+         <div  class="card" style="height: 63rem;" >
+                  
                         <div class="card-header" data-background-color="green">
-                            <h4 class="title">Liste Des Pays</h4>           
+                   
+                            <h4 class="title">Liste Des Pays</h4>  
+                                     
                         </div>
                         <div class="card-content table-responsive">
-                            <button type="button" class=" btn btn-success btn-round ">
-                                 <i class="material-icons">add</i>
-                             </button>
-                            <table class="table table-hover">
+                          
+                <div class="form-group form-black is-empty">
+                    <input type="text" class="form-control" [(ngModel)]="textFilter" placeholder="chercher" name="chercherPays">
+                    <span class="material-input"></span>
+                </div>
+                 
+
+                            <table  class="table table-hover">
                                 <thead class="text-success">
                                     <tr>
                                         <th>ID</th>
@@ -19,9 +32,9 @@
                                         
                                     </tr>
                                 </thead>
-                                <tbody>
+                              <tbody>          
 
-                                    <tr *ngFor="let pay of pagedItems">
+                                    <tr *ngFor="let pay of pagedItems  | FilterPipe: textFilter">
                                         <td>{{pay.idPays}}</td>
                                         <td>{{pay.nom}}</td>
 
@@ -33,12 +46,16 @@
                                 <button (click)="supprimer(pay.idPays)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
                                                         <i class="material-icons">close</i>
                                                     </button>
+                                 <button (click)="getPays(pay)" type="button" rel="tooltip" title="ajouter Parametre" class="btn btn-info btn-simple btn-xs" data-toggle="modal" data-target="#myModal2">
+                                                        <i class="material-icons">add</i>
+                                                    </button>                    
                                         </td>
                                         
                                     </tr>
                                 </tbody>
                             </table>
-                            <!-- pager -->
+                            <!--               pager            -->
+
             <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
                 <li [ngClass]="{disabled:pager.currentPage === 1}">
                     <a (click)="setPage(1)">First</a>
@@ -46,9 +63,10 @@
                 <li [ngClass]="{disabled:pager.currentPage === 1}">
                     <a (click)="setPage(pager.currentPage - 1)">Previous</a>
                 </li>
+              <!--
                 <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
                     <a (click)="setPage(page)">{{page}}</a>
-                </li>
+                </li> -->
                 <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
                     <a (click)="setPage(pager.currentPage + 1)">Next</a>
                 </li>
@@ -68,12 +86,11 @@
                             <h4 class="title">Liste Des Villes</h4>
                         </div>
                         <div class="card-content table-responsive">
-                            <button type="button" class=" btn btn-danger btn-round ">
-                                 <i class="material-icons">add</i>
-                             </button>
+                            
                             <table class="table table-hover">
                                 <thead class="text-success">
-                                    <tr>
+                                 <tr > 
+                                    
                                         <th>ID</th>
                                         <th>Nom</th>
                                         <th>Pays</th>
@@ -82,9 +99,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
+                                    <tr >
+                                        <td></td>
+                                        <td></td>
                                         <td>jklg</td>
                                         <td>
                                     <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
@@ -98,7 +115,7 @@
                                         </td>
                                         
                                     </tr>
-                                   
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -113,9 +130,7 @@
                             <h4 class="title">Liste Des Aeroports</h4>
                         </div>
                         <div class="card-content table-responsive">
-                            <button type="button" class=" btn btn-info btn-round ">
-                                 <i class="material-icons">add</i>
-                             </button>
+                            
                             <table class="table table-hover">
                                 <thead class="text-success">
                                     <tr>
@@ -127,6 +142,66 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Dakota Rice</td>
+                                        <td>France</td>
+                                        <td>
+                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                                            <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                             <i class="material-icons">close</i>
+                                    </button>
+                         </td>
+
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Dakota Rice</td>
+                                        <td>France</td>
+                                        <td>
+                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                                            <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                             <i class="material-icons">close</i>
+                                    </button>
+                         </td>
+
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Dakota Rice</td>
+                                        <td>France</td>
+                                        <td>
+                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                                            <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                             <i class="material-icons">close</i>
+                                    </button>
+                         </td>
+
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Dakota Rice</td>
+                                        <td>France</td>
+                                        <td>
+                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                                            <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                             <i class="material-icons">close</i>
+                                    </button>
+                         </td>
+
+                                        
+                                    </tr>
                                     <tr>
                                         <td>1</td>
                                         <td>Dakota Rice</td>
@@ -157,9 +232,25 @@
                             <h4 class="title">Liste Des Types d'Avion</h4>
                         </div>
                         <div class="card-content table-responsive">
-                            <button type="button" class=" btn btn-primary btn-round ">
-                                 <i class="material-icons">add</i>
-                             </button>
+                        <form class="navbar-form navbar-right" role="search">
+                <div class="form-group form-black is-empty">
+                    <input type="text" class="form-control" placeholder="chercher">
+                    <span class="material-input"></span>
+                </div>
+                <button type="submit" class="btn btn-default btn-round btn-just-icon">
+                    <i class="material-icons">search</i><div class="ripple-container"></div>
+                </button>
+            </form>
+            <form  class="navbar-form navbar-right" (ngSubmit)="addAvion()">
+                <div class="form-group form-black is-empty">
+                    <input type="text" class="form-control" placeholder="ajouter type avion" [(ngModel)]="model4.typeAvion" #typeAvion="ngModel" required name="typeAvion">
+                    <span class="material-input"></span>
+                </div>
+                <button type="submit" class="btn btn-default btn-round btn-just-icon">
+                    <i class="material-icons">add</i><div class="ripple-container"></div>
+                </button>
+            </form>
+                       
                             <table class="table table-hover">
                                 <thead class="text-success">
                                     <tr>
@@ -174,10 +265,10 @@
                                         <td>{{avion.id}}</td>
                                         <td>{{avion.type}}</td>
                                         <td>
-                                            <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                                            <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal3">
                                                     <i class="fa fa-edit"></i>
                                             </button>
-                                            <button type="button" (click)="delete(avion)" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                            <button type="button" (click)="deleteAvion(avion)" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
                                                     <i class="material-icons">close</i>
                                             </button>
                                         </td>
@@ -197,9 +288,7 @@
                             <h4 class="title">Liste Des Types de Train</h4>
                         </div>
                         <div class="card-content table-responsive">
-                            <button type="button" class=" btn btn-info btn-round ">
-                                 <i class="material-icons">add</i>
-                             </button>
+                            
                             <table class="table table-hover">
                                 <thead class="text-success">
                                     <tr>
@@ -241,9 +330,7 @@
                             <h4 class="title">Liste Des Stations Metro</h4>
                         </div>
                         <div class="card-content table-responsive">
-                            <button type="button" class=" btn btn-primary btn-round ">
-                                 <i class="material-icons">add</i>
-                             </button>
+                            
                             <table class="table table-hover">
                                 <thead class="text-success">
                                     <tr>
@@ -277,9 +364,9 @@
                 </div>
              </div>
 
+ <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
 
-
-              <!-- Modal Core -->
+              <!-- Modal pays -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -287,26 +374,112 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Modifier</h4>
       </div>
+      <form #myForm2="ngForm" (ngSubmit)="modifierPays()">
       <div class="modal-body">
-        <form #myForm="ngForm" (ngSubmit)="modifier()">
+        
          <div class="row">
 	<div class="form-group col-sm-4">
     	<input type="text" value="{{nomM}}" placeholder="" class="form-control"  [(ngModel)]="model.nom" #nom="ngModel" required name="nom"/>
 	</div>
          </div> 
          
-      <button type="submit" class="btn btn-primary">Modifier</button>
-        </form>
+     
       </div>
       
-      <div class="modal-footer">
-        <button type="button" class="btn btn-info btn-simple" data-dismiss="modal">Fermer</button>
-      </div>
+              <div class="modal-footer">
+      <button type="submit" class="btn btn-success btn-round" >Modifier</button>
+      <button type="reset" class="btn btn-danger btn-round"  data-dismiss="modal">Fermer</button>
+             </div>
+       </form>
     </div>
   </div>
 </div>
 
-  <!--                      -->
+  <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
+
+
+              <!-- Modal pays parametre -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modifier</h4>
+      </div>
+      <form #f="ngForm" (ngSubmit)="ajouterParametre()">
+      <div class="modal-body">
+        
+         <div class="row">
+             <div class="col-sm-4">
+	<div class="form-group label-floating">
+		<label class="control-label">Ville</label>
+		<input type="text" class="form-control" [(ngModel)]="model3.ville" #ville="ngModel"  name="ville">
+	</div>
+</div>
+<div class="col-sm-4">
+	<div class="form-group label-floating">
+		<label class="control-label">Aeroport</label>
+		<input type="text" class="form-control" [(ngModel)]="model3.aeroport" #aeroport="ngModel"  name="aeroport">
+	</div>
+</div>
+<div class="col-sm-4">
+	<div class="form-group label-floating">
+		<label class="control-label">Station Metro</label>
+		<input type="text"  placeholder="" class="form-control"  [(ngModel)]="model3.station" #station="ngModel"  name="station"/>
+	</div>
+</div>
+	
+         </div> 
+         
+     
+      </div>
+      
+              <div class="modal-footer">
+      <button type="submit" class="btn btn-success btn-round" >Ajouter</button>
+      <button type="reset" class="btn btn-danger btn-round"  data-dismiss="modal">Fermer</button>
+             </div>
+       </form>
+    </div>
+  </div>
+</div>
+
+
+
+  <!--  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù         -->
+
+
+
+
+              <!-- Modal avion -->
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modifier</h4>
+      </div>
+      <form #myForm2="ngForm" (ngSubmit)="modifierAvion()">
+      <div class="modal-body">
+        
+         <div class="row">
+	<div class="form-group col-sm-4">
+    	<input type="text" value="{{nomvilleM}}" placeholder="" class="form-control"  [(ngModel)]="model.nomvilleM" #nom="ngModel" required name="nom"/>
+	</div>
+         </div> 
+         
+     
+      </div>
+      
+              <div class="modal-footer">
+      <button type="submit" class="btn btn-success btn-round" >Modifier</button>
+      <button type="reset" class="btn btn-danger btn-round"  data-dismiss="modal">Fermer</button>
+             </div>
+       </form>
+    </div>
+  </div>
+</div>
+
+  <!--         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%             -->
 
         </div>
   </div>

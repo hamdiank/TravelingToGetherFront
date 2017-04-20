@@ -10,15 +10,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppConfig } from "./app.config";
 import { AuthGuard } from "./_guards/index";
-
+import { JwtHelper } from 'angular2-jwt';
 import { AlertService, UserService, AuthenticationService, PaysService, PagerService } from "./_services/index";
-
 import { HttpModule } from "@angular/http";
-
 import { TableComponent } from "./dashboard/GestionUtil/table.component";
-
-import { InscriptionComponent } from "./inscription/inscription.component";
-
 import { LoginComponent } from "./login/login.component";
 import { NgModule } from "@angular/core";
 import { ParametrageComponent } from "./dashboard/parametrage/parametrage.component";
@@ -27,6 +22,10 @@ import { AccueilComponent } from "./dashboardutil/accueil/accueil.component";
 import { SidebarUtilModule } from "./sidebarutil/sidebar.module";
 import { AnnonceCovoiComponent } from "./dashboardutil/annonceCovoi/annonceCovoi.component";
 import { AnnonceCovoiService } from "./_services/annonceCovoi.service";
+import { LoaderComponent } from "./shared/loader/loader.component";
+import { ValuesPipe } from "./dashboard/parametrage/valuesPipe";
+import { FilterPipe } from "./dashboard/parametrage/pipe";
+import { InscriptionComponent } from "./inscription/inscription.component";
 
 
 
@@ -45,8 +44,10 @@ import { AnnonceCovoiService } from "./_services/annonceCovoi.service";
     ],
 
 
-    declarations: [AppComponent, MODULE_COMPONENTS, LoginComponent,TableComponent, InscriptionComponent, 
-    ParametrageComponent, AccueilComponent, AnnonceCovoiComponent],
+
+    declarations: [AppComponent, MODULE_COMPONENTS, LoginComponent,TableComponent, ParametrageComponent,LoaderComponent,ValuesPipe,FilterPipe,
+     AnnonceCovoiComponent, InscriptionComponent, AccueilComponent],
+
 
 
     bootstrap:    [ AppComponent ],
@@ -54,9 +55,8 @@ import { AnnonceCovoiService } from "./_services/annonceCovoi.service";
     providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, AppConfig,
         AuthGuard,
         AlertService,
-        AuthenticationService,
-
-        UserService,PaysService,PagerService,AvionService, AnnonceCovoiService],
+        AuthenticationService,ValuesPipe,
+        UserService,PaysService,PagerService,AvionService,JwtHelper, AnnonceCovoiService],
 
 })
 export class AppModule {
