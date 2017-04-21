@@ -7,8 +7,9 @@ var gestionUtil_component_1 = require('./dashboard/GestionUtil/gestionUtil.compo
 var index_1 = require("./_guards/index");
 var inscription_component_1 = require("./inscription/inscription.component");
 var dashboardutil_component_1 = require("./dashboardutil/dashboardutil.component");
-var accueil_component_1 = require("./dashboardutil/accueil/accueil.component");
 var annonceCovoi_component_1 = require("./dashboardutil/annonceCovoi/annonceCovoi.component");
+var profil_component_1 = require("./dashboardutil/profil/profil.component");
+var accueil_component_1 = require("./dashboardutil/accueil/accueil.component");
 exports.MODULE_ROUTES = [
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'register', component: inscription_component_1.InscriptionComponent },
@@ -20,12 +21,14 @@ exports.MODULE_ROUTES = [
     // path for userDashboard
     { path: 'dashboardutil', component: dashboardutil_component_1.DashboardUtilComponent, children: [
             { path: 'Accueil', component: accueil_component_1.AccueilComponent },
-            { path: 'AnnonceCovoi', component: annonceCovoi_component_1.AnnonceCovoiComponent }
+            { path: 'AnnonceCovoi', component: annonceCovoi_component_1.AnnonceCovoiComponent },
+            { path: 'MonProfil', component: profil_component_1.ProfilComponent }
         ], canActivate: [index_1.AuthGuard] },
     { path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full', canActivate: [index_1.AuthGuard] }
 ];
 exports.MODULE_COMPONENTS = [
     statistique_component_1.StatistiqueComponent, dashboard_component_1.DashboardComponent, gestionUtil_component_1.GestionUtilComponent,
-    parametrage_component_1.ParametrageComponent, login_component_1.LoginComponent, inscription_component_1.InscriptionComponent, dashboardutil_component_1.DashboardUtilComponent
+    parametrage_component_1.ParametrageComponent, login_component_1.LoginComponent, inscription_component_1.InscriptionComponent, dashboardutil_component_1.DashboardUtilComponent,
+    annonceCovoi_component_1.AnnonceCovoiComponent, accueil_component_1.AccueilComponent
 ];
 //# sourceMappingURL=app.routes.js.map

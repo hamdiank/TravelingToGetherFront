@@ -9,20 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var ProfilComponent = (function () {
-    function ProfilComponent() {
+var common_1 = require('@angular/common');
+var router_1 = require('@angular/router');
+var navbarutil_component_1 = require('./navbarutil.component');
+var NavbarUtilModule = (function () {
+    function NavbarUtilModule() {
     }
-    ProfilComponent.prototype.ngOnInit = function () {
-    };
-    ProfilComponent = __decorate([
-        core_1.Component({
-            selector: 'profil-cmp',
-            moduleId: module.id,
-            templateUrl: 'profil.component.html'
+    NavbarUtilModule = __decorate([
+        core_1.NgModule({
+            imports: [router_1.RouterModule, common_1.CommonModule],
+            declarations: [navbarutil_component_1.NavbarUtilComponent],
+            exports: [navbarutil_component_1.NavbarUtilComponent]
         }), 
         __metadata('design:paramtypes', [])
-    ], ProfilComponent);
-    return ProfilComponent;
+    ], NavbarUtilModule);
+    return NavbarUtilModule;
 }());
-exports.ProfilComponent = ProfilComponent;
-//# sourceMappingURL=profil.component.js.map
+exports.NavbarUtilModule = NavbarUtilModule;
+//# sourceMappingURL=navbarutil.module.js.map

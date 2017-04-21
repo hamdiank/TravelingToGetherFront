@@ -26,6 +26,8 @@ import { LoaderComponent } from "./shared/loader/loader.component";
 import { ValuesPipe } from "./dashboard/parametrage/valuesPipe";
 import { FilterPipe } from "./dashboard/parametrage/pipe";
 import { InscriptionComponent } from "./inscription/inscription.component";
+import { ProfilComponent } from "./dashboardutil/profil/profil.component";
+import { NavbarUtilModule } from "./shared/navbarutil/navbarutil.module";
 
 
 
@@ -37,6 +39,7 @@ import { InscriptionComponent } from "./inscription/inscription.component";
         SidebarModule,
         SidebarUtilModule,
         NavbarModule,
+        NavbarUtilModule,
         FooterModule,
         ReactiveFormsModule,
 
@@ -46,7 +49,7 @@ import { InscriptionComponent } from "./inscription/inscription.component";
 
 
     declarations: [AppComponent, MODULE_COMPONENTS, LoginComponent,TableComponent, ParametrageComponent,LoaderComponent,ValuesPipe,FilterPipe,
-     AnnonceCovoiComponent, InscriptionComponent, AccueilComponent],
+     AnnonceCovoiComponent, InscriptionComponent, AccueilComponent, ProfilComponent],
 
 
 
