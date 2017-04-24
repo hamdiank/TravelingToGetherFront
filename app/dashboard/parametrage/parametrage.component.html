@@ -34,8 +34,8 @@
                                 </thead>
                               <tbody>          
 
-                                    <tr *ngFor="let pay of pagedItems  | FilterPipe: textFilter">
-                                        <td>{{pay.idPays}}</td>
+                                    <tr *ngFor="let i=index;let pay of pagedItems  | FilterPipe: textFilter">
+                                        <td>{{i+1}}</td>
                                         <td>{{pay.nom}}</td>
 
                                         <td>
@@ -43,7 +43,7 @@
                                     <i class="fa fa-edit"></i>
                                 </button>
 
-                                <button (click)="supprimer(pay.idPays)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                <button (click)="getPays(pay)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal5">
                                                         <i class="material-icons">close</i>
                                                     </button>
                                  <button (click)="getPays(pay)" type="button" rel="tooltip" title="ajouter Parametre" class="btn btn-info btn-simple btn-xs" data-toggle="modal" data-target="#myModal2">
@@ -81,34 +81,39 @@
 
 
   <div class="col-md-6">
-         <div class="card" >
+         <div class="card" style="height: 63rem;" >
                         <div class="card-header" data-background-color="red">
                             <h4 class="title">Liste Des Villes</h4>
                         </div>
                         <div class="card-content table-responsive">
                             
+                            <div class="form-group form-black is-empty">
+                    <input type="text" class="form-control" [(ngModel)]="cityFilter" placeholder="chercher" name="cherchercity">
+                    <span class="material-input"></span>
+                             </div>
                             <table class="table table-hover">
                                 <thead class="text-success">
                                  <tr > 
                                     
                                         <th>ID</th>
                                         <th>Nom</th>
-                                        <th>Pays</th>
+                                        <th></th>
                                         <th>Action</th>
                                         
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr >
+                                    <tr *ngFor="let c of pagedItemsCity;let i=index;">
+                                        <td>{{i+1}}</td>
+                                        <td>{{c.nom}}</td>
                                         <td></td>
-                                        <td></td>
-                                        <td>jklg</td>
+                                        
                                         <td>
-                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                                    <button (click)="getCity(c)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
                                         <i class="fa fa-edit"></i>
                                     </button>
 
-                                    <button  type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                    <button (click)="getCity(c)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal6">
 
                                                         <i class="material-icons">close</i>
                                                     </button>
@@ -118,6 +123,25 @@
                                     
                                 </tbody>
                             </table>
+                            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPageCity(1)">First</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPageCity(pager.currentPage - 1)">Previous</a>
+                </li>
+              <!--
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page)">{{page}}</a>
+                </li> -->
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPageCity(pager.currentPage + 1)">Next</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPageCity(pager.totalPages)">Last</a>
+                </li>
+            </ul>
+
                         </div>
                     </div>
                 </div>
@@ -130,7 +154,76 @@
                             <h4 class="title">Liste Des Aeroports</h4>
                         </div>
                         <div class="card-content table-responsive">
-                            
+                            <div class="form-group form-black is-empty">
+                    <input type="text" class="form-control" [(ngModel)]="cityFilter" placeholder="chercher" name="cherchercity">
+                    <span class="material-input"></span>
+                             </div>
+                            <table class="table table-hover">
+                                <thead class="text-success">
+                                    <tr >
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th></th>
+                                        <th>Action</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let ae of pagedItemsAero">
+                                        <td>1</td>
+                                        <td>{{ae.nom}}</td>
+                                       <td></td>
+                                        <td>
+                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                                            <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                             <i class="material-icons">close</i>
+                                    </button>
+                                         </td>
+
+                                        
+                                    </tr>
+                                 
+                                    
+                                   
+                                    
+                                    
+                                </tbody>
+                            </table>
+                            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPageAero(1)">First</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPageAero(pager.currentPage - 1)">Previous</a>
+                </li>
+              <!--
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page)">{{page}}</a>
+                </li> -->
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPageAero(pager.currentPage + 1)">Next</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPageAero(pager.totalPages)">Last</a>
+                </li>
+            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+ <div class="col-md-6">
+         <div class="card" >
+                        <div class="card-header" data-background-color="purple">
+                            <h4 class="title">Liste Des Stations Metro</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <div class="form-group form-black is-empty">
+                    <input type="text" class="form-control" [(ngModel)]="cityFilter" placeholder="chercher" name="cherchercity">
+                    <span class="material-input"></span>
+                             </div>
                             <table class="table table-hover">
                                 <thead class="text-success">
                                     <tr>
@@ -142,70 +235,75 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr *ngFor="let s of pagedItemsStation">
                                         <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>France</td>
+                                        <td>{{s.nom}}</td>
+                                        <td>Tunisie</td>
                                         <td>
-                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
-                                            <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
-                                             <i class="material-icons">close</i>
-                                    </button>
-                         </td>
-
+                        <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                                <i class="fa fa-edit"></i>
+                         </button>
+                        <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                <i class="material-icons">close</i>
+                        </button>
+                                        </td>
                                         
                                     </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>France</td>
-                                        <td>
-                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
-                                            <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
-                                             <i class="material-icons">close</i>
-                                    </button>
-                         </td>
+                                    
+                                </tbody>
+                            </table>
+                            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPageStation(1)">First</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPageStation(pager.currentPage - 1)">Previous</a>
+                </li>
+              <!--
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page)">{{page}}</a>
+                </li> -->
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPageStation(pager.currentPage + 1)">Next</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPageStation(pager.totalPages)">Last</a>
+                </li>
+            </ul>
 
+                        </div>
+                    </div>
+                </div>
+<!-- liste des types d'avions et la liste des types de train -->
+ 
+             </div>
+
+             <div class="row">
+         <div class="col-md-6">
+         <div class="card" >
+                        <div class="card-header" data-background-color="brown">
+                            <h4 class="title">Liste Des Types de Train</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <div class="form-group form-black is-empty">
+                    <input type="text" class="form-control" [(ngModel)]="cityFilter" placeholder="chercher" name="cherchercity">
+                    <span class="material-input"></span>
+                             </div>
+                            <table class="table table-hover">
+                                <thead class="text-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>type</th>
+                                        
+                                        <th>Action</th>
                                         
                                     </tr>
-                                    <tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let train of trains">
                                         <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>France</td>
-                                        <td>
-                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
-                                            <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
-                                             <i class="material-icons">close</i>
-                                    </button>
-                         </td>
-
+                                        <td>{{train.type}}</td>
                                         
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>France</td>
-                                        <td>
-                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
-                                            <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
-                                             <i class="material-icons">close</i>
-                                    </button>
-                         </td>
-
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>France</td>
                                         <td>
                                     <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
                                             <i class="fa fa-edit"></i>
@@ -225,31 +323,17 @@
                 </div>
 
 
-<!-- liste des types d'avions et la liste des types de train -->
-  <div class="col-md-6">
+ <div class="col-md-6">
          <div class="card" >
-                        <div class="card-header" data-background-color="purple">
+                        <div class="card-header" data-background-color="orange">
                             <h4 class="title">Liste Des Types d'Avion</h4>
                         </div>
                         <div class="card-content table-responsive">
-                        <form class="navbar-form navbar-right" role="search">
-                <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" placeholder="chercher">
+                        
+                            <div class="form-group form-black is-empty">
+                    <input type="text" class="form-control" [(ngModel)]="cityFilter" placeholder="chercher" name="cherchercity">
                     <span class="material-input"></span>
-                </div>
-                <button type="submit" class="btn btn-default btn-round btn-just-icon">
-                    <i class="material-icons">search</i><div class="ripple-container"></div>
-                </button>
-            </form>
-            <form  class="navbar-form navbar-right" (ngSubmit)="addAvion()">
-                <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" placeholder="ajouter type avion" [(ngModel)]="model4.typeAvion" #typeAvion="ngModel" required name="typeAvion">
-                    <span class="material-input"></span>
-                </div>
-                <button type="submit" class="btn btn-default btn-round btn-just-icon">
-                    <i class="material-icons">add</i><div class="ripple-container"></div>
-                </button>
-            </form>
+                             </div>
                        
                             <table class="table table-hover">
                                 <thead class="text-success">
@@ -268,7 +352,7 @@
                                             <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal3">
                                                     <i class="fa fa-edit"></i>
                                             </button>
-                                            <button type="button" (click)="deleteAvion(avion)" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                            <button type="button" (click)="SupprimerAvion(avion)" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
                                                     <i class="material-icons">close</i>
                                             </button>
                                         </td>
@@ -279,89 +363,7 @@
                         </div>
                     </div>
                 </div>
-             </div>
-
-             <div class="row">
-         <div class="col-md-6">
-         <div class="card" >
-                        <div class="card-header" data-background-color="blue">
-                            <h4 class="title">Liste Des Types de Train</h4>
-                        </div>
-                        <div class="card-content table-responsive">
-                            
-                            <table class="table table-hover">
-                                <thead class="text-success">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nom</th>
-                                        <th>Pays</th>
-                                        <th>Action</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>France</td>
-                                        <td>
-                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
-                                            <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
-                                             <i class="material-icons">close</i>
-                                    </button>
-                         </td>
-
-                                        
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-
-
-  <div class="col-md-6">
-         <div class="card" >
-                        <div class="card-header" data-background-color="purple">
-                            <h4 class="title">Liste Des Stations Metro</h4>
-                        </div>
-                        <div class="card-content table-responsive">
-                            
-                            <table class="table table-hover">
-                                <thead class="text-success">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nom</th>
-                                        <th>Pays</th>
-                                        <th>Action</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>Tunisie</td>
-                                        <td>
-                        <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
-                                <i class="fa fa-edit"></i>
-                         </button>
-                        <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
-                                <i class="material-icons">close</i>
-                        </button>
-                                        </td>
-                                        
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+ 
              </div>
 
  <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
@@ -374,7 +376,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Modifier</h4>
       </div>
-      <form #myForm2="ngForm" (ngSubmit)="modifierPays()">
+      <form #myForm2="ngForm" (ngSubmit)="modifierNomPays()">
       <div class="modal-body">
         
          <div class="row">
@@ -404,7 +406,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modifier</h4>
+        <h4 class="modal-title" id="myModalLabel">Ajouter Parametre</h4>
       </div>
       <form #f="ngForm" (ngSubmit)="ajouterParametre()">
       <div class="modal-body">
@@ -443,11 +445,58 @@
   </div>
 </div>
 
+  <!--  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù         -->
 
+ <!-- Modal supprimer Pays-->
+<div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">supprimer  définitivement?</h4>
+      </div>
+      <div class="modal-body">
+        
+         
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
+        <button (click)="supprimerPays()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!--                        -->
 
   <!--  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù         -->
 
 
+<!-- Modal supprimer ville-->
+<div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">supprimer  définitivement?</h4>
+      </div>
+      <div class="modal-body">
+        
+         
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
+        <button (click)="supprimerCity()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!--                        -->
+
+  <!--  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù         -->
 
 
               <!-- Modal avion -->

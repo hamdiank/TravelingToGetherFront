@@ -11,38 +11,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require("@angular/http");
 var app_config_1 = require("../app.config");
-var PaysService = (function () {
-    function PaysService(http, config) {
+var TrainService = (function () {
+    function TrainService(http, config) {
         this.http = http;
         this.config = config;
     }
-    PaysService.prototype.getAll = function () {
-        console.log("start api/pays  ......");
-        return this.http.get(this.config.apiUrl + '/admin/pays/all', this.jwt()).map(function (response) { return response.json(); });
+    TrainService.prototype.getAll = function () {
+        console.log("start api/train ......");
+        return this.http.get(this.config.apiUrl + '/trains', this.jwt()).map(function (response) { return response.json(); });
     };
-    PaysService.prototype.delete = function (_id) {
-        return this.http.delete(this.config.apiUrl + '/admin/pays/delPays/' + _id, this.jwt());
+    TrainService.prototype.delete = function (_id) {
+        return this.http.delete(this.config.apiUrl + '/trains/' + _id, this.jwt());
     };
-    PaysService.prototype.update = function (pays, v, a, s) {
-        return this.http.put(this.config.apiUrl + '/admin/pays/updatePays/' + pays.idPays + '/' + v + '/' + a + '/' + s, this.jwt());
+    TrainService.prototype.update = function (train) {
+        return this.http.put(this.config.apiUrl + '//trains/' + train.id, train, this.jwt());
     };
-    PaysService.prototype.updateNom = function (pays) {
-        console.log(pays.nom);
-        return this.http.put(this.config.apiUrl + '/admin/pays/renomerPays/' + pays.idPays, pays, this.jwt());
-    };
-    PaysService.prototype.add = function (nomPays) {
-        return this.http.post(this.config.apiUrl + '/admin/pays/addPays/' + nomPays, this.jwt());
-    };
-    PaysService.prototype.getById = function (id) {
-        return this.http.get(this.config.apiUrl + '/admin/pays/pays/' + id, this.jwt()).map(function (response) { return response.json(); });
-    };
-    PaysService.prototype.getByCity = function (nom) {
-        return this.http.get(this.config.apiUrl + '/admin/pays/paysByCity/' + nom, this.jwt()).map(function (response) { return response.json(); });
-    };
-    PaysService.prototype.jwt = function () {
+    TrainService.prototype.jwt = function () {
         // create authorization header with jwt token
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        console.log(currentUser);
         if (currentUser && currentUser.token) {
             var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + currentUser.token });
             headers.append("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
@@ -52,11 +38,11 @@ var PaysService = (function () {
             return new http_1.RequestOptions({ headers: headers });
         }
     };
-    PaysService = __decorate([
+    TrainService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http, app_config_1.AppConfig])
-    ], PaysService);
-    return PaysService;
+    ], TrainService);
+    return TrainService;
 }());
-exports.PaysService = PaysService;
-//# sourceMappingURL=pays.service.js.map
+exports.TrainService = TrainService;
+//# sourceMappingURL=train.service.js.map

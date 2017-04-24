@@ -6,9 +6,15 @@
                         <p class="category"></p>
                     </div>
                     <div class="card-content table-responsive">
+                <div class="form-group form-black is-empty">
+                    <input type="text" class="form-control" [(ngModel)]="textFilter" placeholder="chercher" name="chercherPays">
+                    <span class="material-input"></span>
+                </div>
+
                         <table class="table table-hover">
                             <thead class="text-warning">
                                 <tr>
+                                    <th>ID</th>
                                     <th>Nom</th>
                                     <th>Prenom</th>
                                     <th>Email</th>
@@ -17,7 +23,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let user of pagedItems">
+                                <tr *ngFor="let i=index ;let user of pagedItems | FilterPipe: textFilter">
+                                    <td>{{i+1}}</td>
                                     <td>{{user.nom}}</td>
                                     <td>{{user.prenom}}</td>
                                     <td>{{user.email}}</td>

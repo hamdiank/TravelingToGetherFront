@@ -3,7 +3,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { User } from "../../_models/index";
 import { UserService, PagerService } from "../../_services/index";
-
+import { FilterPipe } from '../parametrage/pipe'
 @Component({
     moduleId: module.id,
     selector: 'tab',
@@ -11,6 +11,7 @@ import { UserService, PagerService } from "../../_services/index";
     templateUrl: 'table.component.html'
 })
 export class TableComponent implements OnInit {
+    textFilter:string;
     serveId: EventEmitter<User>;
     users: User[];
     user:User;

@@ -12,7 +12,7 @@ import { AppConfig } from "./app.config";
 import { AuthGuard } from "./_guards/index";
 import { JwtHelper } from 'angular2-jwt';
 
-import { AlertService, UserService, AuthenticationService, PaysService, PagerService } from "./_services/index";
+import { AlertService, UserService, AuthenticationService, PaysService, PagerService, CityService } from "./_services/index";
 
 import { HttpModule } from "@angular/http";
 
@@ -27,6 +27,9 @@ import { AvionService } from "./_services/avion.service";
 import { LoaderComponent } from "./shared/loader/loader.component";
 import { ValuesPipe } from "./dashboard/parametrage/valuesPipe";
 import { FilterPipe } from "./dashboard/parametrage/pipe";
+import { AeroportService } from "./_services/aeroport.service";
+import { StationService } from "./_services/station.service";
+import { TrainService } from "./_services/train.service";
 
 
 
@@ -55,7 +58,7 @@ import { FilterPipe } from "./dashboard/parametrage/pipe";
         AlertService,
         AuthenticationService,ValuesPipe,
 
-        UserService,PaysService,PagerService,AvionService,JwtHelper],
+        UserService,PaysService,PagerService,AvionService,CityService,AeroportService,StationService,TrainService,JwtHelper],
 
 })
 export class AppModule {

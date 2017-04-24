@@ -43,6 +43,7 @@ user:User;
                   //get the user id
            //  console.log("decooooded: "+this.jwtHelper.decodeToken(token).role) ;
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    console.log(token);
                     localStorage.setItem('currentToken', JSON.stringify(token));
                     localStorage.setItem('currentUserId', this.jwtHelper.decodeToken(token).userId);
                      localStorage.setItem('currentUserRole', this.jwtHelper.decodeToken(token).role);

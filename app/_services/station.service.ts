@@ -2,26 +2,29 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions ,Headers ,Response} from "@angular/http";
 import { AppConfig } from "../app.config";
-import { City } from "../_models/city";
+import { Station } from "../_models/index";
+
+
+
 
 @Injectable()
-export class CityService {
+export class StationService {
 
     constructor(private http: Http, private config: AppConfig) { }
 
 getAll() {
-    console.log("start api/city ......")
-        return this.http.get(this.config.apiUrl +'/city/all', this.jwt()).map((response: Response) => response.json());
+    console.log("start api/station ......")
+        return this.http.get(this.config.apiUrl +'/station/all', this.jwt()).map((response: Response) => response.json());
     }
 
 delete(_id: string) {
 
-        return this.http.delete(this.config.apiUrl + '/city/citydel/' + _id, this.jwt());
+        return this.http.delete(this.config.apiUrl + '/station/delStation/' + _id, this.jwt());
     }
 
 
-update(city:City){
-        return this.http.put(this.config.apiUrl + '/city/updateCity/' + city.idCity, city, this.jwt());
+update(station:Station){
+        return this.http.put(this.config.apiUrl + '/city/updateCity/' + station.idStation, station, this.jwt());
 
 }
 

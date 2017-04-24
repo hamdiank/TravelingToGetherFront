@@ -30,6 +30,9 @@ var avion_service_1 = require("./_services/avion.service");
 var loader_component_1 = require("./shared/loader/loader.component");
 var valuesPipe_1 = require("./dashboard/parametrage/valuesPipe");
 var pipe_1 = require("./dashboard/parametrage/pipe");
+var aeroport_service_1 = require("./_services/aeroport.service");
+var station_service_1 = require("./_services/station.service");
+var train_service_1 = require("./_services/train.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -52,7 +55,7 @@ var AppModule = (function () {
                 index_1.AuthGuard,
                 index_2.AlertService,
                 index_2.AuthenticationService, valuesPipe_1.ValuesPipe,
-                index_2.UserService, index_2.PaysService, index_2.PagerService, avion_service_1.AvionService, angular2_jwt_1.JwtHelper],
+                index_2.UserService, index_2.PaysService, index_2.PagerService, avion_service_1.AvionService, index_2.CityService, aeroport_service_1.AeroportService, station_service_1.StationService, train_service_1.TrainService, angular2_jwt_1.JwtHelper],
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

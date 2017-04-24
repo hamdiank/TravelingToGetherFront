@@ -17,11 +17,11 @@ var CityService = (function () {
         this.config = config;
     }
     CityService.prototype.getAll = function () {
-        console.log("start api/user eehdf ......");
+        console.log("start api/city ......");
         return this.http.get(this.config.apiUrl + '/city/all', this.jwt()).map(function (response) { return response.json(); });
     };
     CityService.prototype.delete = function (_id) {
-        return this.http.delete(this.config.apiUrl + '/city/delCity/' + _id, this.jwt());
+        return this.http.delete(this.config.apiUrl + '/city/citydel/' + _id, this.jwt());
     };
     CityService.prototype.update = function (city) {
         return this.http.put(this.config.apiUrl + '/city/updateCity/' + city.idCity, city, this.jwt());
