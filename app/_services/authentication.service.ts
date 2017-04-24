@@ -35,13 +35,9 @@ user:User;
 
                 // login successful if there's a jwt token in the response
               let token = x._body ;
-
                 console.log("rrrrrrrggghgjhj");
               //  console.log(token);
                 //console.log(JSON.stringify(user));
-            
-            
-                
                 if (token ) {
                   //get the user id
            //  console.log("decooooded: "+this.jwtHelper.decodeToken(token).role) ;

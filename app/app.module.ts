@@ -28,6 +28,7 @@ import { FilterPipe } from "./dashboard/parametrage/pipe";
 import { InscriptionComponent } from "./inscription/inscription.component";
 import { ProfilComponent } from "./dashboardutil/profil/profil.component";
 import { NavbarUtilModule } from "./shared/navbarutil/navbarutil.module";
+import { MesAnnoncesCovoiComponent } from "./dashboardutil/profil/mesAnnoncesCovoi.component";
 
 
 
@@ -49,7 +50,7 @@ import { NavbarUtilModule } from "./shared/navbarutil/navbarutil.module";
 
 
     declarations: [AppComponent, MODULE_COMPONENTS, LoginComponent,TableComponent, ParametrageComponent,LoaderComponent,ValuesPipe,FilterPipe,
-     AnnonceCovoiComponent, InscriptionComponent, AccueilComponent, ProfilComponent],
+     AnnonceCovoiComponent, InscriptionComponent, AccueilComponent, ProfilComponent, MesAnnoncesCovoiComponent],
 
 
 

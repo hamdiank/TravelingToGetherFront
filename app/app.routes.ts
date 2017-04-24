@@ -14,6 +14,7 @@ import { DashboardUtilComponent } from "./dashboardutil/dashboardutil.component"
 import { AnnonceCovoiComponent } from "./dashboardutil/annonceCovoi/annonceCovoi.component";
 import { ProfilComponent } from "./dashboardutil/profil/profil.component";
 import { AccueilComponent } from "./dashboardutil/accueil/accueil.component";
+import { MesAnnoncesCovoiComponent } from "./dashboardutil/profil/mesAnnoncesCovoi.component";
 export const MODULE_ROUTES: Route[] =[
     { path: 'login', component: LoginComponent },
     { path: 'register', component: InscriptionComponent },
@@ -27,7 +28,9 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'dashboardutil' ,component: DashboardUtilComponent ,children: [
     { path: 'Accueil', component: AccueilComponent },
     { path: 'AnnonceCovoi', component: AnnonceCovoiComponent },
-    { path: 'MonProfil', component: ProfilComponent }
+    { path: 'MonProfil', component: ProfilComponent },
+    { path: 'MesAnnoncesCovoi', component: MesAnnoncesCovoiComponent },
+    
     ],canActivate: [AuthGuard] },
     
     { path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard]}

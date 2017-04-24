@@ -4,4 +4,5 @@ function __export(m) {
 }
 __export(require('./user'));
 __export(require('./Pays'));
+__export(require('./annonceCovoi'));
 //# sourceMappingURL=index.js.map

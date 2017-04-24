@@ -1,12 +1,12 @@
 import { User } from "./user";
 
 export class AnnonceCovoi {
-    id: String;
-    datePublication: String;
-    dateDepart: String;
-    adresseDepart: String;
-    adresseArrivee: String;
+    id: string;
+    datePublication: string;
+    dateDepart: string;
+    adresseDepart: string;
+    adresseArrivee: string;
     utilisateur : User;
-    nombrePlaces: String;
-    cotisation: String;
+    nombrePlaces: string;
+    cotisation: string;
 }

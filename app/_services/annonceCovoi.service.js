@@ -11,11 +11,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require("@angular/http");
 var app_config_1 = require("../app.config");
+var http_2 = require("@angular/http");
 var AnnonceCovoiService = (function () {
     function AnnonceCovoiService(http, config) {
         this.http = http;
         this.config = config;
     }
+    AnnonceCovoiService.prototype.ajouterAnnonceCovoi = function (datePublication, dateDepart, adresseDepart, adresseArrivee, nombrePlaces, cotisation, id) {
+        console.log("qqqqqqqqq");
+        var headers = new http_1.Headers();
+        var options = new http_1.RequestOptions({ headers: headers });
+        var urlSearchParams = new http_2.URLSearchParams();
+        urlSearchParams.append('datePublication', datePublication);
+        urlSearchParams.append('dateDepart', dateDepart);
+        urlSearchParams.append('adresseDepart', adresseDepart);
+        urlSearchParams.append('adresseArrivee', adresseArrivee);
+        urlSearchParams.append('nombrePlaces', nombrePlaces);
+        urlSearchParams.append('cotisation', cotisation);
+        urlSearchParams.append('id', id);
+        var body = urlSearchParams.toString();
+        //let body={"datePublication": datePublication, "dateDepart": dateDepart , "adresseDepart": adresseDepart , "adresseArrivee": adresseArrivee , "nombrePlaces": nombrePlaces , "cotisation": cotisation, "id": id };
+        console.log(body);
+        return this.http.put(this.config.apiUrl + '/ajoutAnnonceCovoi?' + body, body, this.jwt())
+            .map(function (res) { return res.json(); });
+    };
     AnnonceCovoiService.prototype.getAnnoncesCovoi = function () {
         console.log("annonces covoi affichage ");
         return this.http.get(this.config.apiUrl + '/annonces', this.jwt())

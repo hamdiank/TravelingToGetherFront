@@ -37,6 +37,7 @@ var pipe_1 = require("./dashboard/parametrage/pipe");
 var inscription_component_1 = require("./inscription/inscription.component");
 var profil_component_1 = require("./dashboardutil/profil/profil.component");
 var navbarutil_module_1 = require("./shared/navbarutil/navbarutil.module");
+var mesAnnoncesCovoi_component_1 = require("./dashboardutil/profil/mesAnnoncesCovoi.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -55,7 +56,7 @@ var AppModule = (function () {
                 router_1.RouterModule.forRoot(app_routes_1.MODULE_ROUTES)
             ],
             declarations: [app_component_1.AppComponent, app_routes_1.MODULE_COMPONENTS, login_component_1.LoginComponent, table_component_1.TableComponent, parametrage_component_1.ParametrageComponent, loader_component_1.LoaderComponent, valuesPipe_1.ValuesPipe, pipe_1.FilterPipe,
-                annonceCovoi_component_1.AnnonceCovoiComponent, inscription_component_1.InscriptionComponent, accueil_component_1.AccueilComponent, profil_component_1.ProfilComponent],
+                annonceCovoi_component_1.AnnonceCovoiComponent, inscription_component_1.InscriptionComponent, accueil_component_1.AccueilComponent, profil_component_1.ProfilComponent, mesAnnoncesCovoi_component_1.MesAnnoncesCovoiComponent],
             bootstrap: [app_component_1.AppComponent],
             exports: [],
             providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }, app_config_1.AppConfig,

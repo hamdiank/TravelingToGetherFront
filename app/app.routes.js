@@ -10,6 +10,7 @@ var dashboardutil_component_1 = require("./dashboardutil/dashboardutil.component
 var annonceCovoi_component_1 = require("./dashboardutil/annonceCovoi/annonceCovoi.component");
 var profil_component_1 = require("./dashboardutil/profil/profil.component");
 var accueil_component_1 = require("./dashboardutil/accueil/accueil.component");
+var mesAnnoncesCovoi_component_1 = require("./dashboardutil/profil/mesAnnoncesCovoi.component");
 exports.MODULE_ROUTES = [
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'register', component: inscription_component_1.InscriptionComponent },
@@ -22,7 +23,8 @@ exports.MODULE_ROUTES = [
     { path: 'dashboardutil', component: dashboardutil_component_1.DashboardUtilComponent, children: [
             { path: 'Accueil', component: accueil_component_1.AccueilComponent },
             { path: 'AnnonceCovoi', component: annonceCovoi_component_1.AnnonceCovoiComponent },
-            { path: 'MonProfil', component: profil_component_1.ProfilComponent }
+            { path: 'MonProfil', component: profil_component_1.ProfilComponent },
+            { path: 'MesAnnoncesCovoi', component: mesAnnoncesCovoi_component_1.MesAnnoncesCovoiComponent },
         ], canActivate: [index_1.AuthGuard] },
     { path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full', canActivate: [index_1.AuthGuard] }
 ];
