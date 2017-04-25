@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlertService, AuthenticationService } from '../_services/index';
-
+import { LoaderComponent } from "../shared/loader/loader.component";
 @Component({
     moduleId: module.id,
     templateUrl: 'login.component.html'

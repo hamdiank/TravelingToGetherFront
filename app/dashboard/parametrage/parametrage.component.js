@@ -91,6 +91,7 @@ var ParametrageComponent = (function () {
     /////////////////////////////////////////////////////////////////////////////////////////
     ParametrageComponent.prototype.supprimerPays = function () {
         var _this = this;
+        this.loading = true;
         console.log(this.paysM.idPays);
         this.paysService.delete(this.paysM.idPays).subscribe(function (resultat) {
             _this.ListPays();

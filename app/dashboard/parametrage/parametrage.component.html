@@ -376,13 +376,15 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Modifier</h4>
       </div>
-      <form #myForm2="ngForm" (ngSubmit)="modifierNomPays()">
+      <form #myForm2="ngForm" (ngSubmit)="myForm2.form.valid &&modifierNomPays()" >
       <div class="modal-body">
         
          <div class="row">
 	<div class="form-group col-sm-4">
     	<input type="text" value="{{nomM}}" placeholder="" class="form-control"  [(ngModel)]="model.nom" #nom="ngModel" required name="nom"/>
 	</div>
+        <div *ngIf="nomM!=model.nom" class="help-block">Rien n'a changé</div>
+
          </div> 
          
      

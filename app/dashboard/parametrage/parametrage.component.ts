@@ -138,10 +138,11 @@ console.log(v +"  "+a+"  "+s);
 /////////////////////////////////////////////////////////////////////////////////////////
 
 supprimerPays(){
-    
+    this.loading=true;
 console.log(this.paysM.idPays);
 this.paysService.delete(this.paysM.idPays).subscribe(resultat=>{
 this.ListPays();
+
 });
 
 
