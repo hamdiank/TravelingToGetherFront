@@ -8,7 +8,124 @@
                     <p class="category">Mes Annonces</p>
                 </div>
                 <div class="card-content">
+                    <div class="col-md-8" style="margin-left: 100px;" >
+                        <ul class="list-group" *ngFor="let annonceCovoi of annoncesCovoi" (click)="onClick(annonceCovoi)">
+                                <div class="panel">
+                                        <div class="panel-heading">
+ 
+                                    </div>
+                                        <div class="panel-body">
+                                    
+                                            <li class="list-group-item" > ID <span class="badge" >{{annonceCovoi.id}}</span></li>
+                                            <li class="list-group-item"> Date Publication <span class="badge">{{annonceCovoi.datePublication}}</span></li> 
+                                            <li class="list-group-item"> Date Départ <span class="badge">{{annonceCovoi.dateDepart}}</span></li> 
+                                            <li class="list-group-item">Addresse Départ <span class="badge">{{annonceCovoi.adresseDepart}}</span></li> 
+                                            <li class="list-group-item">Addresse Arrivée <span class="badge">{{annonceCovoi.adresseArrivee}}</span></li> 
 
+                                            <li class="list-group-item">Nombres de Places  <span class="badge">{{annonceCovoi.nombrePlaces}}</span><i class="fa fa-user"></i></li> 
+                                            <li class="list-group-item">Cotisation <span class="badge" >{{annonceCovoi.cotisation}}</span></li>
+                
+                                                <li class="list-group-item">
+                                                    <span style="margin-left: 75px;">
+                                                        <button type="button" rel="tooltip" title="Edit Annonce" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                    </span>
+                                                    <span style="margin-left: 100px;" >
+                                                        <button type="button" rel="tooltip" title="Suuprimer Annonce" class="btn btn-danger btn-simple btn-xs">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </span>
+ 
+                                                </li>
+                                        </div>
+                                </div>
+
+                            </ul>
+                            <ul class="list-group" >
+                                <li class="list-group-item" > ID <span class="badge" >1</span></li>
+                                <li class="list-group-item"> Date Publication <span class="badge">21/04/2017</span></li> 
+                                <li class="list-group-item">Addresse Départ <span class="badge">Sfax</span></li> 
+                                <li class="list-group-item">Addresse Arrivée <span class="badge">Tunis</span></li> 
+                                <li class="list-group-item">Utilisateur <span class="badge">Utilisateur</span></li> 
+                                <li class="list-group-item">Nombres de Places  <span class="badge">3</span><i class="fa fa-user"></i></li> 
+                                <li class="list-group-item">Cotisation <span class="badge" >15 D</span></li> 
+                                <li class="list-group-item">
+                                    <span >
+                                        <button type="button" rel="tooltip" title="Réserver" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Réserver
+                                        </button>
+                                    </span>
+                                    <span >
+                                        <button type="button" rel="tooltip" title="Commenter" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Commenter
+                                        </button>
+                                    </span>
+                                    <span >
+                                        <button type="button" rel="tooltip" title="Contacter" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Contacter
+                                        </button>
+                                    </span>
+                                </li> 
+                            </ul>
+                        
+                    </div>
+        <!-- Affichage du Modal-->
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" role="dialog">
+                                <div class="modal-dialog">
+                                
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Modifier Annonce de Covoiturage</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Date de Départ</label>
+                                                <input type="email" class="form-control" value="model.dateDepart" name="dateDepart" [(ngModel)]="model.dateDepart" #dateDepart="ngModel"  required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Adresse de Départ</label>
+                                                <input type="email" class="form-control" name="adresseDepart" [(ngModel)]="model.adresseDepart" #adresseDepart="ngModel"   required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Adresse d'Arrivée</label>
+                                                <input type="email" class="form-control" name="adresseArrivee" [(ngModel)]="model.adresseArrivee" #adresseArrivee="ngModel" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Nombre de Places</label>
+                                                <input type="email" class="form-control" name="nombrePlaces"  [(ngModel)]="model.nombrePlaces" #nombrePlaces="ngModel" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Cotisation</label>
+                                                <input type="email" class="form-control" name="cotisation" [(ngModel)]="model.cotisation" #cotisation="ngModel"  required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <button (click)="modifierAnnonceCovoi()" type="button" class="btn btn-success" data-dismiss="modal">Modifier</button>
+                                    </div>
+                                </div>
+                                
+                                </div>
+                            </div>   
+    <!-- fin   modal -->
                                   
                 </div>
             </div>

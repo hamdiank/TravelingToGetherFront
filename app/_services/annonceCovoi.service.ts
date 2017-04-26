@@ -11,7 +11,16 @@ export class AnnonceCovoiService {
 
     
     constructor(private http: Http, private config: AppConfig) { }
-
+getMesAnnoncesCovoi(id: string){
+    let headers= new Headers();
+    let options= new RequestOptions({headers:headers});
+    let urlSearchParams= new URLSearchParams();
+     urlSearchParams.append('id', id);
+     let body= urlSearchParams.toString();
+     console.log(body)
+    return this.http.get(this.config.apiUrl+'/maListeAnnonceCovoi?'+body, this.jwt())
+     .map((res: Response) => res.json());
+}
 ajouterAnnonceCovoi(datePublication: string,dateDepart: string, adresseDepart: string, adresseArrivee: string, nombrePlaces: string, cotisation: string, id: string ){
     console.log("qqqqqqqqq")
     let headers= new Headers();
@@ -29,6 +38,27 @@ ajouterAnnonceCovoi(datePublication: string,dateDepart: string, adresseDepart: s
     //let body={"datePublication": datePublication, "dateDepart": dateDepart , "adresseDepart": adresseDepart , "adresseArrivee": adresseArrivee , "nombrePlaces": nombrePlaces , "cotisation": cotisation, "id": id };
     console.log(body)
  return this.http.put(this.config.apiUrl+'/ajoutAnnonceCovoi?'+body, body, this.jwt())
+                        .map((res: Response) => res.json());
+
+}
+modifierAnnonceCovoi(datePublication: string,dateDepart: string, adresseDepart: string, adresseArrivee: string,
+ nombrePlaces: string, cotisation: string, id: string, idUtilisateur: string){
+    console.log("i am here")
+    let headers= new Headers();
+    let options= new RequestOptions ({headers: headers});
+    let urlSearchParams = new URLSearchParams();
+    urlSearchParams.append('datePublication', datePublication);
+     urlSearchParams.append('dateDepart', dateDepart);
+     urlSearchParams.append('adresseDepart', adresseDepart);
+     urlSearchParams.append('adresseArrivee', adresseArrivee);
+     urlSearchParams.append('nombrePlaces', nombrePlaces);
+     urlSearchParams.append('cotisation', cotisation);
+     urlSearchParams.append('id', id);
+    urlSearchParams.append('idUtilisateur', idUtilisateur);
+
+       let body = urlSearchParams.toString();
+       console.log(body)
+return this.http.put(this.config.apiUrl+'/updateAnnonceCovoi?'+body, body, this.jwt())
                         .map((res: Response) => res.json());
 
 }

@@ -17,6 +17,16 @@ var AnnonceCovoiService = (function () {
         this.http = http;
         this.config = config;
     }
+    AnnonceCovoiService.prototype.getMesAnnoncesCovoi = function (id) {
+        var headers = new http_1.Headers();
+        var options = new http_1.RequestOptions({ headers: headers });
+        var urlSearchParams = new http_2.URLSearchParams();
+        urlSearchParams.append('id', id);
+        var body = urlSearchParams.toString();
+        console.log(body);
+        return this.http.get(this.config.apiUrl + '/maListeAnnonceCovoi?' + body, this.jwt())
+            .map(function (res) { return res.json(); });
+    };
     AnnonceCovoiService.prototype.ajouterAnnonceCovoi = function (datePublication, dateDepart, adresseDepart, adresseArrivee, nombrePlaces, cotisation, id) {
         console.log("qqqqqqqqq");
         var headers = new http_1.Headers();
@@ -33,6 +43,24 @@ var AnnonceCovoiService = (function () {
         //let body={"datePublication": datePublication, "dateDepart": dateDepart , "adresseDepart": adresseDepart , "adresseArrivee": adresseArrivee , "nombrePlaces": nombrePlaces , "cotisation": cotisation, "id": id };
         console.log(body);
         return this.http.put(this.config.apiUrl + '/ajoutAnnonceCovoi?' + body, body, this.jwt())
+            .map(function (res) { return res.json(); });
+    };
+    AnnonceCovoiService.prototype.modifierAnnonceCovoi = function (datePublication, dateDepart, adresseDepart, adresseArrivee, nombrePlaces, cotisation, id, idUtilisateur) {
+        console.log("i am here");
+        var headers = new http_1.Headers();
+        var options = new http_1.RequestOptions({ headers: headers });
+        var urlSearchParams = new http_2.URLSearchParams();
+        urlSearchParams.append('datePublication', datePublication);
+        urlSearchParams.append('dateDepart', dateDepart);
+        urlSearchParams.append('adresseDepart', adresseDepart);
+        urlSearchParams.append('adresseArrivee', adresseArrivee);
+        urlSearchParams.append('nombrePlaces', nombrePlaces);
+        urlSearchParams.append('cotisation', cotisation);
+        urlSearchParams.append('id', id);
+        urlSearchParams.append('idUtilisateur', idUtilisateur);
+        var body = urlSearchParams.toString();
+        console.log(body);
+        return this.http.put(this.config.apiUrl + '/updateAnnonceCovoi?' + body, body, this.jwt())
             .map(function (res) { return res.json(); });
     };
     AnnonceCovoiService.prototype.getAnnoncesCovoi = function () {

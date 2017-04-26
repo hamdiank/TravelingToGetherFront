@@ -15,11 +15,40 @@ var MesAnnoncesCovoiComponent = (function () {
     function MesAnnoncesCovoiComponent(annonceCovoiService, router) {
         this.annonceCovoiService = annonceCovoiService;
         this.router = router;
+        this.model = {};
+        this.selected = {};
     }
+    MesAnnoncesCovoiComponent.prototype.getMesAnnoncesCovoi = function () {
+        var _this = this;
+        var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
+        this.id = currentUserId;
+        console.log(this.id + "hhhhh");
+        this.annonceCovoiService.getMesAnnoncesCovoi(this.id).subscribe(function (annoncesCovoi) {
+            _this.annoncesCovoi = annoncesCovoi;
+        });
+    };
+    MesAnnoncesCovoiComponent.prototype.onClick = function (annonceCovoi) {
+        this.selected = annonceCovoi;
+        this.model = this.selected;
+        console.log(this.model.id);
+        console.log("jjjjjjjjjj");
+        console.log(this.selected);
+    };
+    MesAnnoncesCovoiComponent.prototype.modifierAnnonceCovoi = function () {
+        var _this = this;
+        var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
+        this.idUtilisateur = currentUserId;
+        this.datePublication = "26/04/2017";
+        this.annonceCovoiService.modifierAnnonceCovoi(this.datePublication, this.model.dateDepart, this.model.adresseDepart, this.model.adresseArrivee, this.model.nombrePlaces, this.model.cotisation, this.model.id, this.idUtilisateur)
+            .subscribe(function (data) {
+            _this.router.navigate(['dashboardutil/MesAnnoncesCovoi']);
+        });
+    };
     MesAnnoncesCovoiComponent.prototype.ngOnInit = function () {
         var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
         this.id = currentUserId;
         console.log(this.id);
+        this.getMesAnnoncesCovoi();
     };
     MesAnnoncesCovoiComponent = __decorate([
         core_1.Component({
