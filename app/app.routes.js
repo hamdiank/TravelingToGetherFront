@@ -5,7 +5,9 @@ var statistique_component_1 = require('./dashboard/stat/statistique.component');
 var parametrage_component_1 = require('./dashboard/parametrage/parametrage.component');
 var gestionUtil_component_1 = require('./dashboard/GestionUtil/gestionUtil.component');
 var index_1 = require("./_guards/index");
+var app2_component_1 = require("./chat/app2.component");
 exports.MODULE_ROUTES = [
+    { path: 'chat', component: app2_component_1.App2Component },
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'dashboard', component: dashboard_component_1.DashboardComponent, children: [
             { path: 'Statistiques', component: statistique_component_1.StatistiqueComponent },
@@ -16,6 +18,6 @@ exports.MODULE_ROUTES = [
 ];
 exports.MODULE_COMPONENTS = [
     statistique_component_1.StatistiqueComponent, dashboard_component_1.DashboardComponent, gestionUtil_component_1.GestionUtilComponent,
-    parametrage_component_1.ParametrageComponent, login_component_1.LoginComponent
+    parametrage_component_1.ParametrageComponent, login_component_1.LoginComponent, app2_component_1.App2Component
 ];
 //# sourceMappingURL=app.routes.js.map

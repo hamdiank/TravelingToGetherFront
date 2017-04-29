@@ -15,7 +15,7 @@ var aeroport_service_1 = require("../../_services/aeroport.service");
 var station_service_1 = require("../../_services/station.service");
 var train_service_1 = require("../../_services/train.service");
 var ParametrageComponent = (function () {
-    function ParametrageComponent(paysService, pagerService, avionService, cityService, aeroportService, stationService, trainService) {
+    function ParametrageComponent(paysService, pagerService, avionService, cityService, aeroportService, stationService, trainService, alertService) {
         this.paysService = paysService;
         this.pagerService = pagerService;
         this.avionService = avionService;
@@ -23,7 +23,10 @@ var ParametrageComponent = (function () {
         this.aeroportService = aeroportService;
         this.stationService = stationService;
         this.trainService = trainService;
+        this.alertService = alertService;
         this.loading = false;
+        this.show = false;
+        this.ajoute = false;
         this.model = {};
         this.model2 = {};
         this.model3 = {};
@@ -54,6 +57,8 @@ var ParametrageComponent = (function () {
             _this.loading = false;
             console.log("loading off");
         }, function (error) {
+            if (error)
+                _this.alertService.error("error");
             _this.loading = false;
             console.log(error);
         });
@@ -68,6 +73,8 @@ var ParametrageComponent = (function () {
     };
     //////////////////////////////////////////////////////////////////////////////////////////
     ParametrageComponent.prototype.ajouterParametre = function () {
+        var _this = this;
+        this.ajoute = true;
         var v;
         var a;
         var s;
@@ -85,16 +92,20 @@ var ParametrageComponent = (function () {
             s = this.model3.station;
         console.log(v + "  " + a + "  " + s);
         this.paysService.update(this.paysM, v, a, s).subscribe(function (result) {
-            // this.ListPays();
+            _this.ListAero();
+            _this.ListCity();
+            _this.ListStation();
+            _this.ajoute = false;
         });
     };
     /////////////////////////////////////////////////////////////////////////////////////////
     ParametrageComponent.prototype.supprimerPays = function () {
         var _this = this;
-        this.loading = true;
+        this.show = true;
         console.log(this.paysM.idPays);
         this.paysService.delete(this.paysM.idPays).subscribe(function (resultat) {
             _this.ListPays();
+            setTimeout(function () { _this.show = false; }, 2000);
         });
     };
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -126,6 +137,8 @@ var ParametrageComponent = (function () {
             _this.loading = false;
             console.log("loading off");
         }, function (error) {
+            if (error)
+                _this.alertService.error("error");
             _this.loading = false;
             console.log(error);
         });
@@ -192,20 +205,33 @@ var ParametrageComponent = (function () {
         this.pagedItemsStation = this.station.slice(this.pager.startIndex, this.pager.endIndex + 1);
     };
     /*---------------------------------------------------------------------------------*/
+    ParametrageComponent.prototype.getAero = function (aero) {
+        this.aeroM = aero;
+        console.log("dqssssssssss:zs " + JSON.stringify(this.aero));
+    };
     ParametrageComponent.prototype.ListAero = function () {
         var _this = this;
         this.aeroportService.getAll().
             subscribe(function (aero) {
             _this.aero = aero;
-            console.log("dqssssssssss: " + _this.aero);
+            console.log("dqssssssssss: " + JSON.stringify(_this.aero));
             // initialize to page 1
             // console.log(this.city);
             _this.setPageAero(1);
             _this.loading = false;
             console.log("loading off");
         }, function (error) {
+            if (error)
+                _this.alertService.error("error");
             _this.loading = false;
             console.log(error);
+        });
+    };
+    ParametrageComponent.prototype.supprimerAero = function () {
+        var _this = this;
+        console.log(this.aeroM.idAeroport);
+        this.aeroportService.delete(this.aeroM.idAeroport).subscribe(function (resultat) {
+            _this.ListAero();
         });
     };
     /*---------------------------------------------------------------------------------*/
@@ -219,6 +245,8 @@ var ParametrageComponent = (function () {
             _this.loading = false;
             console.log("loading off");
         }, function (error) {
+            if (error)
+                _this.alertService.error("error");
             _this.loading = false;
             console.log(error);
         });
@@ -260,9 +288,9 @@ var ParametrageComponent = (function () {
         core_1.Component({
             selector: 'parametrage-cmp',
             moduleId: module.id,
-            templateUrl: 'parametrage.component.html'
+            templateUrl: 'parametrage.component.html',
         }), 
-        __metadata('design:paramtypes', [index_1.PaysService, index_1.PagerService, avion_service_1.AvionService, index_1.CityService, aeroport_service_1.AeroportService, station_service_1.StationService, train_service_1.TrainService])
+        __metadata('design:paramtypes', [index_1.PaysService, index_1.PagerService, avion_service_1.AvionService, index_1.CityService, aeroport_service_1.AeroportService, station_service_1.StationService, train_service_1.TrainService, index_1.AlertService])
     ], ParametrageComponent);
     return ParametrageComponent;
 }());

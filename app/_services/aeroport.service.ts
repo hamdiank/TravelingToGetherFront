@@ -22,7 +22,7 @@ delete(_id: string) {
 
 
 update(aeroport:Aeroport){
-        return this.http.put(this.config.apiUrl + '/city/updateCity/' + aeroport.idAeropot, aeroport, this.jwt());
+        return this.http.put(this.config.apiUrl + '/city/updateCity/' + aeroport.idAeroport, aeroport, this.jwt());
 
 }
 

@@ -3,8 +3,9 @@
                                 <div class="center">
                     <app-loader [loading]="loading"></app-loader>
                                 </div> 
+                            
 <div *ngIf="!loading" class="container-fluid" >
-                              
+                            <alert></alert>  
     <div class="row">
          <div class="col-md-6">
                                 
@@ -21,7 +22,8 @@
                     <input type="text" class="form-control" [(ngModel)]="textFilter" placeholder="chercher" name="chercherPays">
                     <span class="material-input"></span>
                 </div>
-                 
+                 <div style="position : relative">
+    <spinner-component [spinnerShow]="show"></spinner-component>
 
                             <table  class="table table-hover">
                                 <thead class="text-success">
@@ -54,6 +56,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                 </div>
                             <!--               pager            -->
 
             <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
@@ -103,7 +106,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let c of pagedItemsCity;let i=index;">
+                                    <tr *ngFor="let i=index;let c of pagedItemsCity | FilterPipe:cityFilter">
                                         <td>{{i+1}}</td>
                                         <td>{{c.nom}}</td>
                                         <td></td>
@@ -155,7 +158,7 @@
                         </div>
                         <div class="card-content table-responsive">
                             <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" [(ngModel)]="cityFilter" placeholder="chercher" name="cherchercity">
+                    <input type="text" class="form-control" [(ngModel)]="AeroportFilter" placeholder="chercher" name="cherchercity">
                     <span class="material-input"></span>
                              </div>
                             <table class="table table-hover">
@@ -169,15 +172,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let ae of pagedItemsAero">
+                                    <tr *ngFor="let ae of pagedItemsAero| FilterPipe:AeroportFilter">
                                         <td>1</td>
                                         <td>{{ae.nom}}</td>
                                        <td></td>
                                         <td>
-                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                                    <button (click)="getAero(ae)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
                                             <i class="fa fa-edit"></i>
                                     </button>
-                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                    <button (click)="getAero(ae)"  type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal7">
                                              <i class="material-icons">close</i>
                                     </button>
                                          </td>
@@ -221,7 +224,7 @@
                         </div>
                         <div class="card-content table-responsive">
                             <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" [(ngModel)]="cityFilter" placeholder="chercher" name="cherchercity">
+                    <input type="text" class="form-control" [(ngModel)]="stationFilter" placeholder="chercher" name="cherchercity">
                     <span class="material-input"></span>
                              </div>
                             <table class="table table-hover">
@@ -235,7 +238,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let s of pagedItemsStation">
+                                    <tr *ngFor="let s of pagedItemsStation | FilterPipe:stationFilter">
                                         <td>1</td>
                                         <td>{{s.nom}}</td>
                                         <td>Tunisie</td>
@@ -286,7 +289,7 @@
                         </div>
                         <div class="card-content table-responsive">
                             <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" [(ngModel)]="cityFilter" placeholder="chercher" name="cherchercity">
+                    <input type="text" class="form-control" [(ngModel)]="trainFilter" placeholder="chercher" name="cherchercity">
                     <span class="material-input"></span>
                              </div>
                             <table class="table table-hover">
@@ -300,7 +303,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let train of trains">
+                                    <tr *ngFor="let train of trains| FilterPipe:trainFilter">
                                         <td>1</td>
                                         <td>{{train.type}}</td>
                                         
@@ -331,7 +334,7 @@
                         <div class="card-content table-responsive">
                         
                             <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" [(ngModel)]="cityFilter" placeholder="chercher" name="cherchercity">
+                    <input type="text" class="form-control" [(ngModel)]="avionFilter" placeholder="chercher" name="cherchercity">
                     <span class="material-input"></span>
                              </div>
                        
@@ -345,7 +348,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let avion of avions">
+                                    <tr *ngFor="let avion of avions| FilterPipe:avionFilter">
                                         <td>{{avion.id}}</td>
                                         <td>{{avion.type}}</td>
                                         <td>
@@ -376,14 +379,14 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Modifier</h4>
       </div>
-      <form #myForm2="ngForm" (ngSubmit)="myForm2.form.valid &&modifierNomPays()" >
+      <form #myForm2="ngForm" (ngSubmit)="myForm2.form.valid && modifierNomPays()" >
       <div class="modal-body">
         
          <div class="row">
 	<div class="form-group col-sm-4">
     	<input type="text" value="{{nomM}}" placeholder="" class="form-control"  [(ngModel)]="model.nom" #nom="ngModel" required name="nom"/>
 	</div>
-        <div *ngIf="nomM!=model.nom" class="help-block">Rien n'a changé</div>
+    <!--    <div *ngIf="nomM==model.nom" class="help-block">Rien n'a changé</div> -->
 
          </div> 
          
@@ -439,7 +442,7 @@
       </div>
       
               <div class="modal-footer">
-      <button type="submit" class="btn btn-success btn-round" >Ajouter</button>
+      <button type="submit" class="btn btn-success btn-round"  >Ajouter</button>
       <button type="reset" class="btn btn-danger btn-round"  data-dismiss="modal">Fermer</button>
              </div>
        </form>
@@ -531,6 +534,35 @@
 </div>
 
   <!--         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%             -->
+
+
+<!-- Modal supprimer aero-->
+<div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">supprimer  définitivement?</h4>
+      </div>
+      <div class="modal-body">
+        
+         
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
+        <button (click)="supprimerAero()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!--                        -->
+
+
+
+
+
 
         </div>
   </div>

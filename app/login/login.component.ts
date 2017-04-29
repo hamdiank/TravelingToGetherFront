@@ -36,7 +36,9 @@ export class LoginComponent implements OnInit {
                     console.log(this.returnUrl);
                 },
                 error => {
-                    this.alertService.error(error._body);
+                    if(error)
+
+                    this.alertService.error("verifier votre login ou mot de passe");
                     this.loading = false;
                 });
     }

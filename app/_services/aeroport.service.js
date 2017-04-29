@@ -24,7 +24,7 @@ var AeroportService = (function () {
         return this.http.delete(this.config.apiUrl + '/aeroport/delAeroport/' + _id, this.jwt());
     };
     AeroportService.prototype.update = function (aeroport) {
-        return this.http.put(this.config.apiUrl + '/city/updateCity/' + aeroport.idAeropot, aeroport, this.jwt());
+        return this.http.put(this.config.apiUrl + '/city/updateCity/' + aeroport.idAeroport, aeroport, this.jwt());
     };
     AeroportService.prototype.jwt = function () {
         // create authorization header with jwt token

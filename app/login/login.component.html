@@ -1,7 +1,9 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
+            
          <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+             <alert></alert>
           <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
                                 <div class="card card-login card-hidden">
                                     <div class="card-header text-center" data-background-color="red">
@@ -38,7 +40,7 @@
                                             <span class="input-group-addon">
                                                 <i class="material-icons">lock_outline</i>
                                             </span>
-                                            <div class="form-group label-floating" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                                             <div class="form-group label-floating" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
                                                 <label class="control-label">Password</label>
                                                 <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required >
                                             <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
@@ -47,7 +49,7 @@
                                     </div>
                                     <div class="form-group footer text-center ">
                                         <button type="submit" [disabled]="loading" class="btn btn-danger btn-simple btn-wd btn-lg" >se Connecter</button>
-                                         <button  class="btn btn-danger btn-simple btn-wd btn-lg" [routerLink]="['/register']">Inscription</button>
+                                         <button  class="btn btn-danger btn-simple btn-wd btn-lg" [routerLink]="['/chat']">Inscription</button>
                              <div class="center">
                     <app-loader [loading]="loading"></app-loader>
                                 </div> 

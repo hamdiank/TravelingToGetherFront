@@ -34,7 +34,8 @@ var LoginComponent = (function () {
             _this.router.navigate([_this.returnUrl]);
             console.log(_this.returnUrl);
         }, function (error) {
-            _this.alertService.error(error._body);
+            if (error)
+                _this.alertService.error("verifier votre login ou mot de passe");
             _this.loading = false;
         });
     };

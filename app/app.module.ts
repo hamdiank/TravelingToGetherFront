@@ -31,7 +31,19 @@ import { AeroportService } from "./_services/aeroport.service";
 import { StationService } from "./_services/station.service";
 import { TrainService } from "./_services/train.service";
 
-
+import { App2Component } from "./chat/app2.component";
+import { ChatPageComponent } from './chat/chat-page/chat-page.component';
+import { FromNowPipe } from "./chat/pipes/from-now.pipe";
+import { ChatWindowComponent } from "./chat/chat-window/chat-window.component";
+import { ChatThreadsComponent } from "./chat/chat-threads/chat-threads.component";
+import { ChatNavBarComponent } from "./chat/chat-nav-bar/chat-nav-bar.component";
+import { ChatThreadComponent } from "./chat/chat-thread/chat-thread.component";
+import { ChatMessageComponent } from "./chat/chat-message/chat-message.component";
+import { UsersService } from "./chat/user/users.service";
+import { MessagesService } from "./chat/message/messages.service";
+import { ThreadsService } from "./chat/thread/threads.service";
+import { AlertComponent } from "./shared/alert/index";
+import { SpinnerComponent } from "./shared/loader2/spinner.component";
 
 
 
@@ -44,11 +56,22 @@ import { TrainService } from "./_services/train.service";
         NavbarModule,
         FooterModule,
         ReactiveFormsModule,
-        RouterModule.forRoot(MODULE_ROUTES)
+        RouterModule.forRoot(MODULE_ROUTES),
+        
     ],
 
 
-    declarations: [AppComponent, MODULE_COMPONENTS, LoginComponent,TableComponent, ParametrageComponent,LoaderComponent,ValuesPipe,FilterPipe],
+    declarations: [AppComponent, MODULE_COMPONENTS, LoginComponent,TableComponent, ParametrageComponent,LoaderComponent,
+    SpinnerComponent
+    ,App2Component,
+    ChatPageComponent,
+    ChatWindowComponent,
+    ChatNavBarComponent ,
+    ChatThreadsComponent,
+    ChatMessageComponent,
+    ChatThreadComponent,
+    AlertComponent,
+    FromNowPipe,ValuesPipe,FilterPipe],
 
 
     bootstrap:    [ AppComponent ],
@@ -58,7 +81,8 @@ import { TrainService } from "./_services/train.service";
         AlertService,
         AuthenticationService,ValuesPipe,
 
-        UserService,PaysService,PagerService,AvionService,CityService,AeroportService,StationService,TrainService,JwtHelper],
+        UserService,PaysService,PagerService,AvionService,CityService,AeroportService,StationService,TrainService,JwtHelper,
+        MessagesService, ThreadsService, UsersService],
 
 })
 export class AppModule {

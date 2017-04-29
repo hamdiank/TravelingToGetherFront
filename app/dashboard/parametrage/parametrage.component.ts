@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PaysService, PagerService, CityService } from "../../_services/index";
+import { PaysService, PagerService, CityService, AlertService } from "../../_services/index";
 import { Pays, Station } from "../../_models/index";
 import * as _ from 'underscore';
 
@@ -20,7 +20,7 @@ import { Train } from "../../_models/train";
 @Component({
     selector: 'parametrage-cmp',
     moduleId: module.id,
-    templateUrl: 'parametrage.component.html'
+    templateUrl: 'parametrage.component.html',
 })
 
 export class ParametrageComponent implements OnInit{
@@ -29,6 +29,8 @@ export class ParametrageComponent implements OnInit{
     textFilter:string;
     cityFilter:string;
     loading: boolean =false;
+    show:boolean=false;
+    ajoute:boolean=false;
     pays :Pays[];
      city:City[];
      aero:Aeroport[];
@@ -57,7 +59,7 @@ export class ParametrageComponent implements OnInit{
     pagedItemsStation:Station[];
 
 
-  constructor(private  paysService:  PaysService,private  pagerService:  PagerService, private avionService: AvionService,private cityService:CityService,private aeroportService:AeroportService ,private stationService:StationService,private trainService:TrainService) { 
+  constructor(private  paysService:  PaysService,private  pagerService:  PagerService, private avionService: AvionService,private cityService:CityService,private aeroportService:AeroportService ,private stationService:StationService,private trainService:TrainService,private alertService:AlertService) { 
         
     }
   
@@ -94,6 +96,9 @@ ListPays(){
         
     },
     error =>{
+        if(error)
+
+        this.alertService.error("error");
         this.loading = false;
         console.log(error);
     }
@@ -115,6 +120,7 @@ addPays(){
 //////////////////////////////////////////////////////////////////////////////////////////
 
 ajouterParametre(){
+     this.ajoute=true;
     let v;
     let a ;
     let s ;
@@ -130,7 +136,10 @@ ajouterParametre(){
     else s=this.model3.station;
 console.log(v +"  "+a+"  "+s);
     this.paysService.update(this.paysM,v,a,s).subscribe(result=>{
-   // this.ListPays();
+   this.ListAero();
+   this.ListCity();
+   this.ListStation();
+   this.ajoute=false;
     });
 
 }
@@ -138,10 +147,11 @@ console.log(v +"  "+a+"  "+s);
 /////////////////////////////////////////////////////////////////////////////////////////
 
 supprimerPays(){
-    this.loading=true;
+   this.show=true;
 console.log(this.paysM.idPays);
 this.paysService.delete(this.paysM.idPays).subscribe(resultat=>{
 this.ListPays();
+ setTimeout(()=> { this.show = false}, 2000);
 
 });
 
@@ -199,6 +209,9 @@ ListCity(){
         
     },
     error =>{
+          if(error)
+        this.alertService.error("error");
+
         this.loading = false;
         console.log(error);
     }
@@ -297,13 +310,19 @@ setPageStation(page: number) {
 }
 /*---------------------------------------------------------------------------------*/ 
 
+getAero(aero :Aeroport){
+
+this.aeroM=aero;
+ console.log("dqssssssssss:zs "+JSON.stringify(this.aero));
+}
+
 ListAero(){
 
 this.aeroportService.getAll().
     subscribe(aero => { 
        
          this.aero=aero;
-         console.log("dqssssssssss: "+this.aero);
+         console.log("dqssssssssss: "+JSON.stringify(this.aero));
            // initialize to page 1
         // console.log(this.city);
         this.setPageAero(1)
@@ -313,6 +332,9 @@ this.aeroportService.getAll().
         
     },
     error =>{
+           if(error)
+        this.alertService.error("error");
+
         this.loading = false;
         console.log(error);
     }
@@ -322,7 +344,15 @@ this.aeroportService.getAll().
 }
 
 
+supprimerAero(){
 
+console.log(this.aeroM.idAeroport);
+this.aeroportService.delete(this.aeroM.idAeroport).subscribe(resultat=>{
+this.ListAero();
+});
+
+
+}
 
 /*---------------------------------------------------------------------------------*/ 
 
@@ -342,6 +372,8 @@ this.stationService.getAll().
         
     },
     error =>{
+         if(error)
+        this.alertService.error("error");
         this.loading = false;
         console.log(error);
     }
