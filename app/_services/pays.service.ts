@@ -49,8 +49,8 @@ getByCity(nom:string){
 
 private jwt() {
         // create authorization header with jwt token
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        console.log(currentUser);
+        let currentUser = JSON.parse(localStorage.getItem('currentToken'));
+        console.log("fggggg   "+currentUser.token);
         if (currentUser && currentUser.token) {
             let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
             headers.append("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");

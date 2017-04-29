@@ -1,77 +1,80 @@
 <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header" data-background-color="orange">
-                        <h4 class="title">Liste Des Utilisateurs</h4>
-                        <p class="category"></p>
-                    </div>
-                    <div class="card-content table-responsive">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header" data-background-color="orange">
+                <h4 class="title">Liste Des Utilisateurs</h4>
+                <p class="category"></p>
+            </div>
+            <div class="card-content table-responsive">
                 <div class="form-group form-black is-empty">
                     <input type="text" class="form-control" [(ngModel)]="textFilter" placeholder="chercher" name="chercherPays">
                     <span class="material-input"></span>
                 </div>
 
-                        <table class="table table-hover">
-                            <thead class="text-warning">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nom</th>
-                                    <th>Prenom</th>
-                                    <th>Email</th>
-                                    <th>Action</th>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let i=index ;let user of pagedItems | FilterPipe: textFilter">
-                                    <td>{{i+1}}</td>
-                                    <td>{{user.nom}}</td>
-                                    <td>{{user.prenom}}</td>
-                                    <td>{{user.email}}</td>
-                                   
-                                    <td class="td-actions text-right">
-                <button (click)="modifier(user)" type="button" rel="tooltip" title="plus d'info" class="btn btn-info btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                <table class="table table-hover">
+                    <thead class="text-warning">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Email</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let i=index ;let user of pagedItems | FilterPipe: textFilter">
+                            <td>{{i+1}}</td>
+                            <td>{{user.nom}}</td>
+                            <td>{{user.prenom}}</td>
+                            <td>{{user.email}}</td>
+
+                            <td class="td-actions text-right">
+                                <button (click)="modifier(user)" type="button" rel="tooltip" title="plus d'info" class="btn btn-info btn-simple btn-xs" data-toggle="modal"
+                                    data-target="#myModal">
                     <i class="fa fa-info-circle"></i>
                 </button>
-                <button [disabled]="user.etat==false" (click)="modifier(user)" type="button" rel="tooltip" title="bloquer utilisateur" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal2" >
+                                <button [disabled]="user.etat==false" (click)="modifier(user)" type="button" rel="tooltip" title="bloquer utilisateur" class="btn btn-danger btn-simple btn-xs"
+                                    data-toggle="modal" data-target="#myModal2">
                     <i class="fa fa-lock"></i>
                 </button>
-                <button [disabled]="user.etat==true" (click)="modifier(user)" type="button" rel="tooltip" title="debloquer utilisateur" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal3">
+                                <button [disabled]="user.etat==true" (click)="modifier(user)" type="button" rel="tooltip" title="debloquer utilisateur" class="btn btn-success btn-simple btn-xs"
+                                    data-toggle="modal" data-target="#myModal3">
                     <i class="fa fa-unlock"></i>
                 </button>
-            </td>
-                                    
-                                </tr>
-                            
-                            </tbody>
-                        </table>
+                            </td>
 
-           <!--               pager            -->
+                        </tr>
 
-            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(1)">First</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-                </li>
-              <!--
+                    </tbody>
+                </table>
+
+                <!--               pager            -->
+
+                <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                    <li [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a (click)="setPage(1)">First</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                    </li>
+                    <!--
                 <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
                     <a (click)="setPage(page)">{{page}}</a>
                 </li> -->
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.currentPage + 1)">Next</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.totalPages)">Last</a>
-                </li>
-            </ul>
-            
-            <!--                           -->
+                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a (click)="setPage(pager.totalPages)">Last</a>
+                    </li>
+                </ul>
 
-                    </div>
-                </div>
+                <!--                           -->
+
             </div>
-
-           
         </div>
+    </div>
+
+
+</div>

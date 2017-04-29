@@ -34,7 +34,7 @@ update(city:City){
 
 private jwt() {
         // create authorization header with jwt token
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        let currentUser = JSON.parse(localStorage.getItem('currentToken'));
         if (currentUser && currentUser.token) {
             let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
             headers.append("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");

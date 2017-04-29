@@ -1,16 +1,16 @@
 <div class="logo">
-    <a  class="simple-text">
+    <a class="simple-text">
         <div class="logo-img">
-            <img src="/assets/img/l.png"/>
+            <img src="/assets/img/l.png" />
         </div>
-       Traveling Together
+        Traveling Together
     </a>
 </div>
 <div class="sidebar-wrapper">
     <div class="nav-container">
         <ul class="nav">
             <li *ngFor="let menuItem of menuItems" routerLinkActive="active" class="{{menuItem.class}}">
-                <a  [routerLink]="[menuItem.path]">
+                <a [routerLink]="[menuItem.path]">
                     <i class="material-icons">{{menuItem.icon}}</i>
                     <p>{{menuItem.title}}</p>
                 </a>

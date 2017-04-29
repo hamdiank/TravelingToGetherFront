@@ -41,8 +41,8 @@ var PaysService = (function () {
     };
     PaysService.prototype.jwt = function () {
         // create authorization header with jwt token
-        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        console.log(currentUser);
+        var currentUser = JSON.parse(localStorage.getItem('currentToken'));
+        console.log("fggggg   " + currentUser.token);
         if (currentUser && currentUser.token) {
             var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + currentUser.token });
             headers.append("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");

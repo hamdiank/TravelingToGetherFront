@@ -235,6 +235,10 @@ var ParametrageComponent = (function () {
         });
     };
     /*---------------------------------------------------------------------------------*/
+    ParametrageComponent.prototype.getStation = function (station) {
+        this.stationM = station;
+        console.log("dqssssssssss:zs " + JSON.stringify(this.stationM));
+    };
     ParametrageComponent.prototype.ListStation = function () {
         var _this = this;
         this.stationService.getAll().
@@ -251,7 +255,18 @@ var ParametrageComponent = (function () {
             console.log(error);
         });
     };
+    ParametrageComponent.prototype.supprimerStation = function () {
+        var _this = this;
+        console.log(this.stationM.idStation);
+        this.stationService.delete(this.stationM.idStation).subscribe(function (resultat) {
+            _this.ListStation();
+        });
+    };
     /*---------------------------------------------------------------------------------*/
+    ParametrageComponent.prototype.getAvion = function (avion) {
+        this.avionM = avion;
+        console.log("df  " + JSON.stringify(this.avionM));
+    };
     ParametrageComponent.prototype.ListAvions = function () {
         var _this = this;
         this.avionService.getAvions().subscribe(function (avions) {
@@ -270,18 +285,32 @@ var ParametrageComponent = (function () {
         this.ListAvions();
         });*/
     };
-    ParametrageComponent.prototype.supprimerAvion = function (avion) {
+    ParametrageComponent.prototype.supprimerAvion = function () {
         var _this = this;
-        this.avionService.delete(avion.id).subscribe(function (result) {
+        console.log(this.avionM.id);
+        this.avionService.delete(this.avionM.id).subscribe(function (resultat) {
+            console.log("del");
             _this.ListAvions();
         });
     };
     /*---------------------------------------------------------------------------------*/
+    ParametrageComponent.prototype.getTrain = function (train) {
+        this.trainM = train;
+        console.log("df  " + JSON.stringify(this.trainM));
+    };
     ParametrageComponent.prototype.ListTrain = function () {
         var _this = this;
         this.trainService.getAll().subscribe(function (trains) {
             _this.trains = trains;
             console.log("aaaaaaaaaaa");
+        });
+    };
+    ParametrageComponent.prototype.supprimerTrain = function () {
+        var _this = this;
+        console.log(this.trainM.id);
+        this.trainService.delete(this.trainM.id).subscribe(function (resultat) {
+            console.log("del");
+            _this.ListTrain();
         });
     };
     ParametrageComponent = __decorate([

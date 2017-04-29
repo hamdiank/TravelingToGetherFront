@@ -63,7 +63,7 @@ var UserService = (function () {
     // private helper methods
     UserService.prototype.jwt = function () {
         // create authorization header with jwt token
-        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        var currentUser = JSON.parse(localStorage.getItem('currentToken'));
         if (currentUser && currentUser.token) {
             var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + currentUser.token });
             headers.append("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");

@@ -1,568 +1,654 @@
-                           
-<div class="main-content">     
-                                <div class="center">
-                    <app-loader [loading]="loading"></app-loader>
-                                </div> 
-                            
-<div *ngIf="!loading" class="container-fluid" >
-                            <alert></alert>  
-    <div class="row">
-         <div class="col-md-6">
-                                
-         <div  class="card" style="height: 63rem;" >
-                  
-                        <div class="card-header" data-background-color="green">
-                   
-                            <h4 class="title">Liste Des Pays</h4>  
-                                     
-                        </div>
-                        <div class="card-content table-responsive">
-                          
-                <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" [(ngModel)]="textFilter" placeholder="chercher" name="chercherPays">
-                    <span class="material-input"></span>
-                </div>
-                 <div style="position : relative">
-    <spinner-component [spinnerShow]="show"></spinner-component>
+<div class="main-content">
+    <div class="center">
+        <app-loader [loading]="loading"></app-loader>
+    </div>
 
-                            <table  class="table table-hover">
+    <div *ngIf="!loading" class="container-fluid">
+        <alert></alert>
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="card" style="height: 63rem;">
+
+                    <div class="card-header" data-background-color="green">
+
+                        <h4 class="title">Liste Des Pays</h4>
+
+                    </div>
+                    <div class="card-content table-responsive">
+
+                        <div class="form-group form-black is-empty">
+                            <input type="text" class="form-control" [(ngModel)]="textFilter" placeholder="chercher" name="chercherPays">
+                            <span class="material-input"></span>
+                        </div>
+                        <div style="position : relative">
+                            <spinner-component [spinnerShow]="show"></spinner-component>
+
+                            <table class="table table-hover">
                                 <thead class="text-success">
                                     <tr>
                                         <th>ID</th>
                                         <th>Nom</th>
                                         <th>Action</th>
-                                        
+
                                     </tr>
                                 </thead>
-                              <tbody>          
+                                <tbody>
 
                                     <tr *ngFor="let i=index;let pay of pagedItems  | FilterPipe: textFilter">
                                         <td>{{i+1}}</td>
                                         <td>{{pay.nom}}</td>
 
                                         <td>
-                                <button (click)="getPays(pay)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                                            <button (click)="getPays(pay)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal"
+                                                data-target="#myModal">
                                     <i class="fa fa-edit"></i>
                                 </button>
 
-                                <button (click)="getPays(pay)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal5">
+                                            <button (click)="getPays(pay)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs" data-toggle="modal"
+                                                data-target="#myModal5">
                                                         <i class="material-icons">close</i>
                                                     </button>
-                                 <button (click)="getPays(pay)" type="button" rel="tooltip" title="ajouter Parametre" class="btn btn-info btn-simple btn-xs" data-toggle="modal" data-target="#myModal2">
+                                            <button (click)="getPays(pay)" type="button" rel="tooltip" title="ajouter Parametre" class="btn btn-info btn-simple btn-xs"
+                                                data-toggle="modal" data-target="#myModal2">
                                                         <i class="material-icons">add</i>
-                                                    </button>                    
+                                                    </button>
                                         </td>
-                                        
+
                                     </tr>
                                 </tbody>
                             </table>
-                 </div>
-                            <!--               pager            -->
+                        </div>
+                        <!--               pager            -->
 
-            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(1)">First</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-                </li>
-              <!--
+                        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(1)">First</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                            </li>
+                            <!--
                 <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
                     <a (click)="setPage(page)">{{page}}</a>
                 </li> -->
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.currentPage + 1)">Next</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.totalPages)">Last</a>
-                </li>
-            </ul>
-                        </div>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.totalPages)">Last</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
+            </div>
 
 
 
-  <div class="col-md-6">
-         <div class="card" style="height: 63rem;" >
-                        <div class="card-header" data-background-color="red">
-                            <h4 class="title">Liste Des Villes</h4>
+            <div class="col-md-6">
+                <div class="card" style="height: 63rem;">
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title">Liste Des Villes</h4>
+                    </div>
+                    <div class="card-content table-responsive">
+
+                        <div class="form-group form-black is-empty">
+                            <input type="text" class="form-control" [(ngModel)]="cityFilter" placeholder="chercher" name="cherchercity">
+                            <span class="material-input"></span>
                         </div>
-                        <div class="card-content table-responsive">
-                            
-                            <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" [(ngModel)]="cityFilter" placeholder="chercher" name="cherchercity">
-                    <span class="material-input"></span>
-                             </div>
-                            <table class="table table-hover">
-                                <thead class="text-success">
-                                 <tr > 
-                                    
-                                        <th>ID</th>
-                                        <th>Nom</th>
-                                        <th></th>
-                                        <th>Action</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let i=index;let c of pagedItemsCity | FilterPipe:cityFilter">
-                                        <td>{{i+1}}</td>
-                                        <td>{{c.nom}}</td>
-                                        <td></td>
-                                        
-                                        <td>
-                                    <button (click)="getCity(c)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                        <table class="table table-hover">
+                            <thead class="text-success">
+                                <tr>
+
+                                    <th>ID</th>
+                                    <th>Nom</th>
+                                    <th></th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let i=index;let c of pagedItemsCity | FilterPipe:cityFilter">
+                                    <td>{{i+1}}</td>
+                                    <td>{{c.nom}}</td>
+                                    <td></td>
+
+                                    <td>
+                                        <button (click)="getCity(c)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal"
+                                            data-target="#myModal">
                                         <i class="fa fa-edit"></i>
                                     </button>
 
-                                    <button (click)="getCity(c)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal6">
+                                        <button (click)="getCity(c)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs" data-toggle="modal"
+                                            data-target="#myModal6">
 
                                                         <i class="material-icons">close</i>
                                                     </button>
-                                        </td>
-                                        
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-                            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPageCity(1)">First</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPageCity(pager.currentPage - 1)">Previous</a>
-                </li>
-              <!--
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPageCity(1)">First</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPageCity(pager.currentPage - 1)">Previous</a>
+                            </li>
+                            <!--
                 <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
                     <a (click)="setPage(page)">{{page}}</a>
                 </li> -->
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPageCity(pager.currentPage + 1)">Next</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPageCity(pager.totalPages)">Last</a>
-                </li>
-            </ul>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPageCity(pager.currentPage + 1)">Next</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPageCity(pager.totalPages)">Last</a>
+                            </li>
+                        </ul>
 
-                        </div>
                     </div>
                 </div>
-             </div>
+            </div>
+        </div>
 
-<div class="row">
-         <div class="col-md-6">
-         <div class="card" >
-                        <div class="card-header" data-background-color="blue">
-                            <h4 class="title">Liste Des Aeroports</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" data-background-color="blue">
+                        <h4 class="title">Liste Des Aeroports</h4>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <div class="form-group form-black is-empty">
+                            <input type="text" class="form-control" [(ngModel)]="AeroportFilter" placeholder="chercher" name="cherchercity">
+                            <span class="material-input"></span>
                         </div>
-                        <div class="card-content table-responsive">
-                            <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" [(ngModel)]="AeroportFilter" placeholder="chercher" name="cherchercity">
-                    <span class="material-input"></span>
-                             </div>
-                            <table class="table table-hover">
-                                <thead class="text-success">
-                                    <tr >
-                                        <th>ID</th>
-                                        <th>Nom</th>
-                                        <th></th>
-                                        <th>Action</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let ae of pagedItemsAero| FilterPipe:AeroportFilter">
-                                        <td>1</td>
-                                        <td>{{ae.nom}}</td>
-                                       <td></td>
-                                        <td>
-                                    <button (click)="getAero(ae)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                        <table class="table table-hover">
+                            <thead class="text-success">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nom</th>
+                                    <th></th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let ae of pagedItemsAero| FilterPipe:AeroportFilter">
+                                    <td>1</td>
+                                    <td>{{ae.nom}}</td>
+                                    <td></td>
+                                    <td>
+                                        <button (click)="getAero(ae)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal"
+                                            data-target="#myModal">
                                             <i class="fa fa-edit"></i>
                                     </button>
-                                    <button (click)="getAero(ae)"  type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal7">
+                                        <button (click)="getAero(ae)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs" data-toggle="modal"
+                                            data-target="#myModal7">
                                              <i class="material-icons">close</i>
-                                    </button>
-                                         </td>
+                                 </button>
+                                    </td>
 
-                                        
-                                    </tr>
-                                 
-                                    
-                                   
-                                    
-                                    
-                                </tbody>
-                            </table>
-                            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPageAero(1)">First</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPageAero(pager.currentPage - 1)">Previous</a>
-                </li>
-              <!--
+
+                                </tr>
+
+
+
+
+
+                            </tbody>
+                        </table>
+                        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPageAero(1)">First</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPageAero(pager.currentPage - 1)">Previous</a>
+                            </li>
+                            <!--
                 <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
                     <a (click)="setPage(page)">{{page}}</a>
                 </li> -->
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPageAero(pager.currentPage + 1)">Next</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPageAero(pager.totalPages)">Last</a>
-                </li>
-            </ul>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPageAero(pager.currentPage + 1)">Next</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPageAero(pager.totalPages)">Last</a>
+                            </li>
+                        </ul>
 
-                        </div>
                     </div>
                 </div>
+            </div>
 
- <div class="col-md-6">
-         <div class="card" >
-                        <div class="card-header" data-background-color="purple">
-                            <h4 class="title">Liste Des Stations Metro</h4>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Liste Des Stations Metro</h4>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <div class="form-group form-black is-empty">
+                            <input type="text" class="form-control" [(ngModel)]="stationFilter" placeholder="chercher" name="cherchercity">
+                            <span class="material-input"></span>
                         </div>
-                        <div class="card-content table-responsive">
-                            <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" [(ngModel)]="stationFilter" placeholder="chercher" name="cherchercity">
-                    <span class="material-input"></span>
-                             </div>
-                            <table class="table table-hover">
-                                <thead class="text-success">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nom</th>
-                                        <th>Pays</th>
-                                        <th>Action</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let s of pagedItemsStation | FilterPipe:stationFilter">
-                                        <td>1</td>
-                                        <td>{{s.nom}}</td>
-                                        <td>Tunisie</td>
-                                        <td>
-                        <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                        <table class="table table-hover">
+                            <thead class="text-success">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nom</th>
+                                    <th>Pays</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let s of pagedItemsStation | FilterPipe:stationFilter">
+                                    <td>1</td>
+                                    <td>{{s.nom}}</td>
+                                    <td>Tunisie</td>
+                                    <td>
+                                        <button (click)="getStation(s)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal"
+                                            data-target="#myModal">
                                 <i class="fa fa-edit"></i>
                          </button>
-                        <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                        <button (click)="getStation(s)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs" data-toggle="modal"
+                                            data-target="#myModal8">
                                 <i class="material-icons">close</i>
                         </button>
-                                        </td>
-                                        
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-                            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPageStation(1)">First</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPageStation(pager.currentPage - 1)">Previous</a>
-                </li>
-              <!--
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPageStation(1)">First</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPageStation(pager.currentPage - 1)">Previous</a>
+                            </li>
+                            <!--
                 <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
                     <a (click)="setPage(page)">{{page}}</a>
                 </li> -->
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPageStation(pager.currentPage + 1)">Next</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPageStation(pager.totalPages)">Last</a>
-                </li>
-            </ul>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPageStation(pager.currentPage + 1)">Next</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPageStation(pager.totalPages)">Last</a>
+                            </li>
+                        </ul>
 
-                        </div>
                     </div>
                 </div>
-<!-- liste des types d'avions et la liste des types de train -->
- 
-             </div>
-
-             <div class="row">
-         <div class="col-md-6">
-         <div class="card" >
-                        <div class="card-header" data-background-color="brown">
-                            <h4 class="title">Liste Des Types de Train</h4>
-                        </div>
-                        <div class="card-content table-responsive">
-                            <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" [(ngModel)]="trainFilter" placeholder="chercher" name="cherchercity">
-                    <span class="material-input"></span>
-                             </div>
-                            <table class="table table-hover">
-                                <thead class="text-success">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>type</th>
-                                        
-                                        <th>Action</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let train of trains| FilterPipe:trainFilter">
-                                        <td>1</td>
-                                        <td>{{train.type}}</td>
-                                        
-                                        <td>
-                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
-                                            <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
-                                             <i class="material-icons">close</i>
-                                    </button>
-                         </td>
-
-                                        
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-
- <div class="col-md-6">
-         <div class="card" >
-                        <div class="card-header" data-background-color="orange">
-                            <h4 class="title">Liste Des Types d'Avion</h4>
-                        </div>
-                        <div class="card-content table-responsive">
-                        
-                            <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" [(ngModel)]="avionFilter" placeholder="chercher" name="cherchercity">
-                    <span class="material-input"></span>
-                             </div>
-                       
-                            <table class="table table-hover">
-                                <thead class="text-success">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Type</th>
-                                        <th>Action</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let avion of avions| FilterPipe:avionFilter">
-                                        <td>{{avion.id}}</td>
-                                        <td>{{avion.type}}</td>
-                                        <td>
-                                            <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal3">
-                                                    <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" (click)="SupprimerAvion(avion)" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
-                                                    <i class="material-icons">close</i>
-                                            </button>
-                                        </td>
-                                    </tr>
-        
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
- 
-             </div>
-
- <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
-
-              <!-- Modal pays -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modifier</h4>
-      </div>
-      <form #myForm2="ngForm" (ngSubmit)="myForm2.form.valid && modifierNomPays()" >
-      <div class="modal-body">
-        
-         <div class="row">
-	<div class="form-group col-sm-4">
-    	<input type="text" value="{{nomM}}" placeholder="" class="form-control"  [(ngModel)]="model.nom" #nom="ngModel" required name="nom"/>
-	</div>
-    <!--    <div *ngIf="nomM==model.nom" class="help-block">Rien n'a changé</div> -->
-
-         </div> 
-         
-     
-      </div>
-      
-              <div class="modal-footer">
-      <button type="submit" class="btn btn-success btn-round" >Modifier</button>
-      <button type="reset" class="btn btn-danger btn-round"  data-dismiss="modal">Fermer</button>
-             </div>
-       </form>
-    </div>
-  </div>
-</div>
-
-  <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
-
-
-              <!-- Modal pays parametre -->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Ajouter Parametre</h4>
-      </div>
-      <form #f="ngForm" (ngSubmit)="ajouterParametre()">
-      <div class="modal-body">
-        
-         <div class="row">
-             <div class="col-sm-4">
-	<div class="form-group label-floating">
-		<label class="control-label">Ville</label>
-		<input type="text" class="form-control" [(ngModel)]="model3.ville" #ville="ngModel"  name="ville">
-	</div>
-</div>
-<div class="col-sm-4">
-	<div class="form-group label-floating">
-		<label class="control-label">Aeroport</label>
-		<input type="text" class="form-control" [(ngModel)]="model3.aeroport" #aeroport="ngModel"  name="aeroport">
-	</div>
-</div>
-<div class="col-sm-4">
-	<div class="form-group label-floating">
-		<label class="control-label">Station Metro</label>
-		<input type="text"  placeholder="" class="form-control"  [(ngModel)]="model3.station" #station="ngModel"  name="station"/>
-	</div>
-</div>
-	
-         </div> 
-         
-     
-      </div>
-      
-              <div class="modal-footer">
-      <button type="submit" class="btn btn-success btn-round"  >Ajouter</button>
-      <button type="reset" class="btn btn-danger btn-round"  data-dismiss="modal">Fermer</button>
-             </div>
-       </form>
-    </div>
-  </div>
-</div>
-
-  <!--  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù         -->
-
- <!-- Modal supprimer Pays-->
-<div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">supprimer  définitivement?</h4>
-      </div>
-      <div class="modal-body">
-        
-         
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
-        <button (click)="supprimerPays()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-  <!--                        -->
-
-  <!--  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù         -->
-
-
-<!-- Modal supprimer ville-->
-<div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">supprimer  définitivement?</h4>
-      </div>
-      <div class="modal-body">
-        
-         
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
-        <button (click)="supprimerCity()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-  <!--                        -->
-
-  <!--  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù         -->
-
-
-              <!-- Modal avion -->
-<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modifier</h4>
-      </div>
-      <form #myForm2="ngForm" (ngSubmit)="modifierAvion()">
-      <div class="modal-body">
-        
-         <div class="row">
-	<div class="form-group col-sm-4">
-    	<input type="text" value="{{nomvilleM}}" placeholder="" class="form-control"  [(ngModel)]="model.nomvilleM" #nom="ngModel" required name="nom"/>
-	</div>
-         </div> 
-         
-     
-      </div>
-      
-              <div class="modal-footer">
-      <button type="submit" class="btn btn-success btn-round" >Modifier</button>
-      <button type="reset" class="btn btn-danger btn-round"  data-dismiss="modal">Fermer</button>
-             </div>
-       </form>
-    </div>
-  </div>
-</div>
-
-  <!--         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%             -->
-
-
-<!-- Modal supprimer aero-->
-<div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">supprimer  définitivement?</h4>
-      </div>
-      <div class="modal-body">
-        
-         
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
-        <button (click)="supprimerAero()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-  <!--                        -->
-
-
-
-
-
+            </div>
+            <!-- liste des types d'avions et la liste des types de train -->
 
         </div>
-  </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" data-background-color="brown">
+                        <h4 class="title">Liste Des Types de Train</h4>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <div class="form-group form-black is-empty">
+                            <input type="text" class="form-control" [(ngModel)]="trainFilter" placeholder="chercher" name="cherchercity">
+                            <span class="material-input"></span>
+                        </div>
+                        <table class="table table-hover">
+                            <thead class="text-success">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>type</th>
+
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let train of trains| FilterPipe:trainFilter">
+                                    <td>1</td>
+                                    <td>{{train.type}}</td>
+
+                                    <td>
+                                        <button (click)="getTrain(train)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs"
+                                            data-toggle="modal" data-target="#myModal">
+                                            <i class="fa fa-edit"></i>
+                                    </button>
+                                        <button (click)="getTrain(train)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs"
+                                            data-toggle="modal" data-target="#myModal10">
+                                             <i class="material-icons">close</i>
+                                    </button>
+                                    </td>
+
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" data-background-color="orange">
+                        <h4 class="title">Liste Des Types d'Avion</h4>
+                    </div>
+                    <div class="card-content table-responsive">
+
+                        <div class="form-group form-black is-empty">
+                            <input type="text" class="form-control" [(ngModel)]="avionFilter" placeholder="chercher" name="cherchercity">
+                            <span class="material-input"></span>
+                        </div>
+
+                        <table class="table table-hover">
+                            <thead class="text-success">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Type</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let avion of avions| FilterPipe:avionFilter">
+                                    <td>{{avion.id}}</td>
+                                    <td>{{avion.type}}</td>
+                                    <td>
+                                        <button (click)="getAvion(avion)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs"
+                                            data-toggle="modal" data-target="#myModal3">
+                                                    <i class="fa fa-edit"></i>
+                                            </button>
+                                        <button (click)="getAvion(avion)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs"
+                                            data-toggle="modal" data-target="#myModal9">
+                                                    <i class="material-icons">close</i>
+                                            </button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
+
+        <!-- Modal pays -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Modifier</h4>
+                    </div>
+                    <form #myForm2="ngForm" (ngSubmit)="myForm2.form.valid && modifierNomPays()">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" value="{{nomM}}" placeholder="" class="form-control" [(ngModel)]="model.nom" #nom="ngModel" required name="nom"
+                                    />
+                                </div>
+                                <!--    <div *ngIf="nomM==model.nom" class="help-block">Rien n'a changé</div> -->
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Modifier</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
+
+
+        <!-- Modal pays parametre -->
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Ajouter Parametre</h4>
+                    </div>
+                    <form #f="ngForm" (ngSubmit)="ajouterParametre()">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Ville</label>
+                                        <input type="text" class="form-control" [(ngModel)]="model3.ville" #ville="ngModel" name="ville">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Aeroport</label>
+                                        <input type="text" class="form-control" [(ngModel)]="model3.aeroport" #aeroport="ngModel" name="aeroport">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Station Metro</label>
+                                        <input type="text" placeholder="" class="form-control" [(ngModel)]="model3.station" #station="ngModel" name="station" />
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Ajouter</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù         -->
+
+        <!-- Modal supprimer Pays-->
+        <div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">supprimer définitivement?</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
+                        <button (click)="supprimerPays()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--                        -->
+
+        <!--  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù         -->
+
+
+        <!-- Modal supprimer ville-->
+        <div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">supprimer définitivement?</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
+                        <button (click)="supprimerCity()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--                        -->
+
+        <!--  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù         -->
+
+
+        <!-- Modal avion -->
+        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Modifier</h4>
+                    </div>
+                    <form #myForm2="ngForm" (ngSubmit)="modifierAvion()">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" value="{{nomvilleM}}" placeholder="" class="form-control" [(ngModel)]="model.nomvilleM" #nom="ngModel"
+                                        required name="nom" />
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Modifier</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%             -->
+
+
+        <!-- Modal supprimer aero-->
+        <div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">supprimer définitivement?</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
+                        <button (click)="supprimerAero()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--                        -->
+
+
+
+        <!-- Modal supprimer station-->
+        <div class="modal fade" id="myModal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">supprimer définitivement?</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
+                        <button (click)="supprimerStation()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--                        -->
+
+
+        <!-- Modal supprimer avion-->
+        <div class="modal fade" id="myModal9" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">supprimer définitivement?</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
+                        <button (click)="supprimerAvion()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--                        -->
+
+
+        <!-- Modal supprimer train-->
+        <div class="modal fade" id="myModal10" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">supprimer définitivement?</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
+                        <button (click)="supprimerTrain()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--                        -->
+
+
+
+
+
+    </div>
+</div>

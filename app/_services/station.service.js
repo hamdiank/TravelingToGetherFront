@@ -21,14 +21,14 @@ var StationService = (function () {
         return this.http.get(this.config.apiUrl + '/station/all', this.jwt()).map(function (response) { return response.json(); });
     };
     StationService.prototype.delete = function (_id) {
-        return this.http.delete(this.config.apiUrl + '/station/delStation/' + _id, this.jwt());
+        return this.http.delete(this.config.apiUrl + '/station/stationDel/' + _id, this.jwt());
     };
     StationService.prototype.update = function (station) {
-        return this.http.put(this.config.apiUrl + '/city/updateCity/' + station.idStation, station, this.jwt());
+        return this.http.put(this.config.apiUrl + '/city/updateStation/' + station.idStation, station, this.jwt());
     };
     StationService.prototype.jwt = function () {
         // create authorization header with jwt token
-        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        var currentUser = JSON.parse(localStorage.getItem('currentToken'));
         if (currentUser && currentUser.token) {
             var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + currentUser.token });
             headers.append("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");

@@ -1,89 +1,90 @@
 <div class="main-content">
-    <div class="container-fluid">
-        
-<tab (serveId)="getRowuser($event)"></tab>
-        <!-- Modal Core -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel"></h4>
-      </div>
-      <div class="modal-body">
-        
-     <div class="card card-profile">
-                <div class="card-avatar">
-                    <a href="#pablo">
-                        <img class="img" src="../assets/img/faces/marc.jpg" />
-                    </a>
-                </div>
+  <div class="container-fluid">
 
-                <div class="content">
-                    <h6 class="category text-gray">{{login}}</h6>
-                    <h4 class="card-title">{{nom}} {{prenom}}</h4>
-                    <p class="card-content">
-                        Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                    </p>
-                </div>
+    <tab (serveId)="getRowuser($event)"></tab>
+    <!-- Modal Core -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel"></h4>
+          </div>
+          <div class="modal-body">
+
+            <div class="card card-profile">
+              <div class="card-avatar">
+                <a href="#pablo">
+                  <img class="img" src="../assets/img/faces/marc.jpg" />
+                </a>
+              </div>
+
+              <div class="content">
+                <h6 class="category text-gray">{{login}}</h6>
+                <h4 class="card-title">{{nom}} {{prenom}}</h4>
+                <p class="card-content">
+                  Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye
+                  I love Rick Owens’ bed design but the back is...
+                </p>
+              </div>
             </div>
-       
-        
-      </div>
-      <div class="modal-footer">
-      
-        <button type="button" class="btn btn-info btn-simple" data-dismiss="modal">Fermer</button>
-      </div>
-    </div>
-  </div>
-</div>
-   
-  <!--                        -->
 
-         <!-- Modal bloquer -->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Bloquer cet utilisateur?</h4>
-      </div>
-      <div class="modal-body">
-        
-         
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
-        <button (click)="setBloquer()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-  <!--                        -->
-  
-        <!-- Modal debloquer -->
-<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Débloquer cet utilisateur?</h4>
-      </div>
-      <div class="modal-body">
-        
-        
-      
-       
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
-        <button (click)="setDebloquer()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
-      </div>
-    </div>
-  </div>
-</div>
+          </div>
+          <div class="modal-footer">
 
+            <button type="button" class="btn btn-info btn-simple" data-dismiss="modal">Fermer</button>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!--                        -->
+
+    <!-- Modal bloquer -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Bloquer cet utilisateur?</h4>
+          </div>
+          <div class="modal-body">
+
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
+            <button (click)="setBloquer()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--                        -->
+
+    <!-- Modal debloquer -->
+    <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Débloquer cet utilisateur?</h4>
+          </div>
+          <div class="modal-body">
+
+
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
+            <button (click)="setDebloquer()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
