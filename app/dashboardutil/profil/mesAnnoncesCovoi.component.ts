@@ -51,6 +51,13 @@ modifierAnnonceCovoi(){
                     this.router.navigate(['dashboardutil/MesAnnoncesCovoi']);
                 });
 }
+supprimerAnnonceCovoi(){
+    this.annonceCovoiService.supprimerAnnonceCovoi(this.model.id)
+    .subscribe(data => {
+        this.router.navigate(['dashboardutil/MesAnnoncesCovoi'])
+    });
+    
+    }
 
 
         ngOnInit() {

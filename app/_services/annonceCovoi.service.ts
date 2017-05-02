@@ -11,6 +11,8 @@ export class AnnonceCovoiService {
 
     
     constructor(private http: Http, private config: AppConfig) { }
+
+    //////////////////////////
 getMesAnnoncesCovoi(id: string){
     let headers= new Headers();
     let options= new RequestOptions({headers:headers});
@@ -21,6 +23,9 @@ getMesAnnoncesCovoi(id: string){
     return this.http.get(this.config.apiUrl+'/maListeAnnonceCovoi?'+body, this.jwt())
      .map((res: Response) => res.json());
 }
+
+//////////////////////////////////////////
+
 ajouterAnnonceCovoi(datePublication: string,dateDepart: string, adresseDepart: string, adresseArrivee: string, nombrePlaces: string, cotisation: string, id: string ){
     console.log("qqqqqqqqq")
     let headers= new Headers();
@@ -41,6 +46,9 @@ ajouterAnnonceCovoi(datePublication: string,dateDepart: string, adresseDepart: s
                         .map((res: Response) => res.json());
 
 }
+
+//////////////////////////////////////
+
 modifierAnnonceCovoi(datePublication: string,dateDepart: string, adresseDepart: string, adresseArrivee: string,
  nombrePlaces: string, cotisation: string, id: string, idUtilisateur: string){
     console.log("i am here")
@@ -62,6 +70,9 @@ return this.http.put(this.config.apiUrl+'/updateAnnonceCovoi?'+body, body, this.
                         .map((res: Response) => res.json());
 
 }
+
+//////////////////////////////////
+
 getAnnoncesCovoi() {
     console.log("annonces covoi affichage ")
         return this.http.get(this.config.apiUrl +'/annonces',
@@ -69,6 +80,15 @@ getAnnoncesCovoi() {
         .map((response: Response) => response.json()
         );
     }
+
+//////////////////////////////////////
+
+supprimerAnnonceCovoi( id : string ){
+    console.log("supprimer annonce covoi")
+    return this.http.delete(this.config.apiUrl+'/deleteAnnonceCovoi/'+ id,this.jwt())
+    .map((response: Response)=> response.json()
+    );
+}
 
 
 private jwt() {
