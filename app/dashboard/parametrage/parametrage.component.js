@@ -15,9 +15,9 @@ var aeroport_service_1 = require("../../_services/aeroport.service");
 var station_service_1 = require("../../_services/station.service");
 var train_service_1 = require("../../_services/train.service");
 var ParametrageComponent = (function () {
-    function ParametrageComponent(paysService, pagerService, avionService, cityService, aeroportService, stationService, trainService, alertService) {
+    // pager object
+    function ParametrageComponent(paysService, avionService, cityService, aeroportService, stationService, trainService, alertService) {
         this.paysService = paysService;
-        this.pagerService = pagerService;
         this.avionService = avionService;
         this.cityService = cityService;
         this.aeroportService = aeroportService;
@@ -31,9 +31,12 @@ var ParametrageComponent = (function () {
         this.model2 = {};
         this.model3 = {};
         this.model4 = {};
-        this.returnArray = [];
-        // pager object
-        this.pager = {};
+        this.model5 = {};
+        this.model6 = {};
+        this.model7 = {};
+        this.model8 = {};
+        this.model9 = {};
+        this.model10 = {};
     }
     ParametrageComponent.prototype.ngOnInit = function () {
         // $.getScript('../../../assets/js/material-dashboard.js');
@@ -53,7 +56,6 @@ var ParametrageComponent = (function () {
             subscribe(function (pays) {
             _this.pays = pays;
             // initialize to page 1
-            _this.setPage(1);
             _this.loading = false;
             console.log("loading off");
         }, function (error) {
@@ -64,12 +66,13 @@ var ParametrageComponent = (function () {
         });
     };
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    ParametrageComponent.prototype.addPays = function () {
+    ParametrageComponent.prototype.ajoutPays = function () {
         var _this = this;
         console.log(this.model2.nomPays);
         this.paysService.add(this.model2.nomPays).subscribe(function (result) {
             _this.ListPays();
         });
+        this.model2.nomPays = "";
     };
     //////////////////////////////////////////////////////////////////////////////////////////
     ParametrageComponent.prototype.ajouterParametre = function () {
@@ -97,6 +100,9 @@ var ParametrageComponent = (function () {
             _this.ListStation();
             _this.ajoute = false;
         });
+        this.model3.ville = "";
+        this.model3.aeroport = "";
+        this.model3.station = "";
     };
     /////////////////////////////////////////////////////////////////////////////////////////
     ParametrageComponent.prototype.supprimerPays = function () {
@@ -121,10 +127,10 @@ var ParametrageComponent = (function () {
         this.paysM = pays;
         this.nomM = this.paysM.nom;
     };
-    ////////////////////////////////////////////////////////////////
-    /*---------------------------------------------------------------------------------*/
     ParametrageComponent.prototype.getCity = function (city) {
         this.cityM = city;
+        this.nomVille = this.cityM.nom;
+        console.log(this.nomVille);
     };
     ParametrageComponent.prototype.ListCity = function () {
         var _this = this;
@@ -133,7 +139,6 @@ var ParametrageComponent = (function () {
             _this.city = city;
             // initialize to page 1
             // console.log(this.city);
-            _this.setPageCity(1);
             _this.loading = false;
             console.log("loading off");
         }, function (error) {
@@ -150,6 +155,13 @@ var ParametrageComponent = (function () {
             _this.ListCity();
         });
     };
+    ParametrageComponent.prototype.modifierVille = function () {
+        console.log(this.model5.nomVilleM);
+        this.cityM.nom = this.model5.nomVilleM;
+        this.cityService.update(this.cityM).subscribe(function (result) {
+            // this.ListPays();
+        });
+    };
     ParametrageComponent.prototype.getPaysById = function (id) {
         return this.paysService.getById(id).subscribe(function (p) {
             console.log(p.nom);
@@ -163,51 +175,12 @@ var ParametrageComponent = (function () {
             return _this.paysCity.nom;
         });
     };
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
-    ParametrageComponent.prototype.setPage = function (page) {
-        console.log();
-        if (page < 1 || page > this.pager.totalPages) {
-            return;
-        }
-        // get pager object from service
-        this.pager = this.pagerService.getPager(this.pays.length, page);
-        // get current page of items
-        this.pagedItems = this.pays.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    };
-    ParametrageComponent.prototype.setPageCity = function (page) {
-        console.log();
-        if (page < 1 || page > this.pager.totalPages) {
-            return;
-        }
-        // get pager object from service
-        this.pager = this.pagerService.getPager(this.city.length, page);
-        // get current page of items
-        this.pagedItemsCity = this.city.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    };
-    ParametrageComponent.prototype.setPageAero = function (page) {
-        console.log();
-        if (page < 1 || page > this.pager.totalPages) {
-            return;
-        }
-        // get pager object from service
-        this.pager = this.pagerService.getPager(this.aero.length, page);
-        // get current page of items
-        this.pagedItemsAero = this.aero.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    };
-    ParametrageComponent.prototype.setPageStation = function (page) {
-        console.log();
-        if (page < 1 || page > this.pager.totalPages) {
-            return;
-        }
-        // get pager object from service
-        this.pager = this.pagerService.getPager(this.station.length, page);
-        // get current page of items
-        this.pagedItemsStation = this.station.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    };
     /*---------------------------------------------------------------------------------*/
     ParametrageComponent.prototype.getAero = function (aero) {
         this.aeroM = aero;
         console.log("dqssssssssss:zs " + JSON.stringify(this.aero));
+        this.nomAero = this.aeroM.nom;
+        console.log(this.nomAero);
     };
     ParametrageComponent.prototype.ListAero = function () {
         var _this = this;
@@ -217,7 +190,6 @@ var ParametrageComponent = (function () {
             console.log("dqssssssssss: " + JSON.stringify(_this.aero));
             // initialize to page 1
             // console.log(this.city);
-            _this.setPageAero(1);
             _this.loading = false;
             console.log("loading off");
         }, function (error) {
@@ -234,18 +206,27 @@ var ParametrageComponent = (function () {
             _this.ListAero();
         });
     };
+    ParametrageComponent.prototype.modifierAero = function () {
+        console.log(this.model6.nomAeroM);
+        this.aeroM.nom = this.model6.nomAeroM;
+        this.aeroportService.update(this.aeroM).subscribe(function (result) {
+            // this.ListPays();
+        });
+    };
     /*---------------------------------------------------------------------------------*/
     ParametrageComponent.prototype.getStation = function (station) {
         this.stationM = station;
         console.log("dqssssssssss:zs " + JSON.stringify(this.stationM));
+        this.nomStation = this.stationM.nom;
+        console.log(this.nomStation);
     };
     ParametrageComponent.prototype.ListStation = function () {
         var _this = this;
         this.stationService.getAll().
             subscribe(function (station) {
-            _this.station = station;
+            console.log(JSON.stringify(station));
+            _this.stations = station;
             // initialize to page 1
-            _this.setPageStation(1);
             _this.loading = false;
             console.log("loading off");
         }, function (error) {
@@ -262,9 +243,17 @@ var ParametrageComponent = (function () {
             _this.ListStation();
         });
     };
+    ParametrageComponent.prototype.modifierStation = function () {
+        console.log(this.model7.nomStationM);
+        this.stationM.nom = this.model7.nomStationM;
+        this.stationService.update(this.stationM).subscribe(function (result) {
+            // this.ListPays();
+        });
+    };
     /*---------------------------------------------------------------------------------*/
     ParametrageComponent.prototype.getAvion = function (avion) {
         this.avionM = avion;
+        this.typeAvionM = this.avionM.type;
         console.log("df  " + JSON.stringify(this.avionM));
     };
     ParametrageComponent.prototype.ListAvions = function () {
@@ -277,14 +266,28 @@ var ParametrageComponent = (function () {
     //    console.log(this.avions);
     //    console.log(typeof(this.avions));
     ParametrageComponent.prototype.modifierAvion = function () {
+        var _this = this;
+        this.avionM.type = this.model4.typeAvion;
+        this.avionService.update(this.avionM).subscribe(function (resultat) {
+            _this.ListAvions();
+        });
     };
     ParametrageComponent.prototype.ajoutAvion = function () {
-        this.avion.type = this.model4.typeAvion;
-        console.log(this.avion.type);
-        /*this.avionService.add(this.avion).subscribe(result=>{
-        this.ListAvions();
-        });*/
+        var _this = this;
+        console.log(this.model10.nomA);
+        this.avionService.add(this.model10.nomA).subscribe(function (result) {
+            _this.ListAvions();
+        });
+        this.model10.nomA = "";
     };
+    /* ajoutAvion() {
+         this.avion.type = this.model4.typeAvion;
+         console.log(this.avion.type);
+         this.avionService.add(this.avion).subscribe(result=>{
+         this.ListAvions();
+         });
+ 
+ }*/
     ParametrageComponent.prototype.supprimerAvion = function () {
         var _this = this;
         console.log(this.avionM.id);
@@ -296,7 +299,16 @@ var ParametrageComponent = (function () {
     /*---------------------------------------------------------------------------------*/
     ParametrageComponent.prototype.getTrain = function (train) {
         this.trainM = train;
+        this.nomTrain = this.trainM.type;
         console.log("df  " + JSON.stringify(this.trainM));
+    };
+    ParametrageComponent.prototype.ajoutTrain = function () {
+        var _this = this;
+        console.log(this.model9.nomV);
+        this.trainService.add(this.model9.nomV).subscribe(function (result) {
+            _this.ListTrain();
+        });
+        this.model9.nomV = "";
     };
     ParametrageComponent.prototype.ListTrain = function () {
         var _this = this;
@@ -313,13 +325,93 @@ var ParametrageComponent = (function () {
             _this.ListTrain();
         });
     };
+    ParametrageComponent.prototype.modifierTrain = function () {
+        console.log(this.model8.nomTrainM);
+        this.trainM.type = this.model8.nomTrainM;
+        this.trainService.update(this.trainM).subscribe(function (result) {
+            // this.ListPays();
+        });
+    };
+    ////////////////////////////////////////////////////////////////
+    ParametrageComponent.prototype.filterPays = function (ev) {
+        var val = ev.target.value;
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.pays = this.pays.filter(function (result) {
+                return (result.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.ListPays();
+        }
+    };
+    ParametrageComponent.prototype.filterVille = function (ev) {
+        var val = ev.target.value;
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.city = this.city.filter(function (result) {
+                return (result.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.ListCity();
+        }
+    };
+    ParametrageComponent.prototype.filterAero = function (ev) {
+        var val = ev.target.value;
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.aero = this.aero.filter(function (result) {
+                return (result.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.ListAero();
+        }
+    };
+    ParametrageComponent.prototype.filterStation = function (ev) {
+        var val = ev.target.value;
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.stations = this.stations.filter(function (result) {
+                return (result.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.ListStation();
+        }
+    };
+    ParametrageComponent.prototype.filterTrain = function (ev) {
+        var val = ev.target.value;
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.trains = this.trains.filter(function (result) {
+                return (result.type.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.ListTrain();
+        }
+    };
+    ParametrageComponent.prototype.filterAvion = function (ev) {
+        var val = ev.target.value;
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.avions = this.avions.filter(function (result) {
+                return (result.type.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.ListAvions();
+        }
+    };
     ParametrageComponent = __decorate([
         core_1.Component({
             selector: 'parametrage-cmp',
             moduleId: module.id,
             templateUrl: 'parametrage.component.html',
         }), 
-        __metadata('design:paramtypes', [index_1.PaysService, index_1.PagerService, avion_service_1.AvionService, index_1.CityService, aeroport_service_1.AeroportService, station_service_1.StationService, train_service_1.TrainService, index_1.AlertService])
+        __metadata('design:paramtypes', [index_1.PaysService, avion_service_1.AvionService, index_1.CityService, aeroport_service_1.AeroportService, station_service_1.StationService, train_service_1.TrainService, index_1.AlertService])
     ], ParametrageComponent);
     return ParametrageComponent;
 }());

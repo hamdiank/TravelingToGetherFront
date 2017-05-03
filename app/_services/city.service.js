@@ -29,12 +29,8 @@ var CityService = (function () {
     CityService.prototype.jwt = function () {
         // create authorization header with jwt token
         var currentUser = JSON.parse(localStorage.getItem('currentToken'));
-        if (currentUser && currentUser.token) {
-            var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-            headers.append("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
-            headers.append("Access-Control-Allow-Origin", "*");
-            headers.append("Access-Control-Expose-Headers", "Authorization");
-            headers.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, ,Content-Type, Accept, Access-Control-Allow-Headers, Authorization");
+        if (currentUser) {
+            var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + currentUser });
             return new http_1.RequestOptions({ headers: headers });
         }
     };

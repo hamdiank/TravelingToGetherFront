@@ -1,0 +1,168 @@
+<div class="main-content">
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats" >
+                        <div class="card-header" data-background-color="red">
+                           <i class="material-icons">directions_car</i>
+                        </div>
+                        <div class="card-content">
+                            <p class="category">Annonces de Covoiturage</p>
+                        </div>
+                        <div class="card-footer">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- tableau des annonces de covoiturage-->
+
+<!-- fin du tableau -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8" class="width: 500px;">
+             <div class="card" >
+                        <div class="card-header" data-background-color="red">
+                            <h4 class="title">Liste Des Annonces</h4>
+                        </div>
+                        <div>
+                            <button type="button" class=" btn btn-danger btn-lg btn-round " data-toggle="modal" data-target="#myModal">
+                                 <i class="material-icons">add</i>
+                             </button>                    
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" role="dialog">
+                                <div class="modal-dialog">
+                                
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Ajouter une Annonce de Covoiturage</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Date de Départ</label>
+                                                <input type="email" class="form-control" name="dateDepart"  [(ngModel)]="model.dateDepart" #dateDepart="ngModel" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Adresse de Départ</label>
+                                                <input type="email" class="form-control" name="adresseDepart"  [(ngModel)]="model.adresseDepart" #adresseDepart="ngModel" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Adresse d'Arrivée</label>
+                                                <input type="email" class="form-control" name="adresseArrivee"  [(ngModel)]="model.adresseArrivee" #adresseArrivee="ngModel" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Nombre de Places</label>
+                                                <input type="email" class="form-control" name="nombrePlaces"  [(ngModel)]="model.nombrePlaces" #nombrePlaces="ngModel" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Cotisation</label>
+                                                <input type="email" class="form-control" name="cotisation"  [(ngModel)]="model.cotisation" #cotisation="ngModel" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <button (click)="ajouterAnnonceCovoi()" type="button" class="btn btn-success" data-dismiss="modal">Ajouter</button>
+                                    </div>
+                                </div>
+                                
+                                </div>
+                            </div>
+  
+                        </div>
+            </div>
+        </div>
+    </div>
+
+<div class="row">
+    <div class="col-sm-8 ">
+        
+                <ul class="list-group" *ngFor="let annonceCovoi of annoncesCovoi">
+                    <div class="panel">
+	                        <div class="panel-heading">
+                            <div class="logo">
+                                <img src="../assets/img/faces/user.png" 
+                                alt="bbbb" rel="tooltip" title data-placement="bottom" data-html="true" data-original-title="<b> becem </b> fffffffffffff"/>
+                            </div>
+                            <p> {{annonceCovoi.utilisateur.login}}</p>
+                        </div>
+                            <div class="panel-body">
+                           
+                                <li class="list-group-item" > ID <span class="badge" >{{annonceCovoi.id}}</span></li>
+                                <li class="list-group-item"> Date Publication <span class="badge">{{annonceCovoi.datePublication}}</span></li> 
+                                <li class="list-group-item"> Date Départ <span class="badge">{{annonceCovoi.dateDepart}}</span></li> 
+                                <li class="list-group-item">Addresse Départ <span class="badge">{{annonceCovoi.adresseDepart}}</span></li> 
+                                <li class="list-group-item">Addresse Arrivée <span class="badge">{{annonceCovoi.adresseArrivee}}</span></li> 
+
+                                <li class="list-group-item">Nombres de Places  <span class="badge">{{annonceCovoi.nombrePlaces}}</span><i class="fa fa-user"></i></li> 
+                                <li class="list-group-item">Cotisation <span class="badge" >{{annonceCovoi.cotisation}}</span></li>
+     
+                                    <li class="list-group-item">
+                                        <span >
+                                            <button type="button" rel="tooltip" title="Réserver" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Réserver
+                                            </button>
+                                        </span>
+                                        <span >
+                                            <button type="button" rel="tooltip" title="Commenter" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Commenter
+                                            </button>
+                                        </span>
+                                        <span >
+                                            <button type="button" rel="tooltip" title="Contacter" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Contacter
+                                            </button>
+                                        </span>
+                                    </li>
+                            </div>
+                    </div>
+
+                </ul>
+
+                <ul class="list-group" >
+                    <li class="list-group-item" > ID <span class="badge" >1</span></li>
+                    <li class="list-group-item"> Date Publication <span class="badge">21/04/2017</span></li> 
+                    <li class="list-group-item">Addresse Départ <span class="badge">Sfax</span></li> 
+                    <li class="list-group-item">Addresse Arrivée <span class="badge">Tunis</span></li> 
+                    <li class="list-group-item">Utilisateur <span class="badge">Utilisateur</span></li> 
+                    <li class="list-group-item">Nombres de Places  <span class="badge">3</span><i class="fa fa-user"></i></li> 
+                    <li class="list-group-item">Cotisation <span class="badge" >15 D</span></li> 
+                    <li class="list-group-item">
+                        <span >
+                            <button type="button" rel="tooltip" title="Réserver" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Réserver
+                            </button>
+                        </span>
+                        <span >
+                            <button type="button" rel="tooltip" title="Commenter" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Commenter
+                            </button>
+                        </span>
+                        <span >
+                            <button type="button" rel="tooltip" title="Contacter" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Contacter
+                            </button>
+                        </span>
+                    </li> 
+                </ul>
+    </div>
+</div>
+</div>
+</div>
+

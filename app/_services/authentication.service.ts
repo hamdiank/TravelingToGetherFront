@@ -29,28 +29,24 @@ user:User;
             .map((response: Response) => {
                 console.log("start kkkk")
                  let x = JSON.parse(JSON.stringify(response));
-                console.log("rrrrrrrggghgjhj");
+                console.log(x);
+
+// to load the id of our user
+
                 // login successful if there's a jwt token in the response
               let token = x._body ;
-
                 console.log("rrrrrrrggghgjhj");
               //  console.log(token);
                 //console.log(JSON.stringify(user));
-            
-            
-                
                 if (token ) {
                   //get the user id
            //  console.log("decooooded: "+this.jwtHelper.decodeToken(token).role) ;
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
+
                     console.log(token);
                     localStorage.setItem('currentToken', JSON.stringify(token));
                     localStorage.setItem('currentUserId', this.jwtHelper.decodeToken(token).userId);
                      localStorage.setItem('currentUserRole', this.jwtHelper.decodeToken(token).role);
-
-
-
-
 
 
 
@@ -66,5 +62,9 @@ user:User;
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentToken');
+
+        localStorage.removeItem('currentUserId');
+        localStorage.removeItem('currentUserRole');
+
     }
 }

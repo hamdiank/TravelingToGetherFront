@@ -11,9 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var index_1 = require("../../_services/index");
 var TableComponent = (function () {
-    function TableComponent(userService, pagerService) {
+    function TableComponent(userService) {
         this.userService = userService;
-        this.pagerService = pagerService;
         this.pager = {};
         this.serveId = new core_1.EventEmitter();
     }
@@ -25,7 +24,6 @@ var TableComponent = (function () {
         this.userService.getAll().
             subscribe(function (users) {
             _this.users = users;
-            _this.setPage(1);
             console.log(users);
         }, function (error) {
             console.log(error);
@@ -35,16 +33,17 @@ var TableComponent = (function () {
         console.log("eehjeh: " + user);
         this.serveId.emit(user);
     };
-    TableComponent.prototype.setPage = function (page) {
-        console.log();
-        if (page < 1 || page > this.pager.totalPages) {
-            return;
+    TableComponent.prototype.filter = function (ev) {
+        var val = ev.target.value;
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.users = this.users.filter(function (result) {
+                return (result.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            });
         }
-        // get pager object from service
-        this.pager = this.pagerService.getPager(this.users.length, page);
-        // get current page of items
-        this.pagedItems = this.users.slice(this.pager.startIndex, this.pager.endIndex + 1);
-        console.log(this.pagedItems);
+        else {
+            this.ListUtilisateur();
+        }
     };
     TableComponent = __decorate([
         core_1.Component({
@@ -53,7 +52,7 @@ var TableComponent = (function () {
             outputs: ['serveId'],
             templateUrl: 'table.component.html'
         }), 
-        __metadata('design:paramtypes', [index_1.UserService, index_1.PagerService])
+        __metadata('design:paramtypes', [index_1.UserService])
     ], TableComponent);
     return TableComponent;
 }());

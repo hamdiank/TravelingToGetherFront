@@ -7,6 +7,4 @@
     role: string;
     email:string;
     etat:boolean;
-    
-
 }

@@ -22,13 +22,15 @@ export class TrainService {
 
 
     update(train: Train) {
-        return this.http.put(this.config.apiUrl + '//trains/' + train.id, train, this.jwt());
+        return this.http.put(this.config.apiUrl + '/trains', train, this.jwt());
 
     }
 
+    add(nomT: string) {
+        console.log(nomT);
+        return this.http.post(this.config.apiUrl + '/trains/' + nomT, this.jwt());
 
-
-
+    }
 
 
 
@@ -36,13 +38,8 @@ export class TrainService {
     private jwt() {
         // create authorization header with jwt token
         let currentUser = JSON.parse(localStorage.getItem('currentToken'));
-        if (currentUser && currentUser.token) {
-            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-            headers.append("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
-            headers.append("Access-Control-Allow-Origin", "*");
-            headers.append("Access-Control-Expose-Headers", "Authorization");
-            headers.append("Access-Control-Allow-Headers",
-                "Origin, X-Requested-With, ,Content-Type, Accept, Access-Control-Allow-Headers, Authorization");
+        if (currentUser) {
+            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser });
             return new RequestOptions({ headers: headers });
         }
     }

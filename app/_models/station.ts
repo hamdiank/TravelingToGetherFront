@@ -1,4 +1,4 @@
 export class Station {
     idStation: string;
-    nom: String;
+    nom: string;
 }

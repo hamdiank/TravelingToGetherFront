@@ -12,13 +12,26 @@
 
                     <div class="card-header" data-background-color="green">
 
-                        <h4 class="title">Liste Des Pays</h4>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h4 class="title">Liste Des Pays</h4>
+                            </div>
+                            <div class="col-sm-offset-4 col-sm-4">
+                                <button class="btn btn-white btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#myModal11">
+	                <i class="material-icons">add</i>
+                                 </button>
+                            </div>
+                        </div>
+
+
+
 
                     </div>
                     <div class="card-content table-responsive">
 
                         <div class="form-group form-black is-empty">
-                            <input type="text" class="form-control" [(ngModel)]="textFilter" placeholder="chercher" name="chercherPays">
+                            <input type="text" class="form-control" (input)="filterPays($event)" placeholder="chercher" name="chercherPays">
                             <span class="material-input"></span>
                         </div>
                         <div style="position : relative">
@@ -35,8 +48,8 @@
                                 </thead>
                                 <tbody>
 
-                                    <tr *ngFor="let i=index;let pay of pagedItems  | FilterPipe: textFilter">
-                                        <td>{{i+1}}</td>
+                                    <tr *ngFor="let pay of pays  | paginate: {itemsPerPage: 5, currentPage:page, id: '1'}; let i = index">
+                                        <td>{{pay.idPays}}</td>
                                         <td>{{pay.nom}}</td>
 
                                         <td>
@@ -59,27 +72,12 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!--               pager            -->
-
-                        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                            <li [ngClass]="{disabled:pager.currentPage === 1}">
-                                <a (click)="setPage(1)">First</a>
-                            </li>
-                            <li [ngClass]="{disabled:pager.currentPage === 1}">
-                                <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-                            </li>
-                            <!--
-                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-                    <a (click)="setPage(page)">{{page}}</a>
-                </li> -->
-                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                                <a (click)="setPage(pager.currentPage + 1)">Next</a>
-                            </li>
-                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                                <a (click)="setPage(pager.totalPages)">Last</a>
-                            </li>
-                        </ul>
                     </div>
+                    <div class="card-footer">
+                        <pagination-controls class=" pull-right" (pageChange)="page = $event" id="1" maxSize="5" directionLinks="true" autoHide="true">
+                        </pagination-controls>
+                    </div>
+
                 </div>
             </div>
 
@@ -93,7 +91,7 @@
                     <div class="card-content table-responsive">
 
                         <div class="form-group form-black is-empty">
-                            <input type="text" class="form-control" [(ngModel)]="cityFilter" placeholder="chercher" name="cherchercity">
+                            <input type="text" class="form-control" (input)="filterVille($event)" placeholder="chercher" name="cherchercity">
                             <span class="material-input"></span>
                         </div>
                         <table class="table table-hover">
@@ -108,14 +106,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let i=index;let c of pagedItemsCity | FilterPipe:cityFilter">
+                                <tr *ngFor="let c of city  | paginate: {itemsPerPage: 5, currentPage:page2, id: '2'}; let i = index">
                                     <td>{{i+1}}</td>
                                     <td>{{c.nom}}</td>
                                     <td></td>
 
                                     <td>
                                         <button (click)="getCity(c)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal"
-                                            data-target="#myModal">
+                                            data-target="#myModal13">
                                         <i class="fa fa-edit"></i>
                                     </button>
 
@@ -130,28 +128,16 @@
 
                             </tbody>
                         </table>
-                        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                            <li [ngClass]="{disabled:pager.currentPage === 1}">
-                                <a (click)="setPageCity(1)">First</a>
-                            </li>
-                            <li [ngClass]="{disabled:pager.currentPage === 1}">
-                                <a (click)="setPageCity(pager.currentPage - 1)">Previous</a>
-                            </li>
-                            <!--
-                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-                    <a (click)="setPage(page)">{{page}}</a>
-                </li> -->
-                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                                <a (click)="setPageCity(pager.currentPage + 1)">Next</a>
-                            </li>
-                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                                <a (click)="setPageCity(pager.totalPages)">Last</a>
-                            </li>
-                        </ul>
 
+
+                    </div>
+                    <div class="card-footer">
+                        <pagination-controls class=" pull-right" (pageChange)="page2 = $event" id="2" maxSize="5" directionLinks="true" autoHide="true">
+                        </pagination-controls>
                     </div>
                 </div>
             </div>
+
         </div>
 
         <div class="row">
@@ -162,7 +148,7 @@
                     </div>
                     <div class="card-content table-responsive">
                         <div class="form-group form-black is-empty">
-                            <input type="text" class="form-control" [(ngModel)]="AeroportFilter" placeholder="chercher" name="cherchercity">
+                            <input type="text" class="form-control" (input)="filterAero($event)" placeholder="chercher" name="cherchercity">
                             <span class="material-input"></span>
                         </div>
                         <table class="table table-hover">
@@ -176,13 +162,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let ae of pagedItemsAero| FilterPipe:AeroportFilter">
+                                <tr *ngFor="let ae of aero | paginate: {itemsPerPage: 5, currentPage:page3, id: '3'}; let i = index">
                                     <td>1</td>
                                     <td>{{ae.nom}}</td>
                                     <td></td>
                                     <td>
                                         <button (click)="getAero(ae)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal"
-                                            data-target="#myModal">
+                                            data-target="#myModal14">
                                             <i class="fa fa-edit"></i>
                                     </button>
                                         <button (click)="getAero(ae)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs" data-toggle="modal"
@@ -195,30 +181,12 @@
                                 </tr>
 
 
-
-
-
                             </tbody>
                         </table>
-                        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                            <li [ngClass]="{disabled:pager.currentPage === 1}">
-                                <a (click)="setPageAero(1)">First</a>
-                            </li>
-                            <li [ngClass]="{disabled:pager.currentPage === 1}">
-                                <a (click)="setPageAero(pager.currentPage - 1)">Previous</a>
-                            </li>
-                            <!--
-                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-                    <a (click)="setPage(page)">{{page}}</a>
-                </li> -->
-                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                                <a (click)="setPageAero(pager.currentPage + 1)">Next</a>
-                            </li>
-                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                                <a (click)="setPageAero(pager.totalPages)">Last</a>
-                            </li>
-                        </ul>
-
+                    </div>
+                    <div class="card-footer">
+                        <pagination-controls class=" pull-right" (pageChange)="page3 = $event" id="3" maxSize="5" directionLinks="true" autoHide="true">
+                        </pagination-controls>
                     </div>
                 </div>
             </div>
@@ -230,7 +198,7 @@
                     </div>
                     <div class="card-content table-responsive">
                         <div class="form-group form-black is-empty">
-                            <input type="text" class="form-control" [(ngModel)]="stationFilter" placeholder="chercher" name="cherchercity">
+                            <input type="text" class="form-control" (input)="filterStation($event)" placeholder="chercher" name="cherchercity">
                             <span class="material-input"></span>
                         </div>
                         <table class="table table-hover">
@@ -244,13 +212,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let s of pagedItemsStation | FilterPipe:stationFilter">
+                                <tr *ngFor="let s of stations | paginate: {itemsPerPage: 5, currentPage:page4, id: '4'}; let i = index">
                                     <td>1</td>
                                     <td>{{s.nom}}</td>
                                     <td>Tunisie</td>
                                     <td>
                                         <button (click)="getStation(s)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal"
-                                            data-target="#myModal">
+                                            data-target="#myModal15">
                                 <i class="fa fa-edit"></i>
                          </button>
                                         <button (click)="getStation(s)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs" data-toggle="modal"
@@ -263,25 +231,10 @@
 
                             </tbody>
                         </table>
-                        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                            <li [ngClass]="{disabled:pager.currentPage === 1}">
-                                <a (click)="setPageStation(1)">First</a>
-                            </li>
-                            <li [ngClass]="{disabled:pager.currentPage === 1}">
-                                <a (click)="setPageStation(pager.currentPage - 1)">Previous</a>
-                            </li>
-                            <!--
-                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-                    <a (click)="setPage(page)">{{page}}</a>
-                </li> -->
-                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                                <a (click)="setPageStation(pager.currentPage + 1)">Next</a>
-                            </li>
-                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                                <a (click)="setPageStation(pager.totalPages)">Last</a>
-                            </li>
-                        </ul>
-
+                    </div>
+                    <div class="card-footer">
+                        <pagination-controls class=" pull-right" (pageChange)="page4 = $event" id="4" maxSize="5" directionLinks="true" autoHide="true">
+                        </pagination-controls>
                     </div>
                 </div>
             </div>
@@ -293,11 +246,21 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header" data-background-color="brown">
-                        <h4 class="title">Liste Des Types de Train</h4>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h4 class="title">Liste Des Types de Train</h4>
+                            </div>
+                            <div class="col-sm-offset-4 col-sm-4">
+                                <button class="btn btn-white btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#myModal12">
+	                <i class="material-icons">add</i>
+                                 </button>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-content table-responsive">
                         <div class="form-group form-black is-empty">
-                            <input type="text" class="form-control" [(ngModel)]="trainFilter" placeholder="chercher" name="cherchercity">
+                            <input type="text" class="form-control" (input)="filterTrain($event)" placeholder="chercher" name="cherchercity">
                             <span class="material-input"></span>
                         </div>
                         <table class="table table-hover">
@@ -311,13 +274,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let train of trains| FilterPipe:trainFilter">
+                                <tr *ngFor="let train of trains | paginate: {itemsPerPage: 5, currentPage:page5, id: '5'}; let i = index">
                                     <td>1</td>
                                     <td>{{train.type}}</td>
 
                                     <td>
                                         <button (click)="getTrain(train)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs"
-                                            data-toggle="modal" data-target="#myModal">
+                                            data-toggle="modal" data-target="#myModal16">
                                             <i class="fa fa-edit"></i>
                                     </button>
                                         <button (click)="getTrain(train)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs"
@@ -325,12 +288,14 @@
                                              <i class="material-icons">close</i>
                                     </button>
                                     </td>
-
-
                                 </tr>
 
                             </tbody>
                         </table>
+                    </div>
+                    <div class="card-footer">
+                        <pagination-controls class=" pull-right" (pageChange)="page5 = $event" id="5" maxSize="5" directionLinks="true" autoHide="true">
+                        </pagination-controls>
                     </div>
                 </div>
             </div>
@@ -339,12 +304,21 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header" data-background-color="orange">
-                        <h4 class="title">Liste Des Types d'Avion</h4>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h4 class="title">Liste Des Types d'Avion</h4>
+                            </div>
+                            <div class="col-sm-offset-4 col-sm-4">
+                                <button class="btn btn-white btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#myModal17">
+	                <i class="material-icons">add</i>
+                                 </button>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-content table-responsive">
 
                         <div class="form-group form-black is-empty">
-                            <input type="text" class="form-control" [(ngModel)]="avionFilter" placeholder="chercher" name="cherchercity">
+                            <input type="text" class="form-control" (input)="filterAvion($event)" placeholder="chercher" name="cherchercity">
                             <span class="material-input"></span>
                         </div>
 
@@ -358,7 +332,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let avion of avions| FilterPipe:avionFilter">
+                                <tr *ngFor="let avion of avions | paginate: {itemsPerPage: 5, currentPage:page6, id: '6'}; let i = index">
                                     <td>{{avion.id}}</td>
                                     <td>{{avion.type}}</td>
                                     <td>
@@ -376,6 +350,10 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="card-footer">
+                        <pagination-controls class=" pull-right" (pageChange)="page6 = $event" id="6" maxSize="5" directionLinks="true" autoHide="true">
+                        </pagination-controls>
+                    </div>
                 </div>
             </div>
 
@@ -383,7 +361,7 @@
 
         <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
 
-        <!-- Modal pays -->
+        <!-- Modal modifier pays -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -417,6 +395,38 @@
 
         <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
 
+        <!-- Modal ajout pays -->
+        <div class="modal fade" id="myModal11" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">ajouter</h4>
+                    </div>
+                    <form #myForm2="ngForm" (ngSubmit)="ajoutPays()">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" class="form-control" [(ngModel)]="model2.nomPays" #nomPays="ngModel" required name="nom" />
+                                </div>
+                                <!--    <div *ngIf="nomM==model.nom" class="help-block">Rien n'a changé</div> -->
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Ajouter</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
 
         <!-- Modal pays parametre -->
         <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -487,7 +497,39 @@
         </div>
 
         <!--                        -->
+        <!-- Modal modifier ville -->
+        <div class="modal fade" id="myModal13" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Modifier Ville</h4>
+                    </div>
+                    <form #myForm2="ngForm" (ngSubmit)="modifierVille()">
+                        <div class="modal-body">
 
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" value="{{nomVille}}" placeholder="" class="form-control" [(ngModel)]="model5.nomVilleM" #nomVilleM="ngModel"
+                                        name="nom" />
+                                </div>
+                                <!--    <div *ngIf="nomM==model.nom" class="help-block">Rien n'a changé</div> -->
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Modifier</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
         <!--  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù         -->
 
 
@@ -515,22 +557,83 @@
         <!--                        -->
 
         <!--  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù         -->
+ <!-- Modal ajout train -->
+        <div class="modal fade" id="myModal12" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">ajouter Train</h4>
+                    </div>
+                    <form #myForm2="ngForm" (ngSubmit)="ajoutTrain()">
+                        <div class="modal-body">
 
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" class="form-control" [(ngModel)]="model9.nomV" #nomV="ngModel" required name="nom" />
+                                </div>
+                                <!--    <div *ngIf="nomM==model.nom" class="help-block">Rien n'a changé</div> -->
 
-        <!-- Modal avion -->
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Ajouter</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
+<!-- Modal ajout Avion -->
+        <div class="modal fade" id="myModal17" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">ajouter Avion</h4>
+                    </div>
+                    <form #myForm2="ngForm" (ngSubmit)="ajoutAvion()">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" class="form-control" [(ngModel)]="model10.nomA" #nomA="ngModel" required name="nom" />
+                                </div>
+                                <!--    <div *ngIf="nomM==model.nom" class="help-block">Rien n'a changé</div> -->
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Ajouter</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
+
+        <!-- Modal modifier avion -->
         <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">Modifier</h4>
+                        <h4 class="modal-title" id="myModalLabel">Modifier Avion</h4>
                     </div>
                     <form #myForm2="ngForm" (ngSubmit)="modifierAvion()">
                         <div class="modal-body">
 
                             <div class="row">
                                 <div class="form-group col-sm-4">
-                                    <input type="text" value="{{nomvilleM}}" placeholder="" class="form-control" [(ngModel)]="model.nomvilleM" #nom="ngModel"
+                                    <input type="text" value="{{typeAvionM}}" placeholder="" class="form-control" [(ngModel)]="model4.typeAvion" #nom="ngModel"
                                         required name="nom" />
                                 </div>
                             </div>
@@ -549,8 +652,111 @@
 
         <!--         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%             -->
 
+        <!-- Modal modifier ville -->
+        <div class="modal fade" id="myModal14" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Modifier Aeroport</h4>
+                    </div>
+                    <form #myForm2="ngForm" (ngSubmit)="modifierAero()">
+                        <div class="modal-body">
 
-        <!-- Modal supprimer aero-->
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" value="{{nomAero}}" placeholder="" class="form-control" [(ngModel)]="model6.nomAeroM" #nomAeroM="ngModel"
+                                        name="nom" />
+                                </div>
+                                <!--    <div *ngIf="nomM==model.nom" class="help-block">Rien n'a changé</div> -->
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Modifier</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
+
+       
+
+        <!-- Modal modifier station -->
+        <div class="modal fade" id="myModal15" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Modifier Station</h4>
+                    </div>
+                    <form #myForm2="ngForm" (ngSubmit)="modifierStation()">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" value="{{nomStation}}" placeholder="" class="form-control" [(ngModel)]="model7.nomStationM" #nomStationM="ngModel"
+                                        name="nom" />
+                                </div>
+                                <!--    <div *ngIf="nomM==model.nom" class="help-block">Rien n'a changé</div> -->
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Modifier</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
+
+
+        <!-- Modal modifier train -->
+        <div class="modal fade" id="myModal16" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Modifier Train</h4>
+                    </div>
+                    <form #myForm2="ngForm" (ngSubmit)="modifierTrain()">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" value="{{nomTrain}}" placeholder="" class="form-control" [(ngModel)]="model8.nomTrainM" #nomTrainM="ngModel"
+                                        name="nom" />
+                                </div>
+                                <!--    <div *ngIf="nomM==model.nom" class="help-block">Rien n'a changé</div> -->
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Modifier</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
+ <!-- Modal supprimer aero-->
         <div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -572,9 +778,6 @@
         </div>
 
         <!--                        -->
-
-
-
         <!-- Modal supprimer station-->
         <div class="modal fade" id="myModal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -597,7 +800,6 @@
         </div>
 
         <!--                        -->
-
 
         <!-- Modal supprimer avion-->
         <div class="modal fade" id="myModal9" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

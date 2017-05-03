@@ -1,4 +1,4 @@
 export class Aeroport {
     idAeroport: string;
-    nom: String;
+    nom: string;
 }

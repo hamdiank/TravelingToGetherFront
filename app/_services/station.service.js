@@ -24,17 +24,13 @@ var StationService = (function () {
         return this.http.delete(this.config.apiUrl + '/station/stationDel/' + _id, this.jwt());
     };
     StationService.prototype.update = function (station) {
-        return this.http.put(this.config.apiUrl + '/city/updateStation/' + station.idStation, station, this.jwt());
+        return this.http.put(this.config.apiUrl + '/station/updateStation/' + station.idStation, station, this.jwt());
     };
     StationService.prototype.jwt = function () {
         // create authorization header with jwt token
         var currentUser = JSON.parse(localStorage.getItem('currentToken'));
-        if (currentUser && currentUser.token) {
-            var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-            headers.append("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
-            headers.append("Access-Control-Allow-Origin", "*");
-            headers.append("Access-Control-Expose-Headers", "Authorization");
-            headers.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, ,Content-Type, Accept, Access-Control-Allow-Headers, Authorization");
+        if (currentUser) {
+            var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + currentUser });
             return new http_1.RequestOptions({ headers: headers });
         }
     };

@@ -2,7 +2,7 @@
 
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { User } from "../../_models/index";
-import { UserService, PagerService } from "../../_services/index";
+import { UserService } from "../../_services/index";
 import { FilterPipe } from '../parametrage/pipe'
 @Component({
     moduleId: module.id,
@@ -20,7 +20,7 @@ export class TableComponent implements OnInit {
     // paged items
     pagedItems: User[];
 
-    constructor(private  userService:  UserService, private pagerService:  PagerService) { 
+    constructor(private  userService:  UserService) { 
         this.serveId=new EventEmitter();
     }
 
@@ -32,7 +32,6 @@ export class TableComponent implements OnInit {
     this.userService.getAll().
     subscribe(users => { 
         this.users=users;
-        this.setPage(1);
         console.log(users) ;
     },
     error =>{
@@ -41,7 +40,6 @@ export class TableComponent implements OnInit {
     
     );
 
-   
 }
  modifier(user : User):void{
 
@@ -49,20 +47,19 @@ export class TableComponent implements OnInit {
     this.serveId.emit(user);
 }
 
-setPage(page: number) {
-      console.log()
-        if (page < 1 || page > this.pager.totalPages) {
-            return;
+filter(ev) {
+        var val = ev.target.value;
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.users = this.users.filter(
+                (result) => {
+                    return (result.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
+                });
+        } else {
+            this.ListUtilisateur();
         }
 
-        // get pager object from service
-        this.pager = this.pagerService.getPager(this.users.length, page);
-
-        // get current page of items
-        this.pagedItems = this.users.slice(this.pager.startIndex, this.pager.endIndex + 1);
-
-        console.log(this.pagedItems);
-}
+    }
 
 
 }

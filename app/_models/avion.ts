@@ -1,4 +1,4 @@
 export class Avion {
     id: number;
-    type: String;
+    type: string;
 }

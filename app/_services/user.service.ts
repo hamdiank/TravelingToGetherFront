@@ -45,12 +45,14 @@ export class UserService {
         let options = new RequestOptions({ headers: headers });
         return this.http.post(this.config.apiUrl + '/utilisateurs', body, options)
             .map((response: Response) => {
-                console.log("becem 1")
-                let x = JSON.parse(JSON.stringify(response));
-                console.log("becem 2");
 
-                let token = x._body;
-                console.log("becem 3");
+                console.log("bk 1")
+                 let x = JSON.parse(JSON.stringify(response));
+                console.log("bk 2");
+               
+              let token = x._body ;
+                console.log("bk 3");
+
 
                 if (token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -78,13 +80,9 @@ export class UserService {
     private jwt() {
         // create authorization header with jwt token
         let currentUser = JSON.parse(localStorage.getItem('currentToken'));
-        if (currentUser && currentUser.token) {
-            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-            headers.append("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
-            headers.append("Access-Control-Allow-Origin", "*");
-            headers.append("Access-Control-Expose-Headers", "Authorization");
-            headers.append("Access-Control-Allow-Headers",
-                "Origin, X-Requested-With, ,Content-Type, Accept, Access-Control-Allow-Headers, Authorization");
+        console.log(localStorage.getItem('currentToken'));
+        if (currentUser ) {
+            let headers = new Headers({ 'Authorization': 'Bearer ' + localStorage.getItem('currentToken') });
             return new RequestOptions({ headers: headers });
         }
     }

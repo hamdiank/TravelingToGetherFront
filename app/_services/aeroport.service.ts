@@ -22,7 +22,7 @@ delete(_id: string) {
 
 
 update(aeroport:Aeroport){
-        return this.http.put(this.config.apiUrl + '/city/updateAeroport/' + aeroport.idAeroport, aeroport, this.jwt());
+        return this.http.put(this.config.apiUrl + '/aeroport/updateAeroport/' + aeroport.idAeroport, aeroport, this.jwt());
 
 }
 
@@ -36,14 +36,9 @@ update(aeroport:Aeroport){
 private jwt() {
         // create authorization header with jwt token
         let currentUser = JSON.parse(localStorage.getItem('currentToken'));
-        if (currentUser && currentUser.token) {
-            console.log("fdqqqqqqqq: "+currentUser.token);
-            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-            headers.append("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
-		headers.append("Access-Control-Allow-Origin", "*");
-		headers.append("Access-Control-Expose-Headers" ,"Authorization");
-        headers.append("Access-Control-Allow-Headers",
-				"Origin, X-Requested-With, ,Content-Type, Accept, Access-Control-Allow-Headers, Authorization" );
+        if (currentUser ) {
+          
+            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser});
             return new RequestOptions({ headers: headers });
         }
     }

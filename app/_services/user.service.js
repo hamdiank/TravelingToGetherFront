@@ -43,11 +43,11 @@ var UserService = (function () {
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http.post(this.config.apiUrl + '/utilisateurs', body, options)
             .map(function (response) {
-            console.log("becem 1");
+            console.log("bk 1");
             var x = JSON.parse(JSON.stringify(response));
-            console.log("becem 2");
+            console.log("bk 2");
             var token = x._body;
-            console.log("becem 3");
+            console.log("bk 3");
             if (token) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(token));
@@ -64,12 +64,9 @@ var UserService = (function () {
     UserService.prototype.jwt = function () {
         // create authorization header with jwt token
         var currentUser = JSON.parse(localStorage.getItem('currentToken'));
-        if (currentUser && currentUser.token) {
-            var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-            headers.append("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
-            headers.append("Access-Control-Allow-Origin", "*");
-            headers.append("Access-Control-Expose-Headers", "Authorization");
-            headers.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, ,Content-Type, Accept, Access-Control-Allow-Headers, Authorization");
+        console.log(localStorage.getItem('currentToken'));
+        if (currentUser) {
+            var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + localStorage.getItem('currentToken') });
             return new http_1.RequestOptions({ headers: headers });
         }
     };

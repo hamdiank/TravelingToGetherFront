@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PaysService, PagerService, CityService, AlertService } from "../../_services/index";
+import { PaysService, CityService, AlertService } from "../../_services/index";
 import { Pays, Station } from "../../_models/index";
 import * as _ from 'underscore';
 
@@ -33,8 +33,9 @@ export class ParametrageComponent implements OnInit {
     ajoute: boolean = false;
     pays: Pays[];
     city: City[];
+    avions: Avion[];
     aero: Aeroport[];
-    station: Station[]
+    stations: Station[]
     trains: Train[];
     idM: string;
     paysM: Pays;
@@ -44,24 +45,29 @@ export class ParametrageComponent implements OnInit {
     avionM: Avion;
     trainM: Train;
     nomM: string;
+    typeAvionM: string;
+    nomVille: string;
+    nomAero: string;
+    nomStation: string;
+    nomTrain:string;
     model: any = {};
     model2: any = {};
     model3: any = {};
     model4: any = {};
-    avions: Avion[];
-    returnArray = [];
+    model5: any = {};
+    model6: any = {};
+    model7: any = {};
+    model8: any = {};
+    model9: any = {};
+    model10: any = {};
     avion: Avion;
     // pager object
-    pager: any = {};
-
-    // paged items
-    pagedItems: Pays[];
-    pagedItemsCity: City[];
-    pagedItemsAero: Aeroport[];
-    pagedItemsStation: Station[];
 
 
-    constructor(private paysService: PaysService, private pagerService: PagerService, private avionService: AvionService, private cityService: CityService, private aeroportService: AeroportService, private stationService: StationService, private trainService: TrainService, private alertService: AlertService) {
+
+
+
+    constructor(private paysService: PaysService, private avionService: AvionService, private cityService: CityService, private aeroportService: AeroportService, private stationService: StationService, private trainService: TrainService, private alertService: AlertService) {
 
     }
 
@@ -84,12 +90,13 @@ export class ParametrageComponent implements OnInit {
     //////////////////////////////////////////////////////////////////////////////////////////////
 
     ListPays() {
+
         this.paysService.getAll().
             subscribe(pays => {
 
                 this.pays = pays;
                 // initialize to page 1
-                this.setPage(1);
+
 
 
                 this.loading = false;
@@ -110,13 +117,14 @@ export class ParametrageComponent implements OnInit {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    addPays() {
+    ajoutPays() {
         console.log(this.model2.nomPays);
         this.paysService.add(this.model2.nomPays).subscribe(result => {
 
             this.ListPays();
 
         });
+        this.model2.nomPays = "";
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////
@@ -143,7 +151,9 @@ export class ParametrageComponent implements OnInit {
             this.ListStation();
             this.ajoute = false;
         });
-
+        this.model3.ville = "";
+        this.model3.aeroport = "";
+        this.model3.station = "";
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -182,20 +192,14 @@ export class ParametrageComponent implements OnInit {
 
     }
 
-    ////////////////////////////////////////////////////////////////
 
-
-
-
-
-    /*---------------------------------------------------------------------------------*/
 
     getCity(city: City) {
 
 
         this.cityM = city;
-
-
+        this.nomVille = this.cityM.nom;
+        console.log(this.nomVille);
     }
     ListCity() {
         this.cityService.getAll().
@@ -204,7 +208,7 @@ export class ParametrageComponent implements OnInit {
                 this.city = city;
                 // initialize to page 1
                 // console.log(this.city);
-                this.setPageCity(1);
+
                 this.loading = false;
                 console.log("loading off");
 
@@ -227,8 +231,16 @@ export class ParametrageComponent implements OnInit {
         this.cityService.delete(this.cityM.idCity).subscribe(resultat => {
             this.ListCity();
         });
+    }
 
+    modifierVille() {
+        console.log(this.model5.nomVilleM);
+        this.cityM.nom = this.model5.nomVilleM;
+        this.cityService.update(this.cityM).subscribe(result => {
 
+            // this.ListPays();
+
+        });
     }
 
     getPaysById(id: string) {
@@ -250,72 +262,17 @@ export class ParametrageComponent implements OnInit {
         });
 
     }
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    setPage(page: number) {
-        console.log()
-        if (page < 1 || page > this.pager.totalPages) {
-            return;
-        }
 
-        // get pager object from service
-        this.pager = this.pagerService.getPager(this.pays.length, page);
-
-        // get current page of items
-        this.pagedItems = this.pays.slice(this.pager.startIndex, this.pager.endIndex + 1);
-
-    }
-
-    setPageCity(page: number) {
-        console.log()
-        if (page < 1 || page > this.pager.totalPages) {
-            return;
-        }
-
-        // get pager object from service
-
-        this.pager = this.pagerService.getPager(this.city.length, page);
-
-        // get current page of items
-        this.pagedItemsCity = this.city.slice(this.pager.startIndex, this.pager.endIndex + 1);
-
-    }
-
-    setPageAero(page: number) {
-        console.log()
-        if (page < 1 || page > this.pager.totalPages) {
-            return;
-        }
-
-        // get pager object from service
-
-        this.pager = this.pagerService.getPager(this.aero.length, page);
-
-        // get current page of items
-        this.pagedItemsAero = this.aero.slice(this.pager.startIndex, this.pager.endIndex + 1);
-
-    }
-
-    setPageStation(page: number) {
-        console.log()
-        if (page < 1 || page > this.pager.totalPages) {
-            return;
-        }
-
-        // get pager object from service
-
-        this.pager = this.pagerService.getPager(this.station.length, page);
-
-        // get current page of items
-        this.pagedItemsStation = this.station.slice(this.pager.startIndex, this.pager.endIndex + 1);
-
-    }
     /*---------------------------------------------------------------------------------*/
 
     getAero(aero: Aeroport) {
 
         this.aeroM = aero;
         console.log("dqssssssssss:zs " + JSON.stringify(this.aero));
+
+        this.nomAero = this.aeroM.nom;
+        console.log(this.nomAero);
     }
 
     ListAero() {
@@ -327,7 +284,7 @@ export class ParametrageComponent implements OnInit {
                 console.log("dqssssssssss: " + JSON.stringify(this.aero));
                 // initialize to page 1
                 // console.log(this.city);
-                this.setPageAero(1)
+
                 this.loading = false;
                 console.log("loading off");
 
@@ -355,6 +312,15 @@ export class ParametrageComponent implements OnInit {
 
 
     }
+    modifierAero() {
+        console.log(this.model6.nomAeroM);
+        this.aeroM.nom = this.model6.nomAeroM;
+        this.aeroportService.update(this.aeroM).subscribe(result => {
+
+            // this.ListPays();
+
+        });
+    }
 
     /*---------------------------------------------------------------------------------*/
 
@@ -362,6 +328,8 @@ export class ParametrageComponent implements OnInit {
 
         this.stationM = station;
         console.log("dqssssssssss:zs " + JSON.stringify(this.stationM));
+        this.nomStation = this.stationM.nom;
+        console.log(this.nomStation);
     }
 
 
@@ -370,12 +338,12 @@ export class ParametrageComponent implements OnInit {
 
         this.stationService.getAll().
             subscribe(station => {
-
-                this.station = station;
+                console.log(JSON.stringify(station));
+                this.stations = station;
 
                 // initialize to page 1
 
-                this.setPageStation(1)
+
                 this.loading = false;
                 console.log("loading off");
 
@@ -403,12 +371,21 @@ export class ParametrageComponent implements OnInit {
 
     }
 
+    modifierStation() {
+        console.log(this.model7.nomStationM);
+        this.stationM.nom = this.model7.nomStationM;
+        this.stationService.update(this.stationM).subscribe(result => {
 
+            // this.ListPays();
+
+        });
+    }
 
     /*---------------------------------------------------------------------------------*/
     getAvion(avion: Avion) {
 
         this.avionM = avion;
+        this.typeAvionM = this.avionM.type;
         console.log("df  " + JSON.stringify(this.avionM));
     }
 
@@ -425,17 +402,32 @@ export class ParametrageComponent implements OnInit {
     //    console.log(typeof(this.avions));
 
     modifierAvion() {
+        this.avionM.type = this.model4.typeAvion;
+        this.avionService.update(this.avionM).subscribe(resultat => {
+            this.ListAvions();
+        });
 
     }
+ajoutAvion(){
 
-    ajoutAvion() {
+
+console.log(this.model10.nomA);
+        this.avionService.add(this.model10.nomA).subscribe(result => {
+
+            this.ListAvions();
+
+        });
+        this.model10.nomA = "";
+
+}
+   /* ajoutAvion() {
         this.avion.type = this.model4.typeAvion;
         console.log(this.avion.type);
-        /*this.avionService.add(this.avion).subscribe(result=>{
+        this.avionService.add(this.avion).subscribe(result=>{
         this.ListAvions();
-        });*/
+        });
 
-    }
+}*/
 
     supprimerAvion() {
 
@@ -456,10 +448,22 @@ export class ParametrageComponent implements OnInit {
     getTrain(train: Train) {
 
         this.trainM = train;
+        this.nomTrain = this.trainM.type;
         console.log("df  " + JSON.stringify(this.trainM));
     }
 
+ajoutTrain(){
 
+
+console.log(this.model9.nomV);
+        this.trainService.add(this.model9.nomV).subscribe(result => {
+
+            this.ListTrain();
+
+        });
+        this.model9.nomV = "";
+
+}
 
     ListTrain() {
         this.trainService.getAll().subscribe(trains => {
@@ -481,6 +485,103 @@ export class ParametrageComponent implements OnInit {
 
 
     }
+modifierTrain() {
+        console.log(this.model8.nomTrainM);
+        this.trainM.type = this.model8.nomTrainM;
+        this.trainService.update(this.trainM).subscribe(result => {
+
+            // this.ListPays();
+
+        });
+    }
+
+
+    ////////////////////////////////////////////////////////////////
+
+
+
+    filterPays(ev) {
+        var val = ev.target.value;
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.pays = this.pays.filter(
+                (result) => {
+                    return (result.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
+                });
+        } else {
+            this.ListPays();
+        }
+
+    }
+
+    filterVille(ev) {
+        var val = ev.target.value;
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.city = this.city.filter(
+                (result) => {
+                    return (result.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
+                });
+        } else {
+            this.ListCity();
+        }
+
+    }
+
+    filterAero(ev) {
+        var val = ev.target.value;
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.aero = this.aero.filter(
+                (result) => {
+                    return (result.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
+                });
+        } else {
+            this.ListAero();
+        }
+
+    }
+    filterStation(ev) {
+        var val = ev.target.value;
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.stations = this.stations.filter(
+                (result) => {
+                    return (result.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
+                });
+        } else {
+            this.ListStation();
+        }
+
+    }
+    filterTrain(ev) {
+        var val = ev.target.value;
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.trains = this.trains.filter(
+                (result) => {
+                    return (result.type.toLowerCase().indexOf(val.toLowerCase()) > -1);
+                });
+        } else {
+            this.ListTrain();
+        }
+
+    }
+
+    filterAvion(ev) {
+        var val = ev.target.value;
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.avions = this.avions.filter(
+                (result) => {
+                    return (result.type.toLowerCase().indexOf(val.toLowerCase()) > -1);
+                });
+        } else {
+            this.ListAvions();
+        }
+
+    }
+    /*---------------------------------------------------------------------------------*/
 
 
 }
