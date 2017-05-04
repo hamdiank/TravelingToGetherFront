@@ -1,12 +1,9 @@
-# [PFE 2017](https://www.creative-tim.com/product/material-dashboard-angular2)
+# [PFE 2017 : Hamdi Ankoud - Becem Kannou](https://github.com/hamdiank)
 
 ![alt text](http://media.mnn.com/assets/images/2014/02/auto%20plane%20train.jpg " Traveling Together")
 
 **[Material Dashboard Angular2](https://www.creative-tim.com/product/material-dashboard-angular2/)** is a free Material Bootstrap Admin with a fresh, new design inspired by Google's Material Design. We are very excited to introduce our take on the material concepts through an easy to use and beautiful set of components. Material Dashboard was built over the popular Bootstrap framework and it comes with a couple of third-party plugins redesigned to fit in with the rest of the elements.
 
-
-
-[Hamdi Ankoud - Becem Kannou](https://github.com/hamdiank),  
 
 
 You can find the Github Repo here.
@@ -134,20 +131,6 @@ material-dashboard-angular
 └── tsconfig.json
 
 ```
-### Version logs
-
-V1.0.0 - 30 Jan 2017 [initial Release]
-
-V1.1.0 - small fix
-
-V1.1.1 - 21 March (V1.1.0 from Material Dashboard HTML)
-- added "@types/core-js": "0.9.35" in package
-
-V1.2.0 - 05 Apr (V1.1.0 from Material Dashboard HTML)
-- added Upgrade to PRO page
-- update package
-- made sidebar dynamic
-
 
 ## Useful Links
 
