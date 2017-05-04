@@ -44,6 +44,13 @@ var MesAnnoncesCovoiComponent = (function () {
             _this.router.navigate(['dashboardutil/MesAnnoncesCovoi']);
         });
     };
+    MesAnnoncesCovoiComponent.prototype.supprimerAnnonceCovoi = function () {
+        var _this = this;
+        this.annonceCovoiService.supprimerAnnonceCovoi(this.model.id)
+            .subscribe(function (data) {
+            _this.router.navigate(['dashboardutil/MesAnnoncesCovoi']);
+        });
+    };
     MesAnnoncesCovoiComponent.prototype.ngOnInit = function () {
         var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
         this.id = currentUserId;

@@ -48,7 +48,10 @@
                                         <div class="col-sm-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Date de Départ</label>
-                                                <input type="email" class="form-control" name="dateDepart"  [(ngModel)]="model.dateDepart" #dateDepart="ngModel" required>
+                                                <!-- markup -->
+                                                <input type="email" class="form-control" name="dateDepart"  [(ngModel)]="model.dateDepart" #dateDepart="ngModel" required >
+
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -161,8 +164,26 @@
                         </span>
                     </li> 
                 </ul>
+
+
     </div>
 </div>
 </div>
+</div>
+<div class="container">
+    <div class="row">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+     
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+    </div>
 </div>
 
