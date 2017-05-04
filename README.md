@@ -1,6 +1,6 @@
 # [PFE 2017](https://www.creative-tim.com/product/material-dashboard-angular2)
 
-![alt text](http://s3.amazonaws.com/creativetim_bucket/products/53/original/opt_md_angular_thumbnail.jpg "Material Dashboard Angular 2 Free")
+![alt text](http://media.mnn.com/assets/images/2014/02/auto%20plane%20train.jpg " Traveling Together")
 
 **[Material Dashboard Angular2](https://www.creative-tim.com/product/material-dashboard-angular2/)** is a free Material Bootstrap Admin with a fresh, new design inspired by Google's Material Design. We are very excited to introduce our take on the material concepts through an easy to use and beautiful set of components. Material Dashboard was built over the popular Bootstrap framework and it comes with a couple of third-party plugins redesigned to fit in with the rest of the elements.
 
