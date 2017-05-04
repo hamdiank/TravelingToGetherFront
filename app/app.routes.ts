@@ -18,7 +18,7 @@ import { ProfilComponent } from "./dashboardutil/profil/profil.component";
 import { AccueilComponent } from "./dashboardutil/accueil/accueil.component";
 import { MesAnnoncesCovoiComponent } from "./dashboardutil/profil/mesAnnoncesCovoi.component";
 export const MODULE_ROUTES: Route[] =[
-     { path: 'chat', component: App2Component },
+     { path: 'chat', component: App2Component ,canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: InscriptionComponent },
 
@@ -27,7 +27,7 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'Statistiques', component: StatistiqueComponent },
     { path: 'parametrage', component: ParametrageComponent },
     { path: 'GestionUtil', component: GestionUtilComponent },
-    ],canActivate: [AuthGuard] },
+    ],canActivate: [AuthGuard] ,data: { roles: ['USER'] }},
 // path for userDashboard
     { path: 'dashboardutil' ,component: DashboardUtilComponent ,children: [
     { path: 'Accueil', component: AccueilComponent },
@@ -35,8 +35,8 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'MonProfil', component: ProfilComponent },
     { path: 'MesAnnoncesCovoi', component: MesAnnoncesCovoiComponent },
     
-    ],canActivate: [AuthGuard] },
-     { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuard]}
+    ],canActivate: [AuthGuard],data: { roles: ['USER'] }  },
+   { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['USER'] }}
  //   { path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard]}
     
 ]

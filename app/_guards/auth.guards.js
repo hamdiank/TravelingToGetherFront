@@ -16,8 +16,10 @@ var AuthGuard = (function () {
     }
     AuthGuard.prototype.canActivate = function (route, state) {
         if (localStorage.getItem('currentToken')) {
-            // logged in so return true
-            return true;
+            var roles = route.data["roles"];
+            console.log(roles);
+            console.log(localStorage.getItem('currentUserRole'));
+            return (roles == null || roles.indexOf(localStorage.getItem('currentUserRole')) != -1);
         }
         // not logged in so redirect to login page with the return url
         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
