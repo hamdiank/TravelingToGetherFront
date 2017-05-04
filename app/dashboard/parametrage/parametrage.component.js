@@ -15,7 +15,6 @@ var aeroport_service_1 = require("../../_services/aeroport.service");
 var station_service_1 = require("../../_services/station.service");
 var train_service_1 = require("../../_services/train.service");
 var ParametrageComponent = (function () {
-    // pager object
     function ParametrageComponent(paysService, avionService, cityService, aeroportService, stationService, trainService, alertService) {
         this.paysService = paysService;
         this.avionService = avionService;
@@ -139,8 +138,6 @@ var ParametrageComponent = (function () {
             _this.city = city;
             // initialize to page 1
             // console.log(this.city);
-            _this.loading = false;
-            console.log("loading off");
         }, function (error) {
             if (error)
                 _this.alertService.error("error");
@@ -190,8 +187,6 @@ var ParametrageComponent = (function () {
             console.log("dqssssssssss: " + JSON.stringify(_this.aero));
             // initialize to page 1
             // console.log(this.city);
-            _this.loading = false;
-            console.log("loading off");
         }, function (error) {
             if (error)
                 _this.alertService.error("error");
@@ -227,8 +222,6 @@ var ParametrageComponent = (function () {
             console.log(JSON.stringify(station));
             _this.stations = station;
             // initialize to page 1
-            _this.loading = false;
-            console.log("loading off");
         }, function (error) {
             if (error)
                 _this.alertService.error("error");

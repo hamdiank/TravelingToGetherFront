@@ -37,7 +37,7 @@ export const MODULE_ROUTES: Route[] =[
     
     ],canActivate: [AuthGuard] },
      { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuard]}
-   // { path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard]}
+ //   { path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard]}
     
 ]
 

@@ -21,6 +21,8 @@ const tWait: Thread    = new Thread('tWait', wait.name, wait.avatarSrc);
 
 const initialMessages: Array<Message> = [
 
+// here , create messages that will be in the thread  
+
   new Message({
     author: wait,
     sentAt: moment().subtract(4, 'minutes').toDate(),

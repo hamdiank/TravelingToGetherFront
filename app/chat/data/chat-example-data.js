@@ -15,6 +15,7 @@ var wait = new user_model_1.User('Waiting Bot', 'assets/images/avatars/male-avat
 //const tRev: Thread     = new Thread('tRev', rev.name, rev.avatarSrc);
 var tWait = new thread_model_1.Thread('tWait', wait.name, wait.avatarSrc);
 var initialMessages = [
+    // here , create messages that will be in the thread  
     new message_model_1.Message({
         author: wait,
         sentAt: moment().subtract(4, 'minutes').toDate(),

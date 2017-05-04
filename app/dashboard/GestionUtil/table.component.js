@@ -13,7 +13,6 @@ var index_1 = require("../../_services/index");
 var TableComponent = (function () {
     function TableComponent(userService) {
         this.userService = userService;
-        this.pager = {};
         this.serveId = new core_1.EventEmitter();
     }
     TableComponent.prototype.ngOnInit = function () {

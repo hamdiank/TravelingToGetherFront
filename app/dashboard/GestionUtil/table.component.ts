@@ -15,7 +15,6 @@ export class TableComponent implements OnInit {
     serveId: EventEmitter<User>;
     users: User[];
     user:User;
-    pager: any = {};
 
     // paged items
     pagedItems: User[];

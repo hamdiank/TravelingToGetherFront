@@ -61,7 +61,7 @@ export class ParametrageComponent implements OnInit {
     model9: any = {};
     model10: any = {};
     avion: Avion;
-    // pager object
+    
 
 
 
@@ -209,9 +209,6 @@ export class ParametrageComponent implements OnInit {
                 // initialize to page 1
                 // console.log(this.city);
 
-                this.loading = false;
-                console.log("loading off");
-
 
             },
             error => {
@@ -285,8 +282,7 @@ export class ParametrageComponent implements OnInit {
                 // initialize to page 1
                 // console.log(this.city);
 
-                this.loading = false;
-                console.log("loading off");
+               
 
 
             },
@@ -344,8 +340,7 @@ export class ParametrageComponent implements OnInit {
                 // initialize to page 1
 
 
-                this.loading = false;
-                console.log("loading off");
+               
 
 
             },
