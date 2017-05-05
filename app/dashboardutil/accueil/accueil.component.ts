@@ -11,12 +11,6 @@ declare var $:any;
 
 export class AccueilComponent implements OnInit{
     ngOnInit(){
-        // $('[data-toggle="checkbox"]').each(function () {
-        //     if($(this).data('toggle') == 'switch') return;
-        //
-        //     var $checkbox = $(this);
-        //     $checkbox.checkbox();
-        // });
-        initDemo();
+
     }
 }

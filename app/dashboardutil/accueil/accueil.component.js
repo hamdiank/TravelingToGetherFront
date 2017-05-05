@@ -9,18 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var initDemo = require('../../../assets/js/charts.js');
 var AccueilComponent = (function () {
     function AccueilComponent() {
     }
     AccueilComponent.prototype.ngOnInit = function () {
-        // $('[data-toggle="checkbox"]').each(function () {
-        //     if($(this).data('toggle') == 'switch') return;
-        //
-        //     var $checkbox = $(this);
-        //     $checkbox.checkbox();
-        // });
-        initDemo();
     };
     AccueilComponent = __decorate([
         core_1.Component({
