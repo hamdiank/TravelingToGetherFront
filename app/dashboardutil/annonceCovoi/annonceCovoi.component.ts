@@ -1,5 +1,4 @@
 import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
-import initDemo = require('../../../assets/js/charts.js');
 import { AnnonceCovoiService } from "../../_services/annonceCovoi.service";
 import { AnnonceCovoi } from "../../_models/annonceCovoi";
 import { Router } from "@angular/router";

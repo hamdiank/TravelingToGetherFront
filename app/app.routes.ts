@@ -8,7 +8,7 @@ import { StatistiqueComponent } from './dashboard/stat/statistique.component';
 import { ParametrageComponent } from './dashboard/parametrage/parametrage.component';
 
 import { GestionUtilComponent } from './dashboard/GestionUtil/gestionUtil.component';
-import { AuthGuard } from "./_guards/index";
+import { AuthGuard, AuthGuardAdmin } from "./_guards/index";
 import { App2Component } from "./chat/app2.component";
 
 import { InscriptionComponent } from "./inscription/inscription.component";
@@ -27,7 +27,7 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'Statistiques', component: StatistiqueComponent },
     { path: 'parametrage', component: ParametrageComponent },
     { path: 'GestionUtil', component: GestionUtilComponent },
-    ],canActivate: [AuthGuard] ,data: { roles: ['USER'] }},
+    ],canActivate: [AuthGuardAdmin] ,data: { roles: ['ADMIN'] }},
 // path for userDashboard
     { path: 'dashboardutil' ,component: DashboardUtilComponent ,children: [
     { path: 'Accueil', component: AccueilComponent },
@@ -36,8 +36,8 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'MesAnnoncesCovoi', component: MesAnnoncesCovoiComponent },
     
     ],canActivate: [AuthGuard],data: { roles: ['USER'] }  },
-   { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['USER'] }}
- //   { path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard]}
+  // { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['ADMIN'] }},
+  { path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuardAdmin],data: { roles: ['USER'] }}
     
 ]
 

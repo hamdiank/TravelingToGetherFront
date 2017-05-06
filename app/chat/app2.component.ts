@@ -4,6 +4,7 @@ import { ChatExampleData } from './data/chat-example-data';
 import { UsersService } from './user/users.service';
 import { ThreadsService } from './thread/threads.service';
 import { MessagesService } from './message/messages.service';
+import { DataService } from "./data/data.service";
 
 @Component({
   moduleId: module.id,
@@ -14,7 +15,8 @@ import { MessagesService } from './message/messages.service';
 export class App2Component {
     constructor(public messagesService: MessagesService,
               public threadsService: ThreadsService,
-              public usersService: UsersService) {
-    ChatExampleData.init(messagesService, threadsService, usersService);
+              public usersService: UsersService,public dataService:DataService) {
+    ChatExampleData.init(messagesService, threadsService, usersService,dataService);
+ 
   }
 }

@@ -14,7 +14,7 @@ import { Message } from '../message/message.model';
 import { MessagesService } from '../message/messages.service';
 
 @Component({
-   moduleId: module.id,
+  moduleId: module.id,
   selector: 'chat-window',
   templateUrl: 'chat-window.component.html',
   styleUrls: ['./chat-window.component.css']
@@ -26,14 +26,13 @@ export class ChatWindowComponent implements OnInit {
   currentUser: User;
 
   constructor(public messagesService: MessagesService,
-              public threadsService: ThreadsService,
-              public UsersService: UsersService,
-              public el: ElementRef) {
+    public threadsService: ThreadsService,
+    public UsersService: UsersService,
+    public el: ElementRef) {
   }
 
   ngOnInit(): void {
     this.messages = this.threadsService.currentThreadMessages;
-
     this.draftMessage = new Message();
 
     this.threadsService.currentThread.subscribe(
@@ -43,17 +42,18 @@ export class ChatWindowComponent implements OnInit {
 
     this.UsersService.currentUser
       .subscribe(
-        (user: User) => {
-          this.currentUser = user;
-        });
+      (user: User) => {
+        this.currentUser = user;
+      });
 
     this.messages
       .subscribe(
-        (messages: Array<Message>) => {
-          setTimeout(() => {
-            this.scrollToBottom();
-          });
+      (messages: Array<Message>) => {
+        
+        setTimeout(() => {
+          this.scrollToBottom();
         });
+      });
   }
 
   onEnter(event: any): void {
@@ -62,15 +62,14 @@ export class ChatWindowComponent implements OnInit {
   }
 
   sendMessage(): void {
-    console.log("draft1  "+this.draftMessage.author);
+    
     const m: Message = this.draftMessage;
     m.author = this.currentUser;
     m.thread = this.currentThread;
     m.isRead = true;
-    console.log(m.author);
     this.messagesService.addMessage(m);
     this.draftMessage = new Message();
-    console.log("draft 1:  "+this.draftMessage);
+    console.log("draft 1:  " + JSON.stringify(this.draftMessage));
   }
 
   scrollToBottom(): void {

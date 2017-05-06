@@ -32,8 +32,12 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(
                 data => {
+                    console.log("dataaa :"+localStorage.getItem('currentUserRole'));
+                    if(localStorage.getItem('currentUserRole')=='ADMIN')
                    this.router.navigate([this.returnUrl]);
-                    console.log(this.returnUrl);
+                   else{
+                    this.router.navigate([this.returnUrl]);
+                    console.log(this.returnUrl); }
                 },
                 error => {
                     if(error)

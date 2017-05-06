@@ -55,6 +55,7 @@ var profil_component_1 = require("./dashboardutil/profil/profil.component");
 var navbarutil_module_1 = require("./shared/navbarutil/navbarutil.module");
 var mesAnnoncesCovoi_component_1 = require("./dashboardutil/profil/mesAnnoncesCovoi.component");
 var ng2_pagination_1 = require('ng2-pagination');
+var data_service_1 = require("./chat/data/data.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -87,9 +88,9 @@ var AppModule = (function () {
             bootstrap: [app_component_1.AppComponent],
             exports: [],
             providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }, app_config_1.AppConfig,
-                index_1.AuthGuard,
+                index_1.AuthGuard, index_1.AuthGuardAdmin,
                 index_2.AlertService,
-                index_2.AuthenticationService, valuesPipe_1.ValuesPipe,
+                index_2.AuthenticationService, valuesPipe_1.ValuesPipe, data_service_1.DataService,
                 index_2.UserService, index_2.PaysService, avion_service_1.AvionService, index_2.CityService, aeroport_service_1.AeroportService, station_service_1.StationService, train_service_1.TrainService, angular2_jwt_1.JwtHelper,
                 messages_service_1.MessagesService, threads_service_1.ThreadsService, users_service_1.UsersService, annonceCovoi_service_1.AnnonceCovoiService],
         }), 
