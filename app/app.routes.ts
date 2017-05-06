@@ -18,7 +18,7 @@ import { ProfilComponent } from "./dashboardutil/profil/profil.component";
 import { AccueilComponent } from "./dashboardutil/accueil/accueil.component";
 import { MesAnnoncesCovoiComponent } from "./dashboardutil/profil/mesAnnoncesCovoi.component";
 export const MODULE_ROUTES: Route[] =[
-     { path: 'chat', component: App2Component ,canActivate: [AuthGuard] },
+    { path: 'chat', component: App2Component ,canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: InscriptionComponent },
 
@@ -36,7 +36,10 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'MesAnnoncesCovoi', component: MesAnnoncesCovoiComponent },
     
     ],canActivate: [AuthGuard],data: { roles: ['USER'] }  },
-   { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['USER'] }}
+  // { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['USER'] }}
+   { path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['USER'] }}
+
+   
  //   { path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard]}
     
 ]

@@ -3125,7 +3125,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
     color: inherit;
   }
   .navbar .navbar-nav .open .dropdown-menu > li > a:hover, .navbar .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: inherit;
+    color: gray;
     background-color: transparent;
   }
   .navbar .navbar-nav .open .dropdown-menu > .active > a, .navbar .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar .navbar-nav .open .dropdown-menu > .active > a:focus {
@@ -5457,7 +5457,7 @@ footer .btn {
     left: auto;
     z-index: 1032;
     visibility: visible;
-    background-color: #999;
+    background-color: white;
     overflow-y: visible;
     border-top: none;
     text-align: left;
@@ -5481,7 +5481,7 @@ footer .btn {
     width: 100%;
   }
   .bootstrap-navbar a {
-    color: #fff;
+    color: red;
   }
   .bootstrap-navbar .nav p {
     margin: 0;
@@ -5493,7 +5493,7 @@ footer .btn {
     color: #fff;
   }
   .bootstrap-navbar .nav li > a {
-    color: #FFFFFF;
+    color: red;
     margin: 5px 15px;
     opacity: .86;
     border-radius: 4px;
