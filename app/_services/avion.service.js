@@ -26,21 +26,21 @@ var AvionService = (function () {
     };
     AvionService.prototype.delete = function (id) {
         console.log("i am in AvionService" + id);
-        return this.http.delete(this.config.apiUrl + '/avions/' + id, this.jwt()).map(function (response) { return response.json(); });
+        return this.http.delete(this.config.apiUrl + '/avions/' + id, this.jwt());
     };
-    AvionService.prototype.add = function (avion) {
-        return this.http.post(this.config.apiUrl + '/avions/', avion, this.jwt());
+    AvionService.prototype.add = function (nom) {
+        console.log(nom);
+        return this.http.post(this.config.apiUrl + '/avions/' + nom, this.jwt());
+    };
+    AvionService.prototype.update = function (avion) {
+        return this.http.put(this.config.apiUrl + '/avions/' + avion.id, avion, this.jwt());
     };
     // private helper methods
     AvionService.prototype.jwt = function () {
-        // create authorization header with jwt token
-        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (currentUser && currentUser.token) {
-            var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-            headers.append("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
-            headers.append("Access-Control-Allow-Origin", "*");
-            headers.append("Access-Control-Expose-Headers", "Authorization");
-            headers.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, ,Content-Type, Accept, Access-Control-Allow-Headers, Authorization");
+        // create a uthorization header with jwt token
+        var currentUser = JSON.parse(localStorage.getItem('currentToken'));
+        if (currentUser) {
+            var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + currentUser });
             return new http_1.RequestOptions({ headers: headers });
         }
     };

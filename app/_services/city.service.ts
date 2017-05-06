@@ -10,13 +10,13 @@ export class CityService {
     constructor(private http: Http, private config: AppConfig) { }
 
 getAll() {
-    console.log("start api/user eehdf ......")
+    console.log("start api/city ......")
         return this.http.get(this.config.apiUrl +'/city/all', this.jwt()).map((response: Response) => response.json());
     }
 
 delete(_id: string) {
 
-        return this.http.delete(this.config.apiUrl + '/city/delCity/' + _id, this.jwt());
+        return this.http.delete(this.config.apiUrl + '/city/citydel/' + _id, this.jwt());
     }
 
 
@@ -34,14 +34,9 @@ update(city:City){
 
 private jwt() {
         // create authorization header with jwt token
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (currentUser && currentUser.token) {
-            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-            headers.append("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
-		headers.append("Access-Control-Allow-Origin", "*");
-		headers.append("Access-Control-Expose-Headers" ,"Authorization");
-        headers.append("Access-Control-Allow-Headers",
-				"Origin, X-Requested-With, ,Content-Type, Accept, Access-Control-Allow-Headers, Authorization" );
+        let currentUser = JSON.parse(localStorage.getItem('currentToken'));
+        if (currentUser) {
+            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser});
             return new RequestOptions({ headers: headers });
         }
     }

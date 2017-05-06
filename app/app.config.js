@@ -1,7 +1,7 @@
 "use strict";
 var AppConfig = (function () {
     function AppConfig() {
-        this.apiUrl = 'http://localhost:8088';
+        this.apiUrl = 'http://localhost:8080';
     }
     return AppConfig;
 }());

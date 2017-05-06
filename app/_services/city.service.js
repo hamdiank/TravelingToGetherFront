@@ -17,24 +17,20 @@ var CityService = (function () {
         this.config = config;
     }
     CityService.prototype.getAll = function () {
-        console.log("start api/user eehdf ......");
+        console.log("start api/city ......");
         return this.http.get(this.config.apiUrl + '/city/all', this.jwt()).map(function (response) { return response.json(); });
     };
     CityService.prototype.delete = function (_id) {
-        return this.http.delete(this.config.apiUrl + '/city/delCity/' + _id, this.jwt());
+        return this.http.delete(this.config.apiUrl + '/city/citydel/' + _id, this.jwt());
     };
     CityService.prototype.update = function (city) {
         return this.http.put(this.config.apiUrl + '/city/updateCity/' + city.idCity, city, this.jwt());
     };
     CityService.prototype.jwt = function () {
         // create authorization header with jwt token
-        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (currentUser && currentUser.token) {
-            var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-            headers.append("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
-            headers.append("Access-Control-Allow-Origin", "*");
-            headers.append("Access-Control-Expose-Headers", "Authorization");
-            headers.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, ,Content-Type, Accept, Access-Control-Allow-Headers, Authorization");
+        var currentUser = JSON.parse(localStorage.getItem('currentToken'));
+        if (currentUser) {
+            var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + currentUser });
             return new http_1.RequestOptions({ headers: headers });
         }
     };

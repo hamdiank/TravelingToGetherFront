@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {LocationStrategy, PlatformLocation, Location} from '@angular/common';
+import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 
-declare var $:any;
+declare var $: any;
 
 @Component({
     selector: 'dashboard-cmp',
@@ -9,12 +9,12 @@ declare var $:any;
     templateUrl: 'dashboard.component.html'
 })
 
-export class DashboardComponent implements OnInit{
+export class DashboardComponent implements OnInit {
     location: Location;
-    constructor(location:Location) {
+    constructor(location: Location) {
         this.location = location;
     }
-    ngOnInit(){
+    ngOnInit() {
         $.getScript('../assets/js/material-dashboard.js');
         $.getScript('../assets/js/initMenu.js');
     }

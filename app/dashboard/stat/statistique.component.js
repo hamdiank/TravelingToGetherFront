@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var initDemo = require('../../../assets/js/charts.js');
 var StatistiqueComponent = (function () {
     function StatistiqueComponent() {
     }
@@ -20,7 +19,6 @@ var StatistiqueComponent = (function () {
         //     var $checkbox = $(this);
         //     $checkbox.checkbox();
         // });
-        initDemo();
     };
     StatistiqueComponent = __decorate([
         core_1.Component({

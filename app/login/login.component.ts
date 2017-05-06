@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlertService, AuthenticationService } from '../_services/index';
-
+import { LoaderComponent } from "../shared/loader/loader.component";
 @Component({
     moduleId: module.id,
     templateUrl: 'login.component.html'
@@ -32,11 +32,13 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                   this.router.navigate([this.returnUrl]);
                     console.log(this.returnUrl);
                 },
                 error => {
-                    this.alertService.error(error._body);
+                    if(error)
+
+                    this.alertService.error("verifier votre login ou mot de passe");
                     this.loading = false;
                 });
     }

@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { User, Pays } from "../../_models/index";
-import { UserService, PagerService } from "../../_services/index";
+import { UserService } from "../../_services/index";
 
 @Component({
     selector: 'gestionUtil-cmp',

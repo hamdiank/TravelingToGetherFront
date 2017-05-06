@@ -17,27 +17,33 @@ var PaysService = (function () {
         this.config = config;
     }
     PaysService.prototype.getAll = function () {
-        console.log("start api/user eehdf ......");
+        console.log("start api/pays  ......" + this.jwt());
         return this.http.get(this.config.apiUrl + '/admin/pays/all', this.jwt()).map(function (response) { return response.json(); });
     };
     PaysService.prototype.delete = function (_id) {
         return this.http.delete(this.config.apiUrl + '/admin/pays/delPays/' + _id, this.jwt());
     };
-    PaysService.prototype.update = function (pays) {
-        return this.http.put(this.config.apiUrl + '/admin/pays/updatePays/' + pays.idPays, pays, this.jwt());
+    PaysService.prototype.update = function (pays, v, a, s) {
+        return this.http.put(this.config.apiUrl + '/admin/pays/updatePays/' + pays.idPays + '/' + v + '/' + a + '/' + s, this.jwt());
+    };
+    PaysService.prototype.updateNom = function (pays) {
+        console.log(pays.nom);
+        return this.http.put(this.config.apiUrl + '/admin/pays/renomerPays/' + pays.idPays, pays, this.jwt());
     };
     PaysService.prototype.add = function (nomPays) {
         return this.http.post(this.config.apiUrl + '/admin/pays/addPays/' + nomPays, this.jwt());
     };
+    PaysService.prototype.getById = function (id) {
+        return this.http.get(this.config.apiUrl + '/admin/pays/pays/' + id, this.jwt()).map(function (response) { return response.json(); });
+    };
+    PaysService.prototype.getByCity = function (nom) {
+        return this.http.get(this.config.apiUrl + '/admin/pays/paysByCity/' + nom, this.jwt()).map(function (response) { return response.json(); });
+    };
     PaysService.prototype.jwt = function () {
         // create authorization header with jwt token
-        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (currentUser && currentUser.token) {
-            var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-            headers.append("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
-            headers.append("Access-Control-Allow-Origin", "*");
-            headers.append("Access-Control-Expose-Headers", "Authorization");
-            headers.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, ,Content-Type, Accept, Access-Control-Allow-Headers, Authorization");
+        var currentUser = JSON.parse(localStorage.getItem('currentToken'));
+        if (currentUser) {
+            var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + currentUser });
             return new http_1.RequestOptions({ headers: headers });
         }
     };

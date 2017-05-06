@@ -42,9 +42,14 @@ user:User;
                   //get the user id
            //  console.log("decooooded: "+this.jwtHelper.decodeToken(token).role) ;
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentToken', JSON.stringify(token));
-                localStorage.setItem('currentUserId', this.jwtHelper.decodeToken(token).userId);
-                localStorage.setItem('currentUserRole', this.jwtHelper.decodeToken(token).role);
+
+                    console.log(token);
+                    localStorage.setItem('currentToken', JSON.stringify(token));
+                    localStorage.setItem('currentUserId', this.jwtHelper.decodeToken(token).userId);
+                     localStorage.setItem('currentUserRole', this.jwtHelper.decodeToken(token).role);
+
+
+
                       //this.router.navigate(['/dashboard/statistique']);
               //    console.log (localStorage.getItem('currentUser'));
                    //console.log (user.user.username);
@@ -57,8 +62,9 @@ user:User;
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentToken');
+
         localStorage.removeItem('currentUserId');
         localStorage.removeItem('currentUserRole');
-        
+
     }
 }

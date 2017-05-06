@@ -1,485 +1,856 @@
-                           
-<div class="main-content">     
-                                <div class="center">
-                    <app-loader [loading]="loading"></app-loader>
-                                </div> 
-<div *ngIf="!loading" class="container-fluid" >
-                              
-    <div class="row">
-         <div class="col-md-6">
-                                
-         <div  class="card" style="height: 63rem;" >
-                  
-                        <div class="card-header" data-background-color="green">
-                   
-                            <h4 class="title">Liste Des Pays</h4>  
-                                     
-                        </div>
-                        <div class="card-content table-responsive">
-                          
-                <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" [(ngModel)]="textFilter" placeholder="chercher" name="chercherPays">
-                    <span class="material-input"></span>
-                </div>
-                 
+<div class="main-content">
+    <div class="center">
+        <app-loader [loading]="loading"></app-loader>
+    </div>
 
-                            <table  class="table table-hover">
+    <div *ngIf="!loading" class="container-fluid">
+        <alert></alert>
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="card" style="height: 63rem;">
+
+                    <div class="card-header" data-background-color="green">
+
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h4 class="title">Liste Des Pays</h4>
+                            </div>
+                            <div class="col-sm-offset-4 col-sm-4">
+                                <button class="btn btn-white btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#myModal11">
+	                <i class="material-icons">add</i>
+                                 </button>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="card-content table-responsive">
+
+                        <div class="form-group form-black is-empty">
+                            <input type="text" class="form-control" (input)="filterPays($event)" placeholder="chercher" name="chercherPays">
+                            <span class="material-input"></span>
+                        </div>
+                        <div style="position : relative">
+                            <spinner-component [spinnerShow]="show"></spinner-component>
+
+                            <table class="table table-hover">
                                 <thead class="text-success">
                                     <tr>
                                         <th>ID</th>
                                         <th>Nom</th>
                                         <th>Action</th>
-                                        
+
                                     </tr>
                                 </thead>
-                              <tbody>          
+                                <tbody>
 
-                                    <tr *ngFor="let pay of pagedItems  | FilterPipe: textFilter">
+                                    <tr *ngFor="let pay of pays  | paginate: {itemsPerPage: 5, currentPage:page, id: '1'}; let i = index">
                                         <td>{{pay.idPays}}</td>
                                         <td>{{pay.nom}}</td>
 
                                         <td>
-                                <button (click)="getPays(pay)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                                            <button (click)="getPays(pay)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal"
+                                                data-target="#myModal">
                                     <i class="fa fa-edit"></i>
                                 </button>
 
-                                <button (click)="supprimer(pay.idPays)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                            <button (click)="getPays(pay)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs" data-toggle="modal"
+                                                data-target="#myModal5">
                                                         <i class="material-icons">close</i>
                                                     </button>
-                                 <button (click)="getPays(pay)" type="button" rel="tooltip" title="ajouter Parametre" class="btn btn-info btn-simple btn-xs" data-toggle="modal" data-target="#myModal2">
+                                            <button (click)="getPays(pay)" type="button" rel="tooltip" title="ajouter Parametre" class="btn btn-info btn-simple btn-xs"
+                                                data-toggle="modal" data-target="#myModal2">
                                                         <i class="material-icons">add</i>
-                                                    </button>                    
+                                                    </button>
                                         </td>
-                                        
+
                                     </tr>
                                 </tbody>
                             </table>
-                            <!--               pager            -->
-
-            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(1)">First</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-                </li>
-              <!--
-                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-                    <a (click)="setPage(page)">{{page}}</a>
-                </li> -->
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.currentPage + 1)">Next</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.totalPages)">Last</a>
-                </li>
-            </ul>
                         </div>
                     </div>
+                    <div class="card-footer">
+                        <pagination-controls class=" pull-right" (pageChange)="page = $event" id="1" maxSize="5" directionLinks="true" autoHide="true">
+                        </pagination-controls>
+                    </div>
+
                 </div>
+            </div>
 
 
 
-  <div class="col-md-6">
-         <div class="card" >
-                        <div class="card-header" data-background-color="red">
-                            <h4 class="title">Liste Des Villes</h4>
+            <div class="col-md-6">
+                <div class="card" style="height: 63rem;">
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title">Liste Des Villes</h4>
+                    </div>
+                    <div class="card-content table-responsive">
+
+                        <div class="form-group form-black is-empty">
+                            <input type="text" class="form-control" (input)="filterVille($event)" placeholder="chercher" name="cherchercity">
+                            <span class="material-input"></span>
                         </div>
-                        <div class="card-content table-responsive">
-                            
-                            <table class="table table-hover">
-                                <thead class="text-success">
-                                 <tr > 
-                                    
-                                        <th>ID</th>
-                                        <th>Nom</th>
-                                        <th>Pays</th>
-                                        <th>Action</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr >
-                                        <td></td>
-                                        <td></td>
-                                        <td>jklg</td>
-                                        <td>
-                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
+                        <table class="table table-hover">
+                            <thead class="text-success">
+                                <tr>
+
+                                    <th>ID</th>
+                                    <th>Nom</th>
+                                    <th></th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let c of city  | paginate: {itemsPerPage: 5, currentPage:page2, id: '2'}; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{c.nom}}</td>
+                                    <td></td>
+
+                                    <td>
+                                        <button (click)="getCity(c)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal"
+                                            data-target="#myModal13">
                                         <i class="fa fa-edit"></i>
                                     </button>
 
-                                    <button  type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
+                                        <button (click)="getCity(c)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs" data-toggle="modal"
+                                            data-target="#myModal6">
 
                                                         <i class="material-icons">close</i>
                                                     </button>
-                                        </td>
-                                        
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-                        </div>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                    <div class="card-footer">
+                        <pagination-controls class=" pull-right" (pageChange)="page2 = $event" id="2" maxSize="5" directionLinks="true" autoHide="true">
+                        </pagination-controls>
                     </div>
                 </div>
-             </div>
-
-<div class="row">
-         <div class="col-md-6">
-         <div class="card" >
-                        <div class="card-header" data-background-color="blue">
-                            <h4 class="title">Liste Des Aeroports</h4>
-                        </div>
-                        <div class="card-content table-responsive">
-                            
-                            <table class="table table-hover">
-                                <thead class="text-success">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nom</th>
-                                        <th>Pays</th>
-                                        <th>Action</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>France</td>
-                                        <td>
-                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
-                                            <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
-                                             <i class="material-icons">close</i>
-                                    </button>
-                         </td>
-
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>France</td>
-                                        <td>
-                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
-                                            <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
-                                             <i class="material-icons">close</i>
-                                    </button>
-                         </td>
-
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>France</td>
-                                        <td>
-                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
-                                            <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
-                                             <i class="material-icons">close</i>
-                                    </button>
-                         </td>
-
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>France</td>
-                                        <td>
-                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
-                                            <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
-                                             <i class="material-icons">close</i>
-                                    </button>
-                         </td>
-
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>France</td>
-                                        <td>
-                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
-                                            <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
-                                             <i class="material-icons">close</i>
-                                    </button>
-                         </td>
-
-                                        
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-
-<!-- liste des types d'avions et la liste des types de train -->
-  <div class="col-md-6">
-         <div class="card" >
-                        <div class="card-header" data-background-color="purple">
-                            <h4 class="title">Liste Des Types d'Avion</h4>
-                        </div>
-                        <div class="card-content table-responsive">
-                        <form class="navbar-form navbar-right" role="search">
-                <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" placeholder="chercher">
-                    <span class="material-input"></span>
-                </div>
-                <button type="submit" class="btn btn-default btn-round btn-just-icon">
-                    <i class="material-icons">search</i><div class="ripple-container"></div>
-                </button>
-            </form>
-            <form  class="navbar-form navbar-right" (ngSubmit)="addAvion()">
-                <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" placeholder="ajouter type avion" [(ngModel)]="model4.typeAvion" #typeAvion="ngModel" required name="typeAvion">
-                    <span class="material-input"></span>
-                </div>
-                <button type="submit" class="btn btn-default btn-round btn-just-icon">
-                    <i class="material-icons">add</i><div class="ripple-container"></div>
-                </button>
-            </form>
-                       
-                            <table class="table table-hover">
-                                <thead class="text-success">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Type</th>
-                                        <th>Action</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let avion of avions">
-                                        <td>{{avion.id}}</td>
-                                        <td>{{avion.type}}</td>
-                                        <td>
-                                            <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal3">
-                                                    <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" (click)="deleteAvion(avion)" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
-                                                    <i class="material-icons">close</i>
-                                            </button>
-                                        </td>
-                                    </tr>
-        
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-             </div>
-
-             <div class="row">
-         <div class="col-md-6">
-         <div class="card" >
-                        <div class="card-header" data-background-color="blue">
-                            <h4 class="title">Liste Des Types de Train</h4>
-                        </div>
-                        <div class="card-content table-responsive">
-                            
-                            <table class="table table-hover">
-                                <thead class="text-success">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nom</th>
-                                        <th>Pays</th>
-                                        <th>Action</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>France</td>
-                                        <td>
-                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
-                                            <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
-                                             <i class="material-icons">close</i>
-                                    </button>
-                         </td>
-
-                                        
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-
-
-  <div class="col-md-6">
-         <div class="card" >
-                        <div class="card-header" data-background-color="purple">
-                            <h4 class="title">Liste Des Stations Metro</h4>
-                        </div>
-                        <div class="card-content table-responsive">
-                            
-                            <table class="table table-hover">
-                                <thead class="text-success">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nom</th>
-                                        <th>Pays</th>
-                                        <th>Action</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>Tunisie</td>
-                                        <td>
-                        <button type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal">
-                                <i class="fa fa-edit"></i>
-                         </button>
-                        <button type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs">
-                                <i class="material-icons">close</i>
-                        </button>
-                                        </td>
-                                        
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-             </div>
-
- <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
-
-              <!-- Modal pays -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modifier</h4>
-      </div>
-      <form #myForm2="ngForm" (ngSubmit)="modifierPays()">
-      <div class="modal-body">
-        
-         <div class="row">
-	<div class="form-group col-sm-4">
-    	<input type="text" value="{{nomM}}" placeholder="" class="form-control"  [(ngModel)]="model.nom" #nom="ngModel" required name="nom"/>
-	</div>
-         </div> 
-         
-     
-      </div>
-      
-              <div class="modal-footer">
-      <button type="submit" class="btn btn-success btn-round" >Modifier</button>
-      <button type="reset" class="btn btn-danger btn-round"  data-dismiss="modal">Fermer</button>
-             </div>
-       </form>
-    </div>
-  </div>
-</div>
-
-  <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
-
-
-              <!-- Modal pays parametre -->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modifier</h4>
-      </div>
-      <form #f="ngForm" (ngSubmit)="ajouterParametre()">
-      <div class="modal-body">
-        
-         <div class="row">
-             <div class="col-sm-4">
-	<div class="form-group label-floating">
-		<label class="control-label">Ville</label>
-		<input type="text" class="form-control" [(ngModel)]="model3.ville" #ville="ngModel"  name="ville">
-	</div>
-</div>
-<div class="col-sm-4">
-	<div class="form-group label-floating">
-		<label class="control-label">Aeroport</label>
-		<input type="text" class="form-control" [(ngModel)]="model3.aeroport" #aeroport="ngModel"  name="aeroport">
-	</div>
-</div>
-<div class="col-sm-4">
-	<div class="form-group label-floating">
-		<label class="control-label">Station Metro</label>
-		<input type="text"  placeholder="" class="form-control"  [(ngModel)]="model3.station" #station="ngModel"  name="station"/>
-	</div>
-</div>
-	
-         </div> 
-         
-     
-      </div>
-      
-              <div class="modal-footer">
-      <button type="submit" class="btn btn-success btn-round" >Ajouter</button>
-      <button type="reset" class="btn btn-danger btn-round"  data-dismiss="modal">Fermer</button>
-             </div>
-       </form>
-    </div>
-  </div>
-</div>
-
-
-
-  <!--  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù         -->
-
-
-
-
-              <!-- Modal avion -->
-<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modifier</h4>
-      </div>
-      <form #myForm2="ngForm" (ngSubmit)="modifierAvion()">
-      <div class="modal-body">
-        
-         <div class="row">
-	<div class="form-group col-sm-4">
-    	<input type="text" value="{{nomvilleM}}" placeholder="" class="form-control"  [(ngModel)]="model.nomvilleM" #nom="ngModel" required name="nom"/>
-	</div>
-         </div> 
-         
-     
-      </div>
-      
-              <div class="modal-footer">
-      <button type="submit" class="btn btn-success btn-round" >Modifier</button>
-      <button type="reset" class="btn btn-danger btn-round"  data-dismiss="modal">Fermer</button>
-             </div>
-       </form>
-    </div>
-  </div>
-</div>
-
-  <!--         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%             -->
+            </div>
 
         </div>
-  </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" data-background-color="blue">
+                        <h4 class="title">Liste Des Aeroports</h4>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <div class="form-group form-black is-empty">
+                            <input type="text" class="form-control" (input)="filterAero($event)" placeholder="chercher" name="cherchercity">
+                            <span class="material-input"></span>
+                        </div>
+                        <table class="table table-hover">
+                            <thead class="text-success">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nom</th>
+                                    <th></th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let ae of aero | paginate: {itemsPerPage: 5, currentPage:page3, id: '3'}; let i = index">
+                                    <td>1</td>
+                                    <td>{{ae.nom}}</td>
+                                    <td></td>
+                                    <td>
+                                        <button (click)="getAero(ae)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal"
+                                            data-target="#myModal14">
+                                            <i class="fa fa-edit"></i>
+                                    </button>
+                                        <button (click)="getAero(ae)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs" data-toggle="modal"
+                                            data-target="#myModal7">
+                                             <i class="material-icons">close</i>
+                                 </button>
+                                    </td>
+
+
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <pagination-controls class=" pull-right" (pageChange)="page3 = $event" id="3" maxSize="5" directionLinks="true" autoHide="true">
+                        </pagination-controls>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Liste Des Stations Metro</h4>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <div class="form-group form-black is-empty">
+                            <input type="text" class="form-control" (input)="filterStation($event)" placeholder="chercher" name="cherchercity">
+                            <span class="material-input"></span>
+                        </div>
+                        <table class="table table-hover">
+                            <thead class="text-success">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nom</th>
+                                    <th>Pays</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let s of stations | paginate: {itemsPerPage: 5, currentPage:page4, id: '4'}; let i = index">
+                                    <td>1</td>
+                                    <td>{{s.nom}}</td>
+                                    <td>Tunisie</td>
+                                    <td>
+                                        <button (click)="getStation(s)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs" data-toggle="modal"
+                                            data-target="#myModal15">
+                                <i class="fa fa-edit"></i>
+                         </button>
+                                        <button (click)="getStation(s)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs" data-toggle="modal"
+                                            data-target="#myModal8">
+                                <i class="material-icons">close</i>
+                        </button>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <pagination-controls class=" pull-right" (pageChange)="page4 = $event" id="4" maxSize="5" directionLinks="true" autoHide="true">
+                        </pagination-controls>
+                    </div>
+                </div>
+            </div>
+            <!-- liste des types d'avions et la liste des types de train -->
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" data-background-color="brown">
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h4 class="title">Liste Des Types de Train</h4>
+                            </div>
+                            <div class="col-sm-offset-4 col-sm-4">
+                                <button class="btn btn-white btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#myModal12">
+	                <i class="material-icons">add</i>
+                                 </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <div class="form-group form-black is-empty">
+                            <input type="text" class="form-control" (input)="filterTrain($event)" placeholder="chercher" name="cherchercity">
+                            <span class="material-input"></span>
+                        </div>
+                        <table class="table table-hover">
+                            <thead class="text-success">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>type</th>
+
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let train of trains | paginate: {itemsPerPage: 5, currentPage:page5, id: '5'}; let i = index">
+                                    <td>1</td>
+                                    <td>{{train.type}}</td>
+
+                                    <td>
+                                        <button (click)="getTrain(train)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs"
+                                            data-toggle="modal" data-target="#myModal16">
+                                            <i class="fa fa-edit"></i>
+                                    </button>
+                                        <button (click)="getTrain(train)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs"
+                                            data-toggle="modal" data-target="#myModal10">
+                                             <i class="material-icons">close</i>
+                                    </button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <pagination-controls class=" pull-right" (pageChange)="page5 = $event" id="5" maxSize="5" directionLinks="true" autoHide="true">
+                        </pagination-controls>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" data-background-color="orange">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h4 class="title">Liste Des Types d'Avion</h4>
+                            </div>
+                            <div class="col-sm-offset-4 col-sm-4">
+                                <button class="btn btn-white btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#myModal17">
+	                <i class="material-icons">add</i>
+                                 </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content table-responsive">
+
+                        <div class="form-group form-black is-empty">
+                            <input type="text" class="form-control" (input)="filterAvion($event)" placeholder="chercher" name="cherchercity">
+                            <span class="material-input"></span>
+                        </div>
+
+                        <table class="table table-hover">
+                            <thead class="text-success">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Type</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let avion of avions | paginate: {itemsPerPage: 5, currentPage:page6, id: '6'}; let i = index">
+                                    <td>{{avion.id}}</td>
+                                    <td>{{avion.type}}</td>
+                                    <td>
+                                        <button (click)="getAvion(avion)" type="button" rel="tooltip" title="Modifier" class="btn btn-success btn-simple btn-xs"
+                                            data-toggle="modal" data-target="#myModal3">
+                                                    <i class="fa fa-edit"></i>
+                                            </button>
+                                        <button (click)="getAvion(avion)" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-simple btn-xs"
+                                            data-toggle="modal" data-target="#myModal9">
+                                                    <i class="material-icons">close</i>
+                                            </button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <pagination-controls class=" pull-right" (pageChange)="page6 = $event" id="6" maxSize="5" directionLinks="true" autoHide="true">
+                        </pagination-controls>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
+
+        <!-- Modal modifier pays -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Modifier</h4>
+                    </div>
+                    <form #myForm2="ngForm" (ngSubmit)="myForm2.form.valid && modifierNomPays()">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" value="{{nomM}}" placeholder="" class="form-control" [(ngModel)]="model.nom" #nom="ngModel" required name="nom"
+                                    />
+                                </div>
+                                <!--    <div *ngIf="nomM==model.nom" class="help-block">Rien n'a changé</div> -->
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Modifier</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
+
+        <!-- Modal ajout pays -->
+        <div class="modal fade" id="myModal11" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">ajouter</h4>
+                    </div>
+                    <form #myForm2="ngForm" (ngSubmit)="ajoutPays()">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" class="form-control" [(ngModel)]="model2.nomPays" #nomPays="ngModel" required name="nom" />
+                                </div>
+                                <!--    <div *ngIf="nomM==model.nom" class="help-block">Rien n'a changé</div> -->
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Ajouter</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
+
+        <!-- Modal pays parametre -->
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Ajouter Parametre</h4>
+                    </div>
+                    <form #f="ngForm" (ngSubmit)="ajouterParametre()">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Ville</label>
+                                        <input type="text" class="form-control" [(ngModel)]="model3.ville" #ville="ngModel" name="ville">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Aeroport</label>
+                                        <input type="text" class="form-control" [(ngModel)]="model3.aeroport" #aeroport="ngModel" name="aeroport">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Station Metro</label>
+                                        <input type="text" placeholder="" class="form-control" [(ngModel)]="model3.station" #station="ngModel" name="station" />
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Ajouter</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù         -->
+
+        <!-- Modal supprimer Pays-->
+        <div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">supprimer définitivement?</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
+                        <button (click)="supprimerPays()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--                        -->
+        <!-- Modal modifier ville -->
+        <div class="modal fade" id="myModal13" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Modifier Ville</h4>
+                    </div>
+                    <form #myForm2="ngForm" (ngSubmit)="modifierVille()">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" value="{{nomVille}}" placeholder="" class="form-control" [(ngModel)]="model5.nomVilleM" #nomVilleM="ngModel"
+                                        name="nom" />
+                                </div>
+                                <!--    <div *ngIf="nomM==model.nom" class="help-block">Rien n'a changé</div> -->
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Modifier</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
+        <!--  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù         -->
+
+
+        <!-- Modal supprimer ville-->
+        <div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">supprimer définitivement?</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
+                        <button (click)="supprimerCity()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--                        -->
+
+        <!--  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù         -->
+ <!-- Modal ajout train -->
+        <div class="modal fade" id="myModal12" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">ajouter Train</h4>
+                    </div>
+                    <form #myForm2="ngForm" (ngSubmit)="ajoutTrain()">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" class="form-control" [(ngModel)]="model9.nomV" #nomV="ngModel" required name="nom" />
+                                </div>
+                                <!--    <div *ngIf="nomM==model.nom" class="help-block">Rien n'a changé</div> -->
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Ajouter</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
+<!-- Modal ajout Avion -->
+        <div class="modal fade" id="myModal17" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">ajouter Avion</h4>
+                    </div>
+                    <form #myForm2="ngForm" (ngSubmit)="ajoutAvion()">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" class="form-control" [(ngModel)]="model10.nomA" #nomA="ngModel" required name="nom" />
+                                </div>
+                                <!--    <div *ngIf="nomM==model.nom" class="help-block">Rien n'a changé</div> -->
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Ajouter</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
+
+        <!-- Modal modifier avion -->
+        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Modifier Avion</h4>
+                    </div>
+                    <form #myForm2="ngForm" (ngSubmit)="modifierAvion()">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" value="{{typeAvionM}}" placeholder="" class="form-control" [(ngModel)]="model4.typeAvion" #nom="ngModel"
+                                        required name="nom" />
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Modifier</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%             -->
+
+        <!-- Modal modifier ville -->
+        <div class="modal fade" id="myModal14" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Modifier Aeroport</h4>
+                    </div>
+                    <form #myForm2="ngForm" (ngSubmit)="modifierAero()">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" value="{{nomAero}}" placeholder="" class="form-control" [(ngModel)]="model6.nomAeroM" #nomAeroM="ngModel"
+                                        name="nom" />
+                                </div>
+                                <!--    <div *ngIf="nomM==model.nom" class="help-block">Rien n'a changé</div> -->
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Modifier</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
+
+       
+
+        <!-- Modal modifier station -->
+        <div class="modal fade" id="myModal15" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Modifier Station</h4>
+                    </div>
+                    <form #myForm2="ngForm" (ngSubmit)="modifierStation()">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" value="{{nomStation}}" placeholder="" class="form-control" [(ngModel)]="model7.nomStationM" #nomStationM="ngModel"
+                                        name="nom" />
+                                </div>
+                                <!--    <div *ngIf="nomM==model.nom" class="help-block">Rien n'a changé</div> -->
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Modifier</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
+
+
+        <!-- Modal modifier train -->
+        <div class="modal fade" id="myModal16" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Modifier Train</h4>
+                    </div>
+                    <form #myForm2="ngForm" (ngSubmit)="modifierTrain()">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" value="{{nomTrain}}" placeholder="" class="form-control" [(ngModel)]="model8.nomTrainM" #nomTrainM="ngModel"
+                                        name="nom" />
+                                </div>
+                                <!--    <div *ngIf="nomM==model.nom" class="help-block">Rien n'a changé</div> -->
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-round">Modifier</button>
+                            <button type="reset" class="btn btn-danger btn-round" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                -->
+ <!-- Modal supprimer aero-->
+        <div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">supprimer définitivement?</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
+                        <button (click)="supprimerAero()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--                        -->
+        <!-- Modal supprimer station-->
+        <div class="modal fade" id="myModal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">supprimer définitivement?</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
+                        <button (click)="supprimerStation()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--                        -->
+
+        <!-- Modal supprimer avion-->
+        <div class="modal fade" id="myModal9" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">supprimer définitivement?</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
+                        <button (click)="supprimerAvion()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--                        -->
+
+
+        <!-- Modal supprimer train-->
+        <div class="modal fade" id="myModal10" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">supprimer définitivement?</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Annuler</button>
+                        <button (click)="supprimerTrain()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">Confirmer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--                        -->
+
+
+
+
+
+    </div>
+</div>

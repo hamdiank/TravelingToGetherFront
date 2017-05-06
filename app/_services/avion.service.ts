@@ -27,24 +27,24 @@ export class AvionService {
 
      delete(id: number) {
          console.log("i am in AvionService" + id )
-   return this.http.delete(this.config.apiUrl+'/avions/'+ id ,this.jwt()).map((response: Response) => response.json());
+   return this.http.delete(this.config.apiUrl+'/avions/'+ id ,this.jwt());
   }
-     add(avion:Avion){
-   return this.http.post(this.config.apiUrl+'/avions/',avion ,this.jwt());
+     add(nom:string){
+         console.log(nom);
+   return this.http.post(this.config.apiUrl+'/avions/' + nom, this.jwt());
+
+  }
+  update(avion:Avion){
+   return this.http.put(this.config.apiUrl+'/avions/'+avion.id,avion ,this.jwt());
 
   }
 
     // private helper methods
 private jwt() {
-        // create authorization header with jwt token
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (currentUser && currentUser.token) {
-            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-            headers.append("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
-		    headers.append("Access-Control-Allow-Origin", "*");
-		    headers.append("Access-Control-Expose-Headers" ,"Authorization");
-            headers.append("Access-Control-Allow-Headers",
-			"Origin, X-Requested-With, ,Content-Type, Accept, Access-Control-Allow-Headers, Authorization" );
+        // create a uthorization header with jwt token
+        let currentUser = JSON.parse(localStorage.getItem('currentToken'));
+        if (currentUser ) {
+            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser});
             return new RequestOptions({ headers: headers });
         }
     }
