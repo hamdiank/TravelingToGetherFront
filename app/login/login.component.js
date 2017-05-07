@@ -33,9 +33,9 @@ var LoginComponent = (function () {
             .subscribe(function (data) {
             console.log("dataaa :" + localStorage.getItem('currentUserRole'));
             if (localStorage.getItem('currentUserRole') == 'ADMIN')
-                _this.router.navigate([_this.returnUrl]);
+                _this.router.navigate(['dashboard/Statistiques']);
             else {
-                _this.router.navigate([_this.returnUrl]);
+                _this.router.navigate(['dashboardutil/Accueil']);
                 console.log(_this.returnUrl);
             }
         }, function (error) {

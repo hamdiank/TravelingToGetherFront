@@ -34,9 +34,9 @@ export class LoginComponent implements OnInit {
                 data => {
                     console.log("dataaa :"+localStorage.getItem('currentUserRole'));
                     if(localStorage.getItem('currentUserRole')=='ADMIN')
-                   this.router.navigate([this.returnUrl]);
+                   this.router.navigate(['dashboard/Statistiques']);
                    else{
-                    this.router.navigate([this.returnUrl]);
+                    this.router.navigate(['dashboardutil/Accueil']);
                     console.log(this.returnUrl); }
                 },
                 error => {

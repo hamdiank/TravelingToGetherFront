@@ -28,8 +28,9 @@ exports.MODULE_ROUTES = [
             { path: 'MonProfil', component: profil_component_1.ProfilComponent },
             { path: 'MesAnnoncesCovoi', component: mesAnnoncesCovoi_component_1.MesAnnoncesCovoiComponent },
         ], canActivate: [index_1.AuthGuard], data: { roles: ['USER'] } },
-    // { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['ADMIN'] }},
-    { path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full', canActivate: [index_1.AuthGuardAdmin], data: { roles: ['USER'] } }
+    { path: 'dashboardutil/Accueil', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full', canActivate: [index_1.AuthGuard], data: { roles: ['USER'] } },
+    { path: 'dashboard/Statistiques', redirectTo: 'dashboard/Statistiques', pathMatch: 'full', canActivate: [index_1.AuthGuardAdmin], data: { roles: ['ADMIN'] } },
+    { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full', canActivate: [index_1.AuthGuardAdmin], data: { roles: ['ADMIN'] } },
 ];
 exports.MODULE_COMPONENTS = [
     statistique_component_1.StatistiqueComponent, dashboard_component_1.DashboardComponent, gestionUtil_component_1.GestionUtilComponent,

@@ -36,8 +36,10 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'MesAnnoncesCovoi', component: MesAnnoncesCovoiComponent },
     
     ],canActivate: [AuthGuard],data: { roles: ['USER'] }  },
-  // { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['ADMIN'] }},
-  { path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuardAdmin],data: { roles: ['USER'] }}
+     { path: 'dashboardutil/Accueil', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['USER'] }},
+      { path: 'dashboard/Statistiques', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuardAdmin],data: { roles: ['ADMIN'] }},
+   { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuardAdmin],data: { roles: ['ADMIN'] }},
+  //{ path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['USER'] }}
     
 ]
 
