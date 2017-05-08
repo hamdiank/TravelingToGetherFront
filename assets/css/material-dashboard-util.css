@@ -5456,7 +5456,7 @@ footer .btn {
     left: auto;
     z-index: 1032;
     visibility: visible;
-    background-color: #999;
+    background-color: white;
     overflow-y: visible;
     border-top: none;
     text-align: left;
@@ -5492,7 +5492,7 @@ footer .btn {
     color: #fff;
   }
   .bootstrap-navbar .nav li > a {
-    color: #FFFFFF;
+    color: red;
     margin: 5px 15px;
     opacity: .86;
     border-radius: 4px;
