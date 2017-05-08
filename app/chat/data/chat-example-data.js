@@ -26,13 +26,13 @@ var initialMessages = [
 var ChatExampleData = (function () {
     function ChatExampleData(dataService) {
         this.dataService = dataService;
-        console.log("im here 2");
+        console.log("i m here 2");
     }
     ChatExampleData.init = function (messagesService, threadsService, UsersService, dataService) {
         dataService.getAll().subscribe(function (element) {
-            console.log("hhee");
+            console.log(JSON.stringify(element));
             element.forEach(function (e) {
-                console.log(JSON.stringify(element));
+                console.log(JSON.stringify(e));
                 initialMessages.push(new message_model_1.Message({
                     author: wait,
                     sentAt: moment().subtract(4, 'minutes').toDate(),

@@ -38,7 +38,7 @@ export class ChatExampleData {
 
   static result: any[];
   constructor(private dataService: DataService) {
-    console.log("im here 2");
+    console.log("i m here 2");
 
 
   }
@@ -49,11 +49,11 @@ export class ChatExampleData {
 
     dataService.getAll().subscribe(element => {
 
-      console.log("hhee");
+      console.log(JSON.stringify(element));
       
       
       element.forEach(e => {
-        console.log(JSON.stringify(element));
+        console.log(JSON.stringify(e));
       initialMessages.push(new Message({
         author: wait,
         sentAt: moment().subtract(4, 'minutes').toDate(),

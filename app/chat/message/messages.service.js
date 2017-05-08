@@ -74,7 +74,7 @@ var MessagesService = (function () {
     // an imperative function call to this action stream
     MessagesService.prototype.addMessage = function (message) {
         this.newMessages.next(message);
-        console.log("mess  ge" + message);
+        //  console.log("mess  ge"+message);
     };
     MessagesService.prototype.messagesForThreadUser = function (thread, user) {
         return this.newMessages

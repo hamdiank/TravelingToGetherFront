@@ -91,7 +91,7 @@ export class MessagesService {
   // an imperative function call to this action stream
   addMessage(message: Message): void {
     this.newMessages.next(message);
-    console.log("mess  ge"+message);
+  //  console.log("mess  ge"+message);
   }
 
   messagesForThreadUser(thread: Thread, user: User): Observable<Message> {
