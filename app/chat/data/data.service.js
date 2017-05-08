@@ -18,7 +18,7 @@ var DataService = (function () {
     }
     DataService.prototype.getAll = function () {
         console.log('enter 65');
-        return this.http.get(this.config.apiUrl + 'message/all', this.jwt())
+        return this.http.get(this.config.apiUrl + '/message/all', this.jwt())
             .map(function (response) { return response.json(); });
     };
     DataService.prototype.jwt = function () {

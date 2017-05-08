@@ -29,12 +29,24 @@ var ChatExampleData = (function () {
         console.log("im here 2");
     }
     ChatExampleData.init = function (messagesService, threadsService, UsersService, dataService) {
+        dataService.getAll().subscribe(function (element) {
+            console.log("hhee");
+            element.forEach(function (e) {
+                console.log(JSON.stringify(element));
+                initialMessages.push(new message_model_1.Message({
+                    author: wait,
+                    sentAt: moment().subtract(4, 'minutes').toDate(),
+                    text: e.text,
+                    thread: tWait
+                }));
+            });
+            initialMessages.map(function (message) { return messagesService.addMessage(message); });
+        });
         // TODO make `messages` hot
         messagesService.messages.subscribe(function () { return ({}); });
         // set "Juliet" as the current user
         UsersService.setCurrentUser(me);
         // create the initial messages
-        initialMessages.map(function (message) { return messagesService.addMessage(message); });
         threadsService.setCurrentThread(tWait);
     };
     //  setupBots(messagesService: MessagesService): void {

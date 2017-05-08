@@ -13,7 +13,7 @@ export class DataService {
 
     getAll() {
 console.log('enter 65');
-        return this.http.get(this.config.apiUrl + 'message/all',
+        return this.http.get(this.config.apiUrl + '/message/all',
             this.jwt())
             .map((response: Response) => response.json());
     }

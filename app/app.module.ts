@@ -53,11 +53,14 @@ import { NavbarUtilModule } from "./shared/navbarutil/navbarutil.module";
 import { MesAnnoncesCovoiComponent } from "./dashboardutil/profil/mesAnnoncesCovoi.component";
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { DataService } from "./chat/data/data.service";
+import { ChatExampleData } from "./chat/data/chat-example-data";
+
 
 
 
 @NgModule({
     imports: [ 
+        
         BrowserModule,
         FormsModule,
         HttpModule,

@@ -58,6 +58,7 @@ export class MessagesService {
     this.create
       .map( function(message: Message): IMessagesOperation {
         return (messages: Message[]) => {
+          console.log("1");
           return messages.concat(message);
         };
       })
@@ -75,6 +76,7 @@ export class MessagesService {
             // note that we're manipulating `message` directly here. Mutability
             // can be confusing and there are lots of reasons why you might want
             // to, say, copy the Message object or some other 'immutable' here
+            console.log("message.thread.id  "+message.thread.id);
             if (message.thread.id === thread.id) {
               message.isRead = true;
             }
@@ -89,7 +91,7 @@ export class MessagesService {
   // an imperative function call to this action stream
   addMessage(message: Message): void {
     this.newMessages.next(message);
-    console.log("i'm here ");
+    console.log("mess  ge"+message);
   }
 
   messagesForThreadUser(thread: Thread, user: User): Observable<Message> {

@@ -8,6 +8,7 @@ import { UsersService } from '../user/users.service';
 import * as moment from 'moment';
 import { DataService } from "./data.service";
 
+
 // the person using the app us Juliet
 const me: User = new User('Juliet', 'assets/images/avatars/female-avatar-1.png');
 //const ladycap: User = new User('Lady Capulet', 'assets/images/avatars/female-avatar-2.png');
@@ -32,6 +33,7 @@ const initialMessages: Array<Message> = [
   }),
 ];
 
+
 export class ChatExampleData {
 
   static result: any[];
@@ -40,9 +42,32 @@ export class ChatExampleData {
 
 
   }
+
   static init(messagesService: MessagesService,
     threadsService: ThreadsService,
     UsersService: UsersService, dataService: DataService): void {
+
+    dataService.getAll().subscribe(element => {
+
+      console.log("hhee");
+      
+      
+      element.forEach(e => {
+        console.log(JSON.stringify(element));
+      initialMessages.push(new Message({
+        author: wait,
+        sentAt: moment().subtract(4, 'minutes').toDate(),
+        text: e.text,
+        thread: tWait
+      }), );
+    });
+      initialMessages.map((message: Message) => messagesService.addMessage(message));
+
+    });
+
+
+
+    
 
 
     // TODO make `messages` hot
@@ -52,7 +77,6 @@ export class ChatExampleData {
     UsersService.setCurrentUser(me);
 
     // create the initial messages
-    initialMessages.map((message: Message) => messagesService.addMessage(message));
 
     threadsService.setCurrentThread(tWait);
 

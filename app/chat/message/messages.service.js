@@ -45,6 +45,7 @@ var MessagesService = (function () {
         this.create
             .map(function (message) {
             return function (messages) {
+                console.log("1");
                 return messages.concat(message);
             };
         })
@@ -60,6 +61,7 @@ var MessagesService = (function () {
                     // note that we're manipulating `message` directly here. Mutability
                     // can be confusing and there are lots of reasons why you might want
                     // to, say, copy the Message object or some other 'immutable' here
+                    console.log("message.thread.id  " + message.thread.id);
                     if (message.thread.id === thread.id) {
                         message.isRead = true;
                     }
@@ -72,7 +74,7 @@ var MessagesService = (function () {
     // an imperative function call to this action stream
     MessagesService.prototype.addMessage = function (message) {
         this.newMessages.next(message);
-        console.log("i'm here ");
+        console.log("mess  ge" + message);
     };
     MessagesService.prototype.messagesForThreadUser = function (thread, user) {
         return this.newMessages

@@ -47,6 +47,8 @@ var ChatWindowComponent = (function () {
         m.author = this.currentUser;
         m.thread = this.currentThread;
         m.isRead = true;
+        // add Message service will be here ....
+        console.log("message recu 1 " + JSON.stringify(m.author));
         this.messagesService.addMessage(m);
         this.draftMessage = new message_model_1.Message();
         console.log("draft 1:  " + JSON.stringify(this.draftMessage));

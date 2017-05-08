@@ -13,10 +13,11 @@ import { DataService } from "./data/data.service";
   styleUrls: ['./app2.component.css']
 })
 export class App2Component {
-    constructor(public messagesService: MessagesService,
-              public threadsService: ThreadsService,
-              public usersService: UsersService,public dataService:DataService) {
-    ChatExampleData.init(messagesService, threadsService, usersService,dataService);
- 
+  constructor(public messagesService: MessagesService,
+    public threadsService: ThreadsService,
+    public usersService: UsersService, public dataService: DataService) {
+  
+    ChatExampleData.init(messagesService, threadsService, usersService, dataService);
+
   }
 }
