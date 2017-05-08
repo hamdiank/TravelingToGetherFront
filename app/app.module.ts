@@ -9,7 +9,7 @@ import { NavbarModule} from './shared/navbar/navbar.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppConfig } from "./app.config";
-import { AuthGuard } from "./_guards/index";
+import { AuthGuard,AuthGuardAdmin } from "./_guards/index";
 import { JwtHelper } from 'angular2-jwt';
 
 import { AlertService, UserService, AuthenticationService, PaysService, CityService } from "./_services/index";
@@ -51,7 +51,8 @@ import { InscriptionComponent } from "./inscription/inscription.component";
 import { ProfilComponent } from "./dashboardutil/profil/profil.component";
 import { NavbarUtilModule } from "./shared/navbarutil/navbarutil.module";
 import { MesAnnoncesCovoiComponent } from "./dashboardutil/profil/mesAnnoncesCovoi.component";
-import {Ng2PaginationModule} from 'ng2-pagination';
+import { Ng2PaginationModule } from 'ng2-pagination';
+import { DataService } from "./chat/data/data.service";
 
 
 
@@ -88,9 +89,9 @@ import {Ng2PaginationModule} from 'ng2-pagination';
     bootstrap:    [ AppComponent ],
     exports: [],
     providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, AppConfig,
-        AuthGuard,
+        AuthGuard,AuthGuardAdmin,
         AlertService,
-        AuthenticationService,ValuesPipe,
+        AuthenticationService,ValuesPipe,DataService,
 
 
         UserService,PaysService,AvionService,CityService,AeroportService,StationService,TrainService,JwtHelper,

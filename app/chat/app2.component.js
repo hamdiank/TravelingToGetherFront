@@ -13,12 +13,14 @@ var chat_example_data_1 = require('./data/chat-example-data');
 var users_service_1 = require('./user/users.service');
 var threads_service_1 = require('./thread/threads.service');
 var messages_service_1 = require('./message/messages.service');
+var data_service_1 = require("./data/data.service");
 var App2Component = (function () {
-    function App2Component(messagesService, threadsService, usersService) {
+    function App2Component(messagesService, threadsService, usersService, dataService) {
         this.messagesService = messagesService;
         this.threadsService = threadsService;
         this.usersService = usersService;
-        chat_example_data_1.ChatExampleData.init(messagesService, threadsService, usersService);
+        this.dataService = dataService;
+        chat_example_data_1.ChatExampleData.init(messagesService, threadsService, usersService, dataService);
     }
     App2Component = __decorate([
         core_1.Component({
@@ -27,7 +29,7 @@ var App2Component = (function () {
             templateUrl: './app2.component.html',
             styleUrls: ['./app2.component.css']
         }), 
-        __metadata('design:paramtypes', [messages_service_1.MessagesService, threads_service_1.ThreadsService, users_service_1.UsersService])
+        __metadata('design:paramtypes', [messages_service_1.MessagesService, threads_service_1.ThreadsService, users_service_1.UsersService, data_service_1.DataService])
     ], App2Component);
     return App2Component;
 }());

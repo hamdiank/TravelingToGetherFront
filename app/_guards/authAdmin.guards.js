@@ -10,26 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var AuthGuard = (function () {
-    function AuthGuard(router) {
+var AuthGuardAdmin = (function () {
+    function AuthGuardAdmin(router) {
         this.router = router;
     }
-    AuthGuard.prototype.canActivate = function (route, state) {
+    AuthGuardAdmin.prototype.canActivate = function (route, state) {
         if (localStorage.getItem('currentToken')) {
             var roles = route.data["roles"];
-            console.log("roles in authgaurd " + roles);
+            console.log("roles in admin guard" + roles);
             console.log(localStorage.getItem('currentUserRole'));
             return (roles == null || roles.indexOf(localStorage.getItem('currentUserRole')) != -1);
         }
+        console.log("eeetg");
         // not logged in so redirect to login page with the return url
         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
         return false;
     };
-    AuthGuard = __decorate([
+    AuthGuardAdmin = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [router_1.Router])
-    ], AuthGuard);
-    return AuthGuard;
+    ], AuthGuardAdmin);
+    return AuthGuardAdmin;
 }());
-exports.AuthGuard = AuthGuard;
-//# sourceMappingURL=auth.guards.js.map
+exports.AuthGuardAdmin = AuthGuardAdmin;
+//# sourceMappingURL=authAdmin.guards.js.map

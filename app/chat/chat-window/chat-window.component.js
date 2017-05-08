@@ -43,15 +43,13 @@ var ChatWindowComponent = (function () {
         event.preventDefault();
     };
     ChatWindowComponent.prototype.sendMessage = function () {
-        console.log("draft1  " + this.draftMessage.author);
         var m = this.draftMessage;
         m.author = this.currentUser;
         m.thread = this.currentThread;
         m.isRead = true;
-        console.log(m.author);
         this.messagesService.addMessage(m);
         this.draftMessage = new message_model_1.Message();
-        console.log("draft 1:  " + this.draftMessage);
+        console.log("draft 1:  " + JSON.stringify(this.draftMessage));
     };
     ChatWindowComponent.prototype.scrollToBottom = function () {
         var scrollPane = this.el

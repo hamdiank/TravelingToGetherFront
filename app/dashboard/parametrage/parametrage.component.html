@@ -401,7 +401,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">ajouter</h4>
+                        <h4 class="modal-title" id="myModalLabel">ajouter Pays</h4>
                     </div>
                     <form #myForm2="ngForm" (ngSubmit)="ajoutPays()">
                         <div class="modal-body">
@@ -633,8 +633,8 @@
 
                             <div class="row">
                                 <div class="form-group col-sm-4">
-                                    <input type="text" value="{{typeAvionM}}" placeholder="" class="form-control" [(ngModel)]="model4.typeAvion" #nom="ngModel"
-                                        required name="nom" />
+                                    <input type="text" value="{{typeAvionM}}" placeholder="" class="form-control" [(ngModel)]="model4.typeAvion" #typeAvion="ngModel"
+                                        required name="typeAvion" />
                                 </div>
                             </div>
 

@@ -24,9 +24,11 @@ var initialMessages = [
     }),
 ];
 var ChatExampleData = (function () {
-    function ChatExampleData() {
+    function ChatExampleData(dataService) {
+        this.dataService = dataService;
+        console.log("im here 2");
     }
-    ChatExampleData.init = function (messagesService, threadsService, UsersService) {
+    ChatExampleData.init = function (messagesService, threadsService, UsersService, dataService) {
         // TODO make `messages` hot
         messagesService.messages.subscribe(function () { return ({}); });
         // set "Juliet" as the current user
@@ -34,44 +36,49 @@ var ChatExampleData = (function () {
         // create the initial messages
         initialMessages.map(function (message) { return messagesService.addMessage(message); });
         threadsService.setCurrentThread(tWait);
-        this.setupBots(messagesService);
     };
-    ChatExampleData.setupBots = function (messagesService) {
-        // echo bot
-        /*
+    //  setupBots(messagesService: MessagesService): void {
+    // echo bot
+    /*
+    
+        // reverse bot
         
-            // reverse bot
-            
-        
-            // waiting bot
-            messagesService.messagesForThreadUser(tWait, wait)
-              .forEach( (message: Message): void => {
-        
-                let waitTime: number = parseInt(message.text, 10);
-                let reply: string;
-        
-                if (isNaN(waitTime)) {
-                  waitTime = 0;
-                  reply = `I didn\'t understand ${message.text}. Try sending me a number`;
-                } else {
-                  reply = `I waited ${waitTime} seconds to send you this.`;
-                }
-        
-                setTimeout(
-                  () => {
-                    messagesService.addMessage(
-                      new Message({
-                        author: wait,
-                        text: reply,
-                        thread: tWait
-                      })
-                    );
-                  },
-                  waitTime * 1000);
+    
+        // waiting bot
+        messagesService.messagesForThreadUser(tWait, wait)
+          .forEach( (message: Message): void => {
+    
+            let waitTime: number = parseInt(message.text, 10);
+            let reply: string;
+    
+            if (isNaN(waitTime)) {
+              waitTime = 0;
+              reply = `I didn\'t understand ${message.text}. Try sending me a number`;
+            } else {
+              reply = `I waited ${waitTime} seconds to send you this.`;
+            }
+    
+            setTimeout(
+              () => {
+                messagesService.addMessage(
+                  new Message({
+                    author: wait,
+                    text: reply,
+                    thread: tWait
+                  })
+                );
               },
-                        null);
-        
-        */
+              waitTime * 1000);
+          },
+                    null);
+    
+    */
+    // }
+    ChatExampleData.getall = function (dataService) {
+        console.log("enter 4");
+        dataService.getAll().subscribe(function (result) {
+            console.log("eee");
+        });
     };
     return ChatExampleData;
 }());

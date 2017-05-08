@@ -31,8 +31,13 @@ var LoginComponent = (function () {
         this.loading = true;
         this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(function (data) {
-            _this.router.navigate([_this.returnUrl]);
-            console.log(_this.returnUrl);
+            console.log("dataaa :" + localStorage.getItem('currentUserRole'));
+            if (localStorage.getItem('currentUserRole') == 'ADMIN')
+                _this.router.navigate(['dashboard/Statistiques']);
+            else {
+                _this.router.navigate(['dashboardutil/Accueil']);
+                console.log(_this.returnUrl);
+            }
         }, function (error) {
             if (error)
                 _this.alertService.error("verifier votre login ou mot de passe");
