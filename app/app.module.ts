@@ -54,6 +54,8 @@ import { MesAnnoncesCovoiComponent } from "./dashboardutil/profil/mesAnnoncesCov
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { DataService } from "./chat/data/data.service";
 import { ChatExampleData } from "./chat/data/chat-example-data";
+import { MotDePasseOublieService } from "./_services/MotDePassOublie";
+import { MotDePasseComponent } from "./MotDePasse/MotDePasse.component";
 
 
 
@@ -86,7 +88,7 @@ import { ChatExampleData } from "./chat/data/chat-example-data";
     ChatMessageComponent,
     ChatThreadComponent,
     AlertComponent,
-    FromNowPipe,ValuesPipe,FilterPipe,  AnnonceCovoiComponent, InscriptionComponent, AccueilComponent, ProfilComponent, MesAnnoncesCovoiComponent],
+    FromNowPipe,ValuesPipe,FilterPipe,  AnnonceCovoiComponent, InscriptionComponent, AccueilComponent, ProfilComponent, MesAnnoncesCovoiComponent,MotDePasseComponent],
 
 
     bootstrap:    [ AppComponent ],
@@ -98,7 +100,7 @@ import { ChatExampleData } from "./chat/data/chat-example-data";
 
 
         UserService,PaysService,AvionService,CityService,AeroportService,StationService,TrainService,JwtHelper,
-        MessagesService, ThreadsService, UsersService, AnnonceCovoiService],
+        MessagesService, ThreadsService, UsersService, AnnonceCovoiService,MotDePasseOublieService],
 
 })
 export class AppModule {

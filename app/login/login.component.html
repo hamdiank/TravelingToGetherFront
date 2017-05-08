@@ -1,63 +1,70 @@
 <div class="main-content" style="padding-top: 2cm">
     <div class="container-fluid">
         <div class="row">
-            
-         <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-             <alert></alert>
-          <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-                                <div class="card card-login card-hidden">
-                                    <div class="card-header text-center" data-background-color="red">
-                                        <h4 class="card-title">Login</h4>
-                                        <div class="social-line">
-                                            <a href="#btn" class="btn btn-just-icon btn-simple">
-                                                <i class="fa fa-facebook-square"></i>
-                                            </a>
-                                            <a href="#pablo" class="btn btn-just-icon btn-simple">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                            <a href="#eugen" class="btn btn-just-icon btn-simple">
-                                                <i class="fa fa-google-plus"></i>
-                                            </a>
-                                        </div>
-                                    </div>
 
-                                    <p class="category text-center">
-                                        Or Be Classical
-                                    </p>
-                                    <div class="card-content">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
+            <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+                <alert></alert>
+                <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+                    <div class="card card-login card-hidden">
+                        <div class="card-header text-center" data-background-color="purple">
+                            <h4 class="card-title">Se Connecter</h4>
+                            <div class="social-line">
+                                <a href="#btn" class="btn btn-just-icon btn-simple">
+                                    <i class="fa fa-facebook-square"></i>
+                                </a>
+                                <a href="#pablo" class="btn btn-just-icon btn-simple">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a href="#eugen" class="btn btn-just-icon btn-simple">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <p class="category text-center">
+
+                        </p>
+                        <div class="card-content">
+                            <div class="input-group">
+                                <span class="input-group-addon">
                                                 <i class="material-icons">face</i>
                                             </span>
-                                            <div class="form-group label-floating" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-                                                <label class="control-label">Username</label>
-                                                <input type="text" class="form-control" name="username"  [(ngModel)]="model.username" #username="ngModel" required>
-                                                 <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
+                                <div class="form-group label-floating" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                                    <label class="control-label">Pseudo</label>
+                                    <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required>
+                                    <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon">
                                                 <i class="material-icons">lock_outline</i>
                                             </span>
-                                             <div class="form-group label-floating" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-                                                <label class="control-label">Password</label>
-                                                <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required >
-                                            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group footer text-center ">
-                                        <button type="submit" [disabled]="loading" class="btn btn-danger btn-simple btn-wd btn-lg" >se Connecter</button>
-                                         <button  class="btn btn-danger btn-simple btn-wd btn-lg" [routerLink]="['/register']">Inscription</button>
-                             <div class="center">
-                    <app-loader [loading]="loading"></app-loader>
-                                </div> 
-                                    </div>
+                                <div class="form-group label-floating" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                                    <label class="control-label">Mot De Passe</label>
+                                    <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required>
+                                    <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
                                 </div>
-                            </form>
-                         </div>
-                   </div>
-		     </div>
-         </div>
-  
+                            </div>
+                        </div>
+                        <div class="form-group footer text-center ">
+                            <button type="submit" [disabled]="loading" class="btn btn-danger btn-simple btn-wd btn-lg">se Connecter</button>
+                            <button class="btn btn-danger btn-simple btn-wd btn-lg" [routerLink]="['/register']">Inscription</button>
+                            <div class="center">
+                                <app-loader [loading]="loading"></app-loader>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 control">
+                                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+                                   <a [routerLink]="['/MotDePasse']">  Mot de passe oublié</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
