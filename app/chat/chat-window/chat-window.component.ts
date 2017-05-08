@@ -68,6 +68,8 @@ export class ChatWindowComponent implements OnInit {
     m.thread = this.currentThread;
     m.isRead = true;
     // add Message service will be here ....
+
+    
     console.log("message recu 1 "+JSON.stringify(m.author));
     this.messagesService.addMessage(m);
     this.draftMessage = new Message();
