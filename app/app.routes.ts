@@ -17,6 +17,8 @@ import { AnnonceCovoiComponent } from "./dashboardutil/annonceCovoi/annonceCovoi
 import { ProfilComponent } from "./dashboardutil/profil/profil.component";
 import { AccueilComponent } from "./dashboardutil/accueil/accueil.component";
 import { MesAnnoncesCovoiComponent } from "./dashboardutil/profil/mesAnnoncesCovoi.component";
+import { AjoutAnnonceCovoiComponent } from "./dashboardutil/annonceCovoi/ajoutAnnonceCovoi.component";
+import { AnnonceCovoiDetailComponent } from "./dashboardutil/annonceCovoi/annonceCovoiDetail.component";
 export const MODULE_ROUTES: Route[] =[
     { path: 'chat', component: App2Component ,canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
@@ -34,21 +36,20 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'AnnonceCovoi', component: AnnonceCovoiComponent },
     { path: 'MonProfil', component: ProfilComponent },
     { path: 'MesAnnoncesCovoi', component: MesAnnoncesCovoiComponent },
-    
+    { path: 'AjoutAnnonceCovoi', component: AjoutAnnonceCovoiComponent },
+    { path: 'detail/:id', component: AnnonceCovoiDetailComponent }
     ],canActivate: [AuthGuard],data: { roles: ['USER'] }  },
 
-     { path: 'dashboardutil/Accueil', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['USER'] }},
-      { path: 'dashboard/Statistiques', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuardAdmin],data: { roles: ['ADMIN'] }},
-   { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuardAdmin],data: { roles: ['ADMIN'] }},
+    { path: 'dashboardutil/Accueil', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['USER'] }},
+    { path: 'dashboard/Statistiques', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuardAdmin],data: { roles: ['ADMIN'] }},
+    { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuardAdmin],data: { roles: ['ADMIN'] }},
   //{ path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['USER'] }}
-    
+
 ]
 
 export const MODULE_COMPONENTS = [
     StatistiqueComponent,DashboardComponent,GestionUtilComponent,
 
 ParametrageComponent, LoginComponent,App2Component,InscriptionComponent,DashboardUtilComponent,
- AnnonceCovoiComponent, AccueilComponent
- 
- 
+ AnnonceCovoiComponent, AccueilComponent, AnnonceCovoiDetailComponent,AjoutAnnonceCovoiComponent
 ]

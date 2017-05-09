@@ -17,7 +17,7 @@ var AnnonceCovoiService = (function () {
         this.http = http;
         this.config = config;
     }
-    //////////////////////////
+    /************************************************* */
     AnnonceCovoiService.prototype.getMesAnnoncesCovoi = function (id) {
         var headers = new http_1.Headers();
         var options = new http_1.RequestOptions({ headers: headers });
@@ -28,7 +28,18 @@ var AnnonceCovoiService = (function () {
         return this.http.get(this.config.apiUrl + '/maListeAnnonceCovoi?' + body, this.jwt())
             .map(function (res) { return res.json(); });
     };
-    //////////////////////////////////////////
+    /************************************************* */
+    AnnonceCovoiService.prototype.getAnnonceCovoi = function (id) {
+        var urlSearchParams = new http_2.URLSearchParams();
+        var idAnnonceCovoi = id.toString();
+        urlSearchParams.append('id', idAnnonceCovoi);
+        var body = urlSearchParams.toString();
+        console.log('kkkkkkkkkkkkkkkk');
+        console.log(body);
+        return this.http.get(this.config.apiUrl + '/getAnnonceCovoiById?' + body, this.jwt())
+            .map(function (res) { return res.json(); });
+    };
+    /****************************************************** */
     AnnonceCovoiService.prototype.ajouterAnnonceCovoi = function (datePublication, dateDepart, adresseDepart, adresseArrivee, nombrePlaces, cotisation, id) {
         console.log("qqqqqqqqq");
         var headers = new http_1.Headers();
@@ -47,7 +58,7 @@ var AnnonceCovoiService = (function () {
         return this.http.put(this.config.apiUrl + '/ajoutAnnonceCovoi?' + body, body, this.jwt())
             .map(function (res) { return res.json(); });
     };
-    //////////////////////////////////////
+    /***************************************************** */
     AnnonceCovoiService.prototype.modifierAnnonceCovoi = function (datePublication, dateDepart, adresseDepart, adresseArrivee, nombrePlaces, cotisation, id, idUtilisateur) {
         console.log("i am here");
         var headers = new http_1.Headers();
@@ -66,18 +77,19 @@ var AnnonceCovoiService = (function () {
         return this.http.put(this.config.apiUrl + '/updateAnnonceCovoi?' + body, body, this.jwt())
             .map(function (res) { return res.json(); });
     };
-    //////////////////////////////////
+    /*********************************************************** */
     AnnonceCovoiService.prototype.getAnnoncesCovoi = function () {
         console.log("annonces covoi affichage ");
         return this.http.get(this.config.apiUrl + '/annonces', this.jwt())
             .map(function (response) { return response.json(); });
     };
-    //////////////////////////////////////
+    /******************************************************** */
     AnnonceCovoiService.prototype.supprimerAnnonceCovoi = function (id) {
         console.log("supprimer annonce covoi");
         return this.http.delete(this.config.apiUrl + '/deleteAnnonceCovoi/' + id, this.jwt())
             .map(function (response) { return response.json(); });
     };
+    /******************************************************* */
     AnnonceCovoiService.prototype.jwt = function () {
         // create authorization header with jwt token
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));

@@ -10,9 +10,10 @@ import { URLSearchParams } from "@angular/http";
 export class AnnonceCovoiService {
 
     
-    constructor(private http: Http, private config: AppConfig) { }
+constructor(private http: Http, private config: AppConfig) { }
 
-    //////////////////////////
+/************************************************* */
+
 getMesAnnoncesCovoi(id: string){
     let headers= new Headers();
     let options= new RequestOptions({headers:headers});
@@ -24,7 +25,20 @@ getMesAnnoncesCovoi(id: string){
      .map((res: Response) => res.json());
 }
 
-//////////////////////////////////////////
+/************************************************* */
+
+getAnnonceCovoi(id :number){
+    let urlSearchParams= new URLSearchParams();
+    let idAnnonceCovoi= id.toString();
+     urlSearchParams.append('id', idAnnonceCovoi); 
+    let body= urlSearchParams.toString();
+    console.log('kkkkkkkkkkkkkkkk')
+    console.log(body)
+    return this.http.get(this.config.apiUrl+'/getAnnonceCovoiById?'+body, this.jwt())
+         .map((res: Response) => res.json());
+}
+
+/****************************************************** */
 
 ajouterAnnonceCovoi(datePublication: string,dateDepart: string, adresseDepart: string, adresseArrivee: string, nombrePlaces: string, cotisation: string, id: string ){
     console.log("qqqqqqqqq")
@@ -47,7 +61,7 @@ ajouterAnnonceCovoi(datePublication: string,dateDepart: string, adresseDepart: s
 
 }
 
-//////////////////////////////////////
+/***************************************************** */
 
 modifierAnnonceCovoi(datePublication: string,dateDepart: string, adresseDepart: string, adresseArrivee: string,
  nombrePlaces: string, cotisation: string, id: string, idUtilisateur: string){
@@ -71,7 +85,7 @@ return this.http.put(this.config.apiUrl+'/updateAnnonceCovoi?'+body, body, this.
 
 }
 
-//////////////////////////////////
+/*********************************************************** */
 
 getAnnoncesCovoi() {
     console.log("annonces covoi affichage ")
@@ -81,7 +95,7 @@ getAnnoncesCovoi() {
         );
     }
 
-//////////////////////////////////////
+/******************************************************** */
 
 supprimerAnnonceCovoi( id : string ){
     console.log("supprimer annonce covoi")
@@ -90,6 +104,7 @@ supprimerAnnonceCovoi( id : string ){
     );
 }
 
+/******************************************************* */
 
 private jwt() {
         // create authorization header with jwt token
@@ -100,5 +115,5 @@ private jwt() {
         
     }
     }
-
+/************************************************************* */
     }

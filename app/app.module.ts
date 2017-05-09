@@ -53,6 +53,8 @@ import { NavbarUtilModule } from "./shared/navbarutil/navbarutil.module";
 import { MesAnnoncesCovoiComponent } from "./dashboardutil/profil/mesAnnoncesCovoi.component";
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { DataService } from "./chat/data/data.service";
+import {  AjoutAnnonceCovoiComponent } from "./dashboardutil/annonceCovoi/ajoutAnnonceCovoi.component";
+import { AnnonceCovoiDetailComponent } from "./dashboardutil/annonceCovoi/annonceCovoiDetail.component";
 
 
 
@@ -83,7 +85,8 @@ import { DataService } from "./chat/data/data.service";
     ChatMessageComponent,
     ChatThreadComponent,
     AlertComponent,
-    FromNowPipe,ValuesPipe,FilterPipe,  AnnonceCovoiComponent, InscriptionComponent, AccueilComponent, ProfilComponent, MesAnnoncesCovoiComponent],
+    FromNowPipe,ValuesPipe,FilterPipe,  AnnonceCovoiComponent, InscriptionComponent, AccueilComponent, ProfilComponent, MesAnnoncesCovoiComponent,
+    AjoutAnnonceCovoiComponent, AnnonceCovoiDetailComponent],
 
 
     bootstrap:    [ AppComponent ],

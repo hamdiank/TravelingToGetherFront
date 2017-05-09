@@ -56,6 +56,8 @@ var navbarutil_module_1 = require("./shared/navbarutil/navbarutil.module");
 var mesAnnoncesCovoi_component_1 = require("./dashboardutil/profil/mesAnnoncesCovoi.component");
 var ng2_pagination_1 = require('ng2-pagination');
 var data_service_1 = require("./chat/data/data.service");
+var ajoutAnnonceCovoi_component_1 = require("./dashboardutil/annonceCovoi/ajoutAnnonceCovoi.component");
+var annonceCovoiDetail_component_1 = require("./dashboardutil/annonceCovoi/annonceCovoiDetail.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -84,7 +86,8 @@ var AppModule = (function () {
                 chat_message_component_1.ChatMessageComponent,
                 chat_thread_component_1.ChatThreadComponent,
                 index_3.AlertComponent,
-                from_now_pipe_1.FromNowPipe, valuesPipe_1.ValuesPipe, pipe_1.FilterPipe, annonceCovoi_component_1.AnnonceCovoiComponent, inscription_component_1.InscriptionComponent, accueil_component_1.AccueilComponent, profil_component_1.ProfilComponent, mesAnnoncesCovoi_component_1.MesAnnoncesCovoiComponent],
+                from_now_pipe_1.FromNowPipe, valuesPipe_1.ValuesPipe, pipe_1.FilterPipe, annonceCovoi_component_1.AnnonceCovoiComponent, inscription_component_1.InscriptionComponent, accueil_component_1.AccueilComponent, profil_component_1.ProfilComponent, mesAnnoncesCovoi_component_1.MesAnnoncesCovoiComponent,
+                ajoutAnnonceCovoi_component_1.AjoutAnnonceCovoiComponent, annonceCovoiDetail_component_1.AnnonceCovoiDetailComponent],
             bootstrap: [app_component_1.AppComponent],
             exports: [],
             providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }, app_config_1.AppConfig,
