@@ -48,17 +48,19 @@
                             </div>
                         </div>
                         <div class="form-group footer text-center ">
-                            <button type="submit" [disabled]="loading" class="btn btn-danger btn-simple btn-wd btn-lg">se Connecter</button>
-                            <button class="btn btn-danger btn-simple btn-wd btn-lg" [routerLink]="['/register']">Inscription</button>
+                            <button type="submit" [disabled]="loading" class="btn btn-primary btn-round btn-wd ">se Connecter</button>
+
                             <div class="center">
+
                                 <app-loader [loading]="loading"></app-loader>
                             </div>
 
                         </div>
                         <div class="form-group">
                             <div class="col-md-12 control">
+                                  <a [routerLink]="['/MotDePasse']">  Mot de passe oublié</a>
                                 <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
-                                   <a [routerLink]="['/MotDePasse']">  Mot de passe oublié</a>
+                                 Pas encore membre ?<a [routerLink]="['/register']"> Inscrivez-vous gratuitement</a> en 30s.
                                 </div>
                             </div>
                         </div>
