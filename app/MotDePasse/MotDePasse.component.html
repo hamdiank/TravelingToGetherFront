@@ -22,7 +22,7 @@
                                 <div class="form-group label-floating" [ngClass]="{ 'has-error': f.submitted && !mail.valid }">
                                     <label class="control-label">Email</label>
                                     <input type="email" class="form-control" name="mail" [(ngModel)]="model.mail" #mail="ngModel" required>
-                                    <div *ngIf="f.submitted && !mail.valid" class="help-block">email is required</div>
+                                    <div *ngIf="f.submitted && !mail.valid" class="help-block">Email est requis</div>
                                 </div>
                             </div>
 
