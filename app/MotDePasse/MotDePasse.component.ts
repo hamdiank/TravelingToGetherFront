@@ -29,8 +29,9 @@ export class MotDePasseComponent implements OnInit {
         this.loading = true;
 
         this.motDePasseService.reset(this.model.mail).subscribe(result => {
-            this.loading = false;
             this.alertService.success("Consulter votre mail");
+            this.loading = false;
+            
 
         },
             error => {

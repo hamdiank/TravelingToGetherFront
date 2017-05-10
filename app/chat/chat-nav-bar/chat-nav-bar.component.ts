@@ -12,7 +12,7 @@ import { Thread } from './../thread/thread.model';
 import { Message } from './../message/message.model';
 
 @Component({
-   moduleId: module.id,
+  moduleId: module.id,
   selector: 'chat-nav-bar',
   templateUrl: './chat-nav-bar.component.html',
   styleUrls: ['./chat-nav-bar.component.css']
@@ -21,15 +21,15 @@ export class ChatNavBarComponent implements OnInit {
   unreadMessagesCount: number;
 
   constructor(public messagesService: MessagesService,
-              public threadsService: ThreadsService) {
+    public threadsService: ThreadsService) {
   }
 
   ngOnInit(): void {
     this.messagesService.messages
       .combineLatest(
-        this.threadsService.currentThread,
-        (messages: Message[], currentThread: Thread) =>
-          [currentThread, messages] )
+      this.threadsService.currentThread,
+      (messages: Message[], currentThread: Thread) =>
+        [currentThread, messages])
 
       .subscribe(([currentThread, messages]: [Thread, Message[]]) => {
         this.unreadMessagesCount =

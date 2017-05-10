@@ -26,8 +26,8 @@ var MotDePasseComponent = (function () {
         var _this = this;
         this.loading = true;
         this.motDePasseService.reset(this.model.mail).subscribe(function (result) {
-            _this.loading = false;
             _this.alertService.success("Consulter votre mail");
+            _this.loading = false;
         }, function (error) {
             if (error)
                 _this.alertService.error("verifier votre mail");

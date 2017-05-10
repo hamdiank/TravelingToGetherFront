@@ -1,8 +1,8 @@
 import { Route } from '@angular/router';
 
-import {LoginComponent } from './login/login.component';
+import { LoginComponent } from './login/login.component';
 
-import {DashboardComponent} from './dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { StatistiqueComponent } from './dashboard/stat/statistique.component';
 import { ParametrageComponent } from './dashboard/parametrage/parametrage.component';
@@ -18,38 +18,42 @@ import { ProfilComponent } from "./dashboardutil/profil/profil.component";
 import { AccueilComponent } from "./dashboardutil/accueil/accueil.component";
 import { MesAnnoncesCovoiComponent } from "./dashboardutil/profil/mesAnnoncesCovoi.component";
 import { MotDePasseComponent } from "./MotDePasse/MotDePasse.component";
-export const MODULE_ROUTES: Route[] =[
-    { path: 'chat', component: App2Component ,canActivate: [AuthGuard] },
+export const MODULE_ROUTES: Route[] = [
+    { path: 'chat', component: App2Component, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: InscriptionComponent },
- { path: 'MotDePasse', component: MotDePasseComponent },
-   
-    { path: 'dashboard' ,component: DashboardComponent ,children: [
-    { path: 'Statistiques', component: StatistiqueComponent },
-    { path: 'parametrage', component: ParametrageComponent },
-    { path: 'GestionUtil', component: GestionUtilComponent },
-    ],canActivate: [AuthGuardAdmin] ,data: { roles: ['ADMIN'] }},
-// path for userDashboard
-    { path: 'dashboardutil' ,component: DashboardUtilComponent ,children: [
-    { path: 'Accueil', component: AccueilComponent },
-    { path: 'AnnonceCovoi', component: AnnonceCovoiComponent },
-    { path: 'MonProfil', component: ProfilComponent },
-    { path: 'MesAnnoncesCovoi', component: MesAnnoncesCovoiComponent },
-    
-    ],canActivate: [AuthGuard],data: { roles: ['USER'] }  },
+    { path: 'MotDePasse', component: MotDePasseComponent },
 
-     { path: 'dashboardutil/Accueil', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['USER'] }},
-      { path: 'dashboard/Statistiques', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuardAdmin],data: { roles: ['ADMIN'] }},
-   { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuardAdmin],data: { roles: ['ADMIN'] }},
-  { path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['USER'] }}
-    
+    {
+        path: 'dashboard', component: DashboardComponent, children: [
+            { path: 'Statistiques', component: StatistiqueComponent },
+            { path: 'parametrage', component: ParametrageComponent },
+            { path: 'GestionUtil', component: GestionUtilComponent },
+        ], canActivate: [AuthGuardAdmin], data: { roles: ['ADMIN'] }
+    },
+    // path for userDashboard
+    {
+        path: 'dashboardutil', component: DashboardUtilComponent, children: [
+            { path: 'Accueil', component: AccueilComponent },
+            { path: 'AnnonceCovoi', component: AnnonceCovoiComponent },
+            { path: 'MonProfil', component: ProfilComponent },
+            { path: 'MesAnnoncesCovoi', component: MesAnnoncesCovoiComponent },
+
+        ], canActivate: [AuthGuard], data: { roles: ['USER'] }
+    },
+
+    { path: 'dashboardutil/Accueil', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full', canActivate: [AuthGuard], data: { roles: ['USER'] } },
+    { path: 'dashboard/Statistiques', redirectTo: 'dashboard/Statistiques', pathMatch: 'full', canActivate: [AuthGuardAdmin], data: { roles: ['ADMIN'] } },
+    { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full', canActivate: [AuthGuardAdmin], data: { roles: ['ADMIN'] } },
+    { path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full', canActivate: [AuthGuard], data: { roles: ['USER'] } }
+
 ]
 
 export const MODULE_COMPONENTS = [
-    StatistiqueComponent,DashboardComponent,GestionUtilComponent,
+    StatistiqueComponent, DashboardComponent, GestionUtilComponent,
 
-ParametrageComponent, LoginComponent,App2Component,InscriptionComponent,DashboardUtilComponent,
- AnnonceCovoiComponent, AccueilComponent
- 
- 
+    ParametrageComponent, LoginComponent, App2Component, InscriptionComponent, DashboardUtilComponent,
+    AnnonceCovoiComponent, AccueilComponent
+
+
 ]
