@@ -17,13 +17,14 @@ var ChatMessageComponent = (function () {
     }
     ChatMessageComponent.prototype.ngOnInit = function () {
         var _this = this;
-        // add service to save messages here .....
         console.log("message :   " + this.message.text);
         this.UsersService.currentUser
             .subscribe(function (user) {
             _this.currentUser = user;
             if (_this.message.author && user) {
-                _this.incoming = _this.message.author.id !== user.id;
+                console.log("incom1 " + _this.message.author.idUtilisateur + "    " + user.idUtilisateur);
+                _this.incoming = _this.message.author.idUtilisateur == user.idUtilisateur;
+                console.log(_this.incoming);
             }
         });
     };

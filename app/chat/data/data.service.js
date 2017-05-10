@@ -21,6 +21,10 @@ var DataService = (function () {
         return this.http.get(this.config.apiUrl + '/message/all', this.jwt())
             .map(function (response) { return response.json(); });
     };
+    DataService.prototype.sendMessage = function (m) {
+        return this.http.post(this.config.apiUrl + '/message/add', m, this.jwt())
+            .map(function (response) { return response.json(); });
+    };
     DataService.prototype.jwt = function () {
         // create a uthorization header with jwt token
         var currentUser = JSON.parse(localStorage.getItem('currentToken'));

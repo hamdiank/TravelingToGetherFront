@@ -10,11 +10,11 @@ import { DataService } from "./data.service";
 
 
 // the person using the app us Juliet
-const me: User = new User('Juliet', 'assets/images/avatars/female-avatar-1.png');
+const me: User = new User('Juliet', 'assets/images/avatars/female-avatar-1.png','1');
 //const ladycap: User = new User('Lady Capulet', 'assets/images/avatars/female-avatar-2.png');
 //const echo: User    = new User('Echo Bot', 'assets/images/avatars/male-avatar-1.png');
 //const rev: User     = new User('Reverse Bot', 'assets/images/avatars/female-avatar-4.png');
-const wait: User = new User('Waiting Bot', 'assets/images/avatars/male-avatar-2.png');
+const wait: User = new User('Waiting Bot', 'assets/images/avatars/male-avatar-2.png','2');
 
 //const tLadycap: Thread = new Thread('tLadycap', ladycap.name, ladycap.avatarSrc);
 //const tEcho: Thread    = new Thread('tEcho', echo.name, echo.avatarSrc);
@@ -25,12 +25,12 @@ const initialMessages: Array<Message> = [
 
   // here , create messages that will be in the thread  
 
-  new Message({
+ /* new Message({
     author: wait,
     sentAt: moment().subtract(4, 'minutes').toDate(),
     text: `I\'ll wait however many seconds you send to me before responding. Try sending '3'`,
     thread: tWait
-  }),
+  }),*/
 ];
 
 
@@ -54,11 +54,15 @@ export class ChatExampleData {
       
       element.forEach(e => {
         console.log(JSON.stringify(e));
+        
       initialMessages.push(new Message({
-        author: wait,
+        author: new User( e.author.nom, 'assets/images/avatars/female-avatar-1.png', e.author.idUtilisateur ),
         sentAt: moment().subtract(4, 'minutes').toDate(),
+        isRead: e.isRead,
         text: e.text,
-        thread: tWait
+        thread: new Thread( e.author.nom, e.author.nom ,'assets/images/avatars/female-avatar-1.png'),
+        idDestinataire:e.author.idUtilisateur
+        // e.author.nom ,, sera le nom de destinataire
       }), );
     });
       initialMessages.map((message: Message) => messagesService.addMessage(message));
@@ -74,7 +78,7 @@ export class ChatExampleData {
     messagesService.messages.subscribe(() => ({}));
 
     // set "Juliet" as the current user
-    UsersService.setCurrentUser(me);
+    UsersService.setCurrentUser(new User('ankoud', 'assets/img/faces/marc.jpg','1'));
 
     // create the initial messages
 

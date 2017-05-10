@@ -9,15 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var user_model_1 = require('../user/user.model');
 var users_service_1 = require('../user/users.service');
+var thread_model_1 = require('../thread/thread.model');
 var threads_service_1 = require('../thread/threads.service');
 var message_model_1 = require('../message/message.model');
 var messages_service_1 = require('../message/messages.service');
+var data_service_1 = require("../data/data.service");
 var ChatWindowComponent = (function () {
-    function ChatWindowComponent(messagesService, threadsService, UsersService, el) {
+    function ChatWindowComponent(messagesService, threadsService, UsersService, dataService, el) {
         this.messagesService = messagesService;
         this.threadsService = threadsService;
         this.UsersService = UsersService;
+        this.dataService = dataService;
         this.el = el;
     }
     ChatWindowComponent.prototype.ngOnInit = function () {
@@ -48,6 +52,17 @@ var ChatWindowComponent = (function () {
         m.thread = this.currentThread;
         m.isRead = true;
         // add Message service will be here ....
+        // error when message is vide  
+        this.dataService.sendMessage(new message_model_1.Message({
+            author: new user_model_1.User(m.author.name, 'assets/images/avatars/female-avatar-1.png', m.author.idUtilisateur),
+            sentAt: m.sentAt,
+            isRead: m.isRead,
+            text: m.text,
+            thread: new thread_model_1.Thread(m.author.name, m.author.name, 'assets/images/avatars/female-avatar-1.png'),
+            idDestinataire: m.author.idUtilisateur
+        })).subscribe(function (result) {
+            console.log("dgf");
+        });
         console.log("message recu 1 " + JSON.stringify(m.author));
         this.messagesService.addMessage(m);
         this.draftMessage = new message_model_1.Message();
@@ -65,7 +80,7 @@ var ChatWindowComponent = (function () {
             templateUrl: 'chat-window.component.html',
             styleUrls: ['./chat-window.component.css']
         }), 
-        __metadata('design:paramtypes', [messages_service_1.MessagesService, threads_service_1.ThreadsService, users_service_1.UsersService, core_1.ElementRef])
+        __metadata('design:paramtypes', [messages_service_1.MessagesService, threads_service_1.ThreadsService, users_service_1.UsersService, data_service_1.DataService, core_1.ElementRef])
     ], ChatWindowComponent);
     return ChatWindowComponent;
 }());

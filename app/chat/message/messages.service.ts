@@ -76,8 +76,8 @@ export class MessagesService {
             // note that we're manipulating `message` directly here. Mutability
             // can be confusing and there are lots of reasons why you might want
             // to, say, copy the Message object or some other 'immutable' here
-            console.log("message.thread.id  " + message.thread.id);
-            if (message.thread.id === thread.id) {
+            console.log("message.thread.id  " + message.thread.id+"  "+thread.id);
+            if ((message.thread.id === thread.id) && message.isRead==false ) {
               message.isRead = true;
             }
             return message;
@@ -100,7 +100,7 @@ export class MessagesService {
         // belongs to this thread
         return (message.thread.id === thread.id) &&
           // and isn't authored by this user
-          (message.author.id !== user.id);
+          (message.author.idUtilisateur !== user.idUtilisateur);
       });
   }
 }

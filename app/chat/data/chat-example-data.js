@@ -5,24 +5,16 @@ var thread_model_1 = require('../thread/thread.model');
 var message_model_1 = require('../message/message.model');
 var moment = require('moment');
 // the person using the app us Juliet
-var me = new user_model_1.User('Juliet', 'assets/images/avatars/female-avatar-1.png');
+var me = new user_model_1.User('Juliet', 'assets/images/avatars/female-avatar-1.png', '1');
 //const ladycap: User = new User('Lady Capulet', 'assets/images/avatars/female-avatar-2.png');
 //const echo: User    = new User('Echo Bot', 'assets/images/avatars/male-avatar-1.png');
 //const rev: User     = new User('Reverse Bot', 'assets/images/avatars/female-avatar-4.png');
-var wait = new user_model_1.User('Waiting Bot', 'assets/images/avatars/male-avatar-2.png');
+var wait = new user_model_1.User('Waiting Bot', 'assets/images/avatars/male-avatar-2.png', '2');
 //const tLadycap: Thread = new Thread('tLadycap', ladycap.name, ladycap.avatarSrc);
 //const tEcho: Thread    = new Thread('tEcho', echo.name, echo.avatarSrc);
 //const tRev: Thread     = new Thread('tRev', rev.name, rev.avatarSrc);
 var tWait = new thread_model_1.Thread('tWait', wait.name, wait.avatarSrc);
-var initialMessages = [
-    // here , create messages that will be in the thread  
-    new message_model_1.Message({
-        author: wait,
-        sentAt: moment().subtract(4, 'minutes').toDate(),
-        text: "I'll wait however many seconds you send to me before responding. Try sending '3'",
-        thread: tWait
-    }),
-];
+var initialMessages = [];
 var ChatExampleData = (function () {
     function ChatExampleData(dataService) {
         this.dataService = dataService;
@@ -34,10 +26,12 @@ var ChatExampleData = (function () {
             element.forEach(function (e) {
                 console.log(JSON.stringify(e));
                 initialMessages.push(new message_model_1.Message({
-                    author: wait,
+                    author: new user_model_1.User(e.author.nom, 'assets/images/avatars/female-avatar-1.png', e.author.idUtilisateur),
                     sentAt: moment().subtract(4, 'minutes').toDate(),
+                    isRead: e.isRead,
                     text: e.text,
-                    thread: tWait
+                    thread: new thread_model_1.Thread(e.author.nom, e.author.nom, 'assets/images/avatars/female-avatar-1.png'),
+                    idDestinataire: e.author.idUtilisateur
                 }));
             });
             initialMessages.map(function (message) { return messagesService.addMessage(message); });
@@ -45,7 +39,7 @@ var ChatExampleData = (function () {
         // TODO make `messages` hot
         messagesService.messages.subscribe(function () { return ({}); });
         // set "Juliet" as the current user
-        UsersService.setCurrentUser(me);
+        UsersService.setCurrentUser(new user_model_1.User('ankoud', 'assets/img/faces/marc.jpg', '1'));
         // create the initial messages
         threadsService.setCurrentThread(tWait);
     };

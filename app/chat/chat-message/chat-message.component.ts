@@ -14,7 +14,7 @@ import { Thread } from './../thread/thread.model';
 import { User } from './../user/user.model';
 
 @Component({
-   moduleId: module.id,
+  moduleId: module.id,
   selector: 'chat-message',
   templateUrl: './chat-message.component.html',
   styleUrls: ['./chat-message.component.css']
@@ -28,15 +28,16 @@ export class ChatMessageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // add service to save messages here .....
-    console.log("message :   "+this.message.text);
+    console.log("message :   " + this.message.text);
     this.UsersService.currentUser
       .subscribe(
-        (user: User) => {
-          this.currentUser = user;
-          if (this.message.author && user) {
-            this.incoming = this.message.author.id !== user.id;
-          }
-        });
+      (user: User) => {
+        this.currentUser = user;
+        if (this.message.author && user) {
+          console.log("incom1 " + this.message.author.idUtilisateur + "    " + user.idUtilisateur);
+          this.incoming = this.message.author.idUtilisateur == user.idUtilisateur;
+          console.log(this.incoming);
+        }
+      });
   }
 }

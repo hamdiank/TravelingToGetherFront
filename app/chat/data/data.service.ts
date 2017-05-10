@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppConfig } from '../../app.config';
 import { Observable } from "rxjs/Observable";
+import { Message } from "../message/message.model";
 
 @Injectable()
 export class DataService {
@@ -12,13 +13,19 @@ export class DataService {
 
 
     getAll() {
-console.log('enter 65');
+        console.log('enter 65');
         return this.http.get(this.config.apiUrl + '/message/all',
             this.jwt())
             .map((response: Response) => response.json());
     }
 
+    sendMessage(m: Message) {
 
+        return this.http.post(this.config.apiUrl + '/message/add', m, this.jwt())
+            .map((response: Response) => response.json());
+
+
+    }
 
 
     private jwt() {
