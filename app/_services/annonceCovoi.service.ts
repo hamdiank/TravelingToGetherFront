@@ -31,10 +31,10 @@ getAnnonceCovoi(id :number){
     let urlSearchParams= new URLSearchParams();
     let idAnnonceCovoi= id.toString();
      urlSearchParams.append('id', idAnnonceCovoi); 
-    let body= urlSearchParams.toString();
+    let requestParameter= urlSearchParams.toString();
     console.log('kkkkkkkkkkkkkkkk')
-    console.log(body)
-    return this.http.get(this.config.apiUrl+'/getAnnonceCovoiById?'+body, this.jwt())
+    console.log(requestParameter)
+    return this.http.get(this.config.apiUrl+'/getAnnonceCovoiById?'+requestParameter, this.jwt())
          .map((res: Response) => res.json());
 }
 

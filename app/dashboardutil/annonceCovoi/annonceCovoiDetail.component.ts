@@ -11,19 +11,41 @@ import { ActivatedRoute, Params } from "@angular/router";
 })
 
 export class AnnonceCovoiDetailComponent implements OnInit{
-    annonceCovoi: any={};
+    public  annonceCovoi:any={};
+     id: number;
+    private sub: any;
 
-    constructor(private annonceCovoiService: AnnonceCovoiService, public route: ActivatedRoute){}
+    constructor(private annonceCovoiService: AnnonceCovoiService, public route: ActivatedRoute){
+
+    }
 getAnnonceCovoi(){
-     this.route.params
+    console.log('I am here '+this.id)
+    this.annonceCovoiService.getAnnonceCovoi(this.id).subscribe( annonceCovoi=> { this.annonceCovoi = annonceCovoi
+    
+    });
+       
+}
+    ngOnInit() : void{
+     this.sub = this.route.params.subscribe(params => {
+       this.id = +params['id']; 
+       console.log(this.id)
+       console.log('dddddddd')
+      
+       
+       // (+) converts string 'id' to a number
+
+       // In a real app: dispatch action to load the details here.
+    });
+
+     
+           this.getAnnonceCovoi();
+            console.log(JSON.stringify(this.annonceCovoi))
+       /* this.route.params
       .switchMap((params: Params) => this.annonceCovoiService.getAnnonceCovoi(+params['id']))
       .subscribe( annonceCovoi => { this.annonceCovoi = annonceCovoi});
-
-}
-    ngOnInit(){
         this.getAnnonceCovoi();
-        console.log('ffffffffffffff')
         console.log(typeof(this.annonceCovoi))
+        console.log(JSON.stringify(this.annonceCovoi));*/
         
     }
 }

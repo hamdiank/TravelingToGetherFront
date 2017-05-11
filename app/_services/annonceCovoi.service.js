@@ -33,10 +33,10 @@ var AnnonceCovoiService = (function () {
         var urlSearchParams = new http_2.URLSearchParams();
         var idAnnonceCovoi = id.toString();
         urlSearchParams.append('id', idAnnonceCovoi);
-        var body = urlSearchParams.toString();
+        var requestParameter = urlSearchParams.toString();
         console.log('kkkkkkkkkkkkkkkk');
-        console.log(body);
-        return this.http.get(this.config.apiUrl + '/getAnnonceCovoiById?' + body, this.jwt())
+        console.log(requestParameter);
+        return this.http.get(this.config.apiUrl + '/getAnnonceCovoiById?' + requestParameter, this.jwt())
             .map(function (res) { return res.json(); });
     };
     /****************************************************** */

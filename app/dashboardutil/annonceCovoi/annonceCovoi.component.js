@@ -33,7 +33,7 @@ var AnnonceCovoiComponent = (function () {
         this.annonceCovoiService.getAnnoncesCovoi().subscribe(function (annoncesCovoi) {
             _this.annoncesCovoi = annoncesCovoi;
         });
-        console.log("aaaaaaaaaaa");
+        console.log("annoncesCovoi");
         var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
         this.id = currentUserId;
         console.log(this.id);
@@ -47,7 +47,7 @@ var AnnonceCovoiComponent = (function () {
         var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
         this.id = currentUserId;
         console.log(this.id);
-        console.log("asx");
+        console.log("ngOnInit");
         this.getAnnoncesCovoi();
     };
     AnnonceCovoiComponent = __decorate([

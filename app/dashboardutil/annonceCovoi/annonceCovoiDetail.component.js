@@ -19,14 +19,28 @@ var AnnonceCovoiDetailComponent = (function () {
     }
     AnnonceCovoiDetailComponent.prototype.getAnnonceCovoi = function () {
         var _this = this;
-        this.route.params
-            .switchMap(function (params) { return _this.annonceCovoiService.getAnnonceCovoi(+params['id']); })
-            .subscribe(function (annonceCovoi) { _this.annonceCovoi = annonceCovoi; });
+        console.log('I am here ' + this.id);
+        this.annonceCovoiService.getAnnonceCovoi(this.id).subscribe(function (annonceCovoi) {
+            _this.annonceCovoi = annonceCovoi;
+        });
     };
     AnnonceCovoiDetailComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.sub = this.route.params.subscribe(function (params) {
+            _this.id = +params['id'];
+            console.log(_this.id);
+            console.log('dddddddd');
+            // (+) converts string 'id' to a number
+            // In a real app: dispatch action to load the details here.
+        });
         this.getAnnonceCovoi();
-        console.log('ffffffffffffff');
-        console.log(typeof (this.annonceCovoi));
+        console.log(JSON.stringify(this.annonceCovoi));
+        /* this.route.params
+       .switchMap((params: Params) => this.annonceCovoiService.getAnnonceCovoi(+params['id']))
+       .subscribe( annonceCovoi => { this.annonceCovoi = annonceCovoi});
+         this.getAnnonceCovoi();
+         console.log(typeof(this.annonceCovoi))
+         console.log(JSON.stringify(this.annonceCovoi));*/
     };
     AnnonceCovoiDetailComponent = __decorate([
         core_1.Component({

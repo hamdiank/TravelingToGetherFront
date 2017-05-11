@@ -44,11 +44,11 @@
 										</p>
 								  </div>
 								  <div class="col-sm-6 block2">
-										<h3 class="date"> {{annonceCovoi.dateDepart}}<span class="block21">  <span class="glyphicon glyphicon-time"></span>   12:15 </span> </h3>
+										<h3 class="date"> {{annonceCovoi.dateDepart}}<span class="block21">  <span class="glyphicon glyphicon-time"></span>{{annonceCovoi.heureDepart}} </span> </h3>
 										<p class="adresse">
-											<span class="adresseDepart">{{annonceCovoi.adresseDepart}}</span>
+											<span class="adresseDepart">{{annonceCovoi.paysDepart}},{{annonceCovoi.villeDepart}}</span>
 											<span class="glyphicon glyphicon-arrow-right" ></span>
-											<span class="adresseArrivee">{{annonceCovoi.adresseArrivee}}</span>
+											<span class="adresseArrivee">{{annonceCovoi.paysArrivee}},{{annonceCovoi.villeArrivee}}</span>
 											<span class="glyphicon glyphicon-road"></span> 
 										</p>
 								  </div>
@@ -76,9 +76,9 @@
                     </div> <!-- end front panel -->
                     <div class="back">
                         <div class="header">
-							<span class="adresseDepart">{{annonceCovoi.adresseDepart}}</span>
+							<span class="adresseDepart"></span>
 							<span class="glyphicon glyphicon-arrow-right" ></span>
-							<span class="adresseArrivee">{{annonceCovoi.adresseArrivee}} </span>
+							<span class="adresseArrivee"> </span>
 							<span class="glyphicon glyphicon-road"></span> 
 							<span class="viewtrajet" style="margin-left: 15px;"><a href="#" style="color: dodgerblue"> View Trajet </a></span> 
 							<hr>
@@ -90,7 +90,7 @@
 										<span> Départ</span>
 									  </div>
 								  <div class="col-sm-4 col2" >
-										<span> {{annonceCovoi.adresseDepart}}</span>
+										<span> </span>
 								  </div>
 								</div>
 								<div class="row back-arrivee">
@@ -98,7 +98,7 @@
 										<span> Arrivée</span>
 									</div>
 									<div class="col-sm-4 col2">
-										<span> {{annonceCovoi.adresseArrivee}} </span>
+										<span> </span>
 									</div>
 								</div>
 								

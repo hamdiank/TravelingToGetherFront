@@ -35,7 +35,9 @@ export class AnnonceCovoiComponent implements OnInit {
      this.annonceCovoiService.getAnnoncesCovoi().subscribe( annoncesCovoi=> { this.annoncesCovoi=annoncesCovoi
     
     });
-    console.log("aaaaaaaaaaa");
+    console.log("annoncesCovoi");
+
+    
     let currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
               this.id=currentUserId;
                console.log(this.id) 
@@ -49,7 +51,7 @@ export class AnnonceCovoiComponent implements OnInit {
              let currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
               this.id=currentUserId;
                console.log(this.id)
-            console.log("asx")
+            console.log("ngOnInit")
            this.getAnnoncesCovoi();
         }
 }
