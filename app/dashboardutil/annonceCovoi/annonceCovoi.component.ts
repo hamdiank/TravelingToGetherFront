@@ -47,7 +47,6 @@ export class AnnonceCovoiComponent implements OnInit {
                 this.id=currentUser;
              //   console.log(currentUser.json().idUtilisateur)   */
 }
-
         ngOnInit() {
              let currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
               this.id=currentUserId;

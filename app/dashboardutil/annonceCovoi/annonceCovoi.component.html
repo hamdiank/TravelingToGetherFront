@@ -2,7 +2,9 @@
 <link href="/assets/css/material-dashboard-util.css" rel="stylesheet"/>
 <link href="/assets/css/material-kit.css" rel="stylesheet"/>
 
-<!-- ************************************************************************** -->
+<!-- CSS Files AnnonceCovoi template -->
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css" rel="stylesheet"/>
+<!-- ***********************************-->
 <div class="profile-page">
     <div class="wrapper">
 		<div class="header header-filter" style="background-image: url('./assets/img/faces/city3.jpg');"></div>
@@ -12,20 +14,6 @@
   
 
  <!-- ***************************** Row ********************************************* -->                       
-
-                        <div class="row">
-                            <div class="profile">
-                                <div class="avatar">
-                                    <img src="./assets/img/faces/user.png" alt="Circle Image" class="img-circle img-responsive img-raised">
-                                </div>
-                                <div class="name">
-                                    <h3 class="title">Cynapsys</h3>
-                                    <h6>IT</h6>
-                                </div>
-                            </div>
-                        </div>
-
-
 
 
 <div class="body1">
@@ -162,154 +150,146 @@
 	</div>
 <!-- ************************************************************************** -->
 
-<!-- ******************************* Row ******************************************* --> 
-                       
-        <div class="row">
-            <div class="col-md-8" class="width: 500px;">
-                <div class="card" >
-                            <div class="card-header" data-background-color="red">
-                                <h4 class="title">Liste Des Annonces</h4>
-                            </div>
-                            <div>
-                                <button type="button" class=" btn btn-danger btn-lg btn-round " data-toggle="modal" data-target="#myModal">
-                                    <i class="material-icons">add</i>
-                                </button>                    
-                                <!-- Modal -->
-                                <div class="modal fade" id="myModal" role="dialog">
-                                    <div class="modal-dialog">
-                                    
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Ajouter une Annonce de Covoiturage</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Date de Départ</label>
-                                                    <!-- markup -->
-                                                    <input type="email" class="form-control" name="dateDepart"  [(ngModel)]="model.dateDepart" #dateDepart="ngModel" required >
-
-                                                
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Adresse de Départ</label>
-                                                    <input type="email" class="form-control" name="adresseDepart"  [(ngModel)]="model.adresseDepart" #adresseDepart="ngModel" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Adresse d'Arrivée</label>
-                                                    <input type="email" class="form-control" name="adresseArrivee"  [(ngModel)]="model.adresseArrivee" #adresseArrivee="ngModel" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Nombre de Places</label>
-                                                    <input type="email" class="form-control" name="nombrePlaces"  [(ngModel)]="model.nombrePlaces" #nombrePlaces="ngModel" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Cotisation</label>
-                                                    <input type="email" class="form-control" name="cotisation"  [(ngModel)]="model.cotisation" #cotisation="ngModel" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                        
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                        <button (click)="ajouterAnnonceCovoi()" type="button" class="btn btn-success" data-dismiss="modal">Ajouter</button>
-                                        </div>
-                                    </div>
-                                    <!-- ************ End Model ************* -->
-                                    
-                                    </div>
-                                </div> 
-                            </div>
-                </div>
-            </div>
-        </div>
-<!-- ************************************************************************** -->
-
-<!-- ******************************** Row ****************************************** -->
-    <div class="row">
-        <div class="col-sm-8 ">
-            
-                    <ul class="list-group" *ngFor="let annonceCovoi of annoncesCovoi">
-                        <div class="panel">
-                                <div class="panel-heading">
-                                <div class="logo">
-                                    <img src="../assets/img/faces/user.png" 
-                                    alt="bbbb" rel="tooltip" title data-placement="bottom" data-html="true" data-original-title="<b> becem </b> fffffffffffff"/>
-                                </div>
-                                <p> {{annonceCovoi.utilisateur.login}}</p>
-                            </div>
-                                <div class="panel-body">
-                            
-                                    <li class="list-group-item" > ID <span class="badge" >{{annonceCovoi.id}}</span></li>
-                                    <li class="list-group-item"> Date Publication <span class="badge">{{annonceCovoi.datePublication}}</span></li> 
-                                    <li class="list-group-item"> Date Départ <span class="badge">{{annonceCovoi.dateDepart}}</span></li> 
-                                    <li class="list-group-item">Addresse Départ <span class="badge">{{annonceCovoi.adresseDepart}}</span></li> 
-                                    <li class="list-group-item">Addresse Arrivée <span class="badge">{{annonceCovoi.adresseArrivee}}</span></li> 
-                                    <li class="list-group-item">Nombres de Places  <span class="badge">{{annonceCovoi.nombrePlaces}}</span><i class="fa fa-user"></i></li> 
-                                    <li class="list-group-item">Cotisation <span class="badge" >{{annonceCovoi.cotisation}}</span></li>
-        
-                                        <li class="list-group-item">
-                                            <span >
-                                                <button type="button" rel="tooltip" title="Réserver" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Réserver
-                                                </button>
-                                            </span>
-                                            <span >
-                                                <button type="button" rel="tooltip" title="Commenter" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Commenter
-                                                </button>
-                                            </span>
-                                            <span >
-                                                <button type="button" rel="tooltip" title="Contacter" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Contacter
-                                                </button>
-                                            </span>
-                                        </li>
-                                </div>
+<!-- ***************************Row*********************************************** -->
+	<div class="row">
+        <div class="col-md-4 col-sm-6">
+            <div class="card-container1 manual-flip">
+                <div class="card1">
+                    <div class="front">
+                        <div class="cover">
+                            <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg"/>
                         </div>
-                    </ul>
-                    <ul class="list-group" >
-                        <li class="list-group-item" > ID <span class="badge" >1</span></li>
-                        <li class="list-group-item"> Date Publication <span class="badge">21/04/2017</span></li> 
-                        <li class="list-group-item">Addresse Départ <span class="badge">Sfax</span></li> 
-                        <li class="list-group-item">Addresse Arrivée <span class="badge">Tunis</span></li> 
-                        <li class="list-group-item">Utilisateur <span class="badge">Utilisateur</span></li> 
-                        <li class="list-group-item">Nombres de Places  <span class="badge">3</span><i class="fa fa-user"></i></li> 
-                        <li class="list-group-item">Cotisation <span class="badge" >15 D</span></li> 
-                        <li class="list-group-item">
-                            <span >
-                                <button type="button" rel="tooltip" title="Réserver" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Réserver
+                        <div class="user">
+                            <img class="img-circle" src="https://www2.mmu.ac.uk/media/mmuacuk/style-assets/images/r-research/profile-Zeyad.jpg"/>
+                        </div>
+                        <div class="content">
+                            <div class="main">
+								<div class="row" >
+								  <div class="col-sm-3 block1">
+										<h3 class="name">slouma</h3>
+										<p class="profession"> Ingénieur </p>
+										<p class="age"> 23 Ans </p>
+										<p class="score">
+											<span class="glyphicon glyphicon-star-empty icon">
+											</span>
+											<span class="glyphicon glyphicon-star-empty">
+											</span>
+										</p>
+								  </div>
+								  <div class="col-sm-6 block2">
+										<h3 class="date"> 25-05-2017 <span class="block21">  <span class="glyphicon glyphicon-time"></span>   12:15 </span> </h3>
+										<p class="adresse">
+											<span class="adresseDepart">Paris</span>
+											<span class="glyphicon glyphicon-arrow-right" ></span>
+											<span class="adresseArrivee">Luxembourg  </span>
+											<span class="glyphicon glyphicon-road"></span> 
+										</p>
+								  </div>
+								  <div class="col-sm-3 block3" >
+										<p class="cotisation" > 33,<span class="cotisation1" >00</span>
+										<span class="glyphicon glyphicon-euro"></span> </p>
+										<p class="cotisation2"> par Place </p>
+										
+										<p class="places">3 
+											<a href="#" style="color: dodgerblue">
+											<span class="glyphicon glyphicon-user places1"></span>
+											</a>
+										</p>
+										
+										<p class="places2 "> Places restantes </p>
+								  </div>
+								</div>
+                            </div>
+                            <div class="footer">
+                                <button class="btn btn-simple" onclick="rotateCard(this)">
+                                    <i class="fa fa-mail-forward"></i> Show Detail
                                 </button>
-                            </span>
-                            <span >
-                                <button type="button" rel="tooltip" title="Commenter" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Commenter
-                                </button>
-                            </span>
-                            <span >
-                                <button type="button" rel="tooltip" title="Contacter" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Contacter
-                                </button>
-                            </span>
-                        </li> 
-                    </ul>
-                </div>
-            </div>
+                            </div>
+                        </div>
+                    </div> <!-- end front panel -->
+                    <div class="back">
+                        <div class="header">
+							<span class="adresseDepart">Paris</span>
+							<span class="glyphicon glyphicon-arrow-right" ></span>
+							<span class="adresseArrivee">Luxembourg  </span>
+							<span class="glyphicon glyphicon-road"></span> 
+							<span class="viewtrajet" style="margin-left: 15px;"><a href="#" style="color: dodgerblue"> View Trajet </a></span> 
+							<hr>
+                        </div>
+                        <div class="content">
+                            <div class="main back-main" >						
+								<div class="row back-depart">
+									  <div class="col-sm-4 col1">
+										<span> Départ</span>
+									  </div>
+								  <div class="col-sm-4 col2" >
+										<span> Paris</span>
+								  </div>
+								</div>
+								<div class="row back-arrivee">
+									<div class="col-sm-4">
+										<span> Arrivée</span>
+									</div>
+									<div class="col-sm-4 col2">
+										<span> Luxembourg </span>
+									</div>
+								</div>
+								
+								<div class="row back-voiture">
+									<div class="col-sm-4">
+										<span> Voiture</span>
+									</div>
+									<div class="col-sm-4 col2">
+									<p> <span>  BMW  Série3  </span> <span class="detail" > <a href="#" style="color: dodgerblue"> View More Details  </a></span>
+									</p>
+									</div>
+								</div>
+								<div class="row back-details">
+									<div class="col-sm-4" >
+										<span> Détails</span>
+									</div>
+									<div class="col-sm-4 col2">
+										<span> Musique,  </span>
+										<span> non fumeur, </span>
+										<span> climatisée, </span>
+										<span> chauffée </span>
+									</div>
+								</div>
+								<div class="row back-profile">
+									<div>
+										<div class="user-back" >
+											<img class="img-circle-back" src="https://www2.mmu.ac.uk/media/mmuacuk/style-assets/images/r-research/profile-Zeyad.jpg"/>
+										</div>
+									</div>
+									<p class="view-profile" >
+										<span class="lien"> <a href="#" style="color: dodgerblue" > view Profile</a> </span>
+									</p>
+								</div>	  
+							</div>
+						</div>
+                        <div class="footer back1" >
+                            <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
+                                <i class="fa fa-reply"></i> Back
+                            </button>
+                            <div class="social-links text-center">
+								<button class="btn btn-info btn-round btn1"><span class="glyphicon glyphicon-envelope"></span> Contacter Conducteur</button>
+                                <button class="btn btn-info btn-round"> Réserver </button>
+                            </div>
+                        </div>
+                    </div> <!-- end back panel -->
+                </div> <!-- end card -->
+            </div> <!-- end card-container -->
+        </div> <!-- end col sm 3 -->
+	</div>
 <!-- ************************************************************************** -->
-
         </div>
+
     </div>
 </div>
 </div>
+</div>
+
+
+<!-- ******** Script Rotation Card ****** -->
+
 </div>

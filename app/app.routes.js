@@ -12,36 +12,33 @@ var annonceCovoi_component_1 = require("./dashboardutil/annonceCovoi/annonceCovo
 var profil_component_1 = require("./dashboardutil/profil/profil.component");
 var accueil_component_1 = require("./dashboardutil/accueil/accueil.component");
 var mesAnnoncesCovoi_component_1 = require("./dashboardutil/profil/mesAnnoncesCovoi.component");
-var MotDePasse_component_1 = require("./MotDePasse/MotDePasse.component");
+var ajoutAnnonceCovoi_component_1 = require("./dashboardutil/annonceCovoi/ajoutAnnonceCovoi.component");
+var annonceCovoiDetail_component_1 = require("./dashboardutil/annonceCovoi/annonceCovoiDetail.component");
 exports.MODULE_ROUTES = [
     { path: 'chat', component: app2_component_1.App2Component, canActivate: [index_1.AuthGuard] },
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'register', component: inscription_component_1.InscriptionComponent },
-    { path: 'MotDePasse', component: MotDePasse_component_1.MotDePasseComponent },
-    {
-        path: 'dashboard', component: dashboard_component_1.DashboardComponent, children: [
+    { path: 'dashboard', component: dashboard_component_1.DashboardComponent, children: [
             { path: 'Statistiques', component: statistique_component_1.StatistiqueComponent },
             { path: 'parametrage', component: parametrage_component_1.ParametrageComponent },
             { path: 'GestionUtil', component: gestionUtil_component_1.GestionUtilComponent },
-        ], canActivate: [index_1.AuthGuardAdmin], data: { roles: ['ADMIN'] }
-    },
+        ], canActivate: [index_1.AuthGuardAdmin], data: { roles: ['ADMIN'] } },
     // path for userDashboard
-    {
-        path: 'dashboardutil', component: dashboardutil_component_1.DashboardUtilComponent, children: [
+    { path: 'dashboardutil', component: dashboardutil_component_1.DashboardUtilComponent, children: [
             { path: 'Accueil', component: accueil_component_1.AccueilComponent },
             { path: 'AnnonceCovoi', component: annonceCovoi_component_1.AnnonceCovoiComponent },
             { path: 'MonProfil', component: profil_component_1.ProfilComponent },
             { path: 'MesAnnoncesCovoi', component: mesAnnoncesCovoi_component_1.MesAnnoncesCovoiComponent },
-        ], canActivate: [index_1.AuthGuard], data: { roles: ['USER'] }
-    },
+            { path: 'AjoutAnnonceCovoi', component: ajoutAnnonceCovoi_component_1.AjoutAnnonceCovoiComponent },
+            { path: 'detail/:id', component: annonceCovoiDetail_component_1.AnnonceCovoiDetailComponent }
+        ], canActivate: [index_1.AuthGuard], data: { roles: ['USER'] } },
     { path: 'dashboardutil/Accueil', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full', canActivate: [index_1.AuthGuard], data: { roles: ['USER'] } },
     { path: 'dashboard/Statistiques', redirectTo: 'dashboard/Statistiques', pathMatch: 'full', canActivate: [index_1.AuthGuardAdmin], data: { roles: ['ADMIN'] } },
     { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full', canActivate: [index_1.AuthGuardAdmin], data: { roles: ['ADMIN'] } },
-    { path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full', canActivate: [index_1.AuthGuard], data: { roles: ['USER'] } }
 ];
 exports.MODULE_COMPONENTS = [
     statistique_component_1.StatistiqueComponent, dashboard_component_1.DashboardComponent, gestionUtil_component_1.GestionUtilComponent,
     parametrage_component_1.ParametrageComponent, login_component_1.LoginComponent, app2_component_1.App2Component, inscription_component_1.InscriptionComponent, dashboardutil_component_1.DashboardUtilComponent,
-    annonceCovoi_component_1.AnnonceCovoiComponent, accueil_component_1.AccueilComponent
+    annonceCovoi_component_1.AnnonceCovoiComponent, accueil_component_1.AccueilComponent, annonceCovoiDetail_component_1.AnnonceCovoiDetailComponent, ajoutAnnonceCovoi_component_1.AjoutAnnonceCovoiComponent
 ];
 //# sourceMappingURL=app.routes.js.map
