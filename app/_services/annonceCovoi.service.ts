@@ -24,7 +24,22 @@ getMesAnnoncesCovoi(id: string){
      .map((res: Response) => res.json());
 }
 
-//////////////////////////////////////////
+
+/************************************************* */
+
+getAnnonceCovoi(id :number){
+    let urlSearchParams= new URLSearchParams();
+    let idAnnonceCovoi= id.toString();
+     urlSearchParams.append('id', idAnnonceCovoi); 
+    let requestParameter= urlSearchParams.toString();
+    console.log('kkkkkkkkkkkkkkkk')
+    console.log(requestParameter)
+    return this.http.get(this.config.apiUrl+'/getAnnonceCovoiById?'+requestParameter, this.jwt())
+         .map((res: Response) => res.json());
+}
+
+/****************************************************** */
+
 
 ajouterAnnonceCovoi(datePublication: string,dateDepart: string, adresseDepart: string, adresseArrivee: string, nombrePlaces: string, cotisation: string, id: string ){
     console.log("qqqqqqqqq")

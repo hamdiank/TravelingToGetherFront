@@ -12,6 +12,7 @@
   
 
  <!-- ***************************** Row ********************************************* -->                       
+
                         <div class="row">
                             <div class="profile">
                                 <div class="avatar">
@@ -24,6 +25,141 @@
                             </div>
                         </div>
 
+
+
+
+<div class="body1">
+<!-- ***************************Row*********************************************** -->
+	<div class="row" *ngFor="let annonceCovoi of annoncesCovoi">
+        <div class="col-md-4 col-sm-6">
+            <div class="card-container1 manual-flip">
+                <div class="card1">
+                    <div class="front">
+                        <div class="cover">
+                            <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg"/>
+                        </div>
+                        <div class="user">
+                            <img class="img-circle" src="https://www2.mmu.ac.uk/media/mmuacuk/style-assets/images/r-research/profile-Zeyad.jpg"/>
+                        </div>
+                        <div class="content">
+                            <div class="main">
+								<div class="row" >
+								  <div class="col-sm-3 block1">
+										<h3 class="name">{{annonceCovoi.utilisateur.login}}</h3>
+										<p class="profession">{{annonceCovoi.utilisateur.profession}} </p>
+										<p class="age">{{annonceCovoi.utilisateur.age}}</p>
+										<p class="score">
+											<span class="glyphicon glyphicon-star-empty icon">
+											</span>
+											<span class="glyphicon glyphicon-star-empty">
+											</span>
+										</p>
+								  </div>
+								  <div class="col-sm-6 block2">
+										<h3 class="date"> {{annonceCovoi.dateDepart}}<span class="block21">  <span class="glyphicon glyphicon-time"></span>{{annonceCovoi.heureDepart}} </span> </h3>
+										<p class="adresse">
+											<span class="adresseDepart">{{annonceCovoi.paysDepart}},{{annonceCovoi.villeDepart}}</span>
+											<span class="glyphicon glyphicon-arrow-right" ></span>
+											<span class="adresseArrivee">{{annonceCovoi.paysArrivee}},{{annonceCovoi.villeArrivee}}</span>
+											<span class="glyphicon glyphicon-road"></span> 
+										</p>
+								  </div>
+								  <div class="col-sm-3 block3" >
+										<p class="cotisation" > {{annonceCovoi.cotisation}},<span class="cotisation1" >00</span>
+										<span class="glyphicon glyphicon-euro"></span> </p>
+										<p class="cotisation2"> par Place </p>
+										
+										<p class="places">{{annonceCovoi.nombrePlaces}}
+											<a href="#" style="color: dodgerblue">
+											<span class="glyphicon glyphicon-user places1"></span>
+											</a>
+										</p>
+										
+										<p class="places2 "> Places restantes </p>
+								  </div>
+								</div>
+                            </div>
+                            <div class="footer">
+                                <button class="btn btn-simple" onclick="rotateCard(this)">
+                                    <i class="fa fa-mail-forward"></i><a [routerLink]="['/dashboardutil/detail', annonceCovoi.id]">Show Detail </a>
+                                </button>
+                            </div>
+                        </div>
+                    </div> <!-- end front panel -->
+                    <div class="back">
+                        <div class="header">
+							<span class="adresseDepart"></span>
+							<span class="glyphicon glyphicon-arrow-right" ></span>
+							<span class="adresseArrivee"> </span>
+							<span class="glyphicon glyphicon-road"></span> 
+							<span class="viewtrajet" style="margin-left: 15px;"><a href="#" style="color: dodgerblue"> View Trajet </a></span> 
+							<hr>
+                        </div>
+                        <div class="content">
+                            <div class="main back-main" >						
+								<div class="row back-depart">
+									  <div class="col-sm-4 col1">
+										<span> Départ</span>
+									  </div>
+								  <div class="col-sm-4 col2" >
+										<span> </span>
+								  </div>
+								</div>
+								<div class="row back-arrivee">
+									<div class="col-sm-4">
+										<span> Arrivée</span>
+									</div>
+									<div class="col-sm-4 col2">
+										<span> </span>
+									</div>
+								</div>
+								
+								<div class="row back-voiture">
+									<div class="col-sm-4">
+										<span> Voiture</span>
+									</div>
+									<div class="col-sm-4 col2">
+									<p> <span>  BMW  Série3  </span> <span class="detail" > <a href="#" style="color: dodgerblue"> View More Details  </a></span>
+									</p>
+									</div>
+								</div>
+								<div class="row back-details">
+									<div class="col-sm-4" >
+										<span> Détails</span>
+									</div>
+									<div class="col-sm-4 col2">
+										<span> Musique,  </span>
+										<span> non fumeur, </span>
+										<span> climatisée, </span>
+										<span> chauffée </span>
+									</div>
+								</div>
+								<div class="row back-profile">
+									<div>
+										<div class="user-back" >
+											<img class="img-circle-back" src="https://www2.mmu.ac.uk/media/mmuacuk/style-assets/images/r-research/profile-Zeyad.jpg"/>
+										</div>
+									</div>
+									<p class="view-profile" >
+										<span class="lien"> <a href="#" style="color: dodgerblue" > view Profile</a> </span>
+									</p>
+								</div>	  
+							</div>
+						</div>
+                        <div class="footer back1" >
+                            <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
+                                <i class="fa fa-reply"></i> Back
+                            </button>
+                            <div class="social-links text-center">
+								<button class="btn btn-info btn-round btn1"><span class="glyphicon glyphicon-envelope"></span> Contacter Conducteur</button>
+                                <button class="btn btn-info btn-round"> Réserver </button>
+                            </div>
+                        </div>
+                    </div> <!-- end back panel -->
+                </div> <!-- end card -->
+            </div> <!-- end card-container -->
+        </div> <!-- end col sm 3 -->
+	</div>
 <!-- ************************************************************************** -->
 
 <!-- ******************************* Row ******************************************* --> 

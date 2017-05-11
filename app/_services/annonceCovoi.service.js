@@ -28,7 +28,18 @@ var AnnonceCovoiService = (function () {
         return this.http.get(this.config.apiUrl + '/maListeAnnonceCovoi?' + body, this.jwt())
             .map(function (res) { return res.json(); });
     };
-    //////////////////////////////////////////
+    /************************************************* */
+    AnnonceCovoiService.prototype.getAnnonceCovoi = function (id) {
+        var urlSearchParams = new http_2.URLSearchParams();
+        var idAnnonceCovoi = id.toString();
+        urlSearchParams.append('id', idAnnonceCovoi);
+        var requestParameter = urlSearchParams.toString();
+        console.log('kkkkkkkkkkkkkkkk');
+        console.log(requestParameter);
+        return this.http.get(this.config.apiUrl + '/getAnnonceCovoiById?' + requestParameter, this.jwt())
+            .map(function (res) { return res.json(); });
+    };
+    /****************************************************** */
     AnnonceCovoiService.prototype.ajouterAnnonceCovoi = function (datePublication, dateDepart, adresseDepart, adresseArrivee, nombrePlaces, cotisation, id) {
         console.log("qqqqqqqqq");
         var headers = new http_1.Headers();
