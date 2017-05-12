@@ -20,6 +20,7 @@ var common_1 = require('@angular/common');
 var app_config_1 = require("./app.config");
 var index_1 = require("./_guards/index");
 var angular2_jwt_1 = require('angular2-jwt');
+var mydatepicker_1 = require('mydatepicker');
 var index_2 = require("./_services/index");
 var http_1 = require("@angular/http");
 var table_component_1 = require("./dashboard/GestionUtil/table.component");
@@ -63,6 +64,7 @@ var AppModule = (function () {
     AppModule = __decorate([
         core_1.NgModule({
             imports: [
+                mydatepicker_1.MyDatePickerModule,
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,

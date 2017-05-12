@@ -11,6 +11,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppConfig } from "./app.config";
 import { AuthGuard,AuthGuardAdmin } from "./_guards/index";
 import { JwtHelper } from 'angular2-jwt';
+import {MyDatePickerModule } from 'mydatepicker';
 
 import { AlertService, UserService, AuthenticationService, PaysService, CityService } from "./_services/index";
 
@@ -62,7 +63,7 @@ import { NavBarUtilModule } from "./navbarutil/navbarutil.module";
 
 @NgModule({
     imports: [ 
-        
+        MyDatePickerModule,
         BrowserModule,
         FormsModule,
         HttpModule,
