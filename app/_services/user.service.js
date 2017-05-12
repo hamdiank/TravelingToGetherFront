@@ -55,7 +55,8 @@ var UserService = (function () {
         });
     };
     UserService.prototype.update = function (user) {
-        return this.http.put(this.config.apiUrl + '/utilisateur/' + user.idUtilisateur, user, this.jwt());
+        user.idUtilisateur = localStorage.getItem('currentUserId');
+        return this.http.put(this.config.apiUrl + '/utilisateur', user, this.jwt());
     };
     UserService.prototype.delete = function (_id) {
         return this.http.delete(this.config.apiUrl + '/deluser/' + _id, this.jwt());

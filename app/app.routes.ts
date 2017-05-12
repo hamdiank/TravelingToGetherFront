@@ -19,11 +19,12 @@ import { AccueilComponent } from "./dashboardutil/accueil/accueil.component";
 import { MesAnnoncesCovoiComponent } from "./dashboardutil/profil/mesAnnoncesCovoi.component";
 import { AjoutAnnonceCovoiComponent } from "./dashboardutil/annonceCovoi/ajoutAnnonceCovoi.component";
 import { AnnonceCovoiDetailComponent } from "./dashboardutil/annonceCovoi/annonceCovoiDetail.component";
+import { MotDePasseComponent } from "./MotDePasse/MotDePasse.component";
 export const MODULE_ROUTES: Route[] =[
     { path: 'chat', component: App2Component ,canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: InscriptionComponent },
-
+{path:'MotDePasse',component:MotDePasseComponent},
    
     { path: 'dashboard' ,component: DashboardComponent ,children: [
     { path: 'Statistiques', component: StatistiqueComponent },

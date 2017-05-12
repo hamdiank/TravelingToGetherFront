@@ -69,7 +69,9 @@ export class UserService {
     }
 
     update(user: User) {
-        return this.http.put(this.config.apiUrl + '/utilisateur/' + user.idUtilisateur, user, this.jwt());
+         
+         user.idUtilisateur=localStorage.getItem('currentUserId');
+        return this.http.put(this.config.apiUrl + '/utilisateur' , user, this.jwt());
     }
 
     delete(_id: string) {

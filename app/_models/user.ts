@@ -7,4 +7,9 @@
     role: string;
     email:string;
     etat:boolean;
+    description :string;
+    profession : string;
+    dateDeNaissance : string;
+    numTelephone:string;
+
 }
