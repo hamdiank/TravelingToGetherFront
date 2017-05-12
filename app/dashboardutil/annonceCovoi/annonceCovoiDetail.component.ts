@@ -10,23 +10,20 @@ import { ActivatedRoute, Params } from "@angular/router";
     providers:[AnnonceCovoiService]
 })
 
-export class AnnonceCovoiDetailComponent implements OnInit{
-    public  annonceCovoi:any={};
+export class AnnonceCovoiDetailComponent implements OnInit {
+        ngOnInit(): void {
+           this.getAnnonceCovoi();
+        }
+
+
+
+     annonceCovoi:any={};
+     utilisateur:any={}
      id: number;
     private sub: any;
 
     constructor(private annonceCovoiService: AnnonceCovoiService, public route: ActivatedRoute){
-
-    }
-getAnnonceCovoi(){
-    console.log('I am here '+this.id)
-    this.annonceCovoiService.getAnnonceCovoi(this.id).subscribe( annonceCovoi=> { this.annonceCovoi = annonceCovoi
-    
-    });
-       
-}
-    ngOnInit() : void{
-     this.sub = this.route.params.subscribe(params => {
+  this.sub = this.route.params.subscribe(params => {
        this.id = +params['id']; 
        console.log(this.id)
        console.log('dddddddd')
@@ -38,14 +35,30 @@ getAnnonceCovoi(){
     });
 
      
-           this.getAnnonceCovoi();
-            console.log(JSON.stringify(this.annonceCovoi))
-       /* this.route.params
+    console.log('I am here '+this.id)
+    this.annonceCovoiService.getAnnonceCovoi(this.id).subscribe( annonceCovoi=> { this.annonceCovoi = annonceCovoi,
+        this.utilisateur= annonceCovoi.utilisateur
+        console.log(JSON.stringify(this.annonceCovoi))
+        console.log(JSON.stringify(this.utilisateur))
+        
+    
+    });
+
+    }
+
+getAnnonceCovoi(){
+  
+       
+}
+ /*   ngOnInit() : void{
+     
+          
+
+        this.route.params
       .switchMap((params: Params) => this.annonceCovoiService.getAnnonceCovoi(+params['id']))
       .subscribe( annonceCovoi => { this.annonceCovoi = annonceCovoi});
         this.getAnnonceCovoi();
         console.log(typeof(this.annonceCovoi))
-        console.log(JSON.stringify(this.annonceCovoi));*/
-        
-    }
+        console.log(JSON.stringify(this.annonceCovoi));
+        */
 }

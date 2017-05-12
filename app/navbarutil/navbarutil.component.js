@@ -9,20 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var SidebarUtilComponent = (function () {
-    function SidebarUtilComponent() {
+var NavBarUtilComponent = (function () {
+    function NavBarUtilComponent() {
     }
-    SidebarUtilComponent.prototype.ngOnInit = function () {
+    NavBarUtilComponent.prototype.ngOnInit = function () {
     };
-    SidebarUtilComponent = __decorate([
+    NavBarUtilComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'sidebar-util-cmp',
-            templateUrl: 'sidebar.component.html',
+            selector: 'navbar-util-cmp',
+            templateUrl: 'navbarutil.component.html',
         }), 
         __metadata('design:paramtypes', [])
-    ], SidebarUtilComponent);
-    return SidebarUtilComponent;
+    ], NavBarUtilComponent);
+    return NavBarUtilComponent;
 }());
-exports.SidebarUtilComponent = SidebarUtilComponent;
-//# sourceMappingURL=sidebar.component.js.map
+exports.NavBarUtilComponent = NavBarUtilComponent;
+//# sourceMappingURL=navbarutil.component.js.map

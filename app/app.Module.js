@@ -28,7 +28,6 @@ var core_1 = require("@angular/core");
 var parametrage_component_1 = require("./dashboard/parametrage/parametrage.component");
 var avion_service_1 = require("./_services/avion.service");
 var accueil_component_1 = require("./dashboardutil/accueil/accueil.component");
-var sidebar_module_2 = require("./sidebarutil/sidebar.module");
 var annonceCovoi_component_1 = require("./dashboardutil/annonceCovoi/annonceCovoi.component");
 var annonceCovoi_service_1 = require("./_services/annonceCovoi.service");
 var loader_component_1 = require("./shared/loader/loader.component");
@@ -52,12 +51,12 @@ var index_3 = require("./shared/alert/index");
 var spinner_component_1 = require("./shared/loader2/spinner.component");
 var inscription_component_1 = require("./inscription/inscription.component");
 var profil_component_1 = require("./dashboardutil/profil/profil.component");
-var navbarutil_module_1 = require("./shared/navbarutil/navbarutil.module");
 var mesAnnoncesCovoi_component_1 = require("./dashboardutil/profil/mesAnnoncesCovoi.component");
 var ng2_pagination_1 = require('ng2-pagination');
 var data_service_1 = require("./chat/data/data.service");
 var MotDePassOublie_1 = require("./_services/MotDePassOublie");
 var MotDePasse_component_1 = require("./MotDePasse/MotDePasse.component");
+var navbarutil_module_1 = require("./navbarutil/navbarutil.module");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -67,11 +66,10 @@ var AppModule = (function () {
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
-                sidebar_module_1.SidebarModule,
-                sidebar_module_2.SidebarUtilModule,
                 navbar_module_1.NavbarModule,
-                navbarutil_module_1.NavbarUtilModule,
                 footer_module_1.FooterModule,
+                sidebar_module_1.SidebarModule,
+                navbarutil_module_1.NavBarUtilModule,
                 forms_1.ReactiveFormsModule,
                 ng2_pagination_1.Ng2PaginationModule,
                 router_1.RouterModule.forRoot(app_routes_1.MODULE_ROUTES),

@@ -11,19 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var common_1 = require('@angular/common');
 var router_1 = require('@angular/router');
-var sidebar_component_1 = require('./sidebar.component');
-var SidebarUtilModule = (function () {
-    function SidebarUtilModule() {
+var navbarutil_component_1 = require('./navbarutil.component');
+var NavBarUtilModule = (function () {
+    function NavBarUtilModule() {
     }
-    SidebarUtilModule = __decorate([
+    NavBarUtilModule = __decorate([
         core_1.NgModule({
             imports: [router_1.RouterModule, common_1.CommonModule],
-            declarations: [sidebar_component_1.SidebarUtilComponent],
-            exports: [sidebar_component_1.SidebarUtilComponent]
+            declarations: [navbarutil_component_1.NavBarUtilComponent],
+            exports: [navbarutil_component_1.NavBarUtilComponent]
         }), 
         __metadata('design:paramtypes', [])
-    ], SidebarUtilModule);
-    return SidebarUtilModule;
+    ], NavBarUtilModule);
+    return NavBarUtilModule;
 }());
-exports.SidebarUtilModule = SidebarUtilModule;
-//# sourceMappingURL=sidebar.module.js.map
+exports.NavBarUtilModule = NavBarUtilModule;
+//# sourceMappingURL=navbarutil.module.js.map
