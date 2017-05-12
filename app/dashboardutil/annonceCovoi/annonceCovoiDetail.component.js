@@ -13,19 +13,11 @@ var annonceCovoi_service_1 = require("../../_services/annonceCovoi.service");
 var router_1 = require("@angular/router");
 var AnnonceCovoiDetailComponent = (function () {
     function AnnonceCovoiDetailComponent(annonceCovoiService, route) {
+        var _this = this;
         this.annonceCovoiService = annonceCovoiService;
         this.route = route;
         this.annonceCovoi = {};
-    }
-    AnnonceCovoiDetailComponent.prototype.getAnnonceCovoi = function () {
-        var _this = this;
-        console.log('I am here ' + this.id);
-        this.annonceCovoiService.getAnnonceCovoi(this.id).subscribe(function (annonceCovoi) {
-            _this.annonceCovoi = annonceCovoi;
-        });
-    };
-    AnnonceCovoiDetailComponent.prototype.ngOnInit = function () {
-        var _this = this;
+        this.utilisateur = {};
         this.sub = this.route.params.subscribe(function (params) {
             _this.id = +params['id'];
             console.log(_this.id);
@@ -33,14 +25,18 @@ var AnnonceCovoiDetailComponent = (function () {
             // (+) converts string 'id' to a number
             // In a real app: dispatch action to load the details here.
         });
+        console.log('I am here ' + this.id);
+        this.annonceCovoiService.getAnnonceCovoi(this.id).subscribe(function (annonceCovoi) {
+            _this.annonceCovoi = annonceCovoi,
+                _this.utilisateur = annonceCovoi.utilisateur;
+            console.log(JSON.stringify(_this.annonceCovoi));
+            console.log(JSON.stringify(_this.utilisateur));
+        });
+    }
+    AnnonceCovoiDetailComponent.prototype.ngOnInit = function () {
         this.getAnnonceCovoi();
-        console.log(JSON.stringify(this.annonceCovoi));
-        /* this.route.params
-       .switchMap((params: Params) => this.annonceCovoiService.getAnnonceCovoi(+params['id']))
-       .subscribe( annonceCovoi => { this.annonceCovoi = annonceCovoi});
-         this.getAnnonceCovoi();
-         console.log(typeof(this.annonceCovoi))
-         console.log(JSON.stringify(this.annonceCovoi));*/
+    };
+    AnnonceCovoiDetailComponent.prototype.getAnnonceCovoi = function () {
     };
     AnnonceCovoiDetailComponent = __decorate([
         core_1.Component({

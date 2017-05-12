@@ -1,5 +1,4 @@
 <!-- CSS Files Dashboard Utilisateur -->
-<link href="/assets/css/material-dashboard-util.css" rel="stylesheet"/>
 <div style=" background-color:lavender;">
 <div class="main-content" style="margin-top: 70px; margin-left: 200px;">
 <div class="container-fluid">
@@ -15,52 +14,103 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group form-black label-floating is-empty">
-                                    <label class="control-label">Date Départ</label>
-                                    <input type="text" class="form-control" name="dateDepart">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <label class="control-label">Heure Départ</label>
-                                    <input type="text" class="form-control" name="heureDepart">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <label class="control-label">Pays Départ</label>
-                                    <input type="text" class="form-control" name="dateDepart">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <label class="control-label">Ville Départ</label>
-                                    <input type="text" class="form-control" name="heureDepart">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <label class="control-label">Pays Arrivéé</label>
-                                    <input type="text" class="form-control" >
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <label class="control-label">Ville Arrivée</label>
-                                    <input type="text" class="form-control" >
+                                    <label>Date Départ</label>
+                                    <my-date-picker value="Date Depart"name="dateDepart" [options]="myDatePickerOptions" required></my-date-picker>
                                 </div>
                             </div>
 
                         </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <label>Heure Départ</label>
+                                    <br>
+                                    <label>Heure</label>
+                                    <select>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label>Minute</label>
+                                    <select>
+                                        <option>15</option>
+                                        <option>16</option>
+                                        <option>17</option>
+                                        <option>18</option>
+                                    </select>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <label>Pays Départ</label>
+                                    <br>
+                                    <select>
+                                        <option>France</option>
+                                        <option>Tunisie</option>
+                                        <option>Allemagne</option>
+                                        <option>Espagne</option>
+                                        <option>Luxembourg</option>
+                                    </select> 
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <label>Ville Départ</label>
+                                    <br>
+                                    <select>
+                                        <option></option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select> 
+                                </div>
+                            </div>
+                        </div>
+                         <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <label>Pays Arrivée</label>
+                                    <br>
+                                    <select>
+                                        <option>France</option>
+                                        <option>Tunisie</option>
+                                        <option>Allemagne</option>
+                                        <option>Espagne</option>
+                                        <option>Luxembourg</option>
+                                    </select> 
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <label>Ville Arrivée</label>
+                                    <br>
+                                    <select>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select> 
+                                </div>
+                            </div>
+                        </div>
+                         <hr>
                         
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group form-black label-floating is-empty">
-                                    <label class="control-label">Nombre de PLaces </label>
+                                    <label class="control-label">Nombre de Places </label>
                                     <input type="text" class="form-control" >
                                 </div>
                             </div>
@@ -70,7 +120,6 @@
                                     <input type="text" class="form-control" >
                                 </div>
                             </div>
-
                         </div>
 
 
@@ -84,3 +133,5 @@
 </div>
 </div>
 </div>
+
+

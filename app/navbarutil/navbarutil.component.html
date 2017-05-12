@@ -1,0 +1,55 @@
+<nav class="navbar navbar-danger navbar-fixed-top ">
+	<div class="container">
+        <div class="navbar-header">
+	    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-index">
+	        	<span class="sr-only">Toggle navigation</span>
+	        	<span class="icon-bar"></span>
+	        	<span class="icon-bar"></span>
+	        	<span class="icon-bar"></span>
+	    	</button>
+			<a class="navbar-brand" [routerLink]="['Accueil']">Traveling Together</a>
+	    </div>
+
+	    <div class="collapse navbar-collapse" id="navigation-index">
+	    	<ul class="nav navbar-nav navbar-right">
+				<li class="active"><a [routerLink]="['AnnonceCovoi']">Annonces Covoiturage</a></li>
+        		<li><a href="#">Annonces Vol</a></li>
+                <li><a href="#">Annonces Train</a></li>
+        		<li class="dropdown">
+        			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Ajout Annonce <b class="caret"></b></a>
+        			<ul class="dropdown-menu dropdown-menu-right">
+					  <li><a [routerLink]="['AjoutAnnonceCovoi']"> Annonce Covoiturage</a></li>
+                      <li class="divider"></li>
+					  <li><a href="#"> Annonce Vol</a></li>
+					  <li class="divider"></li>
+                      <li><a href="#"> Annonce Train</a></li>
+        			</ul>
+        		</li>
+        		<li class="dropdown">
+        			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
+        			<ul class="dropdown-menu dropdown-menu-right">
+					  <li><a [routerLink]="['MonProfil']">Mon Profile</a></li>
+                      <li class="divider"></li>
+					  <li><a [routerLink]="['MesAnnoncesCovoi']">Mes Annonces Covoiturage </a></li>
+					  <li><a href="#">Mes Annonces Vol</a></li>
+                      <li><a href="#">Mes Annonces Train</a></li>
+					  <li class="divider"></li>
+				      <li><a [routerLink]="['/login']" >Déconnexion</a></li>
+        			</ul>
+        		</li>
+	    	</ul>
+	    </div>
+	</div>
+</nav>
+<style>
+li a:hover {
+    color:white;
+	background-color: red;
+}
+
+/* selected link */
+a:active {
+    color: #0000FF;
+}
+
+	</style>

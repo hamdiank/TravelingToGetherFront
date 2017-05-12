@@ -11,6 +11,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppConfig } from "./app.config";
 import { AuthGuard,AuthGuardAdmin } from "./_guards/index";
 import { JwtHelper } from 'angular2-jwt';
+import {MyDatePickerModule } from 'mydatepicker';
 
 import { AlertService, UserService, AuthenticationService, PaysService, CityService } from "./_services/index";
 
@@ -22,7 +23,6 @@ import { NgModule } from "@angular/core";
 import { ParametrageComponent } from "./dashboard/parametrage/parametrage.component";
 import { AvionService } from "./_services/avion.service";
 import { AccueilComponent } from "./dashboardutil/accueil/accueil.component";
-import { SidebarUtilModule } from "./sidebarutil/sidebar.module";
 import { AnnonceCovoiComponent } from "./dashboardutil/annonceCovoi/annonceCovoi.component";
 import { AnnonceCovoiService } from "./_services/annonceCovoi.service";
 import { LoaderComponent } from "./shared/loader/loader.component";
@@ -49,13 +49,13 @@ import { SpinnerComponent } from "./shared/loader2/spinner.component";
 
 import { InscriptionComponent } from "./inscription/inscription.component";
 import { ProfilComponent } from "./dashboardutil/profil/profil.component";
-import { NavbarUtilModule } from "./shared/navbarutil/navbarutil.module";
 import { MesAnnoncesCovoiComponent } from "./dashboardutil/profil/mesAnnoncesCovoi.component";
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { DataService } from "./chat/data/data.service";
 import { ChatExampleData } from "./chat/data/chat-example-data";
 import { MotDePasseOublieService } from "./_services/MotDePassOublie";
 import { MotDePasseComponent } from "./MotDePasse/MotDePasse.component";
+import { NavBarUtilModule } from "./navbarutil/navbarutil.module";
 
 
 
@@ -63,15 +63,14 @@ import { MotDePasseComponent } from "./MotDePasse/MotDePasse.component";
 
 @NgModule({
     imports: [ 
-        
+        MyDatePickerModule,
         BrowserModule,
         FormsModule,
         HttpModule,
-        SidebarModule,
-        SidebarUtilModule,
         NavbarModule,
-        NavbarUtilModule,
         FooterModule,
+        SidebarModule,
+        NavBarUtilModule,
         ReactiveFormsModule,
         Ng2PaginationModule,
         RouterModule.forRoot(MODULE_ROUTES),
