@@ -30,7 +30,8 @@ var ProfilComponent = (function () {
             nom: ['', [forms_1.Validators.minLength(4), forms_1.Validators.maxLength(10)]],
             prenom: ['', [forms_1.Validators.minLength(4), forms_1.Validators.maxLength(10)]],
             password: ['', [forms_1.Validators.maxLength(15)]],
-            numTelephone: ['', [forms_1.Validators.maxLength(15)]]
+            numTelephone: ['', [forms_1.Validators.maxLength(15)]],
+            dateNaissance: ['', []],
         });
         // subscribe to form changes  
         this.subcribeToFormChanges();
@@ -57,7 +58,9 @@ var ProfilComponent = (function () {
                 this.u.password = model.password;
             if (model.numTelephone !== "")
                 this.u.numTelephone = model.numTelephone;
-            console.log("numTelephone " + this.u.numTelephone);
+            if (model.dateNaissance !== "")
+                this.u.dateNaissance = model.dateNaissance.formatted;
+            console.log("numTelephone " + this.u.dateNaissance);
             this.userService.update(this.u).subscribe(function (result) {
                 console.log(result);
             });

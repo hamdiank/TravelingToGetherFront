@@ -28,7 +28,8 @@ export class ProfilComponent implements OnInit {
             nom: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
             prenom: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
             password: ['', [<any>Validators.maxLength(15)]],
-            numTelephone:['', [<any>Validators.maxLength(15)]]
+            numTelephone:['', [<any>Validators.maxLength(15)]],
+            dateNaissance:['', []],
         });
 
         // subscribe to form changes  
@@ -44,7 +45,7 @@ export class ProfilComponent implements OnInit {
         myFormValueChanges$.subscribe(x => this.events.push({ event: 'VALUE_CHANGED', object: x }));
     }
 
-    save(model: User, isValid: boolean) {
+    save(model: any, isValid: boolean) {
         this.submitted = true;
         console.log("model save " + JSON.stringify(model), isValid);
 
@@ -60,7 +61,9 @@ export class ProfilComponent implements OnInit {
          this.u.password=model.password;
          if(model.numTelephone!=="")
          this.u.numTelephone=model.numTelephone;
-         console.log("numTelephone "+this.u.numTelephone);
+           if(model.dateNaissance!=="")
+         this.u.dateNaissance=model.dateNaissance.formatted;
+         console.log("numTelephone "+this.u.dateNaissance);
   
             this.userService.update(this.u).subscribe(result => {
                 console.log(result);

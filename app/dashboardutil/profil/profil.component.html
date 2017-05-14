@@ -91,7 +91,7 @@
                                             </span>
                                         <div class="form-group form-black label-floating is-empty">
                                             <label class="control-label">Numero Telephone</label>
-                                            <input type="number" class="form-control"formControlName="numTelephone">
+                                            <input type="number" class="form-control" formControlName="numTelephone">
                                         </div>
                                     </div>
                                 </div>
@@ -113,9 +113,23 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                                <i class="material-icons">date_range</i>
+                                            </span>
+                                        <div class="form-group form-black label-floating is-empty">
+                                            <label>Date de Naissance</label>
+                                            <my-date-picker formControlName="dateNaissance" name="dateDepart" [options]="myDatePickerOptions" required></my-date-picker>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Date de Naissance</label>
+
                                         <div class="form-group form-black label-floating is-empty">
                                             <input type="file" (change)="changeListner($event)" />
 
@@ -160,7 +174,29 @@
                         <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
                     </div>
                 </div>
+                 <div class="card card-profile">
+                    <div class="card-avatar">
+                        <a href="#pablo">
+                          <!--  <img class="image" />-->
+                          <img class="img" src="../assets/img/faces/marc.jpg" />
+                        </a>
+                    </div>
+
+                    <div class="content">
+                        <h6 class="category text-gray">CEO / Co-Founder</h6>
+                        <h4 class="card-title">Alec Thompson</h4>
+                        <p class="card-content">
+                            Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye
+                            I love Rick Owens’ bed design but the back is...
+                        </p>
+                        <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+                    </div>
+                </div>
             </div>
         </div>
+
+
+
+        
     </div>
 </div>

@@ -9,7 +9,7 @@
     etat:boolean;
     description :string;
     profession : string;
-    dateDeNaissance : string;
+    dateNaissance : string;
     numTelephone:string;
 
 }
