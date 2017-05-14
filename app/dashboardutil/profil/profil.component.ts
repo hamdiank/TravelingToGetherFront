@@ -10,7 +10,7 @@ import { UserService } from "../../_services/index";
 })
 
 export class ProfilComponent implements OnInit {
-    image:any;
+    image: any;
     public myForm: FormGroup;
     public submitted: boolean;
     public events: any[] = [];
@@ -19,7 +19,7 @@ export class ProfilComponent implements OnInit {
     constructor(private element: ElementRef, private _fb: FormBuilder, private userService: UserService) {
         this.userService.getById(localStorage.getItem('currentUserId')).subscribe(result => {
             this.u = result;
-            this.avatarSrc=this.u.avatarSrc;
+            this.avatarSrc = this.u.avatarSrc;
         });
     }
     ngOnInit() {
@@ -36,7 +36,7 @@ export class ProfilComponent implements OnInit {
 
         // subscribe to form changes  
         this.subcribeToFormChanges();
-       this.showImage("4");
+        this.showImage("4");
 
     }
     subcribeToFormChanges() {
@@ -80,13 +80,13 @@ export class ProfilComponent implements OnInit {
 
 
 
-showImage(filename:string) {
-    this.userService.getImage(filename)
-      .subscribe((file) => {
-          this.image = file;
-          console.log("imagee  "+this.image);
-        });
-      }
+    showImage(filename: string) {
+        this.userService.getImage(filename)
+            .subscribe((file) => {
+                this.image = file;
+                console.log("imagee  " + this.image);
+            });
+    }
 
 
 

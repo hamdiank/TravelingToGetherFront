@@ -9,8 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var user_service_1 = require("../_services/user.service");
 var NavBarUtilComponent = (function () {
-    function NavBarUtilComponent() {
+    function NavBarUtilComponent(userService) {
+        var _this = this;
+        this.userService = userService;
+        userService.getById(localStorage.getItem("currentUserId")).subscribe(function (result) {
+            _this.nom = result.nom;
+        });
     }
     NavBarUtilComponent.prototype.ngOnInit = function () {
     };
@@ -20,7 +26,7 @@ var NavBarUtilComponent = (function () {
             selector: 'navbar-util-cmp',
             templateUrl: 'navbarutil.component.html',
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [user_service_1.UserService])
     ], NavBarUtilComponent);
     return NavBarUtilComponent;
 }());
