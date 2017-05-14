@@ -11,5 +11,6 @@
     profession : string;
     dateNaissance : string;
     numTelephone:string;
+    avatarSrc:string;
 
 }

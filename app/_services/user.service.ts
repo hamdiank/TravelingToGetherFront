@@ -20,7 +20,14 @@ export class UserService {
     getById(_id: string) {
         return this.http.get(this.config.apiUrl + '/utilisateur/' + _id, this.jwt()).map((response: Response) => response.json());
     }
+    getImage(t: string) {
+        return this.http.get(this.config.apiUrl + '/getImage/' + t, this.jwt()).map(this.extractUrl);
+    }
 
+extractUrl(res:Response):string {
+    console.log("errrrrrrrr  "+res.url);
+    return res.url;
+  }
     /*
         addUser(user: User) {
             let bodyString = JSON.stringify(user); // Stringify payload
@@ -77,6 +84,7 @@ export class UserService {
     delete(_id: string) {
         return this.http.delete(this.config.apiUrl + '/deluser/' + _id, this.jwt());
     }
+
 
     // private helper methods
     private jwt() {

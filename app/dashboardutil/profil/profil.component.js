@@ -20,6 +20,7 @@ var ProfilComponent = (function () {
         this.events = [];
         this.userService.getById(localStorage.getItem('currentUserId')).subscribe(function (result) {
             _this.u = result;
+            _this.avatarSrc = _this.u.avatarSrc;
         });
     }
     ProfilComponent.prototype.ngOnInit = function () {
@@ -35,6 +36,7 @@ var ProfilComponent = (function () {
         });
         // subscribe to form changes  
         this.subcribeToFormChanges();
+        this.showImage("4");
     };
     ProfilComponent.prototype.subcribeToFormChanges = function () {
         var _this = this;
@@ -65,6 +67,14 @@ var ProfilComponent = (function () {
                 console.log(result);
             });
         }
+    };
+    ProfilComponent.prototype.showImage = function (filename) {
+        var _this = this;
+        this.userService.getImage(filename)
+            .subscribe(function (file) {
+            _this.image = file;
+            console.log("imagee  " + _this.image);
+        });
     };
     ProfilComponent.prototype.changeListner = function (event) {
         var reader = new FileReader();

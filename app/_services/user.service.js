@@ -23,6 +23,13 @@ var UserService = (function () {
     UserService.prototype.getById = function (_id) {
         return this.http.get(this.config.apiUrl + '/utilisateur/' + _id, this.jwt()).map(function (response) { return response.json(); });
     };
+    UserService.prototype.getImage = function (t) {
+        return this.http.get(this.config.apiUrl + '/getImage/' + t, this.jwt()).map(this.extractUrl);
+    };
+    UserService.prototype.extractUrl = function (res) {
+        console.log("errrrrrrrr  " + res.url);
+        return res.url;
+    };
     /*
         addUser(user: User) {
             let bodyString = JSON.stringify(user); // Stringify payload

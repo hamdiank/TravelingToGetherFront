@@ -10,31 +10,33 @@ import { UserService } from "../../_services/index";
 })
 
 export class ProfilComponent implements OnInit {
+    image:any;
     public myForm: FormGroup;
     public submitted: boolean;
     public events: any[] = [];
     u: User;
-
+    avatarSrc: string;
     constructor(private element: ElementRef, private _fb: FormBuilder, private userService: UserService) {
         this.userService.getById(localStorage.getItem('currentUserId')).subscribe(result => {
             this.u = result;
+            this.avatarSrc=this.u.avatarSrc;
         });
     }
     ngOnInit() {
         let emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
         this.myForm = this._fb.group({
-            login: ['', [ <any>Validators.minLength(4), <any>Validators.maxLength(10)]],
-            email: ['', [ <any>Validators.pattern(emailRegex)]],
+            login: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
+            email: ['', [<any>Validators.pattern(emailRegex)]],
             nom: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
             prenom: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
             password: ['', [<any>Validators.maxLength(15)]],
-            numTelephone:['', [<any>Validators.maxLength(15)]],
-            dateNaissance:['', []],
+            numTelephone: ['', [<any>Validators.maxLength(15)]],
+            dateNaissance: ['', []],
         });
 
         // subscribe to form changes  
         this.subcribeToFormChanges();
-
+       this.showImage("4");
 
     }
     subcribeToFormChanges() {
@@ -49,22 +51,22 @@ export class ProfilComponent implements OnInit {
         this.submitted = true;
         console.log("model save " + JSON.stringify(model), isValid);
 
-      if (isValid) {
-         // console.log(model.!=="");
-         if(model.login!=="")
-         this.u.login=model.login;
-         if(model.nom!=="")
-         this.u.nom=model.nom;
-         if(model.prenom!=="")
-         this.u.prenom=model.prenom;
-         if(model.password!=="")
-         this.u.password=model.password;
-         if(model.numTelephone!=="")
-         this.u.numTelephone=model.numTelephone;
-           if(model.dateNaissance!=="")
-         this.u.dateNaissance=model.dateNaissance.formatted;
-         console.log("numTelephone "+this.u.dateNaissance);
-  
+        if (isValid) {
+            // console.log(model.!=="");
+            if (model.login !== "")
+                this.u.login = model.login;
+            if (model.nom !== "")
+                this.u.nom = model.nom;
+            if (model.prenom !== "")
+                this.u.prenom = model.prenom;
+            if (model.password !== "")
+                this.u.password = model.password;
+            if (model.numTelephone !== "")
+                this.u.numTelephone = model.numTelephone;
+            if (model.dateNaissance !== "")
+                this.u.dateNaissance = model.dateNaissance.formatted;
+            console.log("numTelephone " + this.u.dateNaissance);
+
             this.userService.update(this.u).subscribe(result => {
                 console.log(result);
             })
@@ -78,7 +80,13 @@ export class ProfilComponent implements OnInit {
 
 
 
-
+showImage(filename:string) {
+    this.userService.getImage(filename)
+      .subscribe((file) => {
+          this.image = file;
+          console.log("imagee  "+this.image);
+        });
+      }
 
 
 
