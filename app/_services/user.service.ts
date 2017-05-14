@@ -10,6 +10,13 @@ export class UserService {
 
     }
 
+uploadUserImage(file : File ,id:string):Observable<boolean>{
+        let formData:FormData = new FormData();
+        formData.append('file',file);
+        formData.append('id',id);
+        return  this.http.post(this.config.apiUrl +"/upload",formData,this.jwt())
+            .map(response=>response.json())
+    }
 
     getAll() {
         console.log("start api/user eehdf ......")
@@ -90,7 +97,7 @@ extractUrl(res:Response):string {
     private jwt() {
         // create authorization header with jwt token
         let currentUser = JSON.parse(localStorage.getItem('currentToken'));
-        console.log(localStorage.getItem('currentToken'));
+      //  console.log(localStorage.getItem('currentToken'));
         if (currentUser ) {
             let headers = new Headers({ 'Authorization': 'Bearer ' + localStorage.getItem('currentToken') });
             return new RequestOptions({ headers: headers });

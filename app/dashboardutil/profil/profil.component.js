@@ -77,14 +77,16 @@ var ProfilComponent = (function () {
         });
     };
     ProfilComponent.prototype.changeListner = function (event) {
-        var reader = new FileReader();
-        var image = this.element.nativeElement.querySelector('.image');
-        reader.onload = function (e) {
-            var src = e.target.result;
-            image.src = src;
-        };
-        console.log(event.target.files[0]);
-        reader.readAsDataURL(event.target.files[0]);
+        var fileList = event.target.files;
+        if (fileList.length > 0) {
+            var file = fileList[0];
+            this.userImageName = file.name;
+            this.userService.uploadUserImage(file, this.u.idUtilisateur).subscribe(function (res) {
+                console.log("res" + res);
+            }, function (error) {
+                console.log("eee " + error);
+            });
+        }
     };
     ProfilComponent = __decorate([
         core_1.Component({

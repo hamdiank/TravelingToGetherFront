@@ -16,6 +16,13 @@ var UserService = (function () {
         this.http = http;
         this.config = config;
     }
+    UserService.prototype.uploadUserImage = function (file, id) {
+        var formData = new FormData();
+        formData.append('file', file);
+        formData.append('id', id);
+        return this.http.post(this.config.apiUrl + "/upload", formData, this.jwt())
+            .map(function (response) { return response.json(); });
+    };
     UserService.prototype.getAll = function () {
         console.log("start api/user eehdf ......");
         return this.http.get(this.config.apiUrl + '/utilisateurs', this.jwt()).map(function (response) { return response.json(); });
@@ -72,7 +79,7 @@ var UserService = (function () {
     UserService.prototype.jwt = function () {
         // create authorization header with jwt token
         var currentUser = JSON.parse(localStorage.getItem('currentToken'));
-        console.log(localStorage.getItem('currentToken'));
+        //  console.log(localStorage.getItem('currentToken'));
         if (currentUser) {
             var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + localStorage.getItem('currentToken') });
             return new http_1.RequestOptions({ headers: headers });

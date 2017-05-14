@@ -11,6 +11,7 @@ import { UserService } from "../../_services/index";
 
 export class ProfilComponent implements OnInit {
     image: any;
+    userImageName:any;
     public myForm: FormGroup;
     public submitted: boolean;
     public events: any[] = [];
@@ -90,9 +91,23 @@ export class ProfilComponent implements OnInit {
 
 
 
+changeListner(event: any) {
+        let fileList: FileList = event.target.files;
+        if (fileList.length > 0) {
+            let file: File = fileList[0];
+            this.userImageName = file.name;
+            this.userService.uploadUserImage(file,this.u.idUtilisateur).subscribe(
+                res => {
+                    console.log("res"+res);
+                }, error => {
+                    console.log("eee " +error);
+                }
+            )
 
+        }
+}
 
-    changeListner(event) {
+  /*  changeListner(event) {
         var reader = new FileReader();
         var image = this.element.nativeElement.querySelector('.image');
 
@@ -104,4 +119,5 @@ export class ProfilComponent implements OnInit {
         console.log(event.target.files[0])
         reader.readAsDataURL(event.target.files[0]);
     }
+    */
 }
