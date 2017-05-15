@@ -12,7 +12,7 @@ import { AnnonceCovoiService } from "../../_services/annonceCovoi.service";
     selector: 'ajout-annonce-covoi-cmp',
     moduleId: module.id,
     templateUrl: 'ajoutAnnonceCovoi.component.html',
-    providers: [DataService, AnnonceCovoiService]
+    providers: [DataService, AnnonceCovoiService],
 })
 
 export class AjoutAnnonceCovoiComponent implements OnInit{
@@ -32,13 +32,13 @@ export class AjoutAnnonceCovoiComponent implements OnInit{
 
      heureDepart: string;
 
-     nomPaysDepart: string;
+    val1: number;
 
-     nomPaysArrivee: string;
+    val2: number;
 
-     recupPaysDepart: Pays;
-     recupPaysArrivee: Pays;
+    val3: number;
 
+    val4: number = 100;
 
     constructor( private paysService: PaysService, private cityService : CityService, private annonceCovoiService: AnnonceCovoiService) {
 
@@ -56,9 +56,6 @@ export class AjoutAnnonceCovoiComponent implements OnInit{
     this.paysService.getById(idPays1).subscribe( onePays => {
         this.onePays= onePays, this.cities= onePays.cities
     });
-        this.paysService.getById(this.model.paysDepart).subscribe( recupPaysDepart => {
-        this.recupPaysDepart= recupPaysDepart, this.nomPaysDepart= recupPaysDepart.nom, console.log(this.recupPaysDepart.nom)
-    });
     console.log(JSON.stringify(this.cities));
   }
       onSelect2(idPays2) {
@@ -67,9 +64,6 @@ export class AjoutAnnonceCovoiComponent implements OnInit{
         console.log('idVilleArrivee'+this.model.villeArrivee);
     this.paysService.getById(idPays2).subscribe( onePays2 => {
         this.onePays2= onePays2, this.cities2= onePays2.cities
-    });
-      this.paysService.getById(this.model.paysDepart).subscribe( recupPaysArrivee => {
-    this.recupPaysArrivee= recupPaysArrivee, this.nomPaysArrivee= recupPaysArrivee.nom
     });
     console.log(JSON.stringify(this.cities));
   }
@@ -92,16 +86,28 @@ export class AjoutAnnonceCovoiComponent implements OnInit{
     $event.preventDefault();
     console.log('selected: ' + $event.target.value);
   }
+
+  
+        onInputSpin($event) {
+    $event.preventDefault();
+    console.log('selected: ' + $event.target.value);
+  }
    onSubmit(){  
             console.log("aaaaaaaaaaaa");
+            console.log(this.model.spin);
+            
             //console.log(this.user);
-    this.model.heureDepart= this.model.heure +':'+ this.model.minute;
-    this.annonceCovoiService.ajouterAnnonceCovoi(this.model.heureDepart,this.model.dateDepart.formatted,this.nomPaysDepart,
-    this.model.villeDepart,this.nomPaysArrivee, this.model.villeArrivee,this.model.nombrePlaces,
-    this.model.cotisation, this.id )
-        .subscribe(
-            data => {  
-            console.log("model=>"+this.model.dateDepart)
+            this.model.heureDepart= this.model.heure +':'+ this.model.minute;
+            
+             this.annonceCovoiService.ajouterAnnonceCovoi(this.model.heureDepart,this.model.dateDepart.formatted,this.model.paysDepart,
+              this.model.villeDepart,this.model.paysArrivee, this.model.villeArrivee,this.model.nombrePlaces,
+               this.model.cotisation, this.id )
+             .subscribe(
+                data => {
+                    
+                    console.log("model=>"+this.model.dateDepart)
+                    
+
                 });
         }
 

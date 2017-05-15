@@ -13,6 +13,7 @@ import { AuthGuard,AuthGuardAdmin } from "./_guards/index";
 import { JwtHelper } from 'angular2-jwt';
 import {MyDatePickerModule } from 'mydatepicker';
 
+
 import { AlertService, UserService, AuthenticationService, PaysService, CityService } from "./_services/index";
 
 
@@ -56,7 +57,7 @@ import { ChatExampleData } from "./chat/data/chat-example-data";
 import { MotDePasseOublieService } from "./_services/MotDePassOublie";
 import { MotDePasseComponent } from "./MotDePasse/MotDePasse.component";
 import { NavBarUtilModule } from "./navbarutil/navbarutil.module";
-
+import {SpinnerModule} from 'primeng/primeng';
 
 
 
@@ -74,6 +75,7 @@ import { NavBarUtilModule } from "./navbarutil/navbarutil.module";
         ReactiveFormsModule,
         Ng2PaginationModule,
         RouterModule.forRoot(MODULE_ROUTES),
+        SpinnerModule
         
     ],
 
