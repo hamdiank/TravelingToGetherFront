@@ -19,18 +19,7 @@ export class AnnonceCovoiComponent implements OnInit {
     id: string;
     datePublication: string;
     constructor(private annonceCovoiService: AnnonceCovoiService , private router: Router){}
-    ajouterAnnonceCovoi( ){
-        this.datePublication="24/04/2017";
-            let currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
-              this.id=currentUserId;
-              console.log(this.id+"gggggggg")
-        this.annonceCovoiService.ajouterAnnonceCovoi(this.datePublication,this.model.dateDepart,this.model.adresseDepart, this.model.adresseArrivee, this.model.nombrePlaces, this.model.cotisation, this.id)
-        .subscribe(
-                data => {
-                    this.router.navigate(['dashboardutil/Accueil']);
-                });
 
-    }
     getAnnoncesCovoi(){
      this.annonceCovoiService.getAnnoncesCovoi().subscribe( annoncesCovoi=> { this.annoncesCovoi=annoncesCovoi
     

@@ -29,9 +29,6 @@ update(city:City){
 
 
 
-
-
-
 private jwt() {
         // create authorization header with jwt token
         let currentUser = JSON.parse(localStorage.getItem('currentToken'));

@@ -36,15 +36,19 @@ getAnnonceCovoi(id :number){
 /****************************************************** */
 
 
-ajouterAnnonceCovoi(datePublication: string,dateDepart: string, adresseDepart: string, adresseArrivee: string, nombrePlaces: string, cotisation: string, id: string ){
+ajouterAnnonceCovoi(heureDepart: string,dateDepart: string, paysDepart: string, villeDepart: string,
+ paysArrivee: string, villeArrivee: string,nombrePlaces:string, cotisation: string, id: string ){
     console.log("qqqqqqqqq")
     let headers= new Headers();
     let options= new RequestOptions ({headers: headers});
     let urlSearchParams = new URLSearchParams();
-     urlSearchParams.append('datePublication', datePublication);
+     urlSearchParams.append('heureDepart', heureDepart);
      urlSearchParams.append('dateDepart', dateDepart);
-     urlSearchParams.append('adresseDepart', adresseDepart);
-     urlSearchParams.append('adresseArrivee', adresseArrivee);
+     console.log(dateDepart)
+     urlSearchParams.append('paysDepart', paysDepart);
+     urlSearchParams.append('villeDepart', villeDepart);
+     urlSearchParams.append('paysArrivee', paysArrivee);
+     urlSearchParams.append('villeArrivee', villeArrivee);
      urlSearchParams.append('nombrePlaces', nombrePlaces);
      urlSearchParams.append('cotisation', cotisation);
      urlSearchParams.append('id', id);

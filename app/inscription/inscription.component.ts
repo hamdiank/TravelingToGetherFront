@@ -17,6 +17,7 @@ import {NgForm} from '@angular/forms';
 
 export class InscriptionComponent implements OnInit{
       public model : any ={};
+      public model2 : any ={};
       url: string;
       route: ActivatedRoute;
 
@@ -30,6 +31,11 @@ export class InscriptionComponent implements OnInit{
                 data => {
                     this.router.navigate(['dashboardutil/Accueil']);
                     console.log(this.url);
+                    
+                    console.log("model1=>"+this.model.firstname)
+                    
+                    console.log("model2=>"+this.model2.firstname)
+
                 });
         }
        ngOnInit() {

@@ -16,6 +16,7 @@ var InscriptionComponent = (function () {
         this.userService = userService;
         this.router = router;
         this.model = {};
+        this.model2 = {};
     }
     InscriptionComponent.prototype.onSubmit = function () {
         var _this = this;
@@ -25,6 +26,8 @@ var InscriptionComponent = (function () {
             .subscribe(function (data) {
             _this.router.navigate(['dashboardutil/Accueil']);
             console.log(_this.url);
+            console.log("model1=>" + _this.model.firstname);
+            console.log("model2=>" + _this.model2.firstname);
         });
     };
     InscriptionComponent.prototype.ngOnInit = function () {
