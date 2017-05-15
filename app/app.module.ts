@@ -58,10 +58,6 @@ import { MotDePasseOublieService } from "./_services/MotDePassOublie";
 import { MotDePasseComponent } from "./MotDePasse/MotDePasse.component";
 import { NavBarUtilModule } from "./navbarutil/navbarutil.module";
 import {SpinnerModule} from 'primeng/primeng';
-
-
-
-
 @NgModule({
     imports: [ 
         MyDatePickerModule,
@@ -76,6 +72,7 @@ import {SpinnerModule} from 'primeng/primeng';
         Ng2PaginationModule,
         RouterModule.forRoot(MODULE_ROUTES),
         SpinnerModule
+      
         
     ],
 

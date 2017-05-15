@@ -10,11 +10,13 @@ import { UserService } from "../../_services/index";
 })
 
 export class ProfilComponent implements OnInit {
+
+
     image: any;
-    fumeur:any;
-    animaux:any;
-    musique:any;
-    preferences:any;
+    fumeur: any;
+    animaux: any;
+    musique: any;
+    preferences: any;
     userImageName: any;
     public myForm: FormGroup;
     public myForm2: FormGroup;
@@ -31,11 +33,11 @@ export class ProfilComponent implements OnInit {
             this.avatarSrc = this.u.avatarSrc;
             this.nom = this.u.nom;
             this.prenom = this.u.prenom;
-            this.preferences=this.u.preferences;
-            this.fumeur=this.preferences.fumeur;
-            this.animaux=this.preferences.animaux;
-            this.musique=this.preferences.musique;
-            console.log("this.preferences   "+this.animaux);
+            this.preferences = this.u.preferences;
+            this.fumeur = this.preferences.fumeur;
+            this.animaux = this.preferences.animaux;
+            this.musique = this.preferences.musique;
+            console.log("this.preferences   " + this.animaux);
         });
     }
     ngOnInit() {
@@ -99,8 +101,7 @@ export class ProfilComponent implements OnInit {
 
 
 
-
-
+ 
 
 
     showImage(filename: string) {
@@ -138,7 +139,7 @@ export class ProfilComponent implements OnInit {
         reader.onload = function (e: any) {
             var src = e.target.result;
             image.src = src;
-            image2.src=src;
+            image2.src = src;
 
         };
         console.log(event.target.files[0])
@@ -157,111 +158,111 @@ export class ProfilComponent implements OnInit {
 
 
 
-    modifierFumeurFalse(){
-       console.log("dd "+this.u.preferences.fumeur);
-    if (this.fumeur != false){
-        this.u.preferences.fumeur = false;
-        this.userService.update(this.u).
-    subscribe(reultat => { 
-        this.fumeur=this.u.preferences.fumeur;
-        console.log(this.u) ;
-    },
-    error =>{
-        console.log(error);
-    });
-    
+    modifierFumeurFalse() {
+        console.log("dd " + this.u.preferences.fumeur);
+        if (this.fumeur != false) {
+            this.u.preferences.fumeur = false;
+            this.userService.update(this.u).
+                subscribe(reultat => {
+                    this.fumeur = this.u.preferences.fumeur;
+                    console.log(this.u);
+                },
+                error => {
+                    console.log(error);
+                });
 
-    console.log(this.fumeur);  
+
+            console.log(this.fumeur);
+        }
     }
-}
-    modifierFumeurTrue(){
-       console.log("dd "+this.u.preferences.fumeur);
-    if (this.fumeur != true){
-        this.u.preferences.fumeur = true;
-        this.userService.update(this.u).
-    subscribe(reultat => { 
-        this.fumeur=this.u.preferences.fumeur;
-        console.log(this.u) ;
-    },
-    error =>{
-        console.log(error);
-    });
-    
+    modifierFumeurTrue() {
+        console.log("dd " + this.u.preferences.fumeur);
+        if (this.fumeur != true) {
+            this.u.preferences.fumeur = true;
+            this.userService.update(this.u).
+                subscribe(reultat => {
+                    this.fumeur = this.u.preferences.fumeur;
+                    console.log(this.u);
+                },
+                error => {
+                    console.log(error);
+                });
 
-    console.log(this.fumeur);  
+
+            console.log(this.fumeur);
+        }
     }
-}
-    
 
-modifierAnimalFalse(){
-       console.log("dd "+this.u.preferences.animaux);
-    if (this.animaux != false){
-        this.u.preferences.animaux = false;
-        this.userService.update(this.u).
-    subscribe(reultat => { 
-        this.animaux=this.u.preferences.animaux;
-        console.log(this.u) ;
-    },
-    error =>{
-        console.log(error);
-    });
-    
 
-    console.log(this.animaux);  
+    modifierAnimalFalse() {
+        console.log("dd " + this.u.preferences.animaux);
+        if (this.animaux != false) {
+            this.u.preferences.animaux = false;
+            this.userService.update(this.u).
+                subscribe(reultat => {
+                    this.animaux = this.u.preferences.animaux;
+                    console.log(this.u);
+                },
+                error => {
+                    console.log(error);
+                });
+
+
+            console.log(this.animaux);
+        }
     }
-}
-    modifierAnimalTrue(){
-       console.log("dd "+this.u.preferences.animaux);
-    if (this.animaux != true){
-        this.u.preferences.animaux = true;
-        this.userService.update(this.u).
-    subscribe(reultat => { 
-        this.animaux=this.u.preferences.animaux;
-        console.log(this.u) ;
-    },
-    error =>{
-        console.log(error);
-    });
-    
+    modifierAnimalTrue() {
+        console.log("dd " + this.u.preferences.animaux);
+        if (this.animaux != true) {
+            this.u.preferences.animaux = true;
+            this.userService.update(this.u).
+                subscribe(reultat => {
+                    this.animaux = this.u.preferences.animaux;
+                    console.log(this.u);
+                },
+                error => {
+                    console.log(error);
+                });
 
-    console.log(this.animaux);  
+
+            console.log(this.animaux);
+        }
     }
-}
 
 
-modifierMusicFalse(){
-       console.log("dd "+this.u.preferences.musique);
-    if (this.musique != false){
-        this.u.preferences.musique = false;
-        this.userService.update(this.u).
-    subscribe(reultat => { 
-        this.musique=this.u.preferences.musique;
-        console.log(this.u) ;
-    },
-    error =>{
-        console.log(error);
-    });
-    
+    modifierMusicFalse() {
+        console.log("dd " + this.u.preferences.musique);
+        if (this.musique != false) {
+            this.u.preferences.musique = false;
+            this.userService.update(this.u).
+                subscribe(reultat => {
+                    this.musique = this.u.preferences.musique;
+                    console.log(this.u);
+                },
+                error => {
+                    console.log(error);
+                });
 
-    console.log(this.animaux);  
+
+            console.log(this.animaux);
+        }
     }
-}
-    modifierMusicTrue(){
-       console.log("dd "+this.u.preferences.musique);
-    if (this.musique != true){
-        this.u.preferences.musique = true;
-        this.userService.update(this.u).
-    subscribe(reultat => { 
-        this.musique=this.u.preferences.musique;
-        console.log(this.u) ;
-    },
-    error =>{
-        console.log(error);
-    });
-    
+    modifierMusicTrue() {
+        console.log("dd " + this.u.preferences.musique);
+        if (this.musique != true) {
+            this.u.preferences.musique = true;
+            this.userService.update(this.u).
+                subscribe(reultat => {
+                    this.musique = this.u.preferences.musique;
+                    console.log(this.u);
+                },
+                error => {
+                    console.log(error);
+                });
 
-    console.log(this.musique);  
+
+            console.log(this.musique);
+        }
     }
-}
 
 }
