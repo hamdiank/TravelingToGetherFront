@@ -1,4 +1,5 @@
 <!-- CSS Files Dashboard Utilisateur -->
+
 <div style=" background-color:lavender;">
 <div class="main-content" style="margin-top: 70px; margin-left: 200px;">
 <div class="container-fluid">
@@ -12,14 +13,12 @@
                 <div class="card-content">
                     <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
                         <div class="row">
-                            <div class="col-md-6">
-                            
+                            <div class="col-md-6">   
                                 <div class="form-group form-black label-floating is-empty">
                                     <label>Date Départ</label>
                                     <my-date-picker [(ngModel)]="model.dateDepart" value="Date Depart"name="dateDepart" [options]="myDatePickerOptions" required></my-date-picker>
                                 </div>
                             </div>
-
                         </div>
                         <hr>
                         <div class="row">
@@ -28,7 +27,7 @@
                                     <label>Heure Départ</label>
                                     <br>
                                     <label>Heure</label>
-                                    <select [(ngModel)]="model.heure" (input)="onInputHeure($event)" name="heure"   #heure="ngModel">
+                                    <select class="selectpicker" [(ngModel)]="model.heure" (input)="onInputHeure($event)" name="heure"   #heure="ngModel" style="width: 50px; height: 30px;">
                                         <option value= "1">1</option>
                                         <option value= "2">2</option>
                                         <option value= "3">3</option>
@@ -39,7 +38,7 @@
                                     </select>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <label>Minute</label>
-                                    <select [(ngModel)]="model.minutes" (input)="onInputMinutes($event)" name="minutes"   #minutes="ngModel">
+                                    <select [(ngModel)]="model.minutes" (input)="onInputMinutes($event)" name="minutes"   #minutes="ngModel" style="width: 50px; height: 30px;">
                                         <option value= "00">00</option>
                                         <option value= "05">05</option>
                                         <option value= "10">10</option>
@@ -58,7 +57,7 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <label>Pays Départ</label>
                                     <br>
-                                    <select  [(ngModel)]="model.paysDepart"  (change)="onSelect1($event.target.value)"  name="paysDepart"   #paysDepart="ngModel">
+                                    <select class="selectpicker" [(ngModel)]="model.paysDepart"  (change)="onSelect1($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;">
                                         <option value="0">--Select--</option>
                                         <option *ngFor="let pay of pays" value= {{pay.idPays}}>{{pay.nom}}</option>
                                     </select> 
@@ -68,8 +67,8 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <label>Ville Départ</label>
                                     <br>
-                                    <select [(ngModel)]="model.villeDepart" (input)="onInput($event)" name="villeDepart"   #villeDepart="ngModel">
-                                        <option  value="0">--Select--</option>
+                                    <select [(ngModel)]="model.villeDepart" (input)="onInput($event)" name="villeDepart"   #villeDepart="ngModel" style="width: 200px; height: 30px;">
+                                        <option value="0">Select Ville Depart</option>
                                         <option *ngFor="let city of cities " value= {{city.nom}}>{{city.nom}}</option>
                                     </select> 
                                 </div>
@@ -82,7 +81,7 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <label>Pays Arrivée</label>
                                     <br>
-                                    <select [(ngModel)]="model.paysArrivee" (change)="onSelect2($event.target.value)"  name="paysDepart"   #paysDepart="ngModel">
+                                    <select [(ngModel)]="model.paysArrivee" (change)="onSelect2($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;">
                                         <option value="0">--Select--</option>
                                         <option *ngFor="let pay of pays" value= {{pay.idPays}}>{{pay.nom}}</option>
                                     </select> 
@@ -92,7 +91,7 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <label>Ville Arrivée</label>
                                     <br>
-                                    <select [(ngModel)]="model.villeArrivee" (input)="onInput2($event)" name="villeArrivee"   #villeArrivee="ngModel">
+                                    <select [(ngModel)]="model.villeArrivee" (input)="onInput2($event)" name="villeArrivee"   #villeArrivee="ngModel" style="width: 200px; height: 30px;">
                                         <option  value="0">--Select--</option>
                                         <option *ngFor="let city of cities2 " value= {{city.nom}}>{{city.nom}}</option>
                                     </select> 
@@ -100,6 +99,7 @@
                             </div>
                         </div>
                          <hr>
+
                         
                         <div class="row">
                             <div class="col-md-6">
@@ -115,6 +115,10 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                           <h3>Min/Max</h3>
+                                <p-spinner size="30"  [min]="0" [max]="100" [(ngModel)]="model.spin"  name="spin"   #spin="ngModel"  ></p-spinner>
+                        </div>
 
 
                         <button type="submit" class="btn btn-danger pull-right">Publier Annonce</button>
@@ -127,5 +131,7 @@
 </div>
 </div>
 </div>
+
+
 
 

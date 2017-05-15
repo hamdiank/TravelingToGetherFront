@@ -32,6 +32,8 @@
       'lodash':                 'npm:lodash/lodash.js',
       'angular2-jwt': 'npm:angular2-jwt/angular2-jwt.js',
       'ng2-pagination': 'npm:ng2-pagination',
+       'primeng':                   'npm:primeng',
+       '@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js', 
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -50,7 +52,10 @@
         //add configuration to load
             main: './index.js',
             defaultExtension: 'js'
-        },      
+        },  
+              primeng: {
+          defaultExtension: 'js'
+      },    
     }
   });
 })(this);
