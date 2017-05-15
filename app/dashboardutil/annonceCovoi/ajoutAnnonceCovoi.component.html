@@ -10,12 +10,13 @@
                     <p class="category">Compléter L'Annonce</p>
                 </div>
                 <div class="card-content">
-                    <form>
+                    <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
                         <div class="row">
                             <div class="col-md-6">
+                            
                                 <div class="form-group form-black label-floating is-empty">
                                     <label>Date Départ</label>
-                                    <my-date-picker value="Date Depart"name="dateDepart" [options]="myDatePickerOptions" required></my-date-picker>
+                                    <my-date-picker [(ngModel)]="model.dateDepart" value="Date Depart"name="dateDepart" [options]="myDatePickerOptions" required></my-date-picker>
                                 </div>
                             </div>
 
@@ -27,20 +28,24 @@
                                     <label>Heure Départ</label>
                                     <br>
                                     <label>Heure</label>
-                                    <select>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                    <select [(ngModel)]="model.heure" (input)="onInputHeure($event)" name="heure"   #heure="ngModel">
+                                        <option value= "1">1</option>
+                                        <option value= "2">2</option>
+                                        <option value= "3">3</option>
+                                        <option value= "4">4</option>
+                                        <option value= "5">5</option>
+                                        <option value= "6">6</option>
+                                        <option value= "7">7</option>
                                     </select>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <label>Minute</label>
-                                    <select>
-                                        <option>15</option>
-                                        <option>16</option>
-                                        <option>17</option>
-                                        <option>18</option>
+                                    <select [(ngModel)]="model.minutes" (input)="onInputMinutes($event)" name="minutes"   #minutes="ngModel">
+                                        <option value= "00">00</option>
+                                        <option value= "05">05</option>
+                                        <option value= "10">10</option>
+                                        <option value= "15">15</option>
+                                        <option value= "20">20</option>
+                                        <option value= "25">25</option>
                                     </select>
                                     
                                 </div>
@@ -53,12 +58,9 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <label>Pays Départ</label>
                                     <br>
-                                    <select>
-                                        <option>France</option>
-                                        <option>Tunisie</option>
-                                        <option>Allemagne</option>
-                                        <option>Espagne</option>
-                                        <option>Luxembourg</option>
+                                    <select  [(ngModel)]="model.paysDepart"  (change)="onSelect1($event.target.value)"  name="paysDepart"   #paysDepart="ngModel">
+                                        <option value="0">--Select--</option>
+                                        <option *ngFor="let pay of pays" value= {{pay.idPays}}>{{pay.nom}}</option>
                                     </select> 
                                 </div>
                             </div>
@@ -66,28 +68,23 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <label>Ville Départ</label>
                                     <br>
-                                    <select>
-                                        <option></option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                    <select [(ngModel)]="model.villeDepart" (input)="onInput($event)" name="villeDepart"   #villeDepart="ngModel">
+                                        <option  value="0">--Select--</option>
+                                        <option *ngFor="let city of cities " value= {{city.nom}}>{{city.nom}}</option>
                                     </select> 
                                 </div>
                             </div>
                         </div>
                          <hr>
+                         
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group form-black label-floating is-empty">
                                     <label>Pays Arrivée</label>
                                     <br>
-                                    <select>
-                                        <option>France</option>
-                                        <option>Tunisie</option>
-                                        <option>Allemagne</option>
-                                        <option>Espagne</option>
-                                        <option>Luxembourg</option>
+                                    <select [(ngModel)]="model.paysArrivee" (change)="onSelect2($event.target.value)"  name="paysDepart"   #paysDepart="ngModel">
+                                        <option value="0">--Select--</option>
+                                        <option *ngFor="let pay of pays" value= {{pay.idPays}}>{{pay.nom}}</option>
                                     </select> 
                                 </div>
                             </div>
@@ -95,12 +92,9 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <label>Ville Arrivée</label>
                                     <br>
-                                    <select>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                    <select [(ngModel)]="model.villeArrivee" (input)="onInput2($event)" name="villeArrivee"   #villeArrivee="ngModel">
+                                        <option  value="0">--Select--</option>
+                                        <option *ngFor="let city of cities2 " value= {{city.nom}}>{{city.nom}}</option>
                                     </select> 
                                 </div>
                             </div>
@@ -111,13 +105,13 @@
                             <div class="col-md-6">
                                 <div class="form-group form-black label-floating is-empty">
                                     <label class="control-label">Nombre de Places </label>
-                                    <input type="text" class="form-control" >
+                                    <input type="text"  [(ngModel)]="model.nombrePlaces"  name="nombrePlaces"   #nombrePlaces="ngModel" class="form-control" >
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group form-black label-floating is-empty">
                                     <label class="control-label"> Cotisation </label>
-                                    <input type="text" class="form-control" >
+                                    <input type="text"  [(ngModel)]="model.cotisation"  name="cotisation"   #cotisation="ngModel" class="form-control" >
                                 </div>
                             </div>
                         </div>

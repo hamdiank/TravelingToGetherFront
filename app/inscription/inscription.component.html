@@ -21,7 +21,7 @@
                                             </span>
                                             <div class="form-group label-floating" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
                                                 <label class="control-label">Firstname</label>
-                                                <input type="text" class="form-control" name="firstname"  [(ngModel)]="model.firstname" #firstname="ngModel" required>
+                                                <input type="text" class="form-control" name="firstname"  [(ngModel)]="model.firstname" [(ngModel)]="model2.firstname" #firstname="ngModel" required>
                                             </div>
                                         </div>
                                         <div class="input-group">

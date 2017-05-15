@@ -35,15 +35,18 @@ var AnnonceCovoiService = (function () {
         return this.http.get(this.config.apiUrl + '/getAnnonceCovoiById/' + idAnnonceCovoi, this.jwt()).map(function (res) { return res.json(); });
     };
     /****************************************************** */
-    AnnonceCovoiService.prototype.ajouterAnnonceCovoi = function (datePublication, dateDepart, adresseDepart, adresseArrivee, nombrePlaces, cotisation, id) {
+    AnnonceCovoiService.prototype.ajouterAnnonceCovoi = function (heureDepart, dateDepart, paysDepart, villeDepart, paysArrivee, villeArrivee, nombrePlaces, cotisation, id) {
         console.log("qqqqqqqqq");
         var headers = new http_1.Headers();
         var options = new http_1.RequestOptions({ headers: headers });
         var urlSearchParams = new http_2.URLSearchParams();
-        urlSearchParams.append('datePublication', datePublication);
+        urlSearchParams.append('heureDepart', heureDepart);
         urlSearchParams.append('dateDepart', dateDepart);
-        urlSearchParams.append('adresseDepart', adresseDepart);
-        urlSearchParams.append('adresseArrivee', adresseArrivee);
+        console.log(dateDepart);
+        urlSearchParams.append('paysDepart', paysDepart);
+        urlSearchParams.append('villeDepart', villeDepart);
+        urlSearchParams.append('paysArrivee', paysArrivee);
+        urlSearchParams.append('villeArrivee', villeArrivee);
         urlSearchParams.append('nombrePlaces', nombrePlaces);
         urlSearchParams.append('cotisation', cotisation);
         urlSearchParams.append('id', id);

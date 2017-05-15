@@ -5,6 +5,4 @@ export class Pays {
     cities :string[];
     aeroports: string[];
     stations : string[];
-    
-
 }
