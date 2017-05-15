@@ -9,16 +9,27 @@ declare var $:any;
 })
 
 export class NavBarUtilComponent implements OnInit {
+      image: any;
     public menuItems: any[];
     nom:string;
     constructor(private userService: UserService){
 
 userService.getById(localStorage.getItem("currentUserId")).subscribe(result=>{
 this.nom=result.nom;
-});
 
+});
+ this.showImage(localStorage.getItem("currentUserId"));
     }
     ngOnInit() {
 
     }
+
+    showImage(filename: string) {
+        this.userService.getImage(filename)
+            .subscribe((file) => {
+                this.image = file;
+                console.log("imagee  " + this.image);
+            });
+    }
+
 }

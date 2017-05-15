@@ -1,158 +1,330 @@
-<div class="main-content" style="padding-top: 8%">
+<div class="main-content" style="padding-top: 10%">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card card-nav-tabs">
                     <div class="card-header" data-background-color="purple">
-                        <h4 class="title">Modifier Profil</h4>
+                        <div class="nav-tabs-navigation">
+                            <div class="nav-tabs-wrapper">
+                                
+                                <ul class="nav nav-tabs" data-tabs="tabs">
+                                    <li class="active">
+                                        <a href="#profile" data-toggle="tab">
+                                            <i class="material-icons">mode_edit</i> informations personnelles
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#photo" data-toggle="tab">
+                                            <i class="material-icons">picture_in_picture</i> photo
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#preferences" data-toggle="tab">
+                                            <i class="material-icons">info</i> Préférences
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#voiture" data-toggle="tab">
+                                            <i class="material-icons">directions_car</i> Voiture
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+
+
                     <div class="card-content">
-                        <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="profile">
+                                <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
                                                 <i class="material-icons">face</i>
                                             </span>
-                                        <div class="form-group form-black label-floating is-empty">
-                                            <label class="control-label">Pseudo</label>
-                                            <input type="text" class="form-control" formControlName="login">
-                                            <small [hidden]="myForm.controls.login.valid || (myForm.controls.login.pristine && !submitted)" class="text-danger">
+                                                <div class="form-group form-black label-floating is-empty">
+                                                    <label class="control-label">Pseudo</label>
+                                                    <input type="text" class="form-control" formControlName="login">
+                                                    <small [hidden]="myForm.controls.login.valid || (myForm.controls.login.pristine && !submitted)" class="text-danger">
                                    5 caracteres au minimum
                                             </small>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
                                                 <i class="material-icons">email</i>
                                             </span>
-                                        <div class="form-group form-black label-floating is-empty">
-                                            <label class="control-label">Email </label>
-                                            <input type="email" class="form-control" formControlName="email">
-                                            <small [hidden]="myForm.controls.email.valid || (myForm.controls.email.pristine && !submitted)" class="text-danger">
+                                                <div class="form-group form-black label-floating is-empty">
+                                                    <label class="control-label">Email </label>
+                                                    <input type="email" class="form-control" formControlName="email">
+                                                    <small [hidden]="myForm.controls.email.valid || (myForm.controls.email.pristine && !submitted)" class="text-danger">
                                    email n'est pas valide
                                             </small>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
                                                 <i class="material-icons">account_circle</i>
                                             </span>
-                                        <div class="form-group form-black label-floating is-empty">
-                                            <label class="control-label">Nom</label>
-                                            <input type="text" class="form-control" formControlName="nom">
-                                            <small [hidden]="myForm.controls.nom.valid || (myForm.controls.nom.pristine && !submitted)" class="text-danger">
+                                                <div class="form-group form-black label-floating is-empty">
+                                                    <label class="control-label">Nom</label>
+                                                    <input type="text" class="form-control" formControlName="nom">
+                                                    <small [hidden]="myForm.controls.nom.valid || (myForm.controls.nom.pristine && !submitted)" class="text-danger">
                                 5 caracteres au minimum
                                             </small>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
                                                 <i class="material-icons">account_circle</i>
                                             </span>
-                                        <div class="form-group form-black label-floating is-empty">
-                                            <label class="control-label">Prenom</label>
-                                            <input type="text" class="form-control" formControlName="prenom">
-                                            <small [hidden]="myForm.controls.prenom.valid || (myForm.controls.prenom.pristine && !submitted)" class="text-danger">
+                                                <div class="form-group form-black label-floating is-empty">
+                                                    <label class="control-label">Prenom</label>
+                                                    <input type="text" class="form-control" formControlName="prenom">
+                                                    <small [hidden]="myForm.controls.prenom.valid || (myForm.controls.prenom.pristine && !submitted)" class="text-danger">
                                   5 caracteres au minimum
                                             </small>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                                <i class="material-icons">place</i>
-                                            </span>
-                                        <div class="form-group form-black label-floating is-empty">
-                                            <label class="control-label">Adress</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                                <i class="material-icons">phone</i>
-                                            </span>
-                                        <div class="form-group form-black label-floating is-empty">
-                                            <label class="control-label">Numero Telephone</label>
-                                            <input type="number" class="form-control" formControlName="numTelephone">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                                <i class="material-icons">lock</i>
-                                            </span>
-                                        <div class="form-group form-black label-floating is-empty">
-                                            <label class="control-label">Mot de passe</label>
-                                            <input type="password" class="form-control" formControlName="password">
-                                            <small [hidden]="myForm.controls.password.valid || (myForm.controls.password.pristine && !submitted)" class="text-danger">
-            minimum 5 characters
-          </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
                                                 <i class="material-icons">date_range</i>
                                             </span>
-                                        <div class="form-group form-black label-floating is-empty">
-                                            <label>Date de Naissance</label>
-                                            <my-date-picker formControlName="dateNaissance" name="dateDepart" [options]="myDatePickerOptions" required></my-date-picker>
+                                                <div class="form-group form-black label-floating is-empty">
+                                                    <label>Date de Naissance</label>
+                                                    <my-date-picker formControlName="dateNaissance" name="dateDepart" [options]="myDatePickerOptions" required></my-date-picker>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                <i class="material-icons">phone</i>
+                                            </span>
+                                                <div class="form-group form-black label-floating is-empty">
+                                                    <label class="control-label">Numero Telephone</label>
+                                                    <input type="number" class="form-control" formControlName="numTelephone">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Date de Naissance</label>
 
-                                        <div class="form-group form-black label-floating is-empty">
-                                            <input type="file" (change)="changeListner($event)" />
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                <i class="material-icons">place</i>
+                                            </span>
+                                                <div class="form-group form-black label-floating is-empty">
+                                                    <label class="control-label">Adress</label>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                <i class="material-icons">lock</i>
+                                            </span>
+                                                <div class="form-group form-black label-floating is-empty">
+                                                    <label class="control-label">Mot de passe</label>
+                                                    <input type="password" class="form-control" formControlName="password">
+                                                    <small [hidden]="myForm.controls.password.valid || (myForm.controls.password.pristine && !submitted)" class="text-danger">
+            minimum 5 characters
+          </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Description</label>
+                                                <div class="form-group form-black label-floating is-empty">
+                                                    <label class="control-label"> our chick she so thirsty, I'm in that two seat Lambo.</label>
+                                                    <textarea class="form-control" rows="5"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-success pull-right">Modifier Profil</button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="preferences">
+
+                                <table class="table" style="margin-top: 7%">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h4>Fumeur</h4>
+                                            </td>
+                                            <td class="td-actions text-right">
+                                                <button [disabled]="fumeur==false" (click)="modifierFumeurFalse()" class="no-smoke" type="button" rel="tooltip" title="La cigarette me dérange."
+                                                    class="btn btn-danger btn-simple btn-lg">
+                 <img class="img" src="../assets/img/preferences/smoking-no.png" />
+                </button>
+                                                <button [disabled]="fumeur==true" (click)="modifierFumeurTrue()" type="button" rel="tooltip" title="La cigarette ne me dérange pas."
+                                                    class="btn btn-success btn-simple btn-lg">
+                    <img class="img" src="../assets/img/preferences/smoking-yes.png" />
+                </button>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4>Musique</h4>
+                                            </td>
+                                            <td class="td-actions text-right">
+                                                <button [disabled]="musique==false" (click)="modifierMusicFalse()" class="no-smoke" type="button" rel="tooltip" title="Je n'écoute pas de musique en voiture"
+                                                    class="btn btn-danger btn-simple btn-lg">
+                 <img class="img" src="../assets/img/preferences/music-no.png" />
+                </button>
+                                                <button [disabled]="musique==true" (click)="modifierMusicTrue()" type="button" rel="tooltip" title="J'aime bien écouter de la musique"
+                                                    class="btn btn-success btn-simple btn-lg">
+                    <img class="img" src="../assets/img/preferences/music-yes.png" />
+                </button>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4>Animaux</h4>
+                                            </td>
+                                            <td class="td-actions text-right">
+                                                <button [disabled]="animaux==false" (click)="modifierAnimalFalse()" class="no-smoke" type="button" rel="tooltip" title="Je ne veux pas voyager avec un animal."
+                                                    class="btn btn-danger btn-simple btn-lg">
+                 <img class="img" src="../assets/img/preferences/pet-no.png" />
+                </button>
+                                                <button [disabled]="animaux==true" (click)="modifierAnimalTrue()" type="button" rel="tooltip" title="Je n'ai rien contre les animaux."
+                                                    class="btn btn-success btn-simple btn-lg">
+                    <img class="img" src="../assets/img/preferences/pet-yes.png" />
+                </button>
+                                            </td>
+
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            <div class="tab-pane" id="voiture">
+
+                                <form [formGroup]="myForm2" novalidate (ngSubmit)="saveVoiture(myForm2.value, myForm2.valid)">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                            
+                                                <div class="form-group form-black label-floating is-empty">
+                                                    <label class="control-label">Marque</label>
+                                                    <input type="text" class="form-control" formControlName="marque">
+                                                    <small [hidden]="myForm2.controls.marque.valid || (myForm2.controls.marque.pristine && !submitted)" class="text-danger">
+                                   5 caracteres au minimum
+                                            </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                            
+                                                <div class="form-group form-black label-floating is-empty">
+                                                    <label class="control-label">Modele</label>
+                                                    <input type="text" class="form-control" formControlName="modele">
+                                                    <small [hidden]="myForm2.controls.modele.valid || (myForm2.controls.modele.pristine && !submitted)" class="text-danger">
+                                   5 caracteres au minimum
+                                            </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                               
+                                                <div class="form-group form-black label-floating is-empty">
+                                                    <label class="control-label">Modele</label>
+                                                    <input type="text" class="form-control" formControlName="nbPlace">
+                                                    <small [hidden]="myForm2.controls.nbPlace.valid || (myForm2.controls.nbPlace.pristine && !submitted)" class="text-danger">
+                                   5 caracteres au minimum
+                                            </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="photo">
+
+                                <div class="row" style="text-align:center; padding-top: 10%;">
+                                    <div class="offset-md-4 col-md-4 ">
+
+                                        <div class="card-avatar">
+                                            <a href="#pablo">
+                                                <img class="image" src="{{image}}" />
+                                                <!--  <img class="img img-thumbnail" src="{{image}}" />-->
+                                            </a>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4 offset-md-4">
+                                        <div class="form-group">
+
+
+                                            <button type="button" class="btn btn-default">
+                     <input type="file" id="files" (change)="changeListner($event)" visbility="hidden"/>
+                   <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+                                                         </button>
 
                                         </div>
                                     </div>
+
+
                                 </div>
+
+
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <div class="form-group form-black label-floating is-empty">
-                                            <label class="control-label"> our chick she so thirsty, I'm in that two seat Lambo.</label>
-                                            <textarea class="form-control" rows="5"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <button type="submit" class="btn btn-success pull-right">Modifier Profil</button>
-                            <div class="clearfix"></div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -160,44 +332,22 @@
                 <div class="card card-profile">
                     <div class="card-avatar">
                         <a href="#pablo">
-                           <!-- <img class="image" />-->
-                           <img class="img" src="{{image}}" />
+                            <!-- <img class="image" />-->
+                            <img class="image t" src="{{image}}" />
                         </a>
                     </div>
 
                     <div class="content">
                         <h6 class="category text-gray">CEO / Co-Founder</h6>
-                        <h4 class="card-title">Alec Thompson</h4>
-                        <p class="card-content">
-                            Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye
-                            I love Rick Owens’ bed design but the back is...
-                        </p>
-                        <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+                        <h4 class="card-title">{{prenom}} {{nom}}</h4>
                     </div>
                 </div>
-                 <div class="card card-profile">
-                    <div class="card-avatar">
-                        <a href="#pablo">
-                          <!--  <img class="image" />-->
-                          <img class="img" src="../assets/img/faces/marc.jpg" />
-                        </a>
-                    </div>
 
-                    <div class="content">
-                        <h6 class="category text-gray">CEO / Co-Founder</h6>
-                        <h4 class="card-title">Alec Thompson</h4>
-                        <p class="card-content">
-                            Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye
-                            I love Rick Owens’ bed design but the back is...
-                        </p>
-                        <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
-                    </div>
-                </div>
             </div>
         </div>
 
 
 
-        
+
     </div>
 </div>

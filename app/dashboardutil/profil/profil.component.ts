@@ -11,16 +11,31 @@ import { UserService } from "../../_services/index";
 
 export class ProfilComponent implements OnInit {
     image: any;
-    userImageName:any;
+    fumeur:any;
+    animaux:any;
+    musique:any;
+    preferences:any;
+    userImageName: any;
     public myForm: FormGroup;
+    public myForm2: FormGroup;
     public submitted: boolean;
     public events: any[] = [];
-    u: User;
+    u: any;
     avatarSrc: string;
-    constructor(private element: ElementRef, private _fb: FormBuilder, private userService: UserService) {
+    nom: string;
+    prenom: string;
+    constructor(private element: ElementRef, private _fb: FormBuilder, private _fb2: FormBuilder, private userService: UserService) {
+
         this.userService.getById(localStorage.getItem('currentUserId')).subscribe(result => {
             this.u = result;
             this.avatarSrc = this.u.avatarSrc;
+            this.nom = this.u.nom;
+            this.prenom = this.u.prenom;
+            this.preferences=this.u.preferences;
+            this.fumeur=this.preferences.fumeur;
+            this.animaux=this.preferences.animaux;
+            this.musique=this.preferences.musique;
+            console.log("this.preferences   "+this.animaux);
         });
     }
     ngOnInit() {
@@ -32,12 +47,17 @@ export class ProfilComponent implements OnInit {
             prenom: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
             password: ['', [<any>Validators.maxLength(15)]],
             numTelephone: ['', [<any>Validators.maxLength(15)]],
-            dateNaissance: ['', []],
+            dateNaissance: ['', [<any>Validators.maxLength(15)]],
+        });
+        this.myForm2 = this._fb2.group({
+            marque: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
+            modele: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
+            nbPlace: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
         });
 
         // subscribe to form changes  
         this.subcribeToFormChanges();
-        this.showImage("4");
+        this.showImage(localStorage.getItem('currentUserId'));
 
     }
     subcribeToFormChanges() {
@@ -47,7 +67,9 @@ export class ProfilComponent implements OnInit {
         myFormStatusChanges$.subscribe(x => this.events.push({ event: 'STATUS_CHANGED', object: x }));
         myFormValueChanges$.subscribe(x => this.events.push({ event: 'VALUE_CHANGED', object: x }));
     }
+    saveVoiture(model: any, isValid: boolean) {
 
+    }
     save(model: any, isValid: boolean) {
         this.submitted = true;
         console.log("model save " + JSON.stringify(model), isValid);
@@ -90,34 +112,156 @@ export class ProfilComponent implements OnInit {
     }
 
 
+    /*
+    changeListner(event: any) {
+            let fileList: FileList = event.target.files;
+            if (fileList.length > 0) {
+                let file: File = fileList[0];
+                 this.image = file;
+                this.userImageName = file.name;
+                this.userService.uploadUserImage(file,localStorage.getItem('currentUserId')).subscribe(
+                    res => {
+                        console.log("res"+res);
+                    }, error => {
+                        console.log("eee " +error);
+                      
+                    }
+                )
+    
+            }
+    }*/
 
-changeListner(event: any) {
-        let fileList: FileList = event.target.files;
-        if (fileList.length > 0) {
-            let file: File = fileList[0];
-            this.userImageName = file.name;
-            this.userService.uploadUserImage(file,this.u.idUtilisateur).subscribe(
-                res => {
-                    console.log("res"+res);
-                }, error => {
-                    console.log("eee " +error);
-                }
-            )
-
-        }
-}
-
-  /*  changeListner(event) {
+    changeListner(event) {
         var reader = new FileReader();
         var image = this.element.nativeElement.querySelector('.image');
-
+        var image2 = this.element.nativeElement.querySelector('.t');
         reader.onload = function (e: any) {
             var src = e.target.result;
             image.src = src;
+            image2.src=src;
 
         };
         console.log(event.target.files[0])
         reader.readAsDataURL(event.target.files[0]);
+        this.userService.uploadUserImage(event.target.files[0], localStorage.getItem('currentUserId')).subscribe(
+            res => {
+                console.log("res" + res);
+            }, error => {
+                console.log("eee " + error);
+
+            }
+        )
+
     }
-    */
+
+
+
+
+    modifierFumeurFalse(){
+       console.log("dd "+this.u.preferences.fumeur);
+    if (this.fumeur != false){
+        this.u.preferences.fumeur = false;
+        this.userService.update(this.u).
+    subscribe(reultat => { 
+        this.fumeur=this.u.preferences.fumeur;
+        console.log(this.u) ;
+    },
+    error =>{
+        console.log(error);
+    });
+    
+
+    console.log(this.fumeur);  
+    }
+}
+    modifierFumeurTrue(){
+       console.log("dd "+this.u.preferences.fumeur);
+    if (this.fumeur != true){
+        this.u.preferences.fumeur = true;
+        this.userService.update(this.u).
+    subscribe(reultat => { 
+        this.fumeur=this.u.preferences.fumeur;
+        console.log(this.u) ;
+    },
+    error =>{
+        console.log(error);
+    });
+    
+
+    console.log(this.fumeur);  
+    }
+}
+    
+
+modifierAnimalFalse(){
+       console.log("dd "+this.u.preferences.animaux);
+    if (this.animaux != false){
+        this.u.preferences.animaux = false;
+        this.userService.update(this.u).
+    subscribe(reultat => { 
+        this.animaux=this.u.preferences.animaux;
+        console.log(this.u) ;
+    },
+    error =>{
+        console.log(error);
+    });
+    
+
+    console.log(this.animaux);  
+    }
+}
+    modifierAnimalTrue(){
+       console.log("dd "+this.u.preferences.animaux);
+    if (this.animaux != true){
+        this.u.preferences.animaux = true;
+        this.userService.update(this.u).
+    subscribe(reultat => { 
+        this.animaux=this.u.preferences.animaux;
+        console.log(this.u) ;
+    },
+    error =>{
+        console.log(error);
+    });
+    
+
+    console.log(this.animaux);  
+    }
+}
+
+
+modifierMusicFalse(){
+       console.log("dd "+this.u.preferences.musique);
+    if (this.musique != false){
+        this.u.preferences.musique = false;
+        this.userService.update(this.u).
+    subscribe(reultat => { 
+        this.musique=this.u.preferences.musique;
+        console.log(this.u) ;
+    },
+    error =>{
+        console.log(error);
+    });
+    
+
+    console.log(this.animaux);  
+    }
+}
+    modifierMusicTrue(){
+       console.log("dd "+this.u.preferences.musique);
+    if (this.musique != true){
+        this.u.preferences.musique = true;
+        this.userService.update(this.u).
+    subscribe(reultat => { 
+        this.musique=this.u.preferences.musique;
+        console.log(this.u) ;
+    },
+    error =>{
+        console.log(error);
+    });
+    
+
+    console.log(this.musique);  
+    }
+}
+
 }

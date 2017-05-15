@@ -12,15 +12,23 @@ var core_1 = require('@angular/core');
 var forms_1 = require("@angular/forms");
 var index_1 = require("../../_services/index");
 var ProfilComponent = (function () {
-    function ProfilComponent(element, _fb, userService) {
+    function ProfilComponent(element, _fb, _fb2, userService) {
         var _this = this;
         this.element = element;
         this._fb = _fb;
+        this._fb2 = _fb2;
         this.userService = userService;
         this.events = [];
         this.userService.getById(localStorage.getItem('currentUserId')).subscribe(function (result) {
             _this.u = result;
             _this.avatarSrc = _this.u.avatarSrc;
+            _this.nom = _this.u.nom;
+            _this.prenom = _this.u.prenom;
+            _this.preferences = _this.u.preferences;
+            _this.fumeur = _this.preferences.fumeur;
+            _this.animaux = _this.preferences.animaux;
+            _this.musique = _this.preferences.musique;
+            console.log("this.preferences   " + _this.animaux);
         });
     }
     ProfilComponent.prototype.ngOnInit = function () {
@@ -32,11 +40,16 @@ var ProfilComponent = (function () {
             prenom: ['', [forms_1.Validators.minLength(4), forms_1.Validators.maxLength(10)]],
             password: ['', [forms_1.Validators.maxLength(15)]],
             numTelephone: ['', [forms_1.Validators.maxLength(15)]],
-            dateNaissance: ['', []],
+            dateNaissance: ['', [forms_1.Validators.maxLength(15)]],
+        });
+        this.myForm2 = this._fb2.group({
+            marque: ['', [forms_1.Validators.minLength(4), forms_1.Validators.maxLength(10)]],
+            modele: ['', [forms_1.Validators.minLength(4), forms_1.Validators.maxLength(10)]],
+            nbPlace: ['', [forms_1.Validators.minLength(4), forms_1.Validators.maxLength(10)]],
         });
         // subscribe to form changes  
         this.subcribeToFormChanges();
-        this.showImage("4");
+        this.showImage(localStorage.getItem('currentUserId'));
     };
     ProfilComponent.prototype.subcribeToFormChanges = function () {
         var _this = this;
@@ -44,6 +57,8 @@ var ProfilComponent = (function () {
         var myFormValueChanges$ = this.myForm.valueChanges;
         myFormStatusChanges$.subscribe(function (x) { return _this.events.push({ event: 'STATUS_CHANGED', object: x }); });
         myFormValueChanges$.subscribe(function (x) { return _this.events.push({ event: 'VALUE_CHANGED', object: x }); });
+    };
+    ProfilComponent.prototype.saveVoiture = function (model, isValid) {
     };
     ProfilComponent.prototype.save = function (model, isValid) {
         this.submitted = true;
@@ -76,16 +91,129 @@ var ProfilComponent = (function () {
             console.log("imagee  " + _this.image);
         });
     };
+    /*
+    changeListner(event: any) {
+            let fileList: FileList = event.target.files;
+            if (fileList.length > 0) {
+                let file: File = fileList[0];
+                 this.image = file;
+                this.userImageName = file.name;
+                this.userService.uploadUserImage(file,localStorage.getItem('currentUserId')).subscribe(
+                    res => {
+                        console.log("res"+res);
+                    }, error => {
+                        console.log("eee " +error);
+                      
+                    }
+                )
+    
+            }
+    }*/
     ProfilComponent.prototype.changeListner = function (event) {
-        var fileList = event.target.files;
-        if (fileList.length > 0) {
-            var file = fileList[0];
-            this.userImageName = file.name;
-            this.userService.uploadUserImage(file, this.u.idUtilisateur).subscribe(function (res) {
-                console.log("res" + res);
+        var reader = new FileReader();
+        var image = this.element.nativeElement.querySelector('.image');
+        var image2 = this.element.nativeElement.querySelector('.t');
+        reader.onload = function (e) {
+            var src = e.target.result;
+            image.src = src;
+            image2.src = src;
+        };
+        console.log(event.target.files[0]);
+        reader.readAsDataURL(event.target.files[0]);
+        this.userService.uploadUserImage(event.target.files[0], localStorage.getItem('currentUserId')).subscribe(function (res) {
+            console.log("res" + res);
+        }, function (error) {
+            console.log("eee " + error);
+        });
+    };
+    ProfilComponent.prototype.modifierFumeurFalse = function () {
+        var _this = this;
+        console.log("dd " + this.u.preferences.fumeur);
+        if (this.fumeur != false) {
+            this.u.preferences.fumeur = false;
+            this.userService.update(this.u).
+                subscribe(function (reultat) {
+                _this.fumeur = _this.u.preferences.fumeur;
+                console.log(_this.u);
             }, function (error) {
-                console.log("eee " + error);
+                console.log(error);
             });
+            console.log(this.fumeur);
+        }
+    };
+    ProfilComponent.prototype.modifierFumeurTrue = function () {
+        var _this = this;
+        console.log("dd " + this.u.preferences.fumeur);
+        if (this.fumeur != true) {
+            this.u.preferences.fumeur = true;
+            this.userService.update(this.u).
+                subscribe(function (reultat) {
+                _this.fumeur = _this.u.preferences.fumeur;
+                console.log(_this.u);
+            }, function (error) {
+                console.log(error);
+            });
+            console.log(this.fumeur);
+        }
+    };
+    ProfilComponent.prototype.modifierAnimalFalse = function () {
+        var _this = this;
+        console.log("dd " + this.u.preferences.animaux);
+        if (this.animaux != false) {
+            this.u.preferences.animaux = false;
+            this.userService.update(this.u).
+                subscribe(function (reultat) {
+                _this.animaux = _this.u.preferences.animaux;
+                console.log(_this.u);
+            }, function (error) {
+                console.log(error);
+            });
+            console.log(this.animaux);
+        }
+    };
+    ProfilComponent.prototype.modifierAnimalTrue = function () {
+        var _this = this;
+        console.log("dd " + this.u.preferences.animaux);
+        if (this.animaux != true) {
+            this.u.preferences.animaux = true;
+            this.userService.update(this.u).
+                subscribe(function (reultat) {
+                _this.animaux = _this.u.preferences.animaux;
+                console.log(_this.u);
+            }, function (error) {
+                console.log(error);
+            });
+            console.log(this.animaux);
+        }
+    };
+    ProfilComponent.prototype.modifierMusicFalse = function () {
+        var _this = this;
+        console.log("dd " + this.u.preferences.musique);
+        if (this.musique != false) {
+            this.u.preferences.musique = false;
+            this.userService.update(this.u).
+                subscribe(function (reultat) {
+                _this.musique = _this.u.preferences.musique;
+                console.log(_this.u);
+            }, function (error) {
+                console.log(error);
+            });
+            console.log(this.animaux);
+        }
+    };
+    ProfilComponent.prototype.modifierMusicTrue = function () {
+        var _this = this;
+        console.log("dd " + this.u.preferences.musique);
+        if (this.musique != true) {
+            this.u.preferences.musique = true;
+            this.userService.update(this.u).
+                subscribe(function (reultat) {
+                _this.musique = _this.u.preferences.musique;
+                console.log(_this.u);
+            }, function (error) {
+                console.log(error);
+            });
+            console.log(this.musique);
         }
     };
     ProfilComponent = __decorate([
@@ -94,7 +222,7 @@ var ProfilComponent = (function () {
             moduleId: module.id,
             templateUrl: 'profil.component.html'
         }), 
-        __metadata('design:paramtypes', [core_1.ElementRef, forms_1.FormBuilder, index_1.UserService])
+        __metadata('design:paramtypes', [core_1.ElementRef, forms_1.FormBuilder, forms_1.FormBuilder, index_1.UserService])
     ], ProfilComponent);
     return ProfilComponent;
 }());
