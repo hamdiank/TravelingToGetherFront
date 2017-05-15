@@ -32,6 +32,13 @@ export class AjoutAnnonceCovoiComponent implements OnInit{
 
      heureDepart: string;
 
+     nomPaysDepart: string;
+
+     nomPaysArrivee: string;
+
+     recupPaysDepart: Pays;
+     recupPaysArrivee: Pays;
+
 
     constructor( private paysService: PaysService, private cityService : CityService, private annonceCovoiService: AnnonceCovoiService) {
 
@@ -49,6 +56,9 @@ export class AjoutAnnonceCovoiComponent implements OnInit{
     this.paysService.getById(idPays1).subscribe( onePays => {
         this.onePays= onePays, this.cities= onePays.cities
     });
+        this.paysService.getById(this.model.paysDepart).subscribe( recupPaysDepart => {
+        this.recupPaysDepart= recupPaysDepart, this.nomPaysDepart= recupPaysDepart.nom, console.log(this.recupPaysDepart.nom)
+    });
     console.log(JSON.stringify(this.cities));
   }
       onSelect2(idPays2) {
@@ -57,6 +67,9 @@ export class AjoutAnnonceCovoiComponent implements OnInit{
         console.log('idVilleArrivee'+this.model.villeArrivee);
     this.paysService.getById(idPays2).subscribe( onePays2 => {
         this.onePays2= onePays2, this.cities2= onePays2.cities
+    });
+      this.paysService.getById(this.model.paysDepart).subscribe( recupPaysArrivee => {
+    this.recupPaysArrivee= recupPaysArrivee, this.nomPaysArrivee= recupPaysArrivee.nom
     });
     console.log(JSON.stringify(this.cities));
   }
@@ -82,17 +95,13 @@ export class AjoutAnnonceCovoiComponent implements OnInit{
    onSubmit(){  
             console.log("aaaaaaaaaaaa");
             //console.log(this.user);
-            this.model.heureDepart= this.model.heure +':'+ this.model.minute;
-            
-             this.annonceCovoiService.ajouterAnnonceCovoi(this.model.heureDepart,this.model.dateDepart.formatted,this.model.paysDepart,
-              this.model.villeDepart,this.model.paysArrivee, this.model.villeArrivee,this.model.nombrePlaces,
-               this.model.cotisation, this.id )
-             .subscribe(
-                data => {
-                    
-                    console.log("model=>"+this.model.dateDepart)
-                    
-
+    this.model.heureDepart= this.model.heure +':'+ this.model.minute;
+    this.annonceCovoiService.ajouterAnnonceCovoi(this.model.heureDepart,this.model.dateDepart.formatted,this.nomPaysDepart,
+    this.model.villeDepart,this.nomPaysArrivee, this.model.villeArrivee,this.model.nombrePlaces,
+    this.model.cotisation, this.id )
+        .subscribe(
+            data => {  
+            console.log("model=>"+this.model.dateDepart)
                 });
         }
 
