@@ -27,11 +27,6 @@
                 <div class="hidden-xs">Avis</div>
             </button>
                 </div>
-                <div class="btn-group" role="group">
-                    <button type="button" id="following" class="btn btn-white" href="#tab3" data-toggle="tab">
-                <div class="hidden-xs">Following</div>
-            </button>
-                </div>
             </div>
 
             <div class="well" style="background-color: white">
@@ -44,65 +39,65 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <h4><strong>Nom</strong></h4>
+                                        <h5><strong>Nom</strong></h5>
                                     </td>
 
                                     <td>
-                                        <h4> {{nom}}</h4>
+                                        <h5> {{nom}}</h5>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h4><strong>Prenom</strong></h4>
+                                        <h5><strong>Prenom</strong></h5>
                                     </td>
 
                                     <td>
-                                        <h4>{{prenom}}</h4>
+                                        <h5>{{prenom}}</h5>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h4><strong>Email</strong></h4>
+                                        <h5><strong>Email</strong></h5>
                                     </td>
 
                                     <td>
-                                        <h4>{{mail}}</h4>
+                                        <h5>{{mail}}</h5>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h4><strong>Date de naissance</strong></h4>
+                                        <h5><strong>Date de naissance</strong></h5>
                                     </td>
 
                                     <td>
-                                        <h4>{{dateN}}</h4>
+                                        <h5>{{dateN}}</h5>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h4><strong>Numero de telephone</strong></h4>
+                                        <h5><strong>Numero de telephone</strong></h5>
                                     </td>
 
                                     <td>
-                                        <h4>{{nTel}}</h4>
+                                        <h5>{{nTel}}</h5>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h4><strong>Profession</strong></h4>
+                                        <h5><strong>Profession</strong></h5>
                                     </td>
 
                                     <td>
-                                        <h4>{{profession}}</h4>
+                                        <h5>{{profession}}</h5>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h4><strong>Preferences</strong></h4>
+                                        <h5><strong>Preferences</strong></h5>
                                     </td>
 
                                     <td>
-                                        <h4>
+                                        <h5>
                                             <button *ngIf="fumeur==false" class="no-smoke" type="button" rel="tooltip" title="La cigarette me dérange." class="btn btn-danger btn-simple btn-sm">
                  <img class="img" src="../assets/img/preferences/smoking-no.png" />
                 </button>
@@ -127,7 +122,7 @@
                     <img class="img" src="../assets/img/preferences/pet-yes.png" />
                 </button>
                                             
-                                        </h4>
+                                        </h5>
                                     </td>
                                 </tr>
 
@@ -177,9 +172,7 @@
 
 
                     </div>
-                    <div class="tab-pane fade in" id="tab3">
-                        <h3>This is tab 3</h3>
-                    </div>
+                    
                 </div>
             </div>
 
@@ -196,7 +189,7 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><strong>Modele</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{modele}}</li>
-                    <li class="list-group-item"><strong> Energie</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{Energie}}</li>
+                    <li class="list-group-item"><strong> Energie</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{energie}}</li>
                     <li class="list-group-item"><strong>Nombre de place</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{nbPlace}}</li>
                 </ul>
 

@@ -185,7 +185,7 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <h4>Fumeur</h4>
+                                                <h5>Fumeur</h5>
                                             </td>
                                             <td class="td-actions text-right">
                                                 <button [disabled]="fumeur==false" (click)="modifierFumeurFalse()" class="no-smoke" type="button" rel="tooltip" title="La cigarette me dérange."
@@ -201,7 +201,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <h4>Musique</h4>
+                                                <h5>Musique</h5>
                                             </td>
                                             <td class="td-actions text-right">
                                                 <button [disabled]="musique==false" (click)="modifierMusicFalse()" class="no-smoke" type="button" rel="tooltip" title="Je n'écoute pas de musique en voiture"
@@ -217,7 +217,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <h4>Animaux</h4>
+                                                <h5>Animaux</h5>
                                             </td>
                                             <td class="td-actions text-right">
                                                 <button [disabled]="animaux==false" (click)="modifierAnimalFalse()" class="no-smoke" type="button" rel="tooltip" title="Je ne veux pas voyager avec un animal."
@@ -371,7 +371,13 @@
                     <div class="content">
                         <h6 class="category text-gray">CEO / Co-Founder</h6>
                         <h4 class="card-title">{{prenom}} {{nom}}</h4>
+                        <ul class="list-group list-group-flush" style="padding-left: 5%;padding-right: 5%; text-align: left;">
+                            <li class="list-group-item"><strong>Prenom</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{prenom}}</li>
+                            <li class="list-group-item"><strong> Nom</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{nom}}</li>
+                            <li class="list-group-item"><strong>Email</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{email}}</li>
+                        </ul>
                     </div>
+
                 </div>
 
             </div>

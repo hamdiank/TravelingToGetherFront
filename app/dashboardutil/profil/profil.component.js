@@ -24,6 +24,7 @@ var ProfilComponent = (function () {
             _this.avatarSrc = _this.u.avatarSrc;
             _this.nom = _this.u.nom;
             _this.prenom = _this.u.prenom;
+            _this.email = _this.u.email;
             _this.preferences = _this.u.preferences;
             _this.fumeur = _this.preferences.fumeur;
             _this.animaux = _this.preferences.animaux;
@@ -34,19 +35,19 @@ var ProfilComponent = (function () {
     ProfilComponent.prototype.ngOnInit = function () {
         var emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
         this.myForm = this._fb.group({
-            login: ['', [forms_1.Validators.minLength(4), forms_1.Validators.maxLength(10)]],
-            email: ['', [forms_1.Validators.pattern(emailRegex)]],
-            nom: ['', [forms_1.Validators.minLength(4), forms_1.Validators.maxLength(10)]],
-            prenom: ['', [forms_1.Validators.minLength(4), forms_1.Validators.maxLength(10)]],
-            password: ['', [forms_1.Validators.maxLength(15)]],
-            numTelephone: ['', [forms_1.Validators.maxLength(15)]],
-            dateNaissance: ['', [forms_1.Validators.maxLength(15)]],
+            login: ['', []],
+            email: ['', []],
+            nom: ['', []],
+            prenom: ['', []],
+            password: ['', []],
+            numTelephone: ['', []],
+            dateNaissance: ['', []],
         });
         this.myForm2 = this._fb2.group({
-            marque: ['', [forms_1.Validators.minLength(4), forms_1.Validators.maxLength(10)]],
-            modele: ['', [forms_1.Validators.minLength(4), forms_1.Validators.maxLength(10)]],
-            nbPlace: ['', []],
-            energie: ['', [forms_1.Validators.minLength(4), forms_1.Validators.maxLength(10)]],
+            marque: ['', [forms_1.Validators.minLength(2), forms_1.Validators.maxLength(10)]],
+            modele: ['', [forms_1.Validators.minLength(2), forms_1.Validators.maxLength(10)]],
+            nbPlace: ['',],
+            energie: ['', [forms_1.Validators.minLength(2), forms_1.Validators.maxLength(10)]],
         });
         // subscribe to form changes  
         this.subcribeToFormChanges();
@@ -60,6 +61,7 @@ var ProfilComponent = (function () {
         myFormValueChanges$.subscribe(function (x) { return _this.events.push({ event: 'VALUE_CHANGED', object: x }); });
     };
     ProfilComponent.prototype.saveVoiture = function (model, isValid) {
+        console.log(isValid);
         if (isValid) {
             console.log(model.marque);
             console.log(this.u.voiture);
@@ -69,9 +71,13 @@ var ProfilComponent = (function () {
                 this.u.voiture.modele = model.modele;
             if (model.nbPlace !== "")
                 this.u.voiture.nombrePlace = model.nbPlace;
-            if (model.marque !== "")
+            if (model.energie !== "")
                 this.u.voiture.energie = model.energie;
             console.log(this.u.voiture);
+            console.log(this.u);
+            this.userService.update(this.u).subscribe(function (result) {
+                console.log(result);
+            });
         }
     };
     ProfilComponent.prototype.save = function (model, isValid) {
