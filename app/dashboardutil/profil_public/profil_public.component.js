@@ -32,7 +32,7 @@ var PublicProfilComponent = (function () {
             _this.energie = _this.u.voiture.energie;
             _this.nbPlace = _this.u.voiture.nombrePlace;
             _this.marque = _this.u.voiture.marque;
-            console.log(_this.preferences);
+            console.log(_this.energie);
         });
     }
     PublicProfilComponent.prototype.ngOnInit = function () {

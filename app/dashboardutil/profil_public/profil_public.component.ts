@@ -237,7 +237,7 @@ export class PublicProfilComponent implements OnInit {
             this.energie=this.u.voiture.energie;
             this.nbPlace=this.u.voiture.nombrePlace;
             this.marque=this.u.voiture.marque;
-            console.log(this.preferences);
+            console.log(this.energie);
         });
     }
 
