@@ -20,6 +20,7 @@ import { MesAnnoncesCovoiComponent } from "./dashboardutil/profil/mesAnnoncesCov
 import { AjoutAnnonceCovoiComponent } from "./dashboardutil/annonceCovoi/ajoutAnnonceCovoi.component";
 import { AnnonceCovoiDetailComponent } from "./dashboardutil/annonceCovoi/annonceCovoiDetail.component";
 import { MotDePasseComponent } from "./MotDePasse/MotDePasse.component";
+import { PublicProfilComponent } from "./dashboardutil/profil_public/profil_public.component";
 export const MODULE_ROUTES: Route[] =[
     { path: 'chat', component: App2Component ,canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
@@ -38,12 +39,13 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'MonProfil', component: ProfilComponent },
     { path: 'MesAnnoncesCovoi', component: MesAnnoncesCovoiComponent },
     { path: 'AjoutAnnonceCovoi', component: AjoutAnnonceCovoiComponent },
+     { path: 'publicProfile', component:  PublicProfilComponent},
     { path: 'detail/:id', component: AnnonceCovoiDetailComponent }
     ],canActivate: [AuthGuard],data: { roles: ['USER'] }  },
 
     { path: 'dashboardutil/Accueil', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['USER'] }},
     { path: 'dashboard/Statistiques', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuardAdmin],data: { roles: ['ADMIN'] }},
-    { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full',canActivate: [AuthGuardAdmin],data: { roles: ['ADMIN'] }},
+    { path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['USER'] }},
   //{ path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['USER'] }}
 
 ]

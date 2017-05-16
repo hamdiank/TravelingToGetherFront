@@ -53,6 +53,7 @@ var spinner_component_1 = require("./shared/loader2/spinner.component");
 var inscription_component_1 = require("./inscription/inscription.component");
 var profil_component_1 = require("./dashboardutil/profil/profil.component");
 var mesAnnoncesCovoi_component_1 = require("./dashboardutil/profil/mesAnnoncesCovoi.component");
+var profil_public_component_1 = require("./dashboardutil/profil_public/profil_public.component");
 var ng2_pagination_1 = require('ng2-pagination');
 var data_service_1 = require("./chat/data/data.service");
 var MotDePassOublie_1 = require("./_services/MotDePassOublie");
@@ -88,7 +89,8 @@ var AppModule = (function () {
                 chat_message_component_1.ChatMessageComponent,
                 chat_thread_component_1.ChatThreadComponent,
                 index_3.AlertComponent,
-                from_now_pipe_1.FromNowPipe, valuesPipe_1.ValuesPipe, pipe_1.FilterPipe, annonceCovoi_component_1.AnnonceCovoiComponent, inscription_component_1.InscriptionComponent, accueil_component_1.AccueilComponent, profil_component_1.ProfilComponent, mesAnnoncesCovoi_component_1.MesAnnoncesCovoiComponent, MotDePasse_component_1.MotDePasseComponent],
+                from_now_pipe_1.FromNowPipe, valuesPipe_1.ValuesPipe, pipe_1.FilterPipe, annonceCovoi_component_1.AnnonceCovoiComponent, inscription_component_1.InscriptionComponent, accueil_component_1.AccueilComponent, profil_component_1.ProfilComponent, mesAnnoncesCovoi_component_1.MesAnnoncesCovoiComponent, MotDePasse_component_1.MotDePasseComponent,
+                profil_public_component_1.PublicProfilComponent],
             bootstrap: [app_component_1.AppComponent],
             exports: [],
             providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }, app_config_1.AppConfig,

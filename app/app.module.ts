@@ -51,6 +51,7 @@ import { SpinnerComponent } from "./shared/loader2/spinner.component";
 import { InscriptionComponent } from "./inscription/inscription.component";
 import { ProfilComponent } from "./dashboardutil/profil/profil.component";
 import { MesAnnoncesCovoiComponent } from "./dashboardutil/profil/mesAnnoncesCovoi.component";
+import { PublicProfilComponent } from "./dashboardutil/profil_public/profil_public.component";
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { DataService } from "./chat/data/data.service";
 import { ChatExampleData } from "./chat/data/chat-example-data";
@@ -87,7 +88,8 @@ import {SpinnerModule} from 'primeng/primeng';
     ChatMessageComponent,
     ChatThreadComponent,
     AlertComponent,
-    FromNowPipe,ValuesPipe,FilterPipe,  AnnonceCovoiComponent, InscriptionComponent, AccueilComponent, ProfilComponent, MesAnnoncesCovoiComponent,MotDePasseComponent],
+    FromNowPipe,ValuesPipe,FilterPipe,  AnnonceCovoiComponent, InscriptionComponent, AccueilComponent, ProfilComponent, MesAnnoncesCovoiComponent,MotDePasseComponent
+    ,PublicProfilComponent],
 
 
     bootstrap:    [ AppComponent ],
