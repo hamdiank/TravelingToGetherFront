@@ -17,7 +17,8 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <label>Date Départ</label>
                                     <my-date-picker [(ngModel)]="model.dateDepart" value="Date Depart"name="dateDepart" [options]="myDatePickerOptions" required></my-date-picker>
-                                </div>
+                                    
+                                </div>                        
                             </div>
                         </div>
                         <hr>
@@ -27,7 +28,7 @@
                                     <label>Heure Départ</label>
                                     <br>
                                     <label>Heure</label>
-                                    <select class="selectpicker" [(ngModel)]="model.heure" (input)="onInputHeure($event)" name="heure"   #heure="ngModel" style="width: 50px; height: 30px;">
+                                    <select  [(ngModel)]="model.heure" (input)="onInputHeure($event)" name="heure"   #heure="ngModel" style="width: 50px; height: 30px;">
                                         <option value= "1">1</option>
                                         <option value= "2">2</option>
                                         <option value= "3">3</option>
@@ -104,22 +105,20 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group form-black label-floating is-empty">
-                                    <label class="control-label">Nombre de Places </label>
-                                    <input type="text"  [(ngModel)]="model.nombrePlaces"  name="nombrePlaces"   #nombrePlaces="ngModel" class="form-control" >
+                                    <h6>Nombre de Places </h6>
+                                    <p-spinner size="10"  [min]="0" [max]="100"  [(ngModel)]="model.nombrePlaces"  name="nombrePlaces"   #nombrePlaces="ngModel" ></p-spinner>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group form-black label-floating is-empty">
-                                    <label class="control-label"> Cotisation </label>
-                                    <input type="text"  [(ngModel)]="model.cotisation"  name="cotisation"   #cotisation="ngModel" class="form-control" >
+                                    <h6 > Cotisation </h6>
+                                    <p-spinner size="10"  [min]="0" [max]="1000"  [(ngModel)]="model.cotisation"  name="cotisation"   #cotisation="ngModel" ></p-spinner>
+                
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                           <h3>Min/Max</h3>
-                                <p-spinner size="30"  [min]="0" [max]="100" [(ngModel)]="model.spin"  name="spin"   #spin="ngModel"  ></p-spinner>
-                        </div>
-
+  
+    
 
                         <button type="submit" class="btn btn-danger pull-right">Publier Annonce</button>
                         <div class="clearfix"></div>

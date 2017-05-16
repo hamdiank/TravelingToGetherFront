@@ -12,8 +12,63 @@
                     <div class="container">
   
 
- <!-- ***************************** Row ********************************************* -->                       
+ <!-- ***************************** Row ********************************************* --> 
+ 					<form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>                      
+ 						<div class="row" style="border: 1px solid lavender; background-color:lavender; margin-top: 50px; ">
+							<div class="row" style="padding: 5px 30px 0px 80px;">
+								<div class="col-sm-4">
+									<div class="form-group form-black label-floating is-empty">
+										<label>Pays Départ</label>
+										<br>
+										<select class="selectpicker" [(ngModel)]="model.paysDepart"  (change)="onSelect1($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;">
+											<option value="0">--Select--</option>
+											<option *ngFor="let pay of pays" value= {{pay.idPays}}>{{pay.nom}}</option>
+										</select> 
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group form-black label-floating is-empty">
+										<label>Ville Départ</label>
+										<br>
+										<select [(ngModel)]="model.villeDepart" (input)="onInput($event)"  name="villeDepart"   #villeDepart="ngModel" style="width: 200px; height: 30px;">
+											<option value="0">Select Ville Depart</option>
+											<option *ngFor="let city of cities " value= {{city.nom}}>{{city.nom}}</option>
+										</select> 
+									</div>
+								</div>
+								
+							</div>
+                         <hr>
+                         
+                        <div class="row"  style="padding: 0px 30px 0px 80px;">
+                            <div class="col-sm-4">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <label>Pays Arrivée</label>
+                                    <br>
+                                    <select [(ngModel)]="model.paysArrivee" (change)="onSelect2($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;">
+                                        <option value="0">--Select--</option>
+                                        <option *ngFor="let pay of pays" value= {{pay.idPays}}>{{pay.nom}}</option>
+                                    </select> 
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <label>Ville Arrivée</label>
+                                    <br>
+                                    <select [(ngModel)]="model.villeArrivee" (input)="onInput2($event)" name="villeArrivee"   #villeArrivee="ngModel" style="width: 200px; height: 30px;">
+                                        <option  value="0">--Select--</option>
+                                        <option *ngFor="let city of cities2 " value= {{city.nom}}>{{city.nom}}</option>
+                                    </select> 
+                                </div>
+                            </div>
+							<div class="col-sm-4">
+										<button type="submit" class="btn btn-success pull-right">chercher Annonce</button>
+							</div>
+                        </div>								
 
+
+						 </div>
+ 					</form>
 
 <div class="body1">
 <!-- ***************************Row*********************************************** -->

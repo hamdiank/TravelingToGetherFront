@@ -14,6 +14,7 @@ var pays_service_1 = require("../../_services/pays.service");
 var city_service_1 = require("../../_services/city.service");
 var annonceCovoi_service_1 = require("../../_services/annonceCovoi.service");
 var AjoutAnnonceCovoiComponent = (function () {
+    ///////////////////////////////////////////////////////////////////
     function AjoutAnnonceCovoiComponent(paysService, cityService, annonceCovoiService) {
         var _this = this;
         this.paysService = paysService;
@@ -28,13 +29,14 @@ var AjoutAnnonceCovoiComponent = (function () {
         });
         console.log(JSON.stringify(this.pays));
     }
+    ///////////////////////////////////////////////////////////////////
     AjoutAnnonceCovoiComponent.prototype.onSelect1 = function (idPays1) {
         var _this = this;
         console.log('idPaysDepart' + idPays1);
         console.log('idPaysDepartModel' + this.model.paysDepart);
         console.log('idVilleDepart' + this.model.villeDepart);
         this.paysService.getById(idPays1).subscribe(function (onePays) {
-            _this.onePays = onePays, _this.cities = onePays.cities;
+            _this.onePays = onePays, _this.cities = onePays.cities, _this.paysDepart = onePays.nom;
         });
         console.log(JSON.stringify(this.cities));
     };
@@ -44,10 +46,11 @@ var AjoutAnnonceCovoiComponent = (function () {
         console.log('idPaysArriveeModel' + this.model.paysDepart);
         console.log('idVilleArrivee' + this.model.villeArrivee);
         this.paysService.getById(idPays2).subscribe(function (onePays2) {
-            _this.onePays2 = onePays2, _this.cities2 = onePays2.cities;
+            _this.onePays2 = onePays2, _this.cities2 = onePays2.cities, _this.paysArrivee = onePays2.nom;
         });
         console.log(JSON.stringify(this.cities));
     };
+    ///////////////////////////////////////////////////////////////
     AjoutAnnonceCovoiComponent.prototype.onInput = function ($event) {
         $event.preventDefault();
         console.log('selected: ' + $event.target.value);
@@ -68,17 +71,22 @@ var AjoutAnnonceCovoiComponent = (function () {
         $event.preventDefault();
         console.log('selected: ' + $event.target.value);
     };
+    ///////////////////////////////////////////////////////////////
     AjoutAnnonceCovoiComponent.prototype.onSubmit = function () {
         var _this = this;
         console.log("aaaaaaaaaaaa");
         console.log(this.model.spin);
+        console.log(this.model.minutes);
         //console.log(this.user);
-        this.model.heureDepart = this.model.heure + ':' + this.model.minute;
+        this.model.heureDepart = this.model.heure + ':' + this.model.minutes;
+        this.model.paysDepart = this.paysDepart;
+        this.model.paysArrivee = this.paysArrivee;
         this.annonceCovoiService.ajouterAnnonceCovoi(this.model.heureDepart, this.model.dateDepart.formatted, this.model.paysDepart, this.model.villeDepart, this.model.paysArrivee, this.model.villeArrivee, this.model.nombrePlaces, this.model.cotisation, this.id)
             .subscribe(function (data) {
             console.log("model=>" + _this.model.dateDepart);
         });
     };
+    ///////////////////////////////////////////////////////////////
     AjoutAnnonceCovoiComponent.prototype.ngOnInit = function () {
         var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
         this.id = currentUserId;
