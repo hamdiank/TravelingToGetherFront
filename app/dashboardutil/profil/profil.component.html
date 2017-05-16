@@ -6,7 +6,7 @@
                     <div class="card-header" data-background-color="purple">
                         <div class="nav-tabs-navigation">
                             <div class="nav-tabs-wrapper">
-                                
+
                                 <ul class="nav nav-tabs" data-tabs="tabs">
                                     <li class="active">
                                         <a href="#profile" data-toggle="tab">
@@ -39,7 +39,8 @@
 
 
                     <div class="card-content">
-                        <div class="tab-content">
+
+                        <div class="tab-content" style="box-shadow: 1px 1px 5px grey; padding-left: 3%;padding-right: 3%;">
                             <div class="tab-pane active" id="profile">
                                 <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
                                     <div class="row">
@@ -57,8 +58,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
+
+
                                         <div class="col-md-4">
                                             <div class="input-group">
                                                 <span class="input-group-addon">
@@ -174,7 +175,7 @@
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-success pull-right">Modifier Profil</button>
+                                    <button type="submit" class="btn btn-success pull-right">Enregistrer</button>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
@@ -243,7 +244,9 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="input-group">
-                                            
+                                                <span class="input-group-addon">
+                                                <i class="material-icons">info</i>
+                                            </span>
                                                 <div class="form-group form-black label-floating is-empty">
                                                     <label class="control-label">Marque</label>
                                                     <input type="text" class="form-control" formControlName="marque">
@@ -257,12 +260,30 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="input-group">
-                                            
+                                                <span class="input-group-addon">
+                                                <i class="material-icons">build</i>
+                                            </span>
                                                 <div class="form-group form-black label-floating is-empty">
                                                     <label class="control-label">Modele</label>
                                                     <input type="text" class="form-control" formControlName="modele">
                                                     <small [hidden]="myForm2.controls.modele.valid || (myForm2.controls.modele.pristine && !submitted)" class="text-danger">
-                                   5 caracteres au minimum
+                                      5 caracteres au minimum
+                                            </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                <i class="material-icons">battery_charging_full</i>
+                                            </span>
+                                                <div class="form-group form-black label-floating is-empty">
+                                                    <label class="control-label">Energie</label>
+                                                    <input type="text" class="form-control" formControlName="energie">
+                                                    <small [hidden]="myForm2.controls.energie.valid || (myForm2.controls.energie.pristine && !submitted)" class="text-danger">
+                                      5 caracteres au minimum
                                             </small>
                                                 </div>
                                             </div>
@@ -272,19 +293,29 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="input-group">
-                                               
+                                                <span class="input-group-addon">
+                                                <i class="material-icons">airline_seat_recline_normal</i>
+                                            </span>
                                                 <div class="form-group form-black label-floating is-empty">
-                                                    <label class="control-label">Modele</label>
-                                                    <input type="text" class="form-control" formControlName="nbPlace">
+                                                    <label class="control-label">Nombre de place</label>
+
+                                                    <select class="form-control" id="exampleSelect1" formControlName="nbPlace">
+                                                      <option>1</option>
+                                                      <option>2</option>
+                                                      <option>3</option>
+                                                       <option>4</option>
+                                                         <option>5</option>
+                                                          </select>
                                                     <small [hidden]="myForm2.controls.nbPlace.valid || (myForm2.controls.nbPlace.pristine && !submitted)" class="text-danger">
-                                   5 caracteres au minimum
+                                              5 caracteres au minimum
                                             </small>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-
+                                    <button type="submit" class="btn btn-success pull-right">Enregistrer</button>
+                                    <div class="clearfix"></div>
                                 </form>
                             </div>
                             <div class="tab-pane" id="photo">
@@ -298,7 +329,7 @@
                                                 <!--  <img class="img img-thumbnail" src="{{image}}" />-->
                                             </a>
                                         </div>
-                                        
+
                                     </div>
 
                                 </div>
@@ -325,6 +356,7 @@
 
                         </div>
                     </div>
+
                 </div>
             </div>
             <div class="col-md-4">
