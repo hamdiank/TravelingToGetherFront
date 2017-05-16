@@ -54,7 +54,8 @@ export class ProfilComponent implements OnInit {
         this.myForm2 = this._fb2.group({
             marque: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
             modele: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
-            nbPlace: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
+            nbPlace: ['', []],
+            energie: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
         });
 
         // subscribe to form changes  
@@ -70,6 +71,24 @@ export class ProfilComponent implements OnInit {
         myFormValueChanges$.subscribe(x => this.events.push({ event: 'VALUE_CHANGED', object: x }));
     }
     saveVoiture(model: any, isValid: boolean) {
+
+
+
+        if (isValid) {
+
+            console.log(model.marque);
+            console.log(this.u.voiture);
+            if (model.marque !== "")
+                this.u.voiture.marque = model.marque;
+            if (model.modele !== "")
+                this.u.voiture.modele = model.modele;
+            if (model.nbPlace !== "")
+                this.u.voiture.nombrePlace = model.nbPlace;
+            if (model.marque !== "")
+                this.u.voiture.energie = model.energie;
+            console.log(this.u.voiture);
+        }
+
 
     }
     save(model: any, isValid: boolean) {
@@ -98,11 +117,6 @@ export class ProfilComponent implements OnInit {
 
         }
     }
-
-
-
- 
-
 
     showImage(filename: string) {
         this.userService.getImage(filename)

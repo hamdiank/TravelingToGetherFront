@@ -45,7 +45,8 @@ var ProfilComponent = (function () {
         this.myForm2 = this._fb2.group({
             marque: ['', [forms_1.Validators.minLength(4), forms_1.Validators.maxLength(10)]],
             modele: ['', [forms_1.Validators.minLength(4), forms_1.Validators.maxLength(10)]],
-            nbPlace: ['', [forms_1.Validators.minLength(4), forms_1.Validators.maxLength(10)]],
+            nbPlace: ['', []],
+            energie: ['', [forms_1.Validators.minLength(4), forms_1.Validators.maxLength(10)]],
         });
         // subscribe to form changes  
         this.subcribeToFormChanges();
@@ -59,6 +60,19 @@ var ProfilComponent = (function () {
         myFormValueChanges$.subscribe(function (x) { return _this.events.push({ event: 'VALUE_CHANGED', object: x }); });
     };
     ProfilComponent.prototype.saveVoiture = function (model, isValid) {
+        if (isValid) {
+            console.log(model.marque);
+            console.log(this.u.voiture);
+            if (model.marque !== "")
+                this.u.voiture.marque = model.marque;
+            if (model.modele !== "")
+                this.u.voiture.modele = model.modele;
+            if (model.nbPlace !== "")
+                this.u.voiture.nombrePlace = model.nbPlace;
+            if (model.marque !== "")
+                this.u.voiture.energie = model.energie;
+            console.log(this.u.voiture);
+        }
     };
     ProfilComponent.prototype.save = function (model, isValid) {
         this.submitted = true;
