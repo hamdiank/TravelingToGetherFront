@@ -201,3 +201,12 @@ function debounce(func, wait, immediate) {
 		if (immediate && !timeout) func.apply(context, args);
 	};
 };
+
+    $(document).ready(function () {
+        $(".btn-pref .btn").click(function () {
+            $(".btn-pref .btn").removeClass("btn-info").addClass("btn-white");
+            // $(".tab").addClass("active"); // instead of this do the below 
+            $(this).removeClass("btn-white").addClass("btn-info");
+        });
+    });
+

@@ -1,0 +1,211 @@
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+<div class="main-content" style="padding-top: 7%">
+    <div class="container-fluid">
+
+        <div class="col-lg-8 col-sm-6">
+            <div class="card hovercard">
+                <div class="card-background">
+                    <img class="card-bkimg" alt="" src="http://lorempixel.com/850/280/people/9/ ">
+                    <!-- http://lorempixel.com/850/280/people/9/ -->
+                </div>
+                <div class="useravatar">
+                    <img alt="" src="{{image}}">
+                </div>
+                <div class="card-info"> <span class="card-title"><strong>{{prenom}} {{nom}}</strong></span>
+                    <h6 class="category text-gray">{{description}}</h6>
+                </div>
+            </div>
+            <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+                <div class="btn-group" role="group">
+                    <button type="button" id="stars" class="btn btn-info" href="#tab1" data-toggle="tab">
+                <div class="hidden-xs">Informations personnelles</div>
+            </button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" id="avis" class="btn btn-white" href="#tab2" data-toggle="tab">
+                <div class="hidden-xs">Avis</div>
+            </button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" id="following" class="btn btn-white" href="#tab3" data-toggle="tab">
+                <div class="hidden-xs">Following</div>
+            </button>
+                </div>
+            </div>
+
+            <div class="well" style="background-color: white">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="tab1">
+
+
+
+                        <table class="table" style="margin-top: 3%">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h4><strong>Nom</strong></h4>
+                                    </td>
+
+                                    <td>
+                                        <h4> {{nom}}</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4><strong>Prenom</strong></h4>
+                                    </td>
+
+                                    <td>
+                                        <h4>{{prenom}}</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4><strong>Email</strong></h4>
+                                    </td>
+
+                                    <td>
+                                        <h4>{{mail}}</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4><strong>Date de naissance</strong></h4>
+                                    </td>
+
+                                    <td>
+                                        <h4>{{dateN}}</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4><strong>Numero de telephone</strong></h4>
+                                    </td>
+
+                                    <td>
+                                        <h4>{{nTel}}</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4><strong>Profession</strong></h4>
+                                    </td>
+
+                                    <td>
+                                        <h4>{{profession}}</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4><strong>Preferences</strong></h4>
+                                    </td>
+
+                                    <td>
+                                        <h4>
+                                            <button *ngIf="fumeur==false" class="no-smoke" type="button" rel="tooltip" title="La cigarette me dérange." class="btn btn-danger btn-simple btn-sm">
+                 <img class="img" src="../assets/img/preferences/smoking-no.png" />
+                </button>
+                                            <button *ngIf="fumeur==true" type="button" rel="tooltip" title="La cigarette ne me dérange pas." class="btn btn-success btn-simple btn-sm">
+                    <img class="img" src="../assets/img/preferences/smoking-yes.png" />
+                </button>
+                                            <button *ngIf="musique==false" class="no-smoke" type="button" rel="tooltip" title="Je n'écoute pas de musique en voiture"
+                                                class="btn btn-danger btn-simple btn-sm">
+                 <img class="img" src="../assets/img/preferences/music-no.png" />
+                </button>
+                                            <button *ngIf="musique==true" type="button" rel="tooltip" title="J'aime bien écouter de la musique"
+                                                class="btn btn-success btn-simple btn-sm">
+                    <img class="img" src="../assets/img/preferences/music-yes.png" />
+                </button>
+                
+                                                <button *ngIf="animaux==false" (click)="modifierAnimalFalse()" class="no-smoke" type="button" rel="tooltip" title="Je ne veux pas voyager avec un animal."
+                                                    class="btn btn-danger btn-simple btn-sm">
+                 <img class="img" src="../assets/img/preferences/pet-no.png" />
+                </button>
+                                                <button *ngIf="animaux==true" (click)="modifierAnimalTrue()" type="button" rel="tooltip" title="Je n'ai rien contre les animaux."
+                                                    class="btn btn-success btn-simple btn-sm">
+                    <img class="img" src="../assets/img/preferences/pet-yes.png" />
+                </button>
+                                            
+                                        </h4>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+
+
+
+
+                    </div>
+                    <div class="tab-pane fade in" id="tab2" style="padding-top: 5%">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="Add a comment" type="text">
+                                    <span class="input-group-addon">
+                        <a href="#"><i class="fa fa-edit"></i></a>  
+                                 </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container" style="padding-top: 3%">
+
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="panel panel-white post panel-shadow">
+                                        <div class="post-heading">
+                                            <div class="pull-left image">
+                                                <img src="{{image}}" class="img-circle avatar" alt="user profile image">
+                                            </div>
+                                            <div class="pull-left meta">
+                                                <div class="title h5">
+                                                    <a href="#"><b>{{nom}} {{prenom}}</b></a>
+                                                </div>
+                                                <h6 class="text-muted time">1 minute ago</h6>
+                                            </div>
+                                        </div>
+                                        <div class="post-description">
+                                            <p>je le recommande vivement</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="tab-pane fade in" id="tab3">
+                        <h3>This is tab 3</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="col-md-4">
+            <div class="card" style=" background-color: white">
+                <img src="http://www.aaarentcars.fr/sites/default/files/styles/image_vehicule_big/public/vehicule_images/porsche-cayenne-2.png?itok=MA-_UUTv"
+                   alt="Card image cap">
+                <div class="card-block">
+                    <h4 class="card-title">{{marque}}</h4>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Modele</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{modele}}</li>
+                    <li class="list-group-item"><strong> Energie</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{Energie}}</li>
+                    <li class="list-group-item"><strong>Nombre de place</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{nbPlace}}</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</div>
