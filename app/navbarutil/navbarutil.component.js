@@ -17,17 +17,9 @@ var NavBarUtilComponent = (function () {
         userService.getById(localStorage.getItem("currentUserId")).subscribe(function (result) {
             _this.nom = result.nom;
         });
-        this.showImage(localStorage.getItem("currentUserId"));
+        this.id = localStorage.getItem("currentUserId");
     }
     NavBarUtilComponent.prototype.ngOnInit = function () {
-    };
-    NavBarUtilComponent.prototype.showImage = function (filename) {
-        var _this = this;
-        this.userService.getImage(filename)
-            .subscribe(function (file) {
-            _this.image = file;
-            console.log("imagee  " + _this.image);
-        });
     };
     NavBarUtilComponent = __decorate([
         core_1.Component({

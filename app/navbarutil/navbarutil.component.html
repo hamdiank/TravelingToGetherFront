@@ -29,7 +29,9 @@
         		<li class="dropdown">
         			<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{nom}}  <b class="caret"></b></a>
         			<ul class="dropdown-menu dropdown-menu-right">
-					  <li><a [routerLink]="['MonProfil']">Mon Profil</a></li>
+						<li><a [routerLink]="['/dashboardutil/publicProfile',id]">Mon Profil</a></li>
+						<li class="divider"></li>
+					  <li><a [routerLink]="['MonProfil']">parametres</a></li>
                       <li class="divider"></li>
 					  <li><a [routerLink]="['MesAnnoncesCovoi']">Mes Annonces Covoiturage </a></li>
 					  <li><a href="#">Mes Annonces Vol</a></li>

@@ -3,12 +3,13 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "../../_services/user.service";
 import { User } from "../../_models/index";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
-    moduleId: module.id,
-    selector: 'public_profil',
-    templateUrl: 'profil_public.component.html',
-    styles: [`
+  moduleId: module.id,
+  selector: 'public_profil',
+  templateUrl: 'profil_public.component.html',
+  styles: [`
  .card {
     margin-top: 20px;
     padding: 30px;
@@ -200,60 +201,78 @@ import { User } from "../../_models/index";
     `]
 })
 export class PublicProfilComponent implements OnInit {
-    image: any;
-    u: any;
-    nom: string;
-    prenom: string;
-    mail: string;
-    dateN: string;
-    profession: string;
-    description: string;
-    nTel: string;
-    preferences: any;
-    fumeur: any;
-    animaux: any;
-    musique: any;
-    modele: any;
-    energie: any;
-    nbPlace: any;
-    marque: any;
-    constructor(private userService: UserService) {
-        this.userService.getById(localStorage.getItem('currentUserId')).subscribe(result => {
+  id:any;
+  image: any;
+  imageVoiture: any
+  u: any;
+  nom: string;
+  prenom: string;
+  mail: string;
+  dateN: string;
+  profession: string;
+  description: string;
+  nTel: string;
+  preferences: any;
+  fumeur: any;
+  animaux: any;
+  musique: any;
+  modele: any;
+  energie: any;
+  nbPlace: any;
+  marque: any;
+  constructor(private userService: UserService,public route: ActivatedRoute) {
 
-            this.u = result;
-            console.log(this.u.voiture);
-            this.nom = this.u.nom;
-            this.prenom = this.u.prenom;
-            this.mail = this.u.email;
-            this.dateN = this.u.dateNaissance;
-            this.profession = this.u.profession;
-            this.nTel = this.u.numTelephone;
-            this.description = this.u.description;
-            this.preferences = this.u.preferences;
-            this.animaux = this.preferences.animaux;
-            this.fumeur = this.preferences.fumeur;
-            this.musique = this.preferences.musique;
-            this.modele=this.u.voiture.modele;
-            this.energie=this.u.voiture.energie;
-            this.nbPlace=this.u.voiture.nombrePlace;
-            this.marque=this.u.voiture.marque;
-            console.log(this.energie);
-        });
-    }
+this.route.params.subscribe(params => {
+       this.id = +params['id']; 
+       console.log(this.id);
 
-    ngOnInit() {
-        $.getScript('../assets/js/initMenu.js');
-        this.showImage(localStorage.getItem('currentUserId'));
-
-    }
+    
+    });
 
 
-    showImage(filename: string) {
-        this.userService.getImage(filename)
-            .subscribe((file) => {
-                this.image = file;
-                console.log("imagee  " + this.image);
-            });
-    }
+    this.userService.getById(this.id).subscribe(result => {
+
+      this.u = result;
+      console.log(this.u.voiture);
+      this.nom = this.u.nom;
+      this.prenom = this.u.prenom;
+      this.mail = this.u.email;
+      this.dateN = this.u.dateNaissance;
+      this.profession = this.u.profession;
+      this.nTel = this.u.numTelephone;
+      this.description = this.u.description;
+      this.preferences = this.u.preferences;
+      this.animaux = this.preferences.animaux;
+      this.fumeur = this.preferences.fumeur;
+      this.musique = this.preferences.musique;
+      this.modele = this.u.voiture.modele;
+      this.energie = this.u.voiture.energie;
+      this.nbPlace = this.u.voiture.nombrePlace;
+      this.marque = this.u.voiture.marque;
+      console.log(this.energie);
+    });
+  }
+
+  ngOnInit() {
+    $.getScript('../assets/js/initMenu.js');
+    this.showImage(localStorage.getItem('currentUserId'));
+    this.showImageVoiture(localStorage.getItem('currentUserId'));
+  }
+
+
+  showImage(filename: string) {
+    this.userService.getImage(filename)
+      .subscribe((file) => {
+        this.image = file;
+        console.log("imagee  " + this.image);
+      });
+  }
+  showImageVoiture(filename: string) {
+    this.userService.getImageVoiture(filename)
+      .subscribe((file) => {
+        this.imageVoiture = file;
+        console.log("imagee  " + this.imageVoiture);
+      });
+  }
 
 }
