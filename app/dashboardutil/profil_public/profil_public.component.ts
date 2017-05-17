@@ -10,6 +10,23 @@ import { ActivatedRoute } from "@angular/router";
   selector: 'public_profil',
   templateUrl: 'profil_public.component.html',
   styles: [`
+
+  .material-button {
+    position: relative;
+    top: 0;
+    z-index: 1;
+    width: 70px;
+    height: 70px;
+    font-size: 1.5em;
+    color: #fff;
+    background: #2C98DE;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0,0,0,.275);
+    outline: none;
+}
+
+ /* USER PROFILE PAGE */
  .card {
     margin-top: 20px;
     padding: 30px;
@@ -44,7 +61,6 @@ import { ActivatedRoute } from "@angular/router";
     margin-left: -100px;
     margin-top: -200px;
     min-width: 130%;
-    width:500%;
 }
 .card.hovercard .useravatar {
     position: absolute;
@@ -62,7 +78,7 @@ import { ActivatedRoute } from "@angular/router";
     border-radius: 50%;
     border: 5px solid rgba(255, 255, 255, 0.5);
 }
-.card.hovercard .card.info {
+.card.hovercard .card-info {
     position: absolute;
     bottom: 14px;
     left: 0;
@@ -92,6 +108,7 @@ import { ActivatedRoute } from "@angular/router";
 .btn-pref .btn {
     -webkit-border-radius:0 !important;
 }
+
 
 
 .panel-shadow {
@@ -201,9 +218,11 @@ import { ActivatedRoute } from "@angular/router";
     `]
 })
 export class PublicProfilComponent implements OnInit {
-  id:any;
+  avis: any[];
+  id: any;
   image: any;
-  imageVoiture: any
+  imageVoiture: any;
+  imageavis: any;
   u: any;
   nom: string;
   prenom: string;
@@ -220,13 +239,13 @@ export class PublicProfilComponent implements OnInit {
   energie: any;
   nbPlace: any;
   marque: any;
-  constructor(private userService: UserService,public route: ActivatedRoute) {
+  constructor(private userService: UserService, public route: ActivatedRoute) {
 
-this.route.params.subscribe(params => {
-       this.id = +params['id']; 
-       console.log(this.id);
+    this.route.params.subscribe(params => {
+      this.id = +params['id'];
+      console.log(this.id);
 
-    
+
     });
 
 
@@ -255,8 +274,10 @@ this.route.params.subscribe(params => {
 
   ngOnInit() {
     $.getScript('../assets/js/initMenu.js');
-    this.showImage(localStorage.getItem('currentUserId'));
-    this.showImageVoiture(localStorage.getItem('currentUserId'));
+    this.showImage(this.id);
+    this.showImageVoiture(this.id);
+    this.getAvis(this.id);
+    this.showImageavis(this.id);
   }
 
 
@@ -274,5 +295,23 @@ this.route.params.subscribe(params => {
         console.log("imagee  " + this.imageVoiture);
       });
   }
+  showImageavis(filename: string) {
+    this.userService.getImage(filename)
+      .subscribe((file) => {
+        this.imageavis = file;
+        console.log("imagee  " + this.image);
+      });
+  }
+
+
+  getAvis(id) {
+    this.userService.getAvis(id).subscribe(result => {
+      this.avis = result;
+      console.log("aviiis" + this.avis);
+
+    });
+
+  }
+
 
 }
