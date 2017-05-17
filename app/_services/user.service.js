@@ -30,6 +30,10 @@ var UserService = (function () {
         return this.http.post(this.config.apiUrl + "/uploadVoiture", formData, this.jwt())
             .map(function (response) { return response.json(); });
     };
+    UserService.prototype.getAvis = function (id) {
+        console.log("start api/user eehdf ......");
+        return this.http.get(this.config.apiUrl + '/avis/avis/' + id, this.jwt()).map(function (response) { return response.json(); });
+    };
     UserService.prototype.getAll = function () {
         console.log("start api/user eehdf ......");
         return this.http.get(this.config.apiUrl + '/utilisateurs', this.jwt()).map(function (response) { return response.json(); });

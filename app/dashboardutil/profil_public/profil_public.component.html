@@ -6,14 +6,19 @@
         <div class="col-lg-8 col-sm-6">
             <div class="card hovercard">
                 <div class="card-background">
-                    <img class="card-bkimg" alt="" src="http://lorempixel.com/850/280/people/9/ ">
+                    <img class="card-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/">
                     <!-- http://lorempixel.com/850/280/people/9/ -->
                 </div>
                 <div class="useravatar">
                     <img alt="" src="{{image}}">
                 </div>
-                <div class="card-info"> <span class="card-title"><strong>{{prenom}} {{nom}}</strong></span>
-                    <h6 class="category text-gray">{{description}}</h6>
+                <br><br><br><br>
+                <div class="card-info">
+                    <span class="card-title">
+                        
+                        <strong>{{prenom}} {{nom}}</strong><br><br>
+                        {{description}}
+                        </span>
                 </div>
             </div>
             <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
@@ -108,20 +113,19 @@
                                                 class="btn btn-danger btn-simple btn-sm">
                  <img class="img" src="../assets/img/preferences/music-no.png" />
                 </button>
-                                            <button *ngIf="musique==true" type="button" rel="tooltip" title="J'aime bien écouter de la musique"
-                                                class="btn btn-success btn-simple btn-sm">
+                                            <button *ngIf="musique==true" type="button" rel="tooltip" title="J'aime bien écouter de la musique" class="btn btn-success btn-simple btn-sm">
                     <img class="img" src="../assets/img/preferences/music-yes.png" />
                 </button>
-                
-                                                <button *ngIf="animaux==false" (click)="modifierAnimalFalse()" class="no-smoke" type="button" rel="tooltip" title="Je ne veux pas voyager avec un animal."
-                                                    class="btn btn-danger btn-simple btn-sm">
+
+                                            <button *ngIf="animaux==false" (click)="modifierAnimalFalse()" class="no-smoke" type="button" rel="tooltip" title="Je ne veux pas voyager avec un animal."
+                                                class="btn btn-danger btn-simple btn-sm">
                  <img class="img" src="../assets/img/preferences/pet-no.png" />
                 </button>
-                                                <button *ngIf="animaux==true" (click)="modifierAnimalTrue()" type="button" rel="tooltip" title="Je n'ai rien contre les animaux."
-                                                    class="btn btn-success btn-simple btn-sm">
+                                            <button *ngIf="animaux==true" (click)="modifierAnimalTrue()" type="button" rel="tooltip" title="Je n'ai rien contre les animaux."
+                                                class="btn btn-success btn-simple btn-sm">
                     <img class="img" src="../assets/img/preferences/pet-yes.png" />
                 </button>
-                                            
+
                                         </h5>
                                     </td>
                                 </tr>
@@ -140,29 +144,31 @@
                                 <div class="input-group">
                                     <input class="form-control" placeholder="Add a comment" type="text">
                                     <span class="input-group-addon">
-                        <a href="#"><i class="fa fa-edit"></i></a>  
-                                 </span>
+                                     <button class="material-button option2" type="button">
+                                         <span class="fa fa-envelope-o" ></span>
+                                    </button>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                         <div class="container" style="padding-top: 3%">
 
-                            <div class="row">
+                            <div class="row" *ngFor="let a of avis">
                                 <div class="col-sm-8">
                                     <div class="panel panel-white post panel-shadow">
                                         <div class="post-heading">
                                             <div class="pull-left image">
-                                                <img src="{{image}}" class="img-circle avatar" alt="user profile image">
+                                                <img src="{{imageavis}}" class="img-circle avatar" alt="user profile image">
                                             </div>
                                             <div class="pull-left meta">
                                                 <div class="title h5">
-                                                    <a href="#"><b>{{nom}} {{prenom}}</b></a>
+                                                    <a href="#"><b>{{a.author.nom}} {{a.author.prenom}}</b></a>
                                                 </div>
                                                 <h6 class="text-muted time">1 minute ago</h6>
                                             </div>
                                         </div>
                                         <div class="post-description">
-                                            <p>je le recommande vivement</p>
+                                            <p>{{a.text}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -172,7 +178,7 @@
 
 
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -182,12 +188,12 @@
 
         <div class="col-md-4">
             <div class="card" style=" background-color: white">
-                <img src="{{imageVoiture}}"
-                   alt="Card image cap">
+                <img src="{{imageVoiture}}" alt="Card image cap">
                 <div class="card-block">
-                    <h4 class="card-title">{{marque}}</h4>
+                    <h4 class="card-title"></h4>
                 </div>
                 <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Marque</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{marque}}</li>
                     <li class="list-group-item"><strong>Modele</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{modele}}</li>
                     <li class="list-group-item"><strong> Energie</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{energie}}</li>
                     <li class="list-group-item"><strong>Nombre de place</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{nbPlace}}</li>
