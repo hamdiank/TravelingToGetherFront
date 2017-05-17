@@ -57,15 +57,18 @@ var AnnonceCovoiService = (function () {
             .map(function (res) { return res.json(); });
     };
     //////////////////////////////////////
-    AnnonceCovoiService.prototype.modifierAnnonceCovoi = function (datePublication, dateDepart, adresseDepart, adresseArrivee, nombrePlaces, cotisation, id, idUtilisateur) {
+    AnnonceCovoiService.prototype.modifierAnnonceCovoi = function (heureDepart, dateDepart, paysDepart, villeDepart, paysArrivee, villeArrivee, nombrePlaces, cotisation, id, idUtilisateur) {
         console.log("i am here");
         var headers = new http_1.Headers();
         var options = new http_1.RequestOptions({ headers: headers });
         var urlSearchParams = new http_2.URLSearchParams();
-        urlSearchParams.append('datePublication', datePublication);
+        urlSearchParams.append('heureDepart', heureDepart);
         urlSearchParams.append('dateDepart', dateDepart);
-        urlSearchParams.append('adresseDepart', adresseDepart);
-        urlSearchParams.append('adresseArrivee', adresseArrivee);
+        console.log(dateDepart);
+        urlSearchParams.append('paysDepart', paysDepart);
+        urlSearchParams.append('villeDepart', villeDepart);
+        urlSearchParams.append('paysArrivee', paysArrivee);
+        urlSearchParams.append('villeArrivee', villeArrivee);
         urlSearchParams.append('nombrePlaces', nombrePlaces);
         urlSearchParams.append('cotisation', cotisation);
         urlSearchParams.append('id', id);

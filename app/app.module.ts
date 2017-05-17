@@ -57,7 +57,7 @@ import { ChatExampleData } from "./chat/data/chat-example-data";
 import { MotDePasseOublieService } from "./_services/MotDePassOublie";
 import { MotDePasseComponent } from "./MotDePasse/MotDePasse.component";
 import { NavBarUtilModule } from "./navbarutil/navbarutil.module";
-import { SpinnerModule } from 'primeng/primeng';
+import { SpinnerModule, PaginatorModule } from 'primeng/primeng';
 
 
 
@@ -76,6 +76,8 @@ import { SpinnerModule } from 'primeng/primeng';
         Ng2PaginationModule,
         RouterModule.forRoot(MODULE_ROUTES),
         SpinnerModule,
+       PaginatorModule
+
         
     ],
 

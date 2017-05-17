@@ -38,8 +38,8 @@ export class AnnonceCovoiDetailComponent implements OnInit {
     console.log('I am here '+this.id)
     this.annonceCovoiService.getAnnonceCovoi(this.id).subscribe( annonceCovoi=> { this.annonceCovoi = annonceCovoi,
         this.utilisateur= annonceCovoi.utilisateur
-        console.log(JSON.stringify(this.annonceCovoi))
-        console.log(JSON.stringify(this.utilisateur))
+       // console.log(JSON.stringify(this.annonceCovoi))
+      //  console.log(JSON.stringify(this.utilisateur))
         
     
     });

@@ -38,6 +38,7 @@ export class AnnonceCovoiComponent implements OnInit {
 
      annoncesCovoiToFilter: AnnonceCovoi[];
      test:boolean=false;
+     test2:boolean=false;
 
 
   ///////////////////////////////////////////////////////////////
@@ -48,9 +49,16 @@ export class AnnonceCovoiComponent implements OnInit {
     
     });
     console.log(JSON.stringify(this.pays));
-    this
 
 }
+//////////////////////////////////////////////////
+/*paginate(event) {
+        //event.first = Index of the first record
+        event.rows = 4;
+        //event.page = Index of the new page
+        //event.pageCount = Total number of pages
+    }
+*/
 
 //////////////////////////////////////////////////
 
@@ -84,11 +92,12 @@ export class AnnonceCovoiComponent implements OnInit {
 }*/
 
 
-  onInput($event) {
+ /* onInput($event) {
     //  this.annoncesCovoiToFilter=this.annoncesCovoi;
       console.log(JSON.stringify('111111'+this.annoncesCovoiToFilter))
     $event.preventDefault();
     console.log('selected11111: ' + $event.target.value);
+    console.log(typeof($event.target.value))
     
     var vDepart = $event.target.value;
     if(this.test==true){
@@ -130,8 +139,137 @@ export class AnnonceCovoiComponent implements OnInit {
   }
     onInput2($event) {
     $event.preventDefault();
-    console.log('selected: ' + $event.target.value);
-  }
+    console.log('selected44444: ' + $event.target.value);
+    console.log(typeof($event.target.value))
+    
+    var vArrivee = $event.target.value;
+    if(this.test2==true){
+        this.annoncesCovoi=this.annoncesCovoiToFilter;
+        //this.annoncesCovoi=this.annoncesCovoiToFilter;
+        console.log('22222222')
+      //  this.annoncesCovoi=this.annoncesCovoiToFilter;
+      //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
+        this.annoncesCovoi= this.annoncesCovoi.filter(
+        (result) => {
+                return (result.villeArrivee.toLowerCase().indexOf(vArrivee.toLowerCase()) > -1 )
+            }
+        );
+        //console.log(JSON.stringify(this.annoncesCovoi))
+
+    }
+    else{
+
+            if (vArrivee && vArrivee.trim() != "0"){
+                console.log('33333333')
+        this.annoncesCovoi= this.annoncesCovoi.filter(
+            (result) => {
+                return (result.villeArrivee.toLowerCase().indexOf(vArrivee.toLowerCase()) > -1 )
+            }
+        );
+        this.test2=true;
+        
+        console.log(this.test2)
+
+    } else{
+       // this.getAnnoncesCovoi();
+    }
+
+    }
+
+
+
+  }*/
+
+onSubmit(){
+    console.log("paysDepart:"+ this.model.paysDepart)
+    console.log("paysArrivee:"+ this.model.paysArrivee)
+    console.log("villeDepart:"+ this.model.villeDepart)
+    console.log("villeArrivee:"+ this.model.villeArrivee)
+
+    /////////////////////////////////////////////
+        var vDepart = this.model.villeDepart;
+    if(this.test==true){
+        this.annoncesCovoi=this.annoncesCovoiToFilter;
+        //this.annoncesCovoi=this.annoncesCovoiToFilter;
+        console.log('22222222')
+      //  this.annoncesCovoi=this.annoncesCovoiToFilter;
+      //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
+        this.annoncesCovoi= this.annoncesCovoi.filter(
+        (result) => {
+                return (result.villeDepart.toLowerCase().indexOf(vDepart.toLowerCase()) > -1 )
+            }
+        );
+        //console.log(JSON.stringify(this.annoncesCovoi))
+
+    }
+    else{
+
+            if (vDepart && vDepart.trim() != "0"){
+                console.log('33333333')
+        this.annoncesCovoi= this.annoncesCovoi.filter(
+            (result) => {
+                return (result.villeDepart.toLowerCase().indexOf(vDepart.toLowerCase()) > -1 )
+            }
+        );
+        this.test=true;
+        
+        console.log(this.test)
+
+    } else{
+        this.getAnnoncesCovoi();
+    }
+
+    }
+
+
+
+    ////////////////////////////////////////////
+
+
+     var vArrivee = this.model.villeArrivee;
+    if(this.test2==true){
+        this.annoncesCovoi=this.annoncesCovoiToFilter;
+        //this.annoncesCovoi=this.annoncesCovoiToFilter;
+        console.log('22222222')
+      //  this.annoncesCovoi=this.annoncesCovoiToFilter;
+      //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
+        this.annoncesCovoi= this.annoncesCovoi.filter(
+        (result) => {
+                return (result.villeArrivee.toLowerCase().indexOf(vArrivee.toLowerCase()) > -1 )
+            }
+        );
+        //console.log(JSON.stringify(this.annoncesCovoi))
+
+    }
+    else{
+
+            if (vArrivee && vArrivee.trim() != "0"){
+                console.log('33333333')
+        this.annoncesCovoi= this.annoncesCovoi.filter(
+            (result) => {
+                return (result.villeArrivee.toLowerCase().indexOf(vArrivee.toLowerCase()) > -1 )
+            }
+        );
+        this.test2=true;
+        
+        console.log(this.test2)
+
+    } else{
+       // this.getAnnoncesCovoi();
+    }
+
+    }
+
+
+
+    ///////////////////////////////////////////
+
+
+    
+
+}
+
+
   //////////////////////////////////////////////////////////
 
     getAnnoncesCovoi(){

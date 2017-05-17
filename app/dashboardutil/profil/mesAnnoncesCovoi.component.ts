@@ -2,6 +2,10 @@ import { Component, OnInit, trigger, state, style, transition, animate } from '@
 import { AnnonceCovoiService } from "../../_services/annonceCovoi.service";
 import { AnnonceCovoi } from "../../_models/annonceCovoi";
 import { Router } from "@angular/router";
+import { Pays } from "../../_models/Pays";
+import { City } from "../../_models/city";
+import { PaysService } from "../../_services/pays.service";
+import { CityService } from "../../_services/city.service";
 
 declare var $:any;
 
@@ -13,6 +17,24 @@ declare var $:any;
 })
 
 export class MesAnnoncesCovoiComponent implements OnInit {
+    /////////////////////////////////////////////
+ paysDepart: Pays;
+    paysArrivee: Pays;
+
+    selectedPays:any={}
+    pays: Pays[];
+    cities: City[];
+    cities2: City[];
+    onePays: Pays;
+    onePays2: Pays;
+
+    // model: any={};
+
+    // id: string;
+
+     heureDepart: string;
+
+    ////////////////////////////////////////////
     model: any={};
     annoncesCovoi: AnnonceCovoi[];
     id: string;
@@ -21,7 +43,37 @@ export class MesAnnoncesCovoiComponent implements OnInit {
     public selected: any={};
     annonceCovoi: AnnonceCovoi;
 
-    constructor(private annonceCovoiService: AnnonceCovoiService , private router: Router){}
+    constructor(private annonceCovoiService: AnnonceCovoiService , private router: Router, private paysService: PaysService, private cityService : CityService ){
+      this.selectedPays.idPays='0';
+    this.paysService.getAll().subscribe( pays=> { this.pays=pays 
+    
+    });
+    console.log(JSON.stringify(this.pays));   
+    }
+/////////////////////////////////////////////////////
+   onSelect1(idPays1) {
+        console.log('idPaysDepart'+idPays1)
+        console.log('idPaysDepartModel'+this.model.paysDepart);
+        console.log('idVilleDepart'+this.model.villeDepart);
+        
+    this.paysService.getById(idPays1).subscribe( onePays => {
+        this.onePays= onePays, this.cities= onePays.cities,  this.paysDepart= onePays.nom
+    });
+    console.log(JSON.stringify(this.cities));
+  }
+
+
+      onSelect2(idPays2) {
+        console.log('idPaysArrivee'+idPays2)
+        console.log('idPaysArriveeModel'+this.model.paysDepart);
+        console.log('idVilleArrivee'+this.model.villeArrivee);
+    this.paysService.getById(idPays2).subscribe( onePays2 => {
+        this.onePays2= onePays2, this.cities2= onePays2.cities,  this.paysArrivee= onePays2.nom
+    });
+    console.log(JSON.stringify(this.cities));
+  }
+////////////////////////////////////////////////////
+
 getMesAnnoncesCovoi(){
     let currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
     this.id=currentUserId;
@@ -39,12 +91,14 @@ onClick(annonceCovoi: AnnonceCovoi){
     console.log(this.selected)
 
 }
+///////////////// Modifier Annonce Covoi ///////////////////////
 modifierAnnonceCovoi(){
     let currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
     this.idUtilisateur=currentUserId;
     this.datePublication="26/04/2017";
-    this.annonceCovoiService.modifierAnnonceCovoi(this.datePublication, this.model.dateDepart, this.model.adresseDepart,
-    this.model.adresseArrivee, this.model.nombrePlaces, this.model.cotisation, this.model.id, this.idUtilisateur)
+    this.annonceCovoiService.modifierAnnonceCovoi(this.model.heureDepart,this.model.dateDepart,this.model.paysDepart,
+            this.model.villeDepart,this.model.paysArrivee, this.model.villeArrivee,this.model.nombrePlaces,
+            this.model.cotisation, this.model.id, this.idUtilisateur)
      .subscribe(
                 data => {
                     this.router.navigate(['dashboardutil/MesAnnoncesCovoi']);

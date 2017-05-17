@@ -77,6 +77,7 @@ var AppModule = (function () {
                 ng2_pagination_1.Ng2PaginationModule,
                 router_1.RouterModule.forRoot(app_routes_1.MODULE_ROUTES),
                 primeng_1.SpinnerModule,
+                primeng_1.PaginatorModule
             ],
             declarations: [app_component_1.AppComponent, app_routes_1.MODULE_COMPONENTS, login_component_1.LoginComponent, table_component_1.TableComponent, parametrage_component_1.ParametrageComponent, loader_component_1.LoaderComponent,
                 spinner_component_1.SpinnerComponent,

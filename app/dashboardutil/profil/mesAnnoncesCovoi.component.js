@@ -11,13 +11,47 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var annonceCovoi_service_1 = require("../../_services/annonceCovoi.service");
 var router_1 = require("@angular/router");
+var pays_service_1 = require("../../_services/pays.service");
+var city_service_1 = require("../../_services/city.service");
 var MesAnnoncesCovoiComponent = (function () {
-    function MesAnnoncesCovoiComponent(annonceCovoiService, router) {
+    function MesAnnoncesCovoiComponent(annonceCovoiService, router, paysService, cityService) {
+        var _this = this;
         this.annonceCovoiService = annonceCovoiService;
         this.router = router;
+        this.paysService = paysService;
+        this.cityService = cityService;
+        this.selectedPays = {};
+        ////////////////////////////////////////////
         this.model = {};
         this.selected = {};
+        this.selectedPays.idPays = '0';
+        this.paysService.getAll().subscribe(function (pays) {
+            _this.pays = pays;
+        });
+        console.log(JSON.stringify(this.pays));
     }
+    /////////////////////////////////////////////////////
+    MesAnnoncesCovoiComponent.prototype.onSelect1 = function (idPays1) {
+        var _this = this;
+        console.log('idPaysDepart' + idPays1);
+        console.log('idPaysDepartModel' + this.model.paysDepart);
+        console.log('idVilleDepart' + this.model.villeDepart);
+        this.paysService.getById(idPays1).subscribe(function (onePays) {
+            _this.onePays = onePays, _this.cities = onePays.cities, _this.paysDepart = onePays.nom;
+        });
+        console.log(JSON.stringify(this.cities));
+    };
+    MesAnnoncesCovoiComponent.prototype.onSelect2 = function (idPays2) {
+        var _this = this;
+        console.log('idPaysArrivee' + idPays2);
+        console.log('idPaysArriveeModel' + this.model.paysDepart);
+        console.log('idVilleArrivee' + this.model.villeArrivee);
+        this.paysService.getById(idPays2).subscribe(function (onePays2) {
+            _this.onePays2 = onePays2, _this.cities2 = onePays2.cities, _this.paysArrivee = onePays2.nom;
+        });
+        console.log(JSON.stringify(this.cities));
+    };
+    ////////////////////////////////////////////////////
     MesAnnoncesCovoiComponent.prototype.getMesAnnoncesCovoi = function () {
         var _this = this;
         var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
@@ -34,12 +68,13 @@ var MesAnnoncesCovoiComponent = (function () {
         console.log("jjjjjjjjjj");
         console.log(this.selected);
     };
+    ///////////////// Modifier Annonce Covoi ///////////////////////
     MesAnnoncesCovoiComponent.prototype.modifierAnnonceCovoi = function () {
         var _this = this;
         var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
         this.idUtilisateur = currentUserId;
         this.datePublication = "26/04/2017";
-        this.annonceCovoiService.modifierAnnonceCovoi(this.datePublication, this.model.dateDepart, this.model.adresseDepart, this.model.adresseArrivee, this.model.nombrePlaces, this.model.cotisation, this.model.id, this.idUtilisateur)
+        this.annonceCovoiService.modifierAnnonceCovoi(this.model.heureDepart, this.model.dateDepart, this.model.paysDepart, this.model.villeDepart, this.model.paysArrivee, this.model.villeArrivee, this.model.nombrePlaces, this.model.cotisation, this.model.id, this.idUtilisateur)
             .subscribe(function (data) {
             _this.router.navigate(['dashboardutil/MesAnnoncesCovoi']);
         });
@@ -64,7 +99,7 @@ var MesAnnoncesCovoiComponent = (function () {
             templateUrl: 'mesAnnoncesCovoi.component.html',
             providers: [annonceCovoi_service_1.AnnonceCovoiService]
         }), 
-        __metadata('design:paramtypes', [annonceCovoi_service_1.AnnonceCovoiService, router_1.Router])
+        __metadata('design:paramtypes', [annonceCovoi_service_1.AnnonceCovoiService, router_1.Router, pays_service_1.PaysService, city_service_1.CityService])
     ], MesAnnoncesCovoiComponent);
     return MesAnnoncesCovoiComponent;
 }());

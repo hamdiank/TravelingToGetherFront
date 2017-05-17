@@ -78,10 +78,10 @@ var AjoutAnnonceCovoiComponent = (function () {
         console.log(this.model.spin);
         console.log(this.model.minutes);
         //console.log(this.user);
-        this.model.heureDepart = this.model.heure + ':' + this.model.minutes;
+        //this.model.heureDepart= this.model.heure +':'+ this.model.minutes;
         this.model.paysDepart = this.paysDepart;
         this.model.paysArrivee = this.paysArrivee;
-        this.annonceCovoiService.ajouterAnnonceCovoi(this.model.heureDepart, this.model.dateDepart.formatted, this.model.paysDepart, this.model.villeDepart, this.model.paysArrivee, this.model.villeArrivee, this.model.nombrePlaces, this.model.cotisation, this.id)
+        this.annonceCovoiService.ajouterAnnonceCovoi(this.model.heureDepart, this.model.dateDepart, this.model.paysDepart, this.model.villeDepart, this.model.paysArrivee, this.model.villeArrivee, this.model.nombrePlaces, this.model.cotisation, this.id)
             .subscribe(function (data) {
             console.log("model=>" + _this.model.dateDepart);
         });
