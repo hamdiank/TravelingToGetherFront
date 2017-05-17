@@ -11,7 +11,7 @@
                     <p class="category">Compléter L'Annonce</p>
                 </div>
                 <div class="card-content">
-                    <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+                    <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" >
                         <div class="row">
                             <div class="col-md-6">   
                                 <div class="form-group form-black label-floating is-empty">
@@ -26,7 +26,7 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <label>Heure Départ</label>
                                     <br>
-                                    <input type="time"  [(ngModel)]="model.heureDepart" name="heureDepart"   #heureDepart="ngModel"  style="width: 150px; height: 30px;" >
+                                    <input type="time"  [(ngModel)]="model.heureDepart" name="heureDepart"   #heureDepart="ngModel"  style="width: 150px; height: 30px;" required>
                                     
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <label>Pays Départ</label>
                                     <br>
-                                    <select class="selectpicker" [(ngModel)]="model.paysDepart"  (change)="onSelect1($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;">
+                                    <select class="selectpicker" [(ngModel)]="model.paysDepart"  (change)="onSelect1($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;" required>
                                         <option value="0">--Select--</option>
                                         <option *ngFor="let pay of pays" value= {{pay.idPays}}>{{pay.nom}}</option>
                                     </select> 
@@ -48,7 +48,7 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <label>Ville Départ</label>
                                     <br>
-                                    <select [(ngModel)]="model.villeDepart" (input)="onInput($event)" name="villeDepart"   #villeDepart="ngModel" style="width: 200px; height: 30px;">
+                                    <select [(ngModel)]="model.villeDepart" (input)="onInput($event)" name="villeDepart"   #villeDepart="ngModel" style="width: 200px; height: 30px;" required>
                                         <option value="0">Select Ville Depart</option>
                                         <option *ngFor="let city of cities " value= {{city.nom}}>{{city.nom}}</option>
                                     </select> 
@@ -62,7 +62,7 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <label>Pays Arrivée</label>
                                     <br>
-                                    <select [(ngModel)]="model.paysArrivee" (change)="onSelect2($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;">
+                                    <select [(ngModel)]="model.paysArrivee" (change)="onSelect2($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;" required>
                                         <option value="0">--Select--</option>
                                         <option *ngFor="let pay of pays" value= {{pay.idPays}}>{{pay.nom}}</option>
                                     </select> 
@@ -72,7 +72,7 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <label>Ville Arrivée</label>
                                     <br>
-                                    <select [(ngModel)]="model.villeArrivee" (input)="onInput2($event)" name="villeArrivee"   #villeArrivee="ngModel" style="width: 200px; height: 30px;">
+                                    <select [(ngModel)]="model.villeArrivee" (input)="onInput2($event)" name="villeArrivee"   #villeArrivee="ngModel" style="width: 200px; height: 30px;" required>
                                         <option  value="0">--Select--</option>
                                         <option *ngFor="let city of cities2 " value= {{city.nom}}>{{city.nom}}</option>
                                     </select> 
@@ -86,13 +86,13 @@
                             <div class="col-md-6">
                                 <div class="form-group form-black label-floating is-empty">
                                     <h6>Nombre de Places </h6>
-                                    <p-spinner size="10"  [min]="0" [max]="100"  [(ngModel)]="model.nombrePlaces"  name="nombrePlaces"   #nombrePlaces="ngModel" ></p-spinner>
+                                    <p-spinner size="10"  [min]="0" [max]="100"  [(ngModel)]="model.nombrePlaces"  name="nombrePlaces"   #nombrePlaces="ngModel" required ></p-spinner>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group form-black label-floating is-empty">
                                     <h6 > Cotisation </h6>
-                                    <p-spinner size="10"  [min]="1" [max]="1000"  [(ngModel)]="model.cotisation"  name="cotisation"   #cotisation="ngModel" ></p-spinner>
+                                    <p-spinner size="10"  [min]="1" [max]="1000"  [(ngModel)]="model.cotisation"  name="cotisation"   #cotisation="ngModel" required ></p-spinner>
                 
                                 </div>
                             </div>

@@ -8,11 +8,13 @@ import { City } from "../../_models/city";
 import { CityService } from "../../_services/city.service";
 import { AnnonceCovoiService } from "../../_services/annonceCovoi.service";
 
+
 @Component({
     selector: 'ajout-annonce-covoi-cmp',
     moduleId: module.id,
     templateUrl: 'ajoutAnnonceCovoi.component.html',
     providers: [DataService, AnnonceCovoiService],
+    styleUrls: ['styleValid.css']
 })
 
 export class AjoutAnnonceCovoiComponent implements OnInit{

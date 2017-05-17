@@ -99,6 +99,7 @@ var AjoutAnnonceCovoiComponent = (function () {
             moduleId: module.id,
             templateUrl: 'ajoutAnnonceCovoi.component.html',
             providers: [dataService_1.DataService, annonceCovoi_service_1.AnnonceCovoiService],
+            styleUrls: ['styleValid.css']
         }), 
         __metadata('design:paramtypes', [pays_service_1.PaysService, city_service_1.CityService, annonceCovoi_service_1.AnnonceCovoiService])
     ], AjoutAnnonceCovoiComponent);
