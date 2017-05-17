@@ -17,6 +17,13 @@ uploadUserImage(file : File ,id:string):Observable<boolean>{
         return  this.http.post(this.config.apiUrl +"/upload",formData,this.jwt())
             .map(response=>response.json())
     }
+    uploadVoitureImage(file : File ,id:string):Observable<boolean>{
+        let formData:FormData = new FormData();
+        formData.append('file',file);
+        formData.append('id',id);
+        return  this.http.post(this.config.apiUrl +"/uploadVoiture",formData,this.jwt())
+            .map(response=>response.json())
+    }
 
     getAll() {
         console.log("start api/user eehdf ......")
@@ -29,6 +36,9 @@ uploadUserImage(file : File ,id:string):Observable<boolean>{
     }
     getImage(t: string) {
         return this.http.get(this.config.apiUrl + '/getImage/' + t, this.jwt()).map(this.extractUrl);
+    }
+    getImageVoiture(t: string) {
+        return this.http.get(this.config.apiUrl + '/getImageVoiture/' + t, this.jwt()).map(this.extractUrl);
     }
 
 extractUrl(res:Response):string {

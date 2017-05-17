@@ -33,7 +33,7 @@ exports.MODULE_ROUTES = [
             { path: 'MonProfil', component: profil_component_1.ProfilComponent },
             { path: 'MesAnnoncesCovoi', component: mesAnnoncesCovoi_component_1.MesAnnoncesCovoiComponent },
             { path: 'AjoutAnnonceCovoi', component: ajoutAnnonceCovoi_component_1.AjoutAnnonceCovoiComponent },
-            { path: 'publicProfile', component: profil_public_component_1.PublicProfilComponent },
+            { path: 'publicProfile/:id', component: profil_public_component_1.PublicProfilComponent },
             { path: 'detail/:id', component: annonceCovoiDetail_component_1.AnnonceCovoiDetailComponent }
         ], canActivate: [index_1.AuthGuard], data: { roles: ['USER'] } },
     { path: 'dashboardutil/Accueil', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full', canActivate: [index_1.AuthGuard], data: { roles: ['USER'] } },

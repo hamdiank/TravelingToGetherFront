@@ -39,7 +39,7 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'MonProfil', component: ProfilComponent },
     { path: 'MesAnnoncesCovoi', component: MesAnnoncesCovoiComponent },
     { path: 'AjoutAnnonceCovoi', component: AjoutAnnonceCovoiComponent },
-     { path: 'publicProfile', component:  PublicProfilComponent},
+     { path: 'publicProfile/:id', component:  PublicProfilComponent},
     { path: 'detail/:id', component: AnnonceCovoiDetailComponent }
     ],canActivate: [AuthGuard],data: { roles: ['USER'] }  },
 
