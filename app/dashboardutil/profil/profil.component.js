@@ -51,7 +51,8 @@ var ProfilComponent = (function () {
         });
         // subscribe to form changes  
         this.subcribeToFormChanges();
-        this.showImage(localStorage.getItem('currentUserId'));
+        this.showImageUser(localStorage.getItem('currentUserId'));
+        this.showImageVoiture(localStorage.getItem('currentUserId'));
     };
     ProfilComponent.prototype.subcribeToFormChanges = function () {
         var _this = this;
@@ -103,12 +104,20 @@ var ProfilComponent = (function () {
             });
         }
     };
-    ProfilComponent.prototype.showImage = function (filename) {
+    ProfilComponent.prototype.showImageUser = function (filename) {
         var _this = this;
         this.userService.getImage(filename)
             .subscribe(function (file) {
             _this.image = file;
             console.log("imagee  " + _this.image);
+        });
+    };
+    ProfilComponent.prototype.showImageVoiture = function (filename) {
+        var _this = this;
+        this.userService.getImageVoiture(filename)
+            .subscribe(function (file) {
+            _this.imageVoiture = file;
+            console.log("imagee  " + _this.imageVoiture);
         });
     };
     /*
@@ -141,6 +150,23 @@ var ProfilComponent = (function () {
         console.log(event.target.files[0]);
         reader.readAsDataURL(event.target.files[0]);
         this.userService.uploadUserImage(event.target.files[0], localStorage.getItem('currentUserId')).subscribe(function (res) {
+            console.log("res" + res);
+        }, function (error) {
+            console.log("eee " + error);
+        });
+    };
+    ProfilComponent.prototype.changeListnerVoiture = function (event) {
+        var reader = new FileReader();
+        var image = this.element.nativeElement.querySelector('.image2');
+        //     var image2 = this.element.nativeElement.querySelector('.t');
+        reader.onload = function (e) {
+            var src = e.target.result;
+            image.src = src;
+            //    image2.src = src;
+        };
+        console.log(event.target.files[0]);
+        reader.readAsDataURL(event.target.files[0]);
+        this.userService.uploadVoitureImage(event.target.files[0], localStorage.getItem('currentUserId')).subscribe(function (res) {
             console.log("res" + res);
         }, function (error) {
             console.log("eee " + error);

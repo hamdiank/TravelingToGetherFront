@@ -13,6 +13,7 @@ export class ProfilComponent implements OnInit {
 
 
     image: any;
+    imageVoiture: any;
     fumeur: any;
     animaux: any;
     musique: any;
@@ -26,6 +27,7 @@ export class ProfilComponent implements OnInit {
     avatarSrc: string;
     nom: string;
     prenom: string;
+    email: string;
     constructor(private element: ElementRef, private _fb: FormBuilder, private _fb2: FormBuilder, private userService: UserService) {
 
         this.userService.getById(localStorage.getItem('currentUserId')).subscribe(result => {
@@ -33,6 +35,7 @@ export class ProfilComponent implements OnInit {
             this.avatarSrc = this.u.avatarSrc;
             this.nom = this.u.nom;
             this.prenom = this.u.prenom;
+            this.email = this.u.email;
             this.preferences = this.u.preferences;
             this.fumeur = this.preferences.fumeur;
             this.animaux = this.preferences.animaux;
@@ -43,25 +46,25 @@ export class ProfilComponent implements OnInit {
     ngOnInit() {
         let emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
         this.myForm = this._fb.group({
-            login: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
-            email: ['', [<any>Validators.pattern(emailRegex)]],
-            nom: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
-            prenom: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
-            password: ['', [<any>Validators.maxLength(15)]],
-            numTelephone: ['', [<any>Validators.maxLength(15)]],
-            dateNaissance: ['', [<any>Validators.maxLength(15)]],
+            login: ['', []],
+            email: ['', []],
+            nom: ['', []],
+            prenom: ['', []],
+            password: ['', []],
+            numTelephone: ['', []],
+            dateNaissance: ['', []],
         });
         this.myForm2 = this._fb2.group({
-            marque: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
-            modele: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
-            nbPlace: ['', []],
-            energie: ['', [<any>Validators.minLength(4), <any>Validators.maxLength(10)]],
+            marque: ['', [<any>Validators.minLength(2), <any>Validators.maxLength(10)]],
+            modele: ['', [<any>Validators.minLength(2), <any>Validators.maxLength(10)]],
+            nbPlace: ['',],
+            energie: ['', [<any>Validators.minLength(2), <any>Validators.maxLength(10)]],
         });
 
         // subscribe to form changes  
         this.subcribeToFormChanges();
-        this.showImage(localStorage.getItem('currentUserId'));
-
+        this.showImageUser(localStorage.getItem('currentUserId'));
+        this.showImageVoiture(localStorage.getItem('currentUserId'));
     }
     subcribeToFormChanges() {
         const myFormStatusChanges$ = this.myForm.statusChanges;
@@ -73,6 +76,7 @@ export class ProfilComponent implements OnInit {
     saveVoiture(model: any, isValid: boolean) {
 
 
+        console.log(isValid);
 
         if (isValid) {
 
@@ -84,9 +88,13 @@ export class ProfilComponent implements OnInit {
                 this.u.voiture.modele = model.modele;
             if (model.nbPlace !== "")
                 this.u.voiture.nombrePlace = model.nbPlace;
-            if (model.marque !== "")
+            if (model.energie !== "")
                 this.u.voiture.energie = model.energie;
             console.log(this.u.voiture);
+            console.log(this.u);
+            this.userService.update(this.u).subscribe(result => {
+                console.log(result);
+            })
         }
 
 
@@ -118,14 +126,20 @@ export class ProfilComponent implements OnInit {
         }
     }
 
-    showImage(filename: string) {
+    showImageUser(filename: string) {
         this.userService.getImage(filename)
             .subscribe((file) => {
                 this.image = file;
                 console.log("imagee  " + this.image);
             });
     }
-
+    showImageVoiture(filename: string) {
+        this.userService.getImageVoiture(filename)
+            .subscribe((file) => {
+                this.imageVoiture = file;
+                console.log("imagee  " + this.imageVoiture);
+            });
+    }
 
     /*
     changeListner(event: any) {
@@ -170,6 +184,28 @@ export class ProfilComponent implements OnInit {
     }
 
 
+    changeListnerVoiture(event) {
+        var reader = new FileReader();
+        var image = this.element.nativeElement.querySelector('.image2');
+        //     var image2 = this.element.nativeElement.querySelector('.t');
+        reader.onload = function (e: any) {
+            var src = e.target.result;
+            image.src = src;
+            //    image2.src = src;
+
+        };
+        console.log(event.target.files[0])
+        reader.readAsDataURL(event.target.files[0]);
+        this.userService.uploadVoitureImage(event.target.files[0], localStorage.getItem('currentUserId')).subscribe(
+            res => {
+                console.log("res" + res);
+            }, error => {
+                console.log("eee " + error);
+
+            }
+        )
+
+    }
 
 
     modifierFumeurFalse() {

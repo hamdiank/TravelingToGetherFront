@@ -256,6 +256,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
@@ -299,12 +300,15 @@
                                                 <div class="form-group form-black label-floating is-empty">
                                                     <label class="control-label">Nombre de place</label>
 
-                                                    <select class="form-control" id="exampleSelect1" formControlName="nbPlace">
+                                                         <select class="form-control" id="exampleSelect1" formControlName="nbPlace">
                                                       <option>1</option>
                                                       <option>2</option>
                                                       <option>3</option>
                                                        <option>4</option>
-                                                         <option>5</option>
+                                                        <option>5</option>
+                                                        <option>6</option>
+                                                        <option>7</option>
+                                                        <option>8</option>
                                                           </select>
                                                     <small [hidden]="myForm2.controls.nbPlace.valid || (myForm2.controls.nbPlace.pristine && !submitted)" class="text-danger">
                                               5 caracteres au minimum
@@ -314,9 +318,45 @@
                                         </div>
                                     </div>
 
+
+
+                                    <div class="row" style="text-align:center; padding-top: 10%;">
+                                        <div class="offset-md-4 col-md-4 ">
+
+                                            <div class="card-avatar">
+                                                <a href="#pablo">
+                                                    <img class="image2" src="{{imageVoiture}}" />
+                                                    <!--  <img class="img img-thumbnail" src="{{image}}" />-->
+                                                </a>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4 offset-md-4">
+                                            <div class="form-group">
+
+
+                                                <button type="button" class="btn btn-default">
+                     <input type="file" id="files" (change)="changeListnerVoiture($event)" visbility="hidden"/>
+                   <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+                                                         </button>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+
+
                                     <button type="submit" class="btn btn-success pull-right">Enregistrer</button>
                                     <div class="clearfix"></div>
                                 </form>
+
+
                             </div>
                             <div class="tab-pane" id="photo">
 
@@ -352,8 +392,6 @@
 
 
                             </div>
-
-
                         </div>
                     </div>
 
@@ -379,7 +417,6 @@
                     </div>
 
                 </div>
-
             </div>
         </div>
 
