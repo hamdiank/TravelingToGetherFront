@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from "../_services/user.service";
 
 declare var $:any;
 @Component({
@@ -8,7 +9,22 @@ declare var $:any;
 })
 
 export class NavBarUtilComponent implements OnInit {
+      id:any;
     public menuItems: any[];
-    ngOnInit() {
+    nom:string;
+    constructor(private userService: UserService){
+
+userService.getById(localStorage.getItem("currentUserId")).subscribe(result=>{
+this.nom=result.nom;
+
+});
+this.id=localStorage.getItem("currentUserId");
+ 
     }
+    ngOnInit() {
+
+    }
+
+   
+
 }

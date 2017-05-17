@@ -16,12 +16,40 @@ var UserService = (function () {
         this.http = http;
         this.config = config;
     }
+    UserService.prototype.uploadUserImage = function (file, id) {
+        var formData = new FormData();
+        formData.append('file', file);
+        formData.append('id', id);
+        return this.http.post(this.config.apiUrl + "/upload", formData, this.jwt())
+            .map(function (response) { return response.json(); });
+    };
+    UserService.prototype.uploadVoitureImage = function (file, id) {
+        var formData = new FormData();
+        formData.append('file', file);
+        formData.append('id', id);
+        return this.http.post(this.config.apiUrl + "/uploadVoiture", formData, this.jwt())
+            .map(function (response) { return response.json(); });
+    };
+    UserService.prototype.getAvis = function (id) {
+        console.log("start api/user eehdf ......");
+        return this.http.get(this.config.apiUrl + '/avis/avis/' + id, this.jwt()).map(function (response) { return response.json(); });
+    };
     UserService.prototype.getAll = function () {
         console.log("start api/user eehdf ......");
         return this.http.get(this.config.apiUrl + '/utilisateurs', this.jwt()).map(function (response) { return response.json(); });
     };
     UserService.prototype.getById = function (_id) {
         return this.http.get(this.config.apiUrl + '/utilisateur/' + _id, this.jwt()).map(function (response) { return response.json(); });
+    };
+    UserService.prototype.getImage = function (t) {
+        return this.http.get(this.config.apiUrl + '/getImage/' + t, this.jwt()).map(this.extractUrl);
+    };
+    UserService.prototype.getImageVoiture = function (t) {
+        return this.http.get(this.config.apiUrl + '/getImageVoiture/' + t, this.jwt()).map(this.extractUrl);
+    };
+    UserService.prototype.extractUrl = function (res) {
+        console.log("errrrrrrrr  " + res.url);
+        return res.url;
     };
     /*
         addUser(user: User) {
@@ -55,7 +83,8 @@ var UserService = (function () {
         });
     };
     UserService.prototype.update = function (user) {
-        return this.http.put(this.config.apiUrl + '/utilisateur/' + user.idUtilisateur, user, this.jwt());
+        user.idUtilisateur = localStorage.getItem('currentUserId');
+        return this.http.put(this.config.apiUrl + '/utilisateur', user, this.jwt());
     };
     UserService.prototype.delete = function (_id) {
         return this.http.delete(this.config.apiUrl + '/deluser/' + _id, this.jwt());
@@ -64,7 +93,7 @@ var UserService = (function () {
     UserService.prototype.jwt = function () {
         // create authorization header with jwt token
         var currentUser = JSON.parse(localStorage.getItem('currentToken'));
-        console.log(localStorage.getItem('currentToken'));
+        //  console.log(localStorage.getItem('currentToken'));
         if (currentUser) {
             var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + localStorage.getItem('currentToken') });
             return new http_1.RequestOptions({ headers: headers });

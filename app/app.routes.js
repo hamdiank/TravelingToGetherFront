@@ -14,10 +14,13 @@ var accueil_component_1 = require("./dashboardutil/accueil/accueil.component");
 var mesAnnoncesCovoi_component_1 = require("./dashboardutil/profil/mesAnnoncesCovoi.component");
 var ajoutAnnonceCovoi_component_1 = require("./dashboardutil/annonceCovoi/ajoutAnnonceCovoi.component");
 var annonceCovoiDetail_component_1 = require("./dashboardutil/annonceCovoi/annonceCovoiDetail.component");
+var MotDePasse_component_1 = require("./MotDePasse/MotDePasse.component");
+var profil_public_component_1 = require("./dashboardutil/profil_public/profil_public.component");
 exports.MODULE_ROUTES = [
     { path: 'chat', component: app2_component_1.App2Component, canActivate: [index_1.AuthGuard] },
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'register', component: inscription_component_1.InscriptionComponent },
+    { path: 'MotDePasse', component: MotDePasse_component_1.MotDePasseComponent },
     { path: 'dashboard', component: dashboard_component_1.DashboardComponent, children: [
             { path: 'Statistiques', component: statistique_component_1.StatistiqueComponent },
             { path: 'parametrage', component: parametrage_component_1.ParametrageComponent },
@@ -30,11 +33,12 @@ exports.MODULE_ROUTES = [
             { path: 'MonProfil', component: profil_component_1.ProfilComponent },
             { path: 'MesAnnoncesCovoi', component: mesAnnoncesCovoi_component_1.MesAnnoncesCovoiComponent },
             { path: 'AjoutAnnonceCovoi', component: ajoutAnnonceCovoi_component_1.AjoutAnnonceCovoiComponent },
+            { path: 'publicProfile/:id', component: profil_public_component_1.PublicProfilComponent },
             { path: 'detail/:id', component: annonceCovoiDetail_component_1.AnnonceCovoiDetailComponent }
         ], canActivate: [index_1.AuthGuard], data: { roles: ['USER'] } },
     { path: 'dashboardutil/Accueil', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full', canActivate: [index_1.AuthGuard], data: { roles: ['USER'] } },
     { path: 'dashboard/Statistiques', redirectTo: 'dashboard/Statistiques', pathMatch: 'full', canActivate: [index_1.AuthGuardAdmin], data: { roles: ['ADMIN'] } },
-    { path: '', redirectTo: 'dashboard/Statistiques', pathMatch: 'full', canActivate: [index_1.AuthGuardAdmin], data: { roles: ['ADMIN'] } },
+    { path: '', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full', canActivate: [index_1.AuthGuard], data: { roles: ['USER'] } },
 ];
 exports.MODULE_COMPONENTS = [
     statistique_component_1.StatistiqueComponent, dashboard_component_1.DashboardComponent, gestionUtil_component_1.GestionUtilComponent,

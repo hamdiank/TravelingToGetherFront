@@ -10,6 +10,25 @@ export class UserService {
 
     }
 
+    uploadUserImage(file: File, id: string): Observable<boolean> {
+        let formData: FormData = new FormData();
+        formData.append('file', file);
+        formData.append('id', id);
+        return this.http.post(this.config.apiUrl + "/upload", formData, this.jwt())
+            .map(response => response.json())
+    }
+    uploadVoitureImage(file: File, id: string): Observable<boolean> {
+        let formData: FormData = new FormData();
+        formData.append('file', file);
+        formData.append('id', id);
+        return this.http.post(this.config.apiUrl + "/uploadVoiture", formData, this.jwt())
+            .map(response => response.json())
+    }
+
+getAvis(id:string) {
+        console.log("start api/user eehdf ......")
+        return this.http.get(this.config.apiUrl + '/avis/avis/'+id, this.jwt()).map((response: Response) => response.json());
+    }
 
     getAll() {
         console.log("start api/user eehdf ......")
@@ -20,7 +39,17 @@ export class UserService {
     getById(_id: string) {
         return this.http.get(this.config.apiUrl + '/utilisateur/' + _id, this.jwt()).map((response: Response) => response.json());
     }
+    getImage(t: string) {
+        return this.http.get(this.config.apiUrl + '/getImage/' + t, this.jwt()).map(this.extractUrl);
+    }
+    getImageVoiture(t: string) {
+        return this.http.get(this.config.apiUrl + '/getImageVoiture/' + t, this.jwt()).map(this.extractUrl);
+    }
 
+    extractUrl(res: Response): string {
+        console.log("errrrrrrrr  " + res.url);
+        return res.url;
+    }
     /*
         addUser(user: User) {
             let bodyString = JSON.stringify(user); // Stringify payload
@@ -47,10 +76,10 @@ export class UserService {
             .map((response: Response) => {
 
                 console.log("bk 1")
-                 let x = JSON.parse(JSON.stringify(response));
+                let x = JSON.parse(JSON.stringify(response));
                 console.log("bk 2");
-               
-              let token = x._body ;
+
+                let token = x._body;
                 console.log("bk 3");
 
 
@@ -69,19 +98,22 @@ export class UserService {
     }
 
     update(user: User) {
-        return this.http.put(this.config.apiUrl + '/utilisateur/' + user.idUtilisateur, user, this.jwt());
+
+        user.idUtilisateur = localStorage.getItem('currentUserId');
+        return this.http.put(this.config.apiUrl + '/utilisateur', user, this.jwt());
     }
 
     delete(_id: string) {
         return this.http.delete(this.config.apiUrl + '/deluser/' + _id, this.jwt());
     }
 
+
     // private helper methods
     private jwt() {
         // create authorization header with jwt token
         let currentUser = JSON.parse(localStorage.getItem('currentToken'));
-        console.log(localStorage.getItem('currentToken'));
-        if (currentUser ) {
+        //  console.log(localStorage.getItem('currentToken'));
+        if (currentUser) {
             let headers = new Headers({ 'Authorization': 'Bearer ' + localStorage.getItem('currentToken') });
             return new RequestOptions({ headers: headers });
         }

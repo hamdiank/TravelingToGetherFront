@@ -22,6 +22,7 @@ reset(mail:string ){
         if (currentUser) {
 
             let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser });
+            
 
             return new RequestOptions({ headers: headers });
         }

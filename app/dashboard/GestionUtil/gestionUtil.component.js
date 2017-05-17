@@ -22,6 +22,9 @@ var GestionUtilComponent = (function () {
         this.prenom = this.userM.prenom;
         this.login = this.userM.login;
         this.etat = this.userM.etat;
+        this.description = this.userM.description;
+        this.dateN = this.userM.dateNaissance;
+        this.profession = this.userM.profession;
         console.log("userM nom   " + this.nom);
         //service get user et afficher dans Modal 
     };
