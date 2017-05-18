@@ -119,9 +119,13 @@
                         <!-- Content Row -->
         <div class="row " style="margin-top: 5px; margin-left: 20px;">
                 <!-- ************ -->
-            <div class="text-center">
+            <div class="text-center" *ngIf="currentUserId!=utilisateur.idUtilisateur">
 				<button class="btn btn-round " style="background-color:dodgerblue"><span class="glyphicon glyphicon-envelope"></span> Contacter Conducteur</button>
                 <button class="btn btn-round" style="background-color:dodgerblue" > Réserver </button>
+            </div>
+        <div class="text-center" *ngIf="currentUserId==utilisateur.idUtilisateur">
+		<button class="btn btn-round " style="background-color:dodgerblue">Modifier</button>
+                <button class="btn btn-round" style="background-color:dodgerblue" > Supprimer </button>
             </div>
                 <!-- ************  -->
         </div>

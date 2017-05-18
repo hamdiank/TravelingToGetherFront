@@ -34,6 +34,13 @@ export class MesAnnoncesCovoiComponent implements OnInit {
 
      heureDepart: string;
 
+     testPaysDepart: boolean= false;
+     testVilleDepart: boolean= false;
+
+     testPaysArrivee: boolean= false;
+     testVilleArrivee: boolean= false;
+     
+
     ////////////////////////////////////////////
     model: any={};
     annoncesCovoi: AnnonceCovoi[];
@@ -52,6 +59,8 @@ export class MesAnnoncesCovoiComponent implements OnInit {
     }
 /////////////////////////////////////////////////////
    onSelect1(idPays1) {
+       
+       //this.model.paysDepart= idPays1;
         console.log('idPaysDepart'+idPays1)
         console.log('idPaysDepartModel'+this.model.paysDepart);
         console.log('idVilleDepart'+this.model.villeDepart);
@@ -72,6 +81,22 @@ export class MesAnnoncesCovoiComponent implements OnInit {
     });
     console.log(JSON.stringify(this.cities));
   }
+
+  changePaysDepart(){
+      this.testPaysDepart=true;
+  }
+  changeVilleDepart(){
+      this.testVilleDepart=true;
+  }
+
+  changePaysArrivee(){
+      this.testPaysArrivee=true;
+  }
+  changeVilleArrivee(){
+      this.testVilleArrivee=true;
+  }
+
+  
 ////////////////////////////////////////////////////
 
 getMesAnnoncesCovoi(){
@@ -84,6 +109,11 @@ getMesAnnoncesCovoi(){
 }
 
 onClick(annonceCovoi: AnnonceCovoi){
+    this.testPaysDepart=false;
+    this.testVilleArrivee=false;
+    this.testPaysArrivee=false;
+    this.testVilleArrivee=false;
+    
     this.selected=annonceCovoi;
     this.model=this.selected
     console.log(this.model.id)
@@ -96,6 +126,10 @@ modifierAnnonceCovoi(){
     let currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
     this.idUtilisateur=currentUserId;
     this.datePublication="26/04/2017";
+    this.model.paysDepart= this.paysDepart;
+    this.model.paysArrivee= this.paysArrivee;
+    console.log(typeof(this.model.paysDepart))
+    
     this.annonceCovoiService.modifierAnnonceCovoi(this.model.heureDepart,this.model.dateDepart,this.model.paysDepart,
             this.model.villeDepart,this.model.paysArrivee, this.model.villeArrivee,this.model.nombrePlaces,
             this.model.cotisation, this.model.id, this.idUtilisateur)

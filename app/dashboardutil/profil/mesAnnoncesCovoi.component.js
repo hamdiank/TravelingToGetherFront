@@ -21,6 +21,10 @@ var MesAnnoncesCovoiComponent = (function () {
         this.paysService = paysService;
         this.cityService = cityService;
         this.selectedPays = {};
+        this.testPaysDepart = false;
+        this.testVilleDepart = false;
+        this.testPaysArrivee = false;
+        this.testVilleArrivee = false;
         ////////////////////////////////////////////
         this.model = {};
         this.selected = {};
@@ -33,6 +37,7 @@ var MesAnnoncesCovoiComponent = (function () {
     /////////////////////////////////////////////////////
     MesAnnoncesCovoiComponent.prototype.onSelect1 = function (idPays1) {
         var _this = this;
+        //this.model.paysDepart= idPays1;
         console.log('idPaysDepart' + idPays1);
         console.log('idPaysDepartModel' + this.model.paysDepart);
         console.log('idVilleDepart' + this.model.villeDepart);
@@ -51,6 +56,18 @@ var MesAnnoncesCovoiComponent = (function () {
         });
         console.log(JSON.stringify(this.cities));
     };
+    MesAnnoncesCovoiComponent.prototype.changePaysDepart = function () {
+        this.testPaysDepart = true;
+    };
+    MesAnnoncesCovoiComponent.prototype.changeVilleDepart = function () {
+        this.testVilleDepart = true;
+    };
+    MesAnnoncesCovoiComponent.prototype.changePaysArrivee = function () {
+        this.testPaysArrivee = true;
+    };
+    MesAnnoncesCovoiComponent.prototype.changeVilleArrivee = function () {
+        this.testVilleArrivee = true;
+    };
     ////////////////////////////////////////////////////
     MesAnnoncesCovoiComponent.prototype.getMesAnnoncesCovoi = function () {
         var _this = this;
@@ -62,6 +79,10 @@ var MesAnnoncesCovoiComponent = (function () {
         });
     };
     MesAnnoncesCovoiComponent.prototype.onClick = function (annonceCovoi) {
+        this.testPaysDepart = false;
+        this.testVilleArrivee = false;
+        this.testPaysArrivee = false;
+        this.testVilleArrivee = false;
         this.selected = annonceCovoi;
         this.model = this.selected;
         console.log(this.model.id);
@@ -74,6 +95,9 @@ var MesAnnoncesCovoiComponent = (function () {
         var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
         this.idUtilisateur = currentUserId;
         this.datePublication = "26/04/2017";
+        this.model.paysDepart = this.paysDepart;
+        this.model.paysArrivee = this.paysArrivee;
+        console.log(typeof (this.model.paysDepart));
         this.annonceCovoiService.modifierAnnonceCovoi(this.model.heureDepart, this.model.dateDepart, this.model.paysDepart, this.model.villeDepart, this.model.paysArrivee, this.model.villeArrivee, this.model.nombrePlaces, this.model.cotisation, this.model.id, this.idUtilisateur)
             .subscribe(function (data) {
             _this.router.navigate(['dashboardutil/MesAnnoncesCovoi']);

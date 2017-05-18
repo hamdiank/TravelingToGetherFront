@@ -11,8 +11,12 @@ import { ActivatedRoute, Params } from "@angular/router";
 })
 
 export class AnnonceCovoiDetailComponent implements OnInit {
+  currentUserId: string;
         ngOnInit(): void {
            this.getAnnonceCovoi();
+            console.log(this.utilisateur.id)
+        this.currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
+         // console.log('my id'+this.currentUserId)
         }
 
 
@@ -38,8 +42,9 @@ export class AnnonceCovoiDetailComponent implements OnInit {
     console.log('I am here '+this.id)
     this.annonceCovoiService.getAnnonceCovoi(this.id).subscribe( annonceCovoi=> { this.annonceCovoi = annonceCovoi,
         this.utilisateur= annonceCovoi.utilisateur
+       // console.log(this.utilisateur.idUtilisateur)
        // console.log(JSON.stringify(this.annonceCovoi))
-      //  console.log(JSON.stringify(this.utilisateur))
+     // console.log(JSON.stringify(this.utilisateur))
         
     
     });

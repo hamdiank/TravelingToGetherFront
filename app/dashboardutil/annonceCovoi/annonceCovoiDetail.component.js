@@ -29,12 +29,16 @@ var AnnonceCovoiDetailComponent = (function () {
         this.annonceCovoiService.getAnnonceCovoi(this.id).subscribe(function (annonceCovoi) {
             _this.annonceCovoi = annonceCovoi,
                 _this.utilisateur = annonceCovoi.utilisateur;
+            // console.log(this.utilisateur.idUtilisateur)
             // console.log(JSON.stringify(this.annonceCovoi))
-            //  console.log(JSON.stringify(this.utilisateur))
+            // console.log(JSON.stringify(this.utilisateur))
         });
     }
     AnnonceCovoiDetailComponent.prototype.ngOnInit = function () {
         this.getAnnonceCovoi();
+        console.log(this.utilisateur.id);
+        this.currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
+        // console.log('my id'+this.currentUserId)
     };
     AnnonceCovoiDetailComponent.prototype.getAnnonceCovoi = function () {
     };

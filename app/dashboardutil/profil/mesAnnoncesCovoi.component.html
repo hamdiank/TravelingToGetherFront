@@ -104,10 +104,11 @@
                                     <h4 class="modal-title">Modifier Annonce de Covoiturage</h4>
                                     </div>
                                     <div class="modal-body">
+                                         
                                             <div class="row">
                                                 <div class="col-md-6">   
                                                     <div class="form-group form-black label-floating is-empty">
-                                                        <label>Date Départ</label>
+                                                        <label>Date Départ</label><br>
                                                         <input [(ngModel)]="model.dateDepart" value="Date Depart"name="dateDepart" required>         
                                                     </div>                        
                                                 </div>
@@ -118,7 +119,7 @@
                                                     <div class="form-group form-black label-floating is-empty">
                                                         <label>Heure Départ</label>
                                                         <br>
-                                                        <input type="time"  [(ngModel)]="model.heureDepart" name="heureDepart"   #heureDepart="ngModel"  style="width: 150px; height: 30px;" >
+                                                        <input type="time" [(ngModel)]="model.heureDepart" name="heureDepart"   #heureDepart="ngModel"  style="width: 150px; height: 30px;" >
                                                         
                                                     </div>
                                                 </div>
@@ -130,8 +131,9 @@
                                                     <div class="form-group form-black label-floating is-empty">
                                                         <label>Pays Départ</label>
                                                         <br>
-                                                        <select class="selectpicker" [(ngModel)]="model.paysDepart"  (change)="onSelect1($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;">
-                                                            <option value="0">--Select--</option>
+                                                        <select class="selectpicker" [(ngModel)]="model.paysDepart"  (change)="onSelect1($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;" (click)="changePaysDepart()">
+                                                            <option value="0">--Select--</option>  
+                                                            <option value= {{model.paysDepart}} *ngIf="testPaysDepart===false">{{model.paysDepart}}</option>
                                                             <option *ngFor="let pay of pays" value= {{pay.idPays}}>{{pay.nom}}</option>
                                                         </select> 
                                                     </div>
@@ -140,8 +142,9 @@
                                                     <div class="form-group form-black label-floating is-empty">
                                                         <label>Ville Départ</label>
                                                         <br>
-                                                        <select [(ngModel)]="model.villeDepart"  name="villeDepart"   #villeDepart="ngModel" style="width: 200px; height: 30px;">
+                                                        <select [(ngModel)]="model.villeDepart"  name="villeDepart"   #villeDepart="ngModel" style="width: 200px; height: 30px;" (click)="changeVilleDepart()">
                                                             <option value="0">Select Ville Depart</option>
+                                                             <option value= {{model.villeDepart}} *ngIf="testVilleDepart===false">{{model.villeDepart}}</option>
                                                             <option *ngFor="let city of cities " value= {{city.nom}}>{{city.nom}}</option>
                                                         </select> 
                                                     </div>
@@ -154,9 +157,10 @@
                                                     <div class="form-group form-black label-floating is-empty">
                                                         <label>Pays Arrivée</label>
                                                         <br>
-                                                        <select [(ngModel)]="model.paysArrivee" (change)="onSelect2($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;">
+                                                        <select [(ngModel)]="model.paysArrivee" (change)="onSelect2($event.target.value)"  name="paysArrivee"   #paysArrivee="ngModel" style="width: 200px; height: 30px;" (click)="changePaysArrivee()">
                                                             <option value="0">--Select--</option>
-                                                            <option *ngFor="let pay of pays" value= {{pay.idPays}}>{{pay.nom}}</option>
+                                                            <option value= {{model.paysArrivee}} *ngIf="testPaysArrivee===false">{{model.paysArrivee}}</option>
+                                                            <option *ngFor="let pay of pays" value= {{pay.idPays}} >{{pay.nom}}</option>                            
                                                         </select> 
                                                     </div>
                                                 </div>
@@ -164,8 +168,9 @@
                                                     <div class="form-group form-black label-floating is-empty">
                                                         <label>Ville Arrivée</label>
                                                         <br>
-                                                        <select [(ngModel)]="model.villeArrivee"  name="villeArrivee"   #villeArrivee="ngModel" style="width: 200px; height: 30px;">
+                                                        <select [(ngModel)]="model.villeArrivee"  name="villeArrivee"   #villeArrivee="ngModel" style="width: 200px; height: 30px;" (click)="changeVilleArrivee()">
                                                             <option  value="0">--Select--</option>
+                                                             <option value= {{model.villeArrivee}} *ngIf="testVilleArrivee===false">{{model.villeArrivee}}</option>
                                                             <option *ngFor="let city of cities2 " value= {{city.nom}}>{{city.nom}}</option>
                                                         </select> 
                                                     </div>
