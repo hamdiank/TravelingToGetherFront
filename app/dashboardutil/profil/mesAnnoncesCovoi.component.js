@@ -95,8 +95,14 @@ var MesAnnoncesCovoiComponent = (function () {
         var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
         this.idUtilisateur = currentUserId;
         this.datePublication = "26/04/2017";
-        this.model.paysDepart = this.paysDepart;
-        this.model.paysArrivee = this.paysArrivee;
+        if (this.testPaysDepart == true) {
+            this.model.paysDepart = this.paysDepart;
+        }
+        if (this.testPaysArrivee == true) {
+            this.model.paysArrivee = this.paysArrivee;
+        }
+        // this.model.paysDepart= this.paysDepart;
+        //this.model.paysArrivee= this.paysArrivee;
         console.log(typeof (this.model.paysDepart));
         this.annonceCovoiService.modifierAnnonceCovoi(this.model.heureDepart, this.model.dateDepart, this.model.paysDepart, this.model.villeDepart, this.model.paysArrivee, this.model.villeArrivee, this.model.nombrePlaces, this.model.cotisation, this.model.id, this.idUtilisateur)
             .subscribe(function (data) {
