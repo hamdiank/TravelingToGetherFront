@@ -99,6 +99,7 @@
                         <p > Non Fumeur, Climatisée</p>
                 </div>
                 <!-- ************  -->
+
         </div>
         <!-- /.row -->
                         <!-- Content Row -->
@@ -121,7 +122,30 @@
                 <!-- ************ -->
             <div class="text-center" *ngIf="currentUserId!=utilisateur.idUtilisateur">
 				<button class="btn btn-round " style="background-color:dodgerblue"><span class="glyphicon glyphicon-envelope"></span> Contacter Conducteur</button>
-                <button class="btn btn-round" style="background-color:dodgerblue" > Réserver </button>
+                <button class="btn btn-round" style="background-color:dodgerblue" data-toggle="modal" data-target="#myModalReservation" > Réserver </button>
+
+<!-- Modal -->
+<div id="myModalReservation" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Réservation</h4>
+      </div>
+      <div class="modal-body">
+        <p>Voulez vous vraiment réserver ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-round"  data-dismiss="modal">Annuler</button>
+        <button (click)="confirmerReservation()" type="button" class="btn btn-success btn-round" data-dismiss="modal">Confirmer</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
             </div>
         <div class="text-center" *ngIf="currentUserId==utilisateur.idUtilisateur">
 		<button class="btn btn-round " style="background-color:dodgerblue">Modifier</button>

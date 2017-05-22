@@ -59,6 +59,7 @@ import { MotDePasseOublieService } from "./_services/MotDePassOublie";
 import { MotDePasseComponent } from "./MotDePasse/MotDePasse.component";
 import { NavBarUtilModule } from "./navbarutil/navbarutil.module";
 import { SpinnerModule, PaginatorModule } from 'primeng/primeng';
+import { ReservationService } from "./_services/reservation.service";
 
 @NgModule({
     imports: [ 
@@ -104,7 +105,7 @@ import { SpinnerModule, PaginatorModule } from 'primeng/primeng';
 
 
         UserService,PaysService,AvionService,CityService,AeroportService,StationService,TrainService,JwtHelper,
-        MessagesService, ThreadsService, UsersService, AnnonceCovoiService,MotDePasseOublieService],
+        MessagesService, ThreadsService, UsersService, AnnonceCovoiService,MotDePasseOublieService, ReservationService],
 
 })
 export class AppModule {

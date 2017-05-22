@@ -1,9 +1,9 @@
 
-        @import url('https://fonts.googleapis.com/css?family=Arima+Madurai:100,200,300,400,500,700,800,900');
+       
 .body1 {
 	margin-top: 60px;
 	font-size: 14px;
-	font-family: 'Arima Madurai', cursive;
+	/*font-family: 'Arima Madurai', cursive;*/
 	background-color:white;
 }
 .btn:hover,
@@ -134,7 +134,7 @@
     height: 215px;
 }
 .card1 .name {
-	font-family: 'Arima Madurai', cursive;
+	/*font-family: 'Arima Madurai', cursive;*/
     font-size: 22px;
     line-height: 28px;
     margin: 10px 0 0;
@@ -170,7 +170,7 @@
 	margin-left:15px;
 }
 .adresse{
-	 font-family: 'Arima Madurai', cursive;font-size: 20px; line-height: 15px;
+	 /*font-family: 'Arima Madurai', cursive;*/font-size: 20px; line-height: 15px;
 }
 .adresseDepart{
 	margin-left: 10px;
@@ -189,15 +189,15 @@
 .cotisation{
 	margin-left:12px;
 	margin-top:15px;
-	font-family: 'Arima Madurai', cursive;font-size: 25px;
+	/*font-family: 'Arima Madurai', cursive;*/font-size: 25px;
 	line-height: 15px;
 }
 .cotisation1{
-	font-family: 'Arima Madurai', cursive;font-size: 20px;
+	/*font-family: 'Arima Madurai', cursive;*/font-size: 20px;
 }
 .cotisation2{
 	margin-left:20px;
- 	font-family: 'Arima Madurai', cursive;font-size: 15px;
+ 	/*font-family: 'Arima Madurai', cursive;*/font-size: 15px;
 	line-height: 15px;
 }
 .places{
@@ -316,7 +316,7 @@
     height: 50px;
 }
 .card1 .motto{
-	font-family: 'Arima Madurai', cursive;
+	/*font-family: 'Arima Madurai', cursive;*/
     border-bottom: 1px solid #EEEEEE;
     color: #999999;
     font-size: 14px;
@@ -343,7 +343,7 @@
 	border-left: 1px solid #EEEEEE;
 }
 .card1 .stats h4{
-		font-family: 'Arima Madurai', cursive;
+		/*font-family: 'Arima Madurai', cursive;*/
 	font-weight: 300;
 	margin-bottom: 5px;
 }

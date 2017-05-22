@@ -13,7 +13,8 @@ declare var $:any;
     selector: 'mes-annonces-covoi-cmp',
     moduleId: module.id,
     templateUrl: 'mesAnnoncesCovoi.component.html',
-    providers:[AnnonceCovoiService]
+    providers:[AnnonceCovoiService],
+    styleUrls:  ['myModal3.css']
 })
 
 export class MesAnnoncesCovoiComponent implements OnInit {

@@ -60,6 +60,7 @@ var MotDePassOublie_1 = require("./_services/MotDePassOublie");
 var MotDePasse_component_1 = require("./MotDePasse/MotDePasse.component");
 var navbarutil_module_1 = require("./navbarutil/navbarutil.module");
 var primeng_1 = require('primeng/primeng');
+var reservation_service_1 = require("./_services/reservation.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -99,7 +100,7 @@ var AppModule = (function () {
                 index_2.AlertService,
                 index_2.AuthenticationService, valuesPipe_1.ValuesPipe, data_service_1.DataService,
                 index_2.UserService, index_2.PaysService, avion_service_1.AvionService, index_2.CityService, aeroport_service_1.AeroportService, station_service_1.StationService, train_service_1.TrainService, angular2_jwt_1.JwtHelper,
-                messages_service_1.MessagesService, threads_service_1.ThreadsService, users_service_1.UsersService, annonceCovoi_service_1.AnnonceCovoiService, MotDePassOublie_1.MotDePasseOublieService],
+                messages_service_1.MessagesService, threads_service_1.ThreadsService, users_service_1.UsersService, annonceCovoi_service_1.AnnonceCovoiService, MotDePassOublie_1.MotDePasseOublieService, reservation_service_1.ReservationService],
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

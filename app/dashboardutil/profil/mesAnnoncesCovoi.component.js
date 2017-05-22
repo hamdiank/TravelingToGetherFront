@@ -127,7 +127,8 @@ var MesAnnoncesCovoiComponent = (function () {
             selector: 'mes-annonces-covoi-cmp',
             moduleId: module.id,
             templateUrl: 'mesAnnoncesCovoi.component.html',
-            providers: [annonceCovoi_service_1.AnnonceCovoiService]
+            providers: [annonceCovoi_service_1.AnnonceCovoiService],
+            styleUrls: ['myModal3.css']
         }), 
         __metadata('design:paramtypes', [annonceCovoi_service_1.AnnonceCovoiService, router_1.Router, pays_service_1.PaysService, city_service_1.CityService])
     ], MesAnnoncesCovoiComponent);

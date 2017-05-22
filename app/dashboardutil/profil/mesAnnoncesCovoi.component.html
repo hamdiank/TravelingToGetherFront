@@ -53,7 +53,9 @@
 											<span class="adresseArrivee">{{annonceCovoi.paysArrivee}},{{annonceCovoi.villeArrivee}}</span>
 											<span class="glyphicon glyphicon-road"></span> 
 										</p>
-								  </div>
+                                        <button type="button"  data-toggle="modal" data-target="#myModal3">En attente <span class="glyphicon glyphicon-user"></span> <span class="glyphicon glyphicon-plus-sign"></span> </button>
+                                         <button type="button"  data-toggle="modal" data-target="#myModal4">Acceptés<span class="glyphicon glyphicon-user"></span> <span  class="glyphicon glyphicon-ok-circle"></span> </button>
+                                  </div>
 								  <div class="col-sm-3 block3" >
 										<p class="cotisation" > {{annonceCovoi.cotisation}},<span class="cotisation1" >00</span>
 										<span class="glyphicon glyphicon-euro"></span> </p>
@@ -205,6 +207,99 @@
                                 </div>
                             </div>   
     <!-- fin   modal -->
+   <!-- Affichage Modal3 -->
+<div id="myModal3" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+<div class="container">
+	<div class="row">
+        <div class="col-sm-6">
+            <div class="business-card">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object img-circle profile-img" src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading">Daniel</h2>
+                        <div class="job">CEO</div>
+                        <div class="mail"><a href="mailto:daniel@bla.ch">daniel@bla.ch</a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+	<div class="row">
+        <div class="col-sm-6">
+            <div class="business-card">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object img-circle profile-img" src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png">
+                    </div>
+                    <div class="media-body">
+                        <div class="col-sm-4">
+                            <h2 class="media-heading">Daniel</h2>
+                            <div class="job">CEO</div>
+                        <div class="mail"><a href="mailto:daniel@bla.ch">daniel@bla.ch</a> </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Refuser</button>
+                        </div>  
+                        <div class="col-sm-8">
+                         <button type="button" class="btn btn-success" data-dismiss="modal" >Accepter</button>
+                           </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- fin Modal -->
+
+
+   <!-- Affichage Modal3 -->
+<div id="myModal4" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modalvvvvvvvvvvvvvvvvvvvvvvvvv.</p>
+        <p>Some text in the modalppppppppppppppppppppppppp.</p>
+        <p>Some text in the modalppppppppppppppppppppppppp.</p>
+        <p>Some text in the modalppppppppppppppppppppppppp.</p>
+        <p>Some text in the modalppppppppppppppppppppppppp.</p>
+        <p>Some text in the modalppppppppppppppppppppppppp.</p>
+        <p>Some text in the modalppppppppppppppppppppppppp.</p>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- fin Modal -->
 
 <pagination-controls class=" pull-right" (pageChange)="page = $event" id="1" maxSize="3" directionLinks="true" autoHide="true">
 </pagination-controls>
