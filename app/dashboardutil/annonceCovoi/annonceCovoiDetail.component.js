@@ -12,12 +12,14 @@ var core_1 = require('@angular/core');
 var annonceCovoi_service_1 = require("../../_services/annonceCovoi.service");
 var router_1 = require("@angular/router");
 var reservation_service_1 = require("../../_services/reservation.service");
+var alert_service_1 = require("../../_services/alert.service");
 var AnnonceCovoiDetailComponent = (function () {
-    function AnnonceCovoiDetailComponent(annonceCovoiService, reservationService, route) {
+    function AnnonceCovoiDetailComponent(annonceCovoiService, reservationService, route, alertService) {
         var _this = this;
         this.annonceCovoiService = annonceCovoiService;
         this.reservationService = reservationService;
         this.route = route;
+        this.alertService = alertService;
         this.annonceCovoi = {};
         this.utilisateur = {};
         this.reservations = [];
@@ -38,10 +40,19 @@ var AnnonceCovoiDetailComponent = (function () {
     AnnonceCovoiDetailComponent.prototype.getAnnonceCovoi = function () {
     };
     ////////////////////////////////////////////////
-    AnnonceCovoiDetailComponent.prototype.confirmerReservation = function () {
+    AnnonceCovoiDetailComponent.prototype.reserver = function () {
+        var _this = this;
         this.reservationService.reserver(this.annonceCovoi.id, this.currentUserId)
             .subscribe(function (data) {
-            console.log("ggggggggg");
+            if (data.idReservation !== null) {
+                console.log("jjjjj" + data);
+            }
+            else {
+                _this.message = " Vous avez déjà réservé ";
+                console.log(_this.message);
+                _this.alertService.error(" Vous avez déjà réservé ");
+                _this.reserved = false;
+            }
         });
     };
     /*   ngOnInit() : void{
@@ -69,7 +80,7 @@ var AnnonceCovoiDetailComponent = (function () {
             templateUrl: 'annonceCovoiDetail.component.html',
             providers: [annonceCovoi_service_1.AnnonceCovoiService, reservation_service_1.ReservationService]
         }), 
-        __metadata('design:paramtypes', [annonceCovoi_service_1.AnnonceCovoiService, reservation_service_1.ReservationService, router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [annonceCovoi_service_1.AnnonceCovoiService, reservation_service_1.ReservationService, router_1.ActivatedRoute, alert_service_1.AlertService])
     ], AnnonceCovoiDetailComponent);
     return AnnonceCovoiDetailComponent;
 }());

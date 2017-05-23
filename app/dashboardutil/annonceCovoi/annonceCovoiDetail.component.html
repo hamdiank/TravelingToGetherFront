@@ -121,8 +121,9 @@
         <div class="row " style="margin-top: 5px; margin-left: 20px;">
                 <!-- ************ -->
             <div class="text-center" *ngIf="currentUserId!=utilisateur.idUtilisateur">
-				<button class="btn btn-round " style="background-color:dodgerblue"><span class="glyphicon glyphicon-envelope"></span> Contacter Conducteur</button>
-                <button class="btn btn-round" style="background-color:dodgerblue" data-toggle="modal" data-target="#myModalReservation" > Réserver </button>
+                            <alert></alert>
+		<button class="btn btn-round " style="background-color:dodgerblue"><span class="glyphicon glyphicon-envelope"></span> Contacter Conducteur</button>
+                <button [disabled]="reserved==false"class="btn btn-round" style="background-color:dodgerblue" data-toggle="modal" data-target="#myModalReservation" > Réserver </button>
 
 <!-- Modal -->
 <div id="myModalReservation" class="modal fade" role="dialog">
@@ -139,7 +140,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger btn-round"  data-dismiss="modal">Annuler</button>
-        <button (click)="confirmerReservation()" type="button" class="btn btn-success btn-round" data-dismiss="modal">Confirmer</button>
+        <button (click)="reserver()" type="button" class="btn btn-success btn-round" data-dismiss="modal">Confirmer</button>
       </div>
     </div>
 

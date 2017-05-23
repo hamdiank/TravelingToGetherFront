@@ -29,6 +29,27 @@ var ReservationService = (function () {
         return this.http.put(this.config.apiUrl + '/reservation?' + body, body, this.jwt())
             .map(function (res) { return res.json(); });
     };
+    ReservationService.prototype.getReservationsByAnnonceCovoi = function (idAnnonceCovoi) {
+        var headers = new http_1.Headers();
+        var options = new http_1.RequestOptions({ headers: headers });
+        var urlSearchParams = new http_2.URLSearchParams();
+        urlSearchParams.append('idAnnonceCovoi', idAnnonceCovoi);
+        var body = urlSearchParams.toString();
+        console.log(body);
+        return this.http.get(this.config.apiUrl + '/getReservationsByAnnonceCovoi?' + body, this.jwt())
+            .map(function (res) { return res.json(); });
+    };
+    ///////////////////////////////////
+    ReservationService.prototype.getReservationsByUtilisateurReservation = function (idUtilisateur) {
+        var headers = new http_1.Headers();
+        var options = new http_1.RequestOptions({ headers: headers });
+        var urlSearchParams = new http_2.URLSearchParams();
+        urlSearchParams.append('idUtilisateur', idUtilisateur);
+        var body = urlSearchParams.toString();
+        console.log(body);
+        return this.http.get(this.config.apiUrl + '/getReservationsByUtilisateurReservation?' + body, this.jwt())
+            .map(function (res) { return res.json(); });
+    };
     ReservationService.prototype.jwt = function () {
         // create authorization header with jwt token
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));

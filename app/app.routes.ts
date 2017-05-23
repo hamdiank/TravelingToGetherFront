@@ -21,6 +21,7 @@ import { AjoutAnnonceCovoiComponent } from "./dashboardutil/annonceCovoi/ajoutAn
 import { AnnonceCovoiDetailComponent } from "./dashboardutil/annonceCovoi/annonceCovoiDetail.component";
 import { MotDePasseComponent } from "./MotDePasse/MotDePasse.component";
 import { PublicProfilComponent } from "./dashboardutil/profil_public/profil_public.component";
+import { MesReservationsComponent } from "./dashboardutil/profil/mesReservation.component";
 export const MODULE_ROUTES: Route[] =[
     { path: 'chat', component: App2Component ,canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
@@ -40,7 +41,8 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'MesAnnoncesCovoi', component: MesAnnoncesCovoiComponent },
     { path: 'AjoutAnnonceCovoi', component: AjoutAnnonceCovoiComponent },
      { path: 'publicProfile/:id', component:  PublicProfilComponent},
-    { path: 'detail/:id', component: AnnonceCovoiDetailComponent }
+    { path: 'detail/:id', component: AnnonceCovoiDetailComponent },
+    { path: 'MesReservations', component: MesReservationsComponent },
     ],canActivate: [AuthGuard],data: { roles: ['USER'] }  },
 
     { path: 'dashboardutil/Accueil', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['USER'] }},

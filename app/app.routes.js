@@ -16,6 +16,7 @@ var ajoutAnnonceCovoi_component_1 = require("./dashboardutil/annonceCovoi/ajoutA
 var annonceCovoiDetail_component_1 = require("./dashboardutil/annonceCovoi/annonceCovoiDetail.component");
 var MotDePasse_component_1 = require("./MotDePasse/MotDePasse.component");
 var profil_public_component_1 = require("./dashboardutil/profil_public/profil_public.component");
+var mesReservation_component_1 = require("./dashboardutil/profil/mesReservation.component");
 exports.MODULE_ROUTES = [
     { path: 'chat', component: app2_component_1.App2Component, canActivate: [index_1.AuthGuard] },
     { path: 'login', component: login_component_1.LoginComponent },
@@ -34,7 +35,8 @@ exports.MODULE_ROUTES = [
             { path: 'MesAnnoncesCovoi', component: mesAnnoncesCovoi_component_1.MesAnnoncesCovoiComponent },
             { path: 'AjoutAnnonceCovoi', component: ajoutAnnonceCovoi_component_1.AjoutAnnonceCovoiComponent },
             { path: 'publicProfile/:id', component: profil_public_component_1.PublicProfilComponent },
-            { path: 'detail/:id', component: annonceCovoiDetail_component_1.AnnonceCovoiDetailComponent }
+            { path: 'detail/:id', component: annonceCovoiDetail_component_1.AnnonceCovoiDetailComponent },
+            { path: 'MesReservations', component: mesReservation_component_1.MesReservationsComponent },
         ], canActivate: [index_1.AuthGuard], data: { roles: ['USER'] } },
     { path: 'dashboardutil/Accueil', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full', canActivate: [index_1.AuthGuard], data: { roles: ['USER'] } },
     { path: 'dashboard/Statistiques', redirectTo: 'dashboard/Statistiques', pathMatch: 'full', canActivate: [index_1.AuthGuardAdmin], data: { roles: ['ADMIN'] } },

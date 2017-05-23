@@ -22,6 +22,32 @@ export class ReservationService{
           return this.http.put(this.config.apiUrl+'/reservation?'+body, body, this.jwt())
                         .map((res: Response) => res.json());
     }
+    getReservationsByAnnonceCovoi(idAnnonceCovoi){
+        let headers= new Headers();
+        let options= new RequestOptions ({headers: headers}); 
+        let urlSearchParams = new URLSearchParams();
+         urlSearchParams.append('idAnnonceCovoi', idAnnonceCovoi);
+        let body= urlSearchParams.toString();
+        console.log(body)
+    return this.http.get(this.config.apiUrl+'/getReservationsByAnnonceCovoi?'+body, this.jwt())
+     .map((res: Response) => res.json());
+
+
+    }
+    ///////////////////////////////////
+
+    getReservationsByUtilisateurReservation(idUtilisateur){
+        let headers= new Headers();
+        let options= new RequestOptions ({headers: headers});  
+        let urlSearchParams = new URLSearchParams();
+        urlSearchParams.append('idUtilisateur', idUtilisateur);  
+        let body= urlSearchParams.toString();
+        console.log(body)
+     return this.http.get(this.config.apiUrl+'/getReservationsByUtilisateurReservation?'+body, this.jwt())
+        .map((res: Response) => res.json());
+
+
+    }
     private jwt() {
         // create authorization header with jwt token
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));

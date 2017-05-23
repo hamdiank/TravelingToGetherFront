@@ -13,18 +13,21 @@ var annonceCovoi_service_1 = require("../../_services/annonceCovoi.service");
 var router_1 = require("@angular/router");
 var pays_service_1 = require("../../_services/pays.service");
 var city_service_1 = require("../../_services/city.service");
+var reservation_service_1 = require("../../_services/reservation.service");
 var MesAnnoncesCovoiComponent = (function () {
-    function MesAnnoncesCovoiComponent(annonceCovoiService, router, paysService, cityService) {
+    function MesAnnoncesCovoiComponent(annonceCovoiService, router, paysService, cityService, reservationService) {
         var _this = this;
         this.annonceCovoiService = annonceCovoiService;
         this.router = router;
         this.paysService = paysService;
         this.cityService = cityService;
+        this.reservationService = reservationService;
         this.selectedPays = {};
         this.testPaysDepart = false;
         this.testVilleDepart = false;
         this.testPaysArrivee = false;
         this.testVilleArrivee = false;
+        ///////////////////////////////////////////
         ////////////////////////////////////////////
         this.model = {};
         this.selected = {};
@@ -83,12 +86,23 @@ var MesAnnoncesCovoiComponent = (function () {
         this.testVilleArrivee = false;
         this.testPaysArrivee = false;
         this.testVilleArrivee = false;
+        console.log(annonceCovoi);
         this.selected = annonceCovoi;
         this.model = this.selected;
         console.log(this.model.id);
         console.log("jjjjjjjjjj");
         console.log(this.selected);
+        this.getReservationsByAnnonceCovoi();
     };
+    ///////////////// Get Reservation by AnnonceCovoi///////////////
+    MesAnnoncesCovoiComponent.prototype.getReservationsByAnnonceCovoi = function () {
+        var _this = this;
+        this.reservationService.getReservationsByAnnonceCovoi(this.selected.id)
+            .subscribe(function (reservations) {
+            _this.reservations = reservations, console.log(_this.reservations);
+        });
+    };
+    ////////////////////////////////////////////////////////////////
     ///////////////// Modifier Annonce Covoi ///////////////////////
     MesAnnoncesCovoiComponent.prototype.modifierAnnonceCovoi = function () {
         var _this = this;
@@ -127,10 +141,10 @@ var MesAnnoncesCovoiComponent = (function () {
             selector: 'mes-annonces-covoi-cmp',
             moduleId: module.id,
             templateUrl: 'mesAnnoncesCovoi.component.html',
-            providers: [annonceCovoi_service_1.AnnonceCovoiService],
+            providers: [annonceCovoi_service_1.AnnonceCovoiService, reservation_service_1.ReservationService],
             styleUrls: ['myModal3.css']
         }), 
-        __metadata('design:paramtypes', [annonceCovoi_service_1.AnnonceCovoiService, router_1.Router, pays_service_1.PaysService, city_service_1.CityService])
+        __metadata('design:paramtypes', [annonceCovoi_service_1.AnnonceCovoiService, router_1.Router, pays_service_1.PaysService, city_service_1.CityService, reservation_service_1.ReservationService])
     ], MesAnnoncesCovoiComponent);
     return MesAnnoncesCovoiComponent;
 }());

@@ -6,6 +6,7 @@ import { Pays } from "../../_models/Pays";
 import { City } from "../../_models/city";
 import { PaysService } from "../../_services/pays.service";
 import { CityService } from "../../_services/city.service";
+import { ReservationService } from "../../_services/reservation.service";
 
 declare var $:any;
 
@@ -13,7 +14,7 @@ declare var $:any;
     selector: 'mes-annonces-covoi-cmp',
     moduleId: module.id,
     templateUrl: 'mesAnnoncesCovoi.component.html',
-    providers:[AnnonceCovoiService],
+    providers:[AnnonceCovoiService, ReservationService],
     styleUrls:  ['myModal3.css']
 })
 
@@ -40,6 +41,11 @@ export class MesAnnoncesCovoiComponent implements OnInit {
 
      testPaysArrivee: boolean= false;
      testVilleArrivee: boolean= false;
+     ////////////Reservations//////////////////
+    public reservations: any [];
+
+
+     ///////////////////////////////////////////
      
 
     ////////////////////////////////////////////
@@ -51,7 +57,7 @@ export class MesAnnoncesCovoiComponent implements OnInit {
     public selected: any={};
     annonceCovoi: AnnonceCovoi;
 
-    constructor(private annonceCovoiService: AnnonceCovoiService , private router: Router, private paysService: PaysService, private cityService : CityService ){
+    constructor(private annonceCovoiService: AnnonceCovoiService , private router: Router, private paysService: PaysService, private cityService : CityService, private reservationService: ReservationService ){
       this.selectedPays.idPays='0';
     this.paysService.getAll().subscribe( pays=> { this.pays=pays 
     
@@ -114,6 +120,7 @@ onClick(annonceCovoi: AnnonceCovoi){
     this.testVilleArrivee=false;
     this.testPaysArrivee=false;
     this.testVilleArrivee=false;
+    console.log(annonceCovoi)
     
     this.selected=annonceCovoi;
     this.model=this.selected
@@ -121,7 +128,21 @@ onClick(annonceCovoi: AnnonceCovoi){
     console.log("jjjjjjjjjj")
     console.log(this.selected)
 
+    this.getReservationsByAnnonceCovoi();
+
 }
+///////////////// Get Reservation by AnnonceCovoi///////////////
+getReservationsByAnnonceCovoi(){
+    this.reservationService.getReservationsByAnnonceCovoi(this.selected.id)
+    .subscribe(
+         reservations=> {
+              this.reservations=reservations, console.log(this.reservations)
+    
+    });
+}
+
+////////////////////////////////////////////////////////////////
+
 ///////////////// Modifier Annonce Covoi ///////////////////////
 modifierAnnonceCovoi(){
     let currentUserId = JSON.parse(localStorage.getItem('currentUserId'));

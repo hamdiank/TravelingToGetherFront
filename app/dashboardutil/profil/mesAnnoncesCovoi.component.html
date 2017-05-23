@@ -20,7 +20,7 @@
 
 
 <!-- ***************************Row*********************************************** -->
-	<div class="row" *ngFor="let annonceCovoi of annoncesCovoi | paginate: {itemsPerPage: 5, currentPage:page, id: '1'}; let i = index" (click)="onClick(annonceCovoi)">
+	<div class="row" *ngFor="let annonceCovoi of annoncesCovoi | paginate: {itemsPerPage: 5, currentPage:page, id: '1'}; let i = index" >
         <div class="col-md-4 col-sm-6">
             <div class="card-container1 manual-flip">
                 <div class="card1">
@@ -78,12 +78,12 @@
                                     </button>
                                 </span>
                                 <span style="margin-left: 200px;">
-                                    <button type="button" rel="tooltip" title="Edit Annonce" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal1">
+                                    <button type="button" rel="tooltip" title="Edit Annonce" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal1" (click)="onClick(annonceCovoi)">
                                         <i class="fa fa-edit"></i>
                                     </button>
                                 </span>
                                 <span>
-                                    <button type="button" rel="tooltip" title="Supprimer Annonce" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal2">
+                                    <button type="button" rel="tooltip" title="Supprimer Annonce" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal2" (click)="onClick(annonceCovoi)">
                                             <i class="fa fa-times"></i>
                                     </button>
                                 </span>
@@ -219,23 +219,7 @@
       </div>
       <div class="modal-body">
 <div class="container">
-	<div class="row">
-        <div class="col-sm-6">
-            <div class="business-card">
-                <div class="media">
-                    <div class="media-left">
-                        <img class="media-object img-circle profile-img" src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png">
-                    </div>
-                    <div class="media-body">
-                        <h2 class="media-heading">Daniel</h2>
-                        <div class="job">CEO</div>
-                        <div class="mail"><a href="mailto:daniel@bla.ch">daniel@bla.ch</a> </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-	</div>
-	<div class="row">
+	<div class="row" *ngFor="let reservation of reservations">
         <div class="col-sm-6">
             <div class="business-card">
                 <div class="media">
@@ -244,9 +228,9 @@
                     </div>
                     <div class="media-body">
                         <div class="col-sm-4">
-                            <h2 class="media-heading">Daniel</h2>
-                            <div class="job">CEO</div>
-                        <div class="mail"><a href="mailto:daniel@bla.ch">daniel@bla.ch</a> </div>
+                            <h2 class="media-heading">{{reservation.utilisateurReservation.nom}}</h2>
+                            <div class="job">{{reservation.utilisateurReservation.profession}}</div>
+                        <div class="mail"><a href="mailto:daniel@bla.ch">voir profil</a> </div>
                         </div>
                         <div class="col-sm-8">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Refuser</button>

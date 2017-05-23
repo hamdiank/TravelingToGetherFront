@@ -3,6 +3,7 @@ import { AnnonceCovoi } from "../../_models/annonceCovoi";
 import { AnnonceCovoiService } from "../../_services/annonceCovoi.service";
 import { ActivatedRoute, Params } from "@angular/router";
 import { ReservationService } from "../../_services/reservation.service";
+import { AlertService } from "../../_services/alert.service";
 
 @Component({
     selector: 'annonce-covoi-detail-cmp',
@@ -12,6 +13,10 @@ import { ReservationService } from "../../_services/reservation.service";
 })
 
 export class AnnonceCovoiDetailComponent implements OnInit {
+    message: string;
+    reserved: boolean;
+
+
     currentUserId: string;
     annonceCovoi:any={};
     utilisateur:any={}
@@ -20,7 +25,7 @@ export class AnnonceCovoiDetailComponent implements OnInit {
 
     reservations:any=[];
 
-    constructor(private annonceCovoiService: AnnonceCovoiService, private reservationService:ReservationService, public route: ActivatedRoute){
+    constructor(private annonceCovoiService: AnnonceCovoiService, private reservationService:ReservationService, public route: ActivatedRoute,  private alertService: AlertService){
        this.sub = this.route.params.subscribe(params => {
        this.id = +params['id']; 
        console.log(this.id)
@@ -46,11 +51,21 @@ getAnnonceCovoi(){
 }
 
 ////////////////////////////////////////////////
-confirmerReservation(){
+reserver(){
 this.reservationService.reserver(this.annonceCovoi.id, this.currentUserId)
 .subscribe(
                 data => { 
-                    console.log("ggggggggg")
+                  if(data.idReservation !== null){
+                       console.log("jjjjj"+data)
+
+
+                }else {
+                    this.message = " Vous avez déjà réservé ";
+                    console.log(this.message)
+                    this.alertService.error(" Vous avez déjà réservé ");
+                    this.reserved=false;
+
+                }
                 });
   
 }

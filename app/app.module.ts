@@ -60,6 +60,7 @@ import { MotDePasseComponent } from "./MotDePasse/MotDePasse.component";
 import { NavBarUtilModule } from "./navbarutil/navbarutil.module";
 import { SpinnerModule, PaginatorModule } from 'primeng/primeng';
 import { ReservationService } from "./_services/reservation.service";
+import { MesReservationsComponent } from "./dashboardutil/profil/mesReservation.component";
 
 @NgModule({
     imports: [ 
@@ -93,7 +94,7 @@ import { ReservationService } from "./_services/reservation.service";
     ChatThreadComponent,
     AlertComponent,
     FromNowPipe,ValuesPipe,FilterPipe,  AnnonceCovoiComponent, InscriptionComponent, AccueilComponent, ProfilComponent, MesAnnoncesCovoiComponent,MotDePasseComponent
-    ,PublicProfilComponent],
+    ,PublicProfilComponent, MesReservationsComponent],
 
 
     bootstrap:    [ AppComponent ],
