@@ -8,7 +8,6 @@ import { URLSearchParams } from "@angular/http";
 export class ReservationService{
 
     etat: boolean= false;
-
     constructor(private http: Http, private config: AppConfig ){}
 
     reserver(idAnnonceCovoi: string, idUtilisateurReservation: string){
@@ -37,8 +36,7 @@ export class ReservationService{
     ///////////////////////////////////
 
     getReservationsByUtilisateurReservation(idUtilisateur){
-        let headers= new Headers();
-        let options= new RequestOptions ({headers: headers});  
+        console.log('reservation service')
         let urlSearchParams = new URLSearchParams();
         urlSearchParams.append('idUtilisateur', idUtilisateur);  
         let body= urlSearchParams.toString();
@@ -47,6 +45,11 @@ export class ReservationService{
         .map((res: Response) => res.json());
 
 
+    }
+
+    annulerReservation(idReservation){
+
+          return this.http.delete(this.config.apiUrl + '/annulerReservation/'+ idReservation, this.jwt());
     }
     private jwt() {
         // create authorization header with jwt token

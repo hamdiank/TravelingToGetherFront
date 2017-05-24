@@ -41,14 +41,16 @@ var ReservationService = (function () {
     };
     ///////////////////////////////////
     ReservationService.prototype.getReservationsByUtilisateurReservation = function (idUtilisateur) {
-        var headers = new http_1.Headers();
-        var options = new http_1.RequestOptions({ headers: headers });
+        console.log('reservation service');
         var urlSearchParams = new http_2.URLSearchParams();
         urlSearchParams.append('idUtilisateur', idUtilisateur);
         var body = urlSearchParams.toString();
         console.log(body);
         return this.http.get(this.config.apiUrl + '/getReservationsByUtilisateurReservation?' + body, this.jwt())
             .map(function (res) { return res.json(); });
+    };
+    ReservationService.prototype.annulerReservation = function (idReservation) {
+        return this.http.delete(this.config.apiUrl + '/annulerReservation/' + idReservation, this.jwt());
     };
     ReservationService.prototype.jwt = function () {
         // create authorization header with jwt token

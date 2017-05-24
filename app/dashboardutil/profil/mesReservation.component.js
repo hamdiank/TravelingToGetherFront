@@ -16,11 +16,22 @@ var MesReservationsComponent = (function () {
     }
     MesReservationsComponent.prototype.getReservationsByUtilisateurReservation = function () {
         var _this = this;
+        console.log("here");
         this.reservationService.getReservationsByUtilisateurReservation(this.id)
             .subscribe(function (reservations) {
             _this.reservations = reservations,
-                console.log("hhhh" + _this.reservations);
+                console.log("hhhh");
+            console.log(_this.reservations);
         });
+    };
+    MesReservationsComponent.prototype.annulerReservation = function () {
+        this.reservationService.annulerReservation(this.idReservation).subscribe(function (data) {
+            //this.getReservationsByUtilisateurReservation();
+        });
+    };
+    MesReservationsComponent.prototype.onClick = function (reservation) {
+        this.idReservation = reservation.idReservation;
+        console.log(this.idReservation);
     };
     MesReservationsComponent.prototype.ngOnInit = function () {
         var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));

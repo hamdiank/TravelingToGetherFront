@@ -12,15 +12,30 @@ import { ReservationService } from "../../_services/reservation.service";
 export class MesReservationsComponent implements OnInit {
     id: string;
     reservations: any[];
+    idReservation: string;
     
 constructor(private reservationService: ReservationService){}
 getReservationsByUtilisateurReservation(){
+    console.log("here")
     this.reservationService.getReservationsByUtilisateurReservation(this.id)
    .subscribe( reservations=> { this.reservations=reservations,
-       console.log("hhhh"+this.reservations)
+       console.log("hhhh")
+       console.log(this.reservations)
+       
     
     });
 
+}
+
+annulerReservation(){
+    this.reservationService.annulerReservation(this.idReservation).subscribe(data=>{
+        //this.getReservationsByUtilisateurReservation();
+    });
+}
+
+onClick(reservation){
+    this.idReservation=reservation.idReservation;
+    console.log(this.idReservation)
 }
 
         ngOnInit(){

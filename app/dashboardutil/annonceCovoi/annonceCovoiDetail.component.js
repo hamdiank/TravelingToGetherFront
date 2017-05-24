@@ -44,7 +44,7 @@ var AnnonceCovoiDetailComponent = (function () {
         var _this = this;
         this.reservationService.reserver(this.annonceCovoi.id, this.currentUserId)
             .subscribe(function (data) {
-            if (data.idReservation !== null) {
+            if (data !== null) {
                 console.log("jjjjj" + data);
             }
             else {
@@ -52,6 +52,7 @@ var AnnonceCovoiDetailComponent = (function () {
                 console.log(_this.message);
                 _this.alertService.error(" Vous avez déjà réservé ");
                 _this.reserved = false;
+                console.log(data);
             }
         });
     };

@@ -55,7 +55,7 @@ reserver(){
 this.reservationService.reserver(this.annonceCovoi.id, this.currentUserId)
 .subscribe(
                 data => { 
-                  if(data.idReservation !== null){
+                  if(data !== null){
                        console.log("jjjjj"+data)
 
 
@@ -64,6 +64,7 @@ this.reservationService.reserver(this.annonceCovoi.id, this.currentUserId)
                     console.log(this.message)
                     this.alertService.error(" Vous avez déjà réservé ");
                     this.reserved=false;
+                    console.log(data)
 
                 }
                 });
