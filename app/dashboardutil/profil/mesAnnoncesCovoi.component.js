@@ -22,6 +22,8 @@ var MesAnnoncesCovoiComponent = (function () {
         this.paysService = paysService;
         this.cityService = cityService;
         this.reservationService = reservationService;
+        this.accepted = false;
+        this.refused = false;
         this.selectedPays = {};
         this.testPaysDepart = false;
         this.testVilleDepart = false;
@@ -94,6 +96,10 @@ var MesAnnoncesCovoiComponent = (function () {
         console.log(this.selected);
         this.getReservationsByAnnonceCovoi();
     };
+    MesAnnoncesCovoiComponent.prototype.onClickReservation = function (reservation) {
+        this.idReservation = reservation.idReservation;
+        console.log("5555555" + this.idReservation);
+    };
     ///////////////// Get Reservation by AnnonceCovoi///////////////
     MesAnnoncesCovoiComponent.prototype.getReservationsByAnnonceCovoi = function () {
         var _this = this;
@@ -128,6 +134,25 @@ var MesAnnoncesCovoiComponent = (function () {
         this.annonceCovoiService.supprimerAnnonceCovoi(this.model.id)
             .subscribe(function (data) {
             _this.router.navigate(['dashboardutil/MesAnnoncesCovoi']);
+        });
+    };
+    MesAnnoncesCovoiComponent.prototype.accepterReservation = function () {
+        var _this = this;
+        var etat = true;
+        console.log(this.idReservation);
+        this.reservationService.accepterReservation(this.idReservation, etat)
+            .subscribe(function (data) {
+            console.log("dddddddddd");
+            _this.accepted = true;
+        });
+    };
+    MesAnnoncesCovoiComponent.prototype.refuserReservation = function () {
+        var _this = this;
+        var etat = false;
+        this.reservationService.refuserReservation(this.idReservation, etat)
+            .subscribe(function (data) {
+            _this.refused = true;
+            console.log("refused");
         });
     };
     MesAnnoncesCovoiComponent.prototype.ngOnInit = function () {

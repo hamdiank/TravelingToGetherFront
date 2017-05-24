@@ -52,6 +52,26 @@ var ReservationService = (function () {
     ReservationService.prototype.annulerReservation = function (idReservation) {
         return this.http.delete(this.config.apiUrl + '/annulerReservation/' + idReservation, this.jwt());
     };
+    ReservationService.prototype.accepterReservation = function (idReservation, etat) {
+        console.log(' accepter reservation ');
+        var urlSearchParams = new http_2.URLSearchParams();
+        urlSearchParams.append('idReservation', idReservation);
+        urlSearchParams.append('etat', etat);
+        var requestParams = urlSearchParams.toString();
+        console.log(requestParams);
+        return this.http.put(this.config.apiUrl + '/accepterReservation?' + requestParams, this.jwt())
+            .map(function (res) { return res.json(); });
+    };
+    ReservationService.prototype.refuserReservation = function (idReservation, etat) {
+        console.log(' accepter reservation ');
+        var urlSearchParams = new http_2.URLSearchParams();
+        urlSearchParams.append('idReservation', idReservation);
+        urlSearchParams.append('etat', etat);
+        var requestParams = urlSearchParams.toString();
+        console.log(requestParams);
+        return this.http.put(this.config.apiUrl + '/accepterReservation?' + requestParams, this.jwt())
+            .map(function (res) { return res.json(); });
+    };
     ReservationService.prototype.jwt = function () {
         // create authorization header with jwt token
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));

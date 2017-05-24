@@ -9,6 +9,7 @@ import { AlertService } from "../../_services/alert.service";
     selector: 'annonce-covoi-detail-cmp',
     moduleId: module.id,
     templateUrl: 'annonceCovoiDetail.component.html',
+    styleUrls:['annonceCovoiDetail.component.css'],
     providers:[AnnonceCovoiService, ReservationService]
 })
 

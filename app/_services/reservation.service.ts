@@ -51,6 +51,30 @@ export class ReservationService{
 
           return this.http.delete(this.config.apiUrl + '/annulerReservation/'+ idReservation, this.jwt());
     }
+accepterReservation(idReservation, etat){
+        console.log(' accepter reservation ')
+        let urlSearchParams = new URLSearchParams();
+        urlSearchParams.append('idReservation', idReservation); 
+        urlSearchParams.append('etat', etat); 
+        let requestParams= urlSearchParams.toString();
+        console.log(requestParams)
+     return this.http.put(this.config.apiUrl+'/accepterReservation?'+requestParams, this.jwt())
+        .map((res: Response) => res.json());
+
+}
+
+refuserReservation(idReservation, etat){
+        console.log(' accepter reservation ')
+        let urlSearchParams = new URLSearchParams();
+        urlSearchParams.append('idReservation', idReservation); 
+        urlSearchParams.append('etat', etat); 
+        let requestParams= urlSearchParams.toString();
+        console.log(requestParams)
+     return this.http.put(this.config.apiUrl+'/accepterReservation?'+requestParams, this.jwt())
+        .map((res: Response) => res.json());
+
+}
+
     private jwt() {
         // create authorization header with jwt token
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));

@@ -53,8 +53,11 @@
 											<span class="adresseArrivee">{{annonceCovoi.paysArrivee}},{{annonceCovoi.villeArrivee}}</span>
 											<span class="glyphicon glyphicon-road"></span> 
 										</p>
-                                        <button type="button"  data-toggle="modal" data-target="#myModal3">En attente <span class="glyphicon glyphicon-user"></span> <span class="glyphicon glyphicon-plus-sign"></span> </button>
-                                         <button type="button"  data-toggle="modal" data-target="#myModal4">Acceptés<span class="glyphicon glyphicon-user"></span> <span  class="glyphicon glyphicon-ok-circle"></span> </button>
+                                        <button style="width:130px;" type="button"  data-toggle="modal" data-target="#myModal3" (click)="onClick(annonceCovoi)">En attente <span class="glyphicon glyphicon-user"></span> <span class="glyphicon glyphicon-plus-sign"></span> </button>
+                                        <br>
+                                        <br>
+                                        
+                                         <button type="button"  style="width:130px;" data-toggle="modal" data-target="#myModal4" (click)="onClick(annonceCovoi)">Acceptés<span class="glyphicon glyphicon-user"></span> <span  class="glyphicon glyphicon-ok-circle"></span> </button>
                                   </div>
 								  <div class="col-sm-3 block3" >
 										<p class="cotisation" > {{annonceCovoi.cotisation}},<span class="cotisation1" >00</span>
@@ -233,10 +236,10 @@
                         <div class="mail"><a href="mailto:daniel@bla.ch">voir profil</a> </div>
                         </div>
                         <div class="col-sm-8">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Refuser</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="refuserReservation()" (click)="onClickReservation(reservation)" [disabled]="reservation.etat==false">Refuser</button>
                         </div>  
                         <div class="col-sm-8">
-                         <button type="button" class="btn btn-success" data-dismiss="modal" >Accepter</button>
+                         <button type="button" class="btn btn-success" data-dismiss="modal"  (click)="onClickReservation(reservation)" (click)="accepterReservation()" [disabled]="reservation.etat==true" >Accepter</button>
                            </div>  
                     </div>
                 </div>
@@ -264,16 +267,32 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">Liste des Acceptés</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modalvvvvvvvvvvvvvvvvvvvvvvvvv.</p>
-        <p>Some text in the modalppppppppppppppppppppppppp.</p>
-        <p>Some text in the modalppppppppppppppppppppppppp.</p>
-        <p>Some text in the modalppppppppppppppppppppppppp.</p>
-        <p>Some text in the modalppppppppppppppppppppppppp.</p>
-        <p>Some text in the modalppppppppppppppppppppppppp.</p>
-        <p>Some text in the modalppppppppppppppppppppppppp.</p>
+<div class="container">
+	<div class="row" *ngFor="let reservation of reservations" >
+        <div class="col-sm-6" *ngIf="reservation.etat==true" >
+            <div class="business-card">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object img-circle profile-img" src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png">
+                    </div>
+                    <div class="media-body" >
+                        <div class="col-sm-4">
+                            <h2 class="media-heading">{{reservation.utilisateurReservation.nom}}</h2>
+                            <div class="job">{{reservation.utilisateurReservation.profession}}</div>
+                        <div class="mail"><a href="#">voir profil</a> </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="refuserReservation()" (click)="onClickReservation(reservation)" [disabled]="reservation.etat==false">Refuser</button>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
         
       </div>
       <div class="modal-footer">

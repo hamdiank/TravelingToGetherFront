@@ -19,6 +19,14 @@ declare var $:any;
 })
 
 export class MesAnnoncesCovoiComponent implements OnInit {
+
+    etat: boolean;
+
+    accepted:boolean=false;
+
+    refused: boolean= false;
+
+    idReservation: string;
     /////////////////////////////////////////////
     paysDepart: string;
     paysArrivee: string;
@@ -131,6 +139,12 @@ onClick(annonceCovoi: AnnonceCovoi){
     this.getReservationsByAnnonceCovoi();
 
 }
+
+onClickReservation(reservation){
+    this.idReservation= reservation.idReservation;
+    console.log("5555555"+this.idReservation)
+
+}
 ///////////////// Get Reservation by AnnonceCovoi///////////////
 getReservationsByAnnonceCovoi(){
     this.reservationService.getReservationsByAnnonceCovoi(this.selected.id)
@@ -173,7 +187,27 @@ supprimerAnnonceCovoi(){
         this.router.navigate(['dashboardutil/MesAnnoncesCovoi'])
     });
     
-    }
+}
+
+accepterReservation(){
+    let etat= true;
+    console.log(this.idReservation)
+    this.reservationService.accepterReservation(this.idReservation, etat)
+    .subscribe(data => {
+            console.log("dddddddddd")
+            this.accepted=true;
+    });
+
+}
+refuserReservation(){
+    let etat= false;
+    this.reservationService.refuserReservation(this.idReservation, etat)
+        .subscribe(data=>{
+            this.refused=true;
+            console.log("refused")
+        });
+
+}
 
 
         ngOnInit() {

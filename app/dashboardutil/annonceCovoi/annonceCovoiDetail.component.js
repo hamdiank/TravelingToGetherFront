@@ -79,6 +79,7 @@ var AnnonceCovoiDetailComponent = (function () {
             selector: 'annonce-covoi-detail-cmp',
             moduleId: module.id,
             templateUrl: 'annonceCovoiDetail.component.html',
+            styleUrls: ['annonceCovoiDetail.component.css'],
             providers: [annonceCovoi_service_1.AnnonceCovoiService, reservation_service_1.ReservationService]
         }), 
         __metadata('design:paramtypes', [annonceCovoi_service_1.AnnonceCovoiService, reservation_service_1.ReservationService, router_1.ActivatedRoute, alert_service_1.AlertService])
