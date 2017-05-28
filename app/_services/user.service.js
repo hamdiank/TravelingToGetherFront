@@ -64,30 +64,46 @@ var UserService = (function () {
            
             //return this.http.post(this.config.apiUrl + '/register',user,this.jwt());
     */
-    UserService.prototype.addUser = function (firstname, lastname, username, password) {
+    UserService.prototype.addUser = function (prenom, nom, profession, numTelephone, email, login, password) {
         var headers = new http_1.Headers();
         console.log(headers);
-        var body = { "nom": firstname, "prenom": lastname, "login": username, "motDePasse": password };
+        var body = { "prenom": prenom, "nom": nom, "profession": profession, "numTelephone": numTelephone, "email": email, "login": login, "motDePasse": password };
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(this.config.apiUrl + '/utilisateurs', body, options)
-            .map(function (response) {
-            console.log("bk 1");
-            var x = JSON.parse(JSON.stringify(response));
-            console.log("bk 2");
-            var token = x._body;
-            console.log("bk 3");
-            if (token) {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(token));
-            }
-        });
+        return this.http.post(this.config.apiUrl + '/inscriptionUtilisateur', body, options)
+            .map(function (res) { return res.json(); });
+        /*                console.log("bk 1")
+                        let x = JSON.parse(JSON.stringify(response));
+                        console.log("bk 2");
+        
+                        let token = x._body;
+                        console.log("bk 3");
+        
+        
+                        if (token) {
+                            // store user details and jwt token in local storage to keep user logged in between page refreshes
+                            localStorage.setItem('currentUser', JSON.stringify(token));
+                            //this.router.navigate(['/dashboard/statistique']);
+                            //    console.log (localStorage.getItem('currentUser'));
+                            //console.log (user.user.username);
+        
+        
+                        } */
     };
     UserService.prototype.update = function (user) {
-        user.idUtilisateur = localStorage.getItem('currentUserId');
+        //  user.idUtilisateur = localStorage.getItem('currentUserId');
         return this.http.put(this.config.apiUrl + '/utilisateur', user, this.jwt());
     };
     UserService.prototype.delete = function (_id) {
         return this.http.delete(this.config.apiUrl + '/deluser/' + _id, this.jwt());
+    };
+    ////////////// Confirmer Inscription //////////////////
+    UserService.prototype.confirmerInscription = function (email) {
+        var headers = new http_1.Headers();
+        var options = new http_1.RequestOptions({ headers: headers });
+        var urlSearchParams = new URLSearchParams();
+        urlSearchParams.append('email', email);
+        var requestParams = urlSearchParams.toString();
+        return this.http.put(this.config.apiUrl + '/confirmerInscription?' + requestParams, requestParams, options);
     };
     // private helper methods
     UserService.prototype.jwt = function () {

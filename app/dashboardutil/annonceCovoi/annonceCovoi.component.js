@@ -21,6 +21,7 @@ var AnnonceCovoiComponent = (function () {
         this.router = router;
         this.paysService = paysService;
         this.cityService = cityService;
+        this.utilisateur = {};
         this.model = {};
         this.selectedPays = {};
         this.modelRecherche = {};
@@ -219,6 +220,8 @@ var AnnonceCovoiComponent = (function () {
                 _this.annoncesCovoiToFilter = annoncesCovoi;
         });
         console.log("annoncesCovoi");
+        console.log(this.annoncesCovoi);
+        console.log(this.utilisateur);
         var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
         this.id = currentUserId;
         console.log(this.id);
@@ -228,6 +231,13 @@ var AnnonceCovoiComponent = (function () {
                       this.id=currentUser;
                    //   console.log(currentUser.json().idUtilisateur)   */
     };
+    /////////////////////////////////////////////////
+    AnnonceCovoiComponent.prototype.onSelectId = function ($event) {
+        $event.preventDefault();
+        console.log('selectedIDUtil: ' + $event.target.value);
+        //console.log(typeof($event.target.value))
+    };
+    /////////////////////////////////////////////////
     AnnonceCovoiComponent.prototype.ngOnInit = function () {
         var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
         this.id = currentUserId;

@@ -22,11 +22,13 @@ import { AnnonceCovoiDetailComponent } from "./dashboardutil/annonceCovoi/annonc
 import { MotDePasseComponent } from "./MotDePasse/MotDePasse.component";
 import { PublicProfilComponent } from "./dashboardutil/profil_public/profil_public.component";
 import { MesReservationsComponent } from "./dashboardutil/profil/mesReservation.component";
+import { ConfirmerInscriptionComponent } from "./inscription/confirmerInscription.component";
 export const MODULE_ROUTES: Route[] =[
     { path: 'chat', component: App2Component ,canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: InscriptionComponent },
-{path:'MotDePasse',component:MotDePasseComponent},
+    {path:'MotDePasse',component:MotDePasseComponent},
+    {path:'ConfirmerInscription',component:ConfirmerInscriptionComponent},
    
     { path: 'dashboard' ,component: DashboardComponent ,children: [
     { path: 'Statistiques', component: StatistiqueComponent },
@@ -55,6 +57,6 @@ export const MODULE_ROUTES: Route[] =[
 export const MODULE_COMPONENTS = [
     StatistiqueComponent,DashboardComponent,GestionUtilComponent,
 
-ParametrageComponent, LoginComponent,App2Component,InscriptionComponent,DashboardUtilComponent,
+    ParametrageComponent, LoginComponent,App2Component,InscriptionComponent,DashboardUtilComponent,
  AnnonceCovoiComponent, AccueilComponent, AnnonceCovoiDetailComponent,AjoutAnnonceCovoiComponent
 ]

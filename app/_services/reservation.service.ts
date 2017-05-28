@@ -14,8 +14,8 @@ export class ReservationService{
        let headers= new Headers();
        let options= new RequestOptions ({headers: headers}); 
        let urlSearchParams = new URLSearchParams();
-         urlSearchParams.append('idAnnonceCovoi', idAnnonceCovoi);
-         urlSearchParams.append('idUtilisateurReservation', idUtilisateurReservation);
+        urlSearchParams.append('idAnnonceCovoi', idAnnonceCovoi);
+        urlSearchParams.append('idUtilisateurReservation', idUtilisateurReservation);
          urlSearchParams.append('etat', this.etat.toString()); 
          let body = urlSearchParams.toString();
           return this.http.put(this.config.apiUrl+'/reservation?'+body, body, this.jwt())
@@ -70,7 +70,7 @@ refuserReservation(idReservation, etat){
         urlSearchParams.append('etat', etat); 
         let requestParams= urlSearchParams.toString();
         console.log(requestParams)
-     return this.http.put(this.config.apiUrl+'/accepterReservation?'+requestParams, this.jwt())
+     return this.http.put(this.config.apiUrl+'/refuserReservation?'+requestParams, this.jwt())
         .map((res: Response) => res.json());
 
 }

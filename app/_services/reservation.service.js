@@ -69,7 +69,7 @@ var ReservationService = (function () {
         urlSearchParams.append('etat', etat);
         var requestParams = urlSearchParams.toString();
         console.log(requestParams);
-        return this.http.put(this.config.apiUrl + '/accepterReservation?' + requestParams, this.jwt())
+        return this.http.put(this.config.apiUrl + '/refuserReservation?' + requestParams, this.jwt())
             .map(function (res) { return res.json(); });
     };
     ReservationService.prototype.jwt = function () {

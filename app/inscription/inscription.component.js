@@ -11,10 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var user_service_1 = require("../_services/user.service");
 var router_1 = require("@angular/router");
+var alert_service_1 = require("../_services/alert.service");
 var InscriptionComponent = (function () {
-    function InscriptionComponent(userService, router) {
+    function InscriptionComponent(userService, router, alertService) {
         this.userService = userService;
         this.router = router;
+        this.alertService = alertService;
         this.model = {};
         this.model2 = {};
     }
@@ -22,12 +24,26 @@ var InscriptionComponent = (function () {
         var _this = this;
         console.log("aaaaaaaaaaaa");
         //console.log(this.user);
-        this.userService.addUser(this.model.firstname, this.model.lastname, this.model.username, this.model.password)
+        this.userService.addUser(this.model.prenom, this.model.nom, this.model.profession, this.model.numTelephone, this.model.email, this.model.login, this.model.password)
             .subscribe(function (data) {
-            _this.router.navigate(['dashboardutil/Accueil']);
-            console.log(_this.url);
-            console.log("model1=>" + _this.model.firstname);
-            console.log("model2=>" + _this.model2.firstname);
+            if (data !== null) {
+                _this.router.navigate(['dashboardutil/Accueil']);
+                console.log("ffffffffff" + data);
+            }
+            else {
+                console.log("ssssssss");
+                _this.message = " Vous êtes déjà inscrit";
+                console.log(_this.message);
+                _this.alertService.error(_this.message);
+                console.log(data);
+            }
+        }, function (error) {
+            if (error) {
+                console.log("ssssssss");
+                _this.message = " Ce login déjà existe ";
+                console.log(_this.message);
+                _this.alertService.error(_this.message);
+            }
         });
     };
     InscriptionComponent.prototype.ngOnInit = function () {
@@ -39,7 +55,7 @@ var InscriptionComponent = (function () {
             templateUrl: 'inscription.component.html',
             providers: [user_service_1.UserService],
         }), 
-        __metadata('design:paramtypes', [user_service_1.UserService, router_1.Router])
+        __metadata('design:paramtypes', [user_service_1.UserService, router_1.Router, alert_service_1.AlertService])
     ], InscriptionComponent);
     return InscriptionComponent;
 }());

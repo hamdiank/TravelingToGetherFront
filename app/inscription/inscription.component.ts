@@ -4,7 +4,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { User } from "../_models/user";
 import {NgModule} from '@angular/core';
 import  {FormsModule,ReactiveFormsModule}from '@angular/forms';
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
+import { AlertService } from "../_services/alert.service";
 
 
 @Component({
@@ -16,27 +17,40 @@ import {NgForm} from '@angular/forms';
 })
 
 export class InscriptionComponent implements OnInit{
+      
+      message: string;
       public model : any ={};
       public model2 : any ={};
       url: string;
       route: ActivatedRoute;
 
-    constructor(private userService: UserService, private router: Router){
+    constructor(private userService: UserService, private router: Router, private alertService: AlertService){
     }
         onSubmit(){  
             console.log("aaaaaaaaaaaa");
             //console.log(this.user);
-             this.userService.addUser(this.model.firstname, this.model.lastname,this.model.username,this.model.password)
+             this.userService.addUser(this.model.prenom, this.model.nom, this.model.profession,  this.model.numTelephone,this.model.email,this.model.login, this.model.password)
              .subscribe(
-                data => {
-                    this.router.navigate(['dashboardutil/Accueil']);
-                    console.log(this.url);
-                    
-                    console.log("model1=>"+this.model.firstname)
-                    
-                    console.log("model2=>"+this.model2.firstname)
+                   data => { 
+                  if(data !== null){
+                   this.router.navigate(['dashboardutil/Accueil']);
+                    console.log("ffffffffff"+data);
 
-                });
+                 }else {
+                     console.log("ssssssss")
+                    this.message = " Vous êtes déjà inscrit";
+                    console.log(this.message)
+                    this.alertService.error(this.message);
+                    console.log(data)
+
+                }
+            },  error => {
+                if(error){
+                    console.log("ssssssss")
+                    this.message = " Ce login déjà existe ";
+                    console.log(this.message)
+                    this.alertService.error(this.message);
+                }});
         }
        ngOnInit() {
 

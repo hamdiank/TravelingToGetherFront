@@ -1,0 +1,41 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+         <div class="col-sm-6  col-sm-offset-3">
+             <alert></alert>
+          <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" >
+                                <div class="card ">
+                                    <div class="card-header text-center" data-background-color="red">
+                                        <h4 class="card-title">Inscription</h4>
+                                        <div class="social-line">
+      
+                                        </div>
+                                    </div>
+
+                                    <p class="category text-center">
+                                      Confirmer Votre Inscription
+                                    </p>
+                                    <div class="card-content">
+ 
+                    
+                                         <div class="row">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="material-icons">email</i>
+                                                </span>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">nom@exemple.com</label>
+                                                    <input type="text" class="form-control" name="email"  [(ngModel)]="model.email" #email="ngModel" required>
+                                                </div>
+                                            </div>
+                                         </div>
+                                    </div>
+                                    <div class="footer text-center">
+                                        <button type="submit" class="btn btn-danger btn-simple btn-wd btn-lg" >Confirmer Inscription</button>
+                                    </div>
+                                </div>
+                            </form>
+                         </div>
+                   </div>
+		     </div>
+         </div>

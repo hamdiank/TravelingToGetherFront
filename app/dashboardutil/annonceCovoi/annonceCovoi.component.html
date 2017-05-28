@@ -90,6 +90,8 @@
 										<h3 class="name">{{annonceCovoi.utilisateur.login}}</h3>
 										<p class="profession">{{annonceCovoi.utilisateur.profession}} </p>
 										<p class="age">{{annonceCovoi.utilisateur.age}}</p>
+										<p> {{annonceCovoi.utilisateur.idUtilisateur}}</p>
+										 <input type="hidden"  [(ngModel)]="idUtilisateur"  value={{annonceCovoi.utilisateur.idUtilisateur}} name="idUtilisateur" (change)="onSelectId($event)"> 
 										<p class="score">
 											<span class="glyphicon glyphicon-star-empty icon">
 											</span>
@@ -122,8 +124,8 @@
 								</div>
                             </div>
                             <div class="footer">
-                                <button class="btn btn-simple" onclick="rotateCard(this)">
-                                    <i class="fa fa-mail-forward"></i><a [routerLink]="['/dashboardutil/detail', annonceCovoi.id]">Show Detail </a>
+                                <button class="btn btn-simple" >
+                                    <i class="fa fa-mail-forward"></i> &nbsp;&nbsp;<a [routerLink]="['/dashboardutil/detail', annonceCovoi.id]">Show Detail </a>
                                 </button>
                             </div>
                         </div>

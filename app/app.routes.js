@@ -17,11 +17,13 @@ var annonceCovoiDetail_component_1 = require("./dashboardutil/annonceCovoi/annon
 var MotDePasse_component_1 = require("./MotDePasse/MotDePasse.component");
 var profil_public_component_1 = require("./dashboardutil/profil_public/profil_public.component");
 var mesReservation_component_1 = require("./dashboardutil/profil/mesReservation.component");
+var confirmerInscription_component_1 = require("./inscription/confirmerInscription.component");
 exports.MODULE_ROUTES = [
     { path: 'chat', component: app2_component_1.App2Component, canActivate: [index_1.AuthGuard] },
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'register', component: inscription_component_1.InscriptionComponent },
     { path: 'MotDePasse', component: MotDePasse_component_1.MotDePasseComponent },
+    { path: 'ConfirmerInscription', component: confirmerInscription_component_1.ConfirmerInscriptionComponent },
     { path: 'dashboard', component: dashboard_component_1.DashboardComponent, children: [
             { path: 'Statistiques', component: statistique_component_1.StatistiqueComponent },
             { path: 'parametrage', component: parametrage_component_1.ParametrageComponent },

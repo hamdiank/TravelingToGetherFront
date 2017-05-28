@@ -63,19 +63,20 @@ getAvis(id:string) {
            
             //return this.http.post(this.config.apiUrl + '/register',user,this.jwt());
     */
-    addUser(firstname: String, lastname: String, username: String, password: String) {
+    addUser(prenom: String, nom: String, profession:string, numTelephone: string, email: String, login: String, password: string) {
 
         let headers = new Headers();
 
         console.log(headers);
 
-        let body = { "nom": firstname, "prenom": lastname, "login": username, "motDePasse": password };
+        let body = { "prenom": prenom, "nom": nom, "profession": profession, "numTelephone": numTelephone, "email": email,"login": login, "motDePasse": password };
 
         let options = new RequestOptions({ headers: headers });
-        return this.http.post(this.config.apiUrl + '/utilisateurs', body, options)
-            .map((response: Response) => {
+        return this.http.post(this.config.apiUrl + '/inscriptionUtilisateur', body, options)
+           .map((res: Response) => res.json());
+        
 
-                console.log("bk 1")
+/*                console.log("bk 1")
                 let x = JSON.parse(JSON.stringify(response));
                 console.log("bk 2");
 
@@ -91,20 +92,33 @@ getAvis(id:string) {
                     //console.log (user.user.username);
 
 
-                }
-            });
+                } */
 
 
     }
 
     update(user: User) {
 
-        user.idUtilisateur = localStorage.getItem('currentUserId');
+      //  user.idUtilisateur = localStorage.getItem('currentUserId');
         return this.http.put(this.config.apiUrl + '/utilisateur', user, this.jwt());
     }
 
     delete(_id: string) {
         return this.http.delete(this.config.apiUrl + '/deluser/' + _id, this.jwt());
+    }
+
+    ////////////// Confirmer Inscription //////////////////
+
+   
+    confirmerInscription( email: string){
+        let headers= new Headers();
+        let options = new RequestOptions({ headers: headers });
+         let urlSearchParams = new URLSearchParams();
+        urlSearchParams.append('email', email);
+        let requestParams = urlSearchParams.toString();
+        return this.http.put(this.config.apiUrl+'/confirmerInscription?'+requestParams, requestParams, options );
+        
+
     }
 
 

@@ -17,6 +17,7 @@ declare var $:any;
 })
 
 export class AnnonceCovoiComponent implements OnInit {
+    utilisateur: any={};
     annoncesCovoi: AnnonceCovoi[];
      public model : any ={};
 
@@ -259,26 +260,19 @@ onSubmit(){
     }
 
     }
-
-
-
     ///////////////////////////////////////////
-
-
-    
-
 }
-
-
   //////////////////////////////////////////////////////////
 
     getAnnoncesCovoi(){
      this.annonceCovoiService.getAnnoncesCovoi().subscribe( annoncesCovoi=> { this.annoncesCovoi=annoncesCovoi,
          this.annoncesCovoiToFilter= annoncesCovoi
-    
     });
     console.log("annoncesCovoi");
+    console.log(this.annoncesCovoi)
 
+console.log(this.utilisateur)
+    
     
     let currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
               this.id=currentUserId;
@@ -289,6 +283,14 @@ onSubmit(){
                 this.id=currentUser;
              //   console.log(currentUser.json().idUtilisateur)   */
 }
+/////////////////////////////////////////////////
+onSelectId($event){
+     $event.preventDefault();
+    console.log('selectedIDUtil: ' + $event.target.value);
+    //console.log(typeof($event.target.value))
+}
+
+/////////////////////////////////////////////////
         ngOnInit() {
              let currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
               this.id=currentUserId;
