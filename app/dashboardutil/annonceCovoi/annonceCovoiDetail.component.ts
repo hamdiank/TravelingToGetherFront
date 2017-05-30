@@ -4,6 +4,7 @@ import { AnnonceCovoiService } from "../../_services/annonceCovoi.service";
 import { ActivatedRoute, Params } from "@angular/router";
 import { ReservationService } from "../../_services/reservation.service";
 import { AlertService } from "../../_services/alert.service";
+import { UserService } from "../../_services/user.service";
 
 @Component({
     selector: 'annonce-covoi-detail-cmp',
@@ -14,43 +15,49 @@ import { AlertService } from "../../_services/alert.service";
 })
 
 export class AnnonceCovoiDetailComponent implements OnInit {
+    image: any;
+    
     message: string;
     reserved: boolean;
-
 
     currentUserId: string;
     annonceCovoi:any={};
     utilisateur:any={}
     id: number;
     private sub: any;
-
     reservations:any=[];
 
-    constructor(private annonceCovoiService: AnnonceCovoiService, private reservationService:ReservationService, public route: ActivatedRoute,  private alertService: AlertService){
+    preferences: any={};
+    voiture: any={};
+
+    constructor(private annonceCovoiService: AnnonceCovoiService, private reservationService:ReservationService, public route: ActivatedRoute,  private alertService: AlertService,private userService: UserService){
        this.sub = this.route.params.subscribe(params => {
        this.id = +params['id']; 
        console.log(this.id)
        console.log('dddddddd')
     });
-
-     
+  
     console.log('I am here '+this.id)
     this.annonceCovoiService.getAnnonceCovoi(this.id).subscribe( annonceCovoi=> { this.annonceCovoi = annonceCovoi,
-        this.utilisateur= annonceCovoi.utilisateur, this.reservations= annonceCovoi.reservations
-       // console.log(this.utilisateur.idUtilisateur)
+        this.utilisateur= annonceCovoi.utilisateur, this.reservations= annonceCovoi.reservations,
+        this.preferences= this.utilisateur.preferences, this.voiture= this.utilisateur.voiture
+       console.log("idutilisateur"+this.utilisateur.idUtilisateur)
+        console.log("idutilisateur"+this.preferences.fumeur)
        // console.log(JSON.stringify(this.annonceCovoi))
      // console.log(JSON.stringify(this.utilisateur))
-        
-    
     });
 
-    }
-
-getAnnonceCovoi(){
-  
-       
 }
 
+/////////////////////////////////////
+
+  showImage(filename: string) {
+    this.userService.getImage(filename)
+      .subscribe((file) => {
+        this.image = file;
+        console.log("imagee  " + this.image);
+      });
+  }
 ////////////////////////////////////////////////
 reserver(){
 this.reservationService.reserver(this.annonceCovoi.id, this.currentUserId)
@@ -86,12 +93,12 @@ this.reservationService.reserver(this.annonceCovoi.id, this.currentUserId)
 /////////////////////////////////////////////////////////
 
 ngOnInit(): void {
-    this.getAnnonceCovoi();
-    console.log(this.utilisateur.id)
+    
+    console.log(typeof(this.utilisateur.idUtilisateur))
     this.currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
+    //console.log("mmmmmmmmmmmm"+this.utilisateur.id)
+    //this.showImage(this.utilisateur.idUtilisateur);
          // console.log('my id'+this.currentUserId)
         }
-
 ////////////////////////////////////////////////////////////
-
 }

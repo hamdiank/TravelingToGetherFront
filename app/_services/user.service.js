@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var app_config_1 = require('../app.config');
+var http_2 = require("@angular/http");
 var UserService = (function () {
     function UserService(http, config) {
         this.http = http;
@@ -100,7 +101,7 @@ var UserService = (function () {
     UserService.prototype.confirmerInscription = function (email) {
         var headers = new http_1.Headers();
         var options = new http_1.RequestOptions({ headers: headers });
-        var urlSearchParams = new URLSearchParams();
+        var urlSearchParams = new http_2.URLSearchParams();
         urlSearchParams.append('email', email);
         var requestParams = urlSearchParams.toString();
         return this.http.put(this.config.apiUrl + '/confirmerInscription?' + requestParams, requestParams, options);

@@ -117,7 +117,7 @@ export class MesAnnoncesCovoiComponent implements OnInit {
 getMesAnnoncesCovoi(){
     let currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
     this.id=currentUserId;
-    console.log(this.id+"hhhhh")
+    console.log(typeof(this.id)+"hhhhh")
     this.annonceCovoiService.getMesAnnoncesCovoi(this.id).subscribe( annoncesCovoi=> { this.annoncesCovoi=annoncesCovoi
     
     });
@@ -142,7 +142,7 @@ onClick(annonceCovoi: AnnonceCovoi){
 
 onClickReservation(reservation){
     this.idReservation= reservation.idReservation;
-    console.log("5555555"+this.idReservation)
+    console.log("5555555"+this.idReservation+ typeof(this.idReservation))
 
 }
 ///////////////// Get Reservation by AnnonceCovoi///////////////

@@ -232,11 +232,15 @@ var AnnonceCovoiComponent = (function () {
                    //   console.log(currentUser.json().idUtilisateur)   */
     };
     /////////////////////////////////////////////////
-    AnnonceCovoiComponent.prototype.onSelectId = function ($event) {
-        $event.preventDefault();
-        console.log('selectedIDUtil: ' + $event.target.value);
+    AnnonceCovoiComponent.prototype.onKey = function (event) {
+        // this.idUtilisateur=newValue;
+        console.log(event.target.value);
         //console.log(typeof($event.target.value))
     };
+    /* onChange(idUtilisateur) {
+            console.log('idUtilisateur'+idUtilisateur)
+    
+      }*/
     /////////////////////////////////////////////////
     AnnonceCovoiComponent.prototype.ngOnInit = function () {
         var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));

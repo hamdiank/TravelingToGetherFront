@@ -17,6 +17,7 @@ declare var $:any;
 })
 
 export class AnnonceCovoiComponent implements OnInit {
+        idUtilisateur: any;
     utilisateur: any={};
     annoncesCovoi: AnnonceCovoi[];
      public model : any ={};
@@ -284,11 +285,16 @@ console.log(this.utilisateur)
              //   console.log(currentUser.json().idUtilisateur)   */
 }
 /////////////////////////////////////////////////
-onSelectId($event){
-     $event.preventDefault();
-    console.log('selectedIDUtil: ' + $event.target.value);
+onKey(event: any){
+   // this.idUtilisateur=newValue;
+    console.log(event.target.value);
     //console.log(typeof($event.target.value))
 }
+
+/* onChange(idUtilisateur) {
+        console.log('idUtilisateur'+idUtilisateur)
+
+  }*/
 
 /////////////////////////////////////////////////
         ngOnInit() {

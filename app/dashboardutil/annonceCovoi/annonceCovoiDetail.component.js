@@ -13,16 +13,20 @@ var annonceCovoi_service_1 = require("../../_services/annonceCovoi.service");
 var router_1 = require("@angular/router");
 var reservation_service_1 = require("../../_services/reservation.service");
 var alert_service_1 = require("../../_services/alert.service");
+var user_service_1 = require("../../_services/user.service");
 var AnnonceCovoiDetailComponent = (function () {
-    function AnnonceCovoiDetailComponent(annonceCovoiService, reservationService, route, alertService) {
+    function AnnonceCovoiDetailComponent(annonceCovoiService, reservationService, route, alertService, userService) {
         var _this = this;
         this.annonceCovoiService = annonceCovoiService;
         this.reservationService = reservationService;
         this.route = route;
         this.alertService = alertService;
+        this.userService = userService;
         this.annonceCovoi = {};
         this.utilisateur = {};
         this.reservations = [];
+        this.preferences = {};
+        this.voiture = {};
         this.sub = this.route.params.subscribe(function (params) {
             _this.id = +params['id'];
             console.log(_this.id);
@@ -31,13 +35,22 @@ var AnnonceCovoiDetailComponent = (function () {
         console.log('I am here ' + this.id);
         this.annonceCovoiService.getAnnonceCovoi(this.id).subscribe(function (annonceCovoi) {
             _this.annonceCovoi = annonceCovoi,
-                _this.utilisateur = annonceCovoi.utilisateur, _this.reservations = annonceCovoi.reservations;
-            // console.log(this.utilisateur.idUtilisateur)
+                _this.utilisateur = annonceCovoi.utilisateur, _this.reservations = annonceCovoi.reservations,
+                _this.preferences = _this.utilisateur.preferences, _this.voiture = _this.utilisateur.voiture;
+            console.log("idutilisateur" + _this.utilisateur.idUtilisateur);
+            console.log("idutilisateur" + _this.preferences.fumeur);
             // console.log(JSON.stringify(this.annonceCovoi))
             // console.log(JSON.stringify(this.utilisateur))
         });
     }
-    AnnonceCovoiDetailComponent.prototype.getAnnonceCovoi = function () {
+    /////////////////////////////////////
+    AnnonceCovoiDetailComponent.prototype.showImage = function (filename) {
+        var _this = this;
+        this.userService.getImage(filename)
+            .subscribe(function (file) {
+            _this.image = file;
+            console.log("imagee  " + _this.image);
+        });
     };
     ////////////////////////////////////////////////
     AnnonceCovoiDetailComponent.prototype.reserver = function () {
@@ -69,9 +82,10 @@ var AnnonceCovoiDetailComponent = (function () {
            */
     /////////////////////////////////////////////////////////
     AnnonceCovoiDetailComponent.prototype.ngOnInit = function () {
-        this.getAnnonceCovoi();
-        console.log(this.utilisateur.id);
+        console.log(typeof (this.utilisateur.idUtilisateur));
         this.currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
+        //console.log("mmmmmmmmmmmm"+this.utilisateur.id)
+        //this.showImage(this.utilisateur.idUtilisateur);
         // console.log('my id'+this.currentUserId)
     };
     AnnonceCovoiDetailComponent = __decorate([
@@ -82,7 +96,7 @@ var AnnonceCovoiDetailComponent = (function () {
             styleUrls: ['annonceCovoiDetail.component.css'],
             providers: [annonceCovoi_service_1.AnnonceCovoiService, reservation_service_1.ReservationService]
         }), 
-        __metadata('design:paramtypes', [annonceCovoi_service_1.AnnonceCovoiService, reservation_service_1.ReservationService, router_1.ActivatedRoute, alert_service_1.AlertService])
+        __metadata('design:paramtypes', [annonceCovoi_service_1.AnnonceCovoiService, reservation_service_1.ReservationService, router_1.ActivatedRoute, alert_service_1.AlertService, user_service_1.UserService])
     ], AnnonceCovoiDetailComponent);
     return AnnonceCovoiDetailComponent;
 }());

@@ -78,7 +78,7 @@ var MesAnnoncesCovoiComponent = (function () {
         var _this = this;
         var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
         this.id = currentUserId;
-        console.log(this.id + "hhhhh");
+        console.log(typeof (this.id) + "hhhhh");
         this.annonceCovoiService.getMesAnnoncesCovoi(this.id).subscribe(function (annoncesCovoi) {
             _this.annoncesCovoi = annoncesCovoi;
         });
@@ -98,7 +98,7 @@ var MesAnnoncesCovoiComponent = (function () {
     };
     MesAnnoncesCovoiComponent.prototype.onClickReservation = function (reservation) {
         this.idReservation = reservation.idReservation;
-        console.log("5555555" + this.idReservation);
+        console.log("5555555" + this.idReservation + typeof (this.idReservation));
     };
     ///////////////// Get Reservation by AnnonceCovoi///////////////
     MesAnnoncesCovoiComponent.prototype.getReservationsByAnnonceCovoi = function () {

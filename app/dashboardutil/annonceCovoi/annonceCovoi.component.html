@@ -18,7 +18,7 @@
 							<div class="row" style="padding: 5px 30px 0px 80px;">
 								<div class="col-sm-4">
 									<div class="form-group form-black label-floating is-empty">
-										<label>Pays Départ</label>
+										<label> <i class="material-icons" style="font-size:25px;">place</i> &nbsp; Pays Départ</label>
 										<br>
 										<select class="selectpicker" [(ngModel)]="model.paysDepart"  (change)="onSelect1($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;">
 											<option value="0">--Select--</option>
@@ -28,7 +28,7 @@
 								</div>
 								<div class="col-sm-4">
 									<div class="form-group form-black label-floating is-empty">
-										<label>Ville Départ</label>
+										<label> <i class="material-icons" style="font-size:25px;">place</i> &nbsp;Ville Départ</label>
 										<br>
 										<select [(ngModel)]="model.villeDepart"   name="villeDepart"   #villeDepart="ngModel" style="width: 200px; height: 30px;">
 											<option value="0">Select Ville Depart</option>
@@ -43,7 +43,7 @@
                         <div class="row"  style="padding: 0px 30px 0px 80px;">
                             <div class="col-sm-4">
                                 <div class="form-group form-black label-floating is-empty">
-                                    <label>Pays Arrivée</label>
+                                    <label><i class="material-icons" style="font-size:25px;">place</i> &nbsp; Pays Arrivée</label>
                                     <br>
                                     <select [(ngModel)]="model.paysArrivee" (change)="onSelect2($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;">
                                         <option value="0">--Select--</option>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group form-black label-floating is-empty">
-                                    <label>Ville Arrivée</label>
+                                    <label> <i class="material-icons" style="font-size:25px;">place</i> &nbsp;Ville Arrivée</label>
                                     <br>
                                     <select [(ngModel)]="model.villeArrivee"  name="villeArrivee"   #villeArrivee="ngModel" style="width: 200px; height: 30px;">
                                         <option  value="0">--Select--</option>
@@ -90,8 +90,6 @@
 										<h3 class="name">{{annonceCovoi.utilisateur.login}}</h3>
 										<p class="profession">{{annonceCovoi.utilisateur.profession}} </p>
 										<p class="age">{{annonceCovoi.utilisateur.age}}</p>
-										<p> {{annonceCovoi.utilisateur.idUtilisateur}}</p>
-										 <input type="hidden"  [(ngModel)]="idUtilisateur"  value={{annonceCovoi.utilisateur.idUtilisateur}} name="idUtilisateur" (change)="onSelectId($event)"> 
 										<p class="score">
 											<span class="glyphicon glyphicon-star-empty icon">
 											</span>

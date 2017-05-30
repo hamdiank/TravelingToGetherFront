@@ -3,6 +3,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppConfig } from '../app.config';
 import { User } from '../_models/index';
 import { Observable } from "rxjs/Observable";
+import { URLSearchParams } from "@angular/http";
 
 @Injectable()
 export class UserService {

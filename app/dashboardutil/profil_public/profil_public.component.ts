@@ -261,6 +261,7 @@ export class PublicProfilComponent implements OnInit {
       this.nTel = this.u.numTelephone;
       this.description = this.u.description;
       this.preferences = this.u.preferences;
+      console.log(this.u.preferences)
       this.animaux = this.preferences.animaux;
       this.fumeur = this.preferences.fumeur;
       this.musique = this.preferences.musique;
@@ -274,6 +275,7 @@ export class PublicProfilComponent implements OnInit {
 
   ngOnInit() {
     $.getScript('../assets/js/initMenu.js');
+    console.log("mmmmm"+typeof(this.id))
     this.showImage(this.id);
     this.showImageVoiture(this.id);
     this.getAvis(this.id);

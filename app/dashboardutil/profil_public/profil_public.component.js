@@ -31,6 +31,7 @@ var PublicProfilComponent = (function () {
             _this.nTel = _this.u.numTelephone;
             _this.description = _this.u.description;
             _this.preferences = _this.u.preferences;
+            console.log(_this.u.preferences);
             _this.animaux = _this.preferences.animaux;
             _this.fumeur = _this.preferences.fumeur;
             _this.musique = _this.preferences.musique;
@@ -43,6 +44,7 @@ var PublicProfilComponent = (function () {
     }
     PublicProfilComponent.prototype.ngOnInit = function () {
         $.getScript('../assets/js/initMenu.js');
+        console.log("mmmmm" + typeof (this.id));
         this.showImage(this.id);
         this.showImageVoiture(this.id);
         this.getAvis(this.id);
