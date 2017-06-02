@@ -62,6 +62,10 @@ import { SpinnerModule, PaginatorModule } from 'primeng/primeng';
 import { ReservationService } from "./_services/reservation.service";
 import { MesReservationsComponent } from "./dashboardutil/profil/mesReservation.component";
 import { ConfirmerInscriptionComponent } from "./inscription/confirmerInscription.component";
+import { AnnonceVolComponent } from "./dashboardutil/annonceVol/annonceVol.component";
+import { MesAnnoncesVolComponent } from "./dashboardutil/profil/mesAnnoncesVol.component";
+import { AjoutAnnonceVolComponent } from "./dashboardutil/annonceVol/ajoutAnnonceVol.component";
+import { AnnonceVolDetailComponent } from "./dashboardutil/annonceVol/annonceVolDetail.component";
 
 @NgModule({
     imports: [ 
@@ -95,7 +99,8 @@ import { ConfirmerInscriptionComponent } from "./inscription/confirmerInscriptio
     ChatThreadComponent,
     AlertComponent,
     FromNowPipe,ValuesPipe,FilterPipe,  AnnonceCovoiComponent, InscriptionComponent, AccueilComponent, ProfilComponent, MesAnnoncesCovoiComponent,MotDePasseComponent
-    ,PublicProfilComponent, MesReservationsComponent, ConfirmerInscriptionComponent],
+    ,PublicProfilComponent, MesReservationsComponent, ConfirmerInscriptionComponent, AnnonceVolComponent, 
+    MesAnnoncesVolComponent, AjoutAnnonceVolComponent, AnnonceVolDetailComponent],
 
 
     bootstrap:    [ AppComponent ],

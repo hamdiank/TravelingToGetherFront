@@ -37,6 +37,7 @@ export class PaysService {
     }
 
     getById(id: string) {
+        console.log("i am here getById")
         return this.http.get(this.config.apiUrl + '/admin/pays/pays/' + id, this.jwt()).map((response: Response) => response.json());
 
     }

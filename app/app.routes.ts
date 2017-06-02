@@ -23,6 +23,10 @@ import { MotDePasseComponent } from "./MotDePasse/MotDePasse.component";
 import { PublicProfilComponent } from "./dashboardutil/profil_public/profil_public.component";
 import { MesReservationsComponent } from "./dashboardutil/profil/mesReservation.component";
 import { ConfirmerInscriptionComponent } from "./inscription/confirmerInscription.component";
+import { AnnonceVolComponent } from "./dashboardutil/annonceVol/annonceVol.component";
+import { MesAnnoncesVolComponent } from "./dashboardutil/profil/mesAnnoncesVol.component";
+import { AjoutAnnonceVolComponent } from "./dashboardutil/annonceVol/ajoutAnnonceVol.component";
+import { AnnonceVolDetailComponent } from "./dashboardutil/annonceVol/annonceVolDetail.component";
 export const MODULE_ROUTES: Route[] =[
     { path: 'chat', component: App2Component ,canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
@@ -42,9 +46,14 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'MonProfil', component: ProfilComponent },
     { path: 'MesAnnoncesCovoi', component: MesAnnoncesCovoiComponent },
     { path: 'AjoutAnnonceCovoi', component: AjoutAnnonceCovoiComponent },
-     { path: 'publicProfile/:id', component:  PublicProfilComponent},
+    { path: 'AjoutAnnonceVol', component: AjoutAnnonceVolComponent },
+    { path: 'publicProfile/:id', component:  PublicProfilComponent},
     { path: 'detail/:id', component: AnnonceCovoiDetailComponent },
     { path: 'MesReservations', component: MesReservationsComponent },
+    { path: 'AnnonceVol', component: AnnonceVolComponent },
+    { path: 'MesAnnoncesVol', component: MesAnnoncesVolComponent },
+    { path: 'AnnonceVolDetail/:id', component: AnnonceVolDetailComponent },
+   
     ],canActivate: [AuthGuard],data: { roles: ['USER'] }  },
 
     { path: 'dashboardutil/Accueil', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['USER'] }},

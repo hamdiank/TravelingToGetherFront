@@ -34,6 +34,7 @@ var PaysService = (function () {
         return this.http.post(this.config.apiUrl + '/admin/pays/addPays/' + nomPays, this.jwt());
     };
     PaysService.prototype.getById = function (id) {
+        console.log("i am here getById");
         return this.http.get(this.config.apiUrl + '/admin/pays/pays/' + id, this.jwt()).map(function (response) { return response.json(); });
     };
     PaysService.prototype.getByCity = function (nom) {
