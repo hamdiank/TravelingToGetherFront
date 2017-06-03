@@ -22,6 +22,10 @@ var annonceVol_component_1 = require("./dashboardutil/annonceVol/annonceVol.comp
 var mesAnnoncesVol_component_1 = require("./dashboardutil/profil/mesAnnoncesVol.component");
 var ajoutAnnonceVol_component_1 = require("./dashboardutil/annonceVol/ajoutAnnonceVol.component");
 var annonceVolDetail_component_1 = require("./dashboardutil/annonceVol/annonceVolDetail.component");
+var annonceTrain_component_1 = require("./dashboardutil/annonceTrain/annonceTrain.component");
+var ajoutAnnonceTrain_component_1 = require("./dashboardutil/annonceTrain/ajoutAnnonceTrain.component");
+var annonceTrainDetail_component_1 = require("./dashboardutil/annonceTrain/annonceTrainDetail.component");
+var mesAnnoncesTrain_component_1 = require("./dashboardutil/profil/mesAnnoncesTrain.component");
 exports.MODULE_ROUTES = [
     { path: 'chat', component: app2_component_1.App2Component, canActivate: [index_1.AuthGuard] },
     { path: 'login', component: login_component_1.LoginComponent },
@@ -47,6 +51,10 @@ exports.MODULE_ROUTES = [
             { path: 'AnnonceVol', component: annonceVol_component_1.AnnonceVolComponent },
             { path: 'MesAnnoncesVol', component: mesAnnoncesVol_component_1.MesAnnoncesVolComponent },
             { path: 'AnnonceVolDetail/:id', component: annonceVolDetail_component_1.AnnonceVolDetailComponent },
+            { path: 'AnnoncesTrain', component: annonceTrain_component_1.AnnonceTrainComponent },
+            { path: 'AjoutAnnonceTrain', component: ajoutAnnonceTrain_component_1.AjoutAnnonceTrainComponent },
+            { path: 'AnnonceTrainDetail/:id', component: annonceTrainDetail_component_1.AnnonceTrainDetailComponent },
+            { path: 'MesAnnoncesTrain', component: mesAnnoncesTrain_component_1.MesAnnoncesTrainComponent }
         ], canActivate: [index_1.AuthGuard], data: { roles: ['USER'] } },
     { path: 'dashboardutil/Accueil', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full', canActivate: [index_1.AuthGuard], data: { roles: ['USER'] } },
     { path: 'dashboard/Statistiques', redirectTo: 'dashboard/Statistiques', pathMatch: 'full', canActivate: [index_1.AuthGuardAdmin], data: { roles: ['ADMIN'] } },

@@ -1,0 +1,129 @@
+<!-- CSS Files Dashboard Utilisateur -->
+<link href="/assets/css/material-kit.css" rel="stylesheet"/>
+
+<!-- CSS Files AnnonceCovoi template -->
+
+<!-- ***********************************-->
+<div class="profile-page">
+    <div class="wrapper">
+		<div class="header header-filter" style="background-image: url('./assets/img/faces/city3.jpg');"></div>
+            <div class="main main-raised">
+                <div class="profile-content">
+                    <div class="container">
+  
+
+ <!-- ***************************** Row ********************************************* --> 
+ <!-- ***************************** Row ********************************************* --> 
+ 					<form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>                      
+ 						<div class="row" style="border: 1px solid lavender; background-color:lavender; margin-top: 50px; ">
+							<div class="row" style="padding: 5px 30px 0px 80px;">
+								<div class="col-sm-4">
+									<div class="form-group form-black label-floating is-empty">
+										<label> <i class="material-icons" style="font-size:25px;">place</i> &nbsp; Pays Départ</label>
+										<br>
+										<select class="selectpicker" [(ngModel)]="model.paysDepart"  (change)="onSelect1($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;">
+											<option  value="0"></option>
+											<option *ngFor="let pay of pays" value= {{pay.idPays}}>{{pay.nom}}</option>
+										</select> 
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group form-black label-floating is-empty">
+										<label> <i class="material-icons" style="font-size:25px;">place</i> &nbsp;Ville Départ</label>
+										<br>
+										<select [(ngModel)]="model.aeroportDepart"   name="aeroportDepart"   #aeroportDepart="ngModel" style="width: 200px; height: 30px;">
+											<option value="0"></option>
+											<option *ngFor="let station of stations " value= {{station.nom}}>{{station.nom}}</option>
+										</select> 
+									</div>
+								</div>
+								
+							</div>
+                         <hr>
+                         
+                        <div class="row"  style="padding: 0px 30px 0px 80px;">
+                            <div class="col-sm-4">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <label><i class="material-icons" style="font-size:25px;">place</i> &nbsp; Pays Arrivée</label>
+                                    <br>
+                                    <select [(ngModel)]="model.paysArrivee" (change)="onSelect2($event.target.value)"  name="paysArrivee"   #paysDepart="ngModel" style="width: 200px; height: 30px;">
+                                        <option value="0"></option>
+                                        <option *ngFor="let pay of pays" value= {{pay.idPays}}>{{pay.nom}}</option>
+                                    </select> 
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <label> <i class="material-icons" style="font-size:25px;">place</i> &nbsp;Ville Arrivée</label>
+                                    <br>
+                                    <select [(ngModel)]="model.aeroportArrivee"  name="aeroportArrivee"   #aeroportArrivee="ngModel" style="width: 200px; height: 30px;">
+                                        <option  value="0"></option>
+                                        <option *ngFor="let aeroport of aeroports2" value= {{aeroport.nom}}>{{aeroport.nom}}</option>
+                                    </select> 
+                                </div>
+                            </div>
+							<div class="col-sm-4">
+										<button (click)="onSubmit()" class="btn btn-success pull-right">chercher Annonce</button>
+							</div>
+                        </div>								
+
+
+						 </div>
+ 					</form>
+
+<div class="body1">
+<!-- ***************************Row*********************************************** -->
+	<div class="row" *ngFor="let annonceTrain of annoncesTrain | paginate: {itemsPerPage: 5, currentPage:page, id: '1'}; let i = index">
+        <div class="col-md-4 col-sm-6">
+            <div class="card-container1 manual-flip">
+                <div class="card1">
+                    <div class="front">
+                        <div class="content">
+                            <div class="main">
+								<div class="row" >
+								  <div class="col-sm-3 col-md-6 col-lg-4 block1">
+                                    <a href="#" [routerLink]="['/dashboardutil/publicProfile', annonceTrain.utilisateur.idUtilisateur]" name="Profil" style="color: #506A85;">
+                                        <div class="user">
+                                            <img class="img-circle" src="https://www2.mmu.ac.uk/media/mmuacuk/style-assets/images/r-research/profile-Zeyad.jpg"/>
+                                        </div>
+										<h3 class="name">{{annonceTrain.utilisateur.login}}</h3>
+										<p class="profession">{{annonceTrain.utilisateur.profession}}</p>
+                                    </a>
+								  </div>
+								  <div class="col-sm-9 col-md-6 col-lg-8 block2">
+										<h3 class="date"> <span class="glyphicon glyphicon-calendar"></span> {{annonceTrain.dateDepart}}<span class="block21">  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="glyphicon glyphicon-time"></span> &nbsp; {{annonceTrain.heureDepart}} </span> </h3>
+                                        <br>
+										<p class="adresse">
+											<span class="adresseDepart">{{annonceTrain.paysDepart}},{{annonceTrain.stationTrainDepart}}</span>
+											<span class="glyphicon glyphicon-arrow-right" ></span>
+											<span class="adresseArrivee">{{annonceTrain.paysArrivee}},{{annonceTrain.stationTrainArrivee}}</span>
+											 <span><i class="fa fa-train" aria-hidden="true"></i></span>
+										</p>
+								  </div>
+								</div>
+                            </div>
+                            <div class="footer">
+                                <button class="btn btn-simple" >
+                                    <i class="fa fa-mail-forward"></i> &nbsp;&nbsp;<a [routerLink]="['/dashboardutil/AnnonceTrainDetail', annonceTrain.id]">Show Detail </a>
+                                </button>
+                            </div>
+                        </div>
+                    </div> <!-- end front panel -->
+                </div> <!-- end card -->
+            </div> <!-- end card-container -->
+        </div> <!-- end col sm 3 -->
+	</div>
+
+<pagination-controls class=" pull-right" (pageChange)="page = $event" id="1" maxSize="3" directionLinks="true" autoHide="true">
+</pagination-controls>
+
+<!-- ************************************************************************** -->
+        </div>
+		
+
+    </div>
+</div>
+</div>
+</div>	
+</div>
+

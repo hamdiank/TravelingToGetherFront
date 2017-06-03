@@ -66,6 +66,11 @@ import { AnnonceVolComponent } from "./dashboardutil/annonceVol/annonceVol.compo
 import { MesAnnoncesVolComponent } from "./dashboardutil/profil/mesAnnoncesVol.component";
 import { AjoutAnnonceVolComponent } from "./dashboardutil/annonceVol/ajoutAnnonceVol.component";
 import { AnnonceVolDetailComponent } from "./dashboardutil/annonceVol/annonceVolDetail.component";
+import { AnnonceTrainComponent } from "./dashboardutil/annonceTrain/annonceTrain.component";
+import { AnnonceTrainService } from "./_services/annonceTrain.service";
+import { AjoutAnnonceTrainComponent } from "./dashboardutil/annonceTrain/ajoutAnnonceTrain.component";
+import { AnnonceTrainDetailComponent } from "./dashboardutil/annonceTrain/annonceTrainDetail.component";
+import { MesAnnoncesTrainComponent } from "./dashboardutil/profil/mesAnnoncesTrain.component";
 
 @NgModule({
     imports: [ 
@@ -82,9 +87,6 @@ import { AnnonceVolDetailComponent } from "./dashboardutil/annonceVol/annonceVol
         RouterModule.forRoot(MODULE_ROUTES),
         SpinnerModule,
        PaginatorModule
-
-
-        
     ],
 
 
@@ -100,7 +102,9 @@ import { AnnonceVolDetailComponent } from "./dashboardutil/annonceVol/annonceVol
     AlertComponent,
     FromNowPipe,ValuesPipe,FilterPipe,  AnnonceCovoiComponent, InscriptionComponent, AccueilComponent, ProfilComponent, MesAnnoncesCovoiComponent,MotDePasseComponent
     ,PublicProfilComponent, MesReservationsComponent, ConfirmerInscriptionComponent, AnnonceVolComponent, 
-    MesAnnoncesVolComponent, AjoutAnnonceVolComponent, AnnonceVolDetailComponent],
+    MesAnnoncesVolComponent, AjoutAnnonceVolComponent, AnnonceVolDetailComponent, 
+    AnnonceTrainComponent, AjoutAnnonceTrainComponent,AnnonceTrainDetailComponent,
+    MesAnnoncesTrainComponent ],
 
 
     bootstrap:    [ AppComponent ],
@@ -112,7 +116,8 @@ import { AnnonceVolDetailComponent } from "./dashboardutil/annonceVol/annonceVol
 
 
         UserService,PaysService,AvionService,CityService,AeroportService,StationService,TrainService,JwtHelper,
-        MessagesService, ThreadsService, UsersService, AnnonceCovoiService,MotDePasseOublieService, ReservationService],
+        MessagesService, ThreadsService, UsersService, AnnonceCovoiService,MotDePasseOublieService, ReservationService,
+        AnnonceTrainService],
 
 })
 export class AppModule {

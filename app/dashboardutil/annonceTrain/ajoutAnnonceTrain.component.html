@@ -1,0 +1,92 @@
+<!-- CSS Files Dashboard Utilisateur -->
+
+<div style=" background-color:lavender;">
+<div class="main-content" style="margin-top: 70px; margin-left: 200px;">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8"  style="padding-top: 70px;">
+            <div class="card">
+                <div class="card-header" data-background-color="red">
+                    <h4 class="title">Ajout Annonce Vol</h4>
+                    <p class="category">Compléter L'Annonce</p>
+                </div>
+                <div class="card-content">
+                    <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" >
+                        <div class="row">
+                            <div class="col-md-6">   
+                                <div class="form-group form-black label-floating is-empty">
+                                    <label> <span class="glyphicon glyphicon-calendar"></span> &nbsp; &nbsp;  Date Départ</label> <br>
+                                    <input type="date" [(ngModel)]="model.dateDepart" value="Date Depart"name="dateDepart"  #dateDepart="ngModel" required>
+                                </div>                        
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <label> <span class="glyphicon glyphicon-time"></span> &nbsp; &nbsp; Heure Départ</label>
+                                    <br>
+                                    <input type="time"  [(ngModel)]="model.heureDepart" name="heureDepart"   #heureDepart="ngModel"  style="width: 150px; height: 30px;" required>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <label><i class="material-icons" style="font-size:20px;">place</i>Pays Départ</label>
+                                    <br>
+                                    <select class="selectpicker" [(ngModel)]="model.paysDepart"  (change)="onSelect1($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;" required>
+                                        <option value="0">------Select------</option>
+                                        <option *ngFor="let pay of pays" value= {{pay.idPays}}>{{pay.nom}}</option>
+                                    </select> 
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <label> <i class="material-icons" style="font-size:20px;">place</i>Station Train Départ</label>
+                                    <br>
+                                    <select [(ngModel)]="model.stationDepart" (input)="onInput($event)" name="stationDepart"   #stationDepart="ngModel" style="width: 200px; height: 30px;" required>
+                                        <option value="0">------Select------</option>
+                                        <option *ngFor="let station of stations " value= {{station.nom}}>{{station.nom}}</option>
+                                    </select> 
+                                </div>
+                            </div>
+                        </div>
+                         <hr>
+                         
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <label> <i class="material-icons" style="font-size:20px;">place</i>Pays Arrivée</label>
+                                    <br>
+                                    <select [(ngModel)]="model.paysArrivee" (change)="onSelect2($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;" required>
+                                        <option value="0">------Select------</option>
+                                        <option *ngFor="let pay of pays" value= {{pay.idPays}}>{{pay.nom}}</option>
+                                    </select> 
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <label> <i class="material-icons" style="font-size:20px;">place</i>Station Train Arrivée</label>
+                                    <br>
+                                    <select [(ngModel)]="model.stationArrivee" (input)="onInput2($event)" name="stationArrivee"   #stationArrivee="ngModel" style="width: 200px; height: 30px;" required>
+                                        <option  value="0">------Select------</option>
+                                        <option *ngFor="let station of stations2 " value= {{station.nom}}>{{station.nom}}</option>
+                                    </select> 
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-danger pull-right">Publier Annonce</button>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+
+

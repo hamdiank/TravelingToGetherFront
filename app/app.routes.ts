@@ -27,6 +27,10 @@ import { AnnonceVolComponent } from "./dashboardutil/annonceVol/annonceVol.compo
 import { MesAnnoncesVolComponent } from "./dashboardutil/profil/mesAnnoncesVol.component";
 import { AjoutAnnonceVolComponent } from "./dashboardutil/annonceVol/ajoutAnnonceVol.component";
 import { AnnonceVolDetailComponent } from "./dashboardutil/annonceVol/annonceVolDetail.component";
+import { AnnonceTrainComponent } from "./dashboardutil/annonceTrain/annonceTrain.component";
+import { AjoutAnnonceTrainComponent } from "./dashboardutil/annonceTrain/ajoutAnnonceTrain.component";
+import { AnnonceTrainDetailComponent } from "./dashboardutil/annonceTrain/annonceTrainDetail.component";
+import { MesAnnoncesTrainComponent } from "./dashboardutil/profil/mesAnnoncesTrain.component";
 export const MODULE_ROUTES: Route[] =[
     { path: 'chat', component: App2Component ,canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
@@ -53,7 +57,10 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'AnnonceVol', component: AnnonceVolComponent },
     { path: 'MesAnnoncesVol', component: MesAnnoncesVolComponent },
     { path: 'AnnonceVolDetail/:id', component: AnnonceVolDetailComponent },
-   
+    { path: 'AnnoncesTrain', component: AnnonceTrainComponent },
+    { path: 'AjoutAnnonceTrain', component: AjoutAnnonceTrainComponent },
+    { path: 'AnnonceTrainDetail/:id', component: AnnonceTrainDetailComponent },
+    { path: 'MesAnnoncesTrain', component: MesAnnoncesTrainComponent }
     ],canActivate: [AuthGuard],data: { roles: ['USER'] }  },
 
     { path: 'dashboardutil/Accueil', redirectTo: 'dashboardutil/Accueil', pathMatch: 'full',canActivate: [AuthGuard],data: { roles: ['USER'] }},

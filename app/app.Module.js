@@ -67,6 +67,11 @@ var annonceVol_component_1 = require("./dashboardutil/annonceVol/annonceVol.comp
 var mesAnnoncesVol_component_1 = require("./dashboardutil/profil/mesAnnoncesVol.component");
 var ajoutAnnonceVol_component_1 = require("./dashboardutil/annonceVol/ajoutAnnonceVol.component");
 var annonceVolDetail_component_1 = require("./dashboardutil/annonceVol/annonceVolDetail.component");
+var annonceTrain_component_1 = require("./dashboardutil/annonceTrain/annonceTrain.component");
+var annonceTrain_service_1 = require("./_services/annonceTrain.service");
+var ajoutAnnonceTrain_component_1 = require("./dashboardutil/annonceTrain/ajoutAnnonceTrain.component");
+var annonceTrainDetail_component_1 = require("./dashboardutil/annonceTrain/annonceTrainDetail.component");
+var mesAnnoncesTrain_component_1 = require("./dashboardutil/profil/mesAnnoncesTrain.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -99,7 +104,9 @@ var AppModule = (function () {
                 index_3.AlertComponent,
                 from_now_pipe_1.FromNowPipe, valuesPipe_1.ValuesPipe, pipe_1.FilterPipe, annonceCovoi_component_1.AnnonceCovoiComponent, inscription_component_1.InscriptionComponent, accueil_component_1.AccueilComponent, profil_component_1.ProfilComponent, mesAnnoncesCovoi_component_1.MesAnnoncesCovoiComponent, MotDePasse_component_1.MotDePasseComponent,
                 profil_public_component_1.PublicProfilComponent, mesReservation_component_1.MesReservationsComponent, confirmerInscription_component_1.ConfirmerInscriptionComponent, annonceVol_component_1.AnnonceVolComponent,
-                mesAnnoncesVol_component_1.MesAnnoncesVolComponent, ajoutAnnonceVol_component_1.AjoutAnnonceVolComponent, annonceVolDetail_component_1.AnnonceVolDetailComponent],
+                mesAnnoncesVol_component_1.MesAnnoncesVolComponent, ajoutAnnonceVol_component_1.AjoutAnnonceVolComponent, annonceVolDetail_component_1.AnnonceVolDetailComponent,
+                annonceTrain_component_1.AnnonceTrainComponent, ajoutAnnonceTrain_component_1.AjoutAnnonceTrainComponent, annonceTrainDetail_component_1.AnnonceTrainDetailComponent,
+                mesAnnoncesTrain_component_1.MesAnnoncesTrainComponent],
             bootstrap: [app_component_1.AppComponent],
             exports: [],
             providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }, app_config_1.AppConfig,
@@ -107,7 +114,8 @@ var AppModule = (function () {
                 index_2.AlertService,
                 index_2.AuthenticationService, valuesPipe_1.ValuesPipe, data_service_1.DataService,
                 index_2.UserService, index_2.PaysService, avion_service_1.AvionService, index_2.CityService, aeroport_service_1.AeroportService, station_service_1.StationService, train_service_1.TrainService, angular2_jwt_1.JwtHelper,
-                messages_service_1.MessagesService, threads_service_1.ThreadsService, users_service_1.UsersService, annonceCovoi_service_1.AnnonceCovoiService, MotDePassOublie_1.MotDePasseOublieService, reservation_service_1.ReservationService],
+                messages_service_1.MessagesService, threads_service_1.ThreadsService, users_service_1.UsersService, annonceCovoi_service_1.AnnonceCovoiService, MotDePassOublie_1.MotDePasseOublieService, reservation_service_1.ReservationService,
+                annonceTrain_service_1.AnnonceTrainService],
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);
