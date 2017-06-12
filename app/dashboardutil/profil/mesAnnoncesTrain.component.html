@@ -45,7 +45,7 @@
 											<span class="adresseDepart">{{annonceTrain.paysDepart}},{{annonceTrain.stationTrainDepart}}</span>
 											<span class="glyphicon glyphicon-arrow-right" ></span>
 											<span class="adresseArrivee">{{annonceTrain.paysArrivee}},{{annonceTrain.stationTrainArrivee}}</span>
-											 <span class="glyphicon glyphicon-plane"></span> 
+											<span><i class="fa fa-train" aria-hidden="true"></i></span>
 										</p>
 								  </div>
 								</div>
@@ -57,12 +57,12 @@
                                     </button>
                                 </span>
                                  <span style="margin-left: 100px;">
-                                    <button type="button" rel="tooltip" title="Edit Annonce" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal1" (click)="onClick(annonceVol)">
+                                    <button type="button" rel="tooltip" title="Edit Annonce" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal1" (click)="onClick(annonceTrain)">
                                         <i class="fa fa-edit"></i>
                                     </button>
                                 </span>
                                 <span>
-                                    <button type="button" rel="tooltip" title="Supprimer Annonce" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal2" (click)="onClick(annonceVol)">
+                                    <button type="button" rel="tooltip" title="Supprimer Annonce" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal2" (click)="onClick(annonceTrain)">
                                             <i class="fa fa-times"></i>
                                     </button>
                                 </span>
@@ -90,7 +90,7 @@
                                                 <div class="col-md-6">   
                                                     <div class="form-group form-black label-floating is-empty">
                                                         <label>Date Départ</label><br>
-                                                        <input [(ngModel)]="model.dateDepart" value="Date Depart"name="dateDepart" required>         
+                                                        <input type="date" [(ngModel)]="model.dateDepart" value="Date Depart"name="dateDepart" required>         
                                                     </div>                        
                                                 </div>
                                             </div>
@@ -121,12 +121,12 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group form-black label-floating is-empty">
-                                                        <label>Aeroport Départ</label>
+                                                        <label>Station Train Départ</label>
                                                         <br>
-                                                        <select [(ngModel)]="model.aeroportDepart"  name="aeroportDepart"   #aeroportDepart="ngModel" style="width: 200px; height: 30px;" (click)="changeAeroportDepart()">
-                                                            <option value="0">Select Aeroport Depart</option>
-                                                             <option value= {{model.aeroportDepart}} *ngIf="testAeroportDepart===false">{{model.aeroportDepart}}</option>
-                                                            <option *ngFor="let aeroport of aeroports " value= {{aeroport.nom}}>{{aeroport.nom}}</option>
+                                                        <select [(ngModel)]="model.stationTrainDepart"  name="stationTrainDepart"   #stationTrainDepart="ngModel" style="width: 200px; height: 30px;" (click)="changeAeroportDepart()">
+                                                            <option value="0">Select Station Train Depart</option>
+                                                             <option value= {{model.stationTrainDepart}} *ngIf="testStationTrainDepart===false">{{model.stationTrainDepart}}</option>
+                                                            <option *ngFor="let station of stations " value= {{station.nom}}>{{station.nom}}</option>
                                                         </select> 
                                                     </div>
                                                 </div>
@@ -149,10 +149,10 @@
                                                     <div class="form-group form-black label-floating is-empty">
                                                         <label>Aeroport Arrivée</label>
                                                         <br>
-                                                        <select [(ngModel)]="model.aeroportArrivee"  name="aeroportArrivee"   #aeroportArrivee="ngModel" style="width: 200px; height: 30px;" (click)="changeAeroportArrivee()">
+                                                        <select [(ngModel)]="model.stationTrainArrivee"  name="stationTrainArrivee"   #stationTrainArrivee="ngModel" style="width: 200px; height: 30px;" (click)="changeAeroportArrivee()">
                                                             <option  value="0">--Select--</option>
-                                                             <option value= {{model.aeroportArrivee}} *ngIf="testAeroportArrivee===false">{{model.aeroportArrivee}}</option>
-                                                            <option *ngFor="let aeroport of aeroports2 " value= {{aeroport.nom}}>{{aeroport.nom}}</option>
+                                                             <option value= {{model.stationTrainArrivee}} *ngIf="testStationTrainArrivee===false">{{model.stationTrainArrivee}}</option>
+                                                            <option *ngFor="let station of stations2 " value= {{station.nom}}>{{station.nom}}</option>
                                                         </select> 
                                                     </div>
                                                 </div>

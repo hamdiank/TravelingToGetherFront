@@ -37,7 +37,15 @@ var AnnonceTrainService = (function () {
         var urlSearchParams = new http_2.URLSearchParams();
         urlSearchParams.append('id', id);
         var requestParam = urlSearchParams.toString();
-        return this.http.get(this.config.apiUrl + '/MesAnnoncesTrain?' + requestParam, this.jwt())
+        return this.http.put(this.config.apiUrl + '/MesAnnoncesTrain?' + requestParam, this.jwt())
+            .map(function (res) { return res.json(); });
+    };
+    AnnonceTrainService.prototype.modifierAnnonceTrain = function (id, heureDepart, dateDepart, paysDepart, stationTrainDepart, paysArrivee, stationTrainArrivee, idUtilisateur) {
+        var body = {
+            "id": id, "heureDepart": heureDepart, "dateDepart": dateDepart, "paysDepart": paysDepart, "stationTrainDepart": stationTrainDepart,
+            "paysArrivee": paysArrivee, "stationTrainArrivee": stationTrainArrivee
+        };
+        return this.http.put(this.config.apiUrl + '/updateAnnonceTrain/' + idUtilisateur, body, this.jwt())
             .map(function (res) { return res.json(); });
     };
     AnnonceTrainService.prototype.jwt = function () {

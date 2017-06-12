@@ -31,15 +31,18 @@ export class AnnonceTrainDetailComponent implements OnInit {
     });
   
     console.log('I am here '+this.id)
-    this.annonceTrainService.getAnnonceTrainById(this.id.toString()).subscribe( annonceTrain=> { this.annonceTrain = annonceTrain,
+    
+            this.annonceTrainService.getAnnonceTrainById(this.id.toString()).subscribe( annonceTrain =>
+     { this.annonceTrain = annonceTrain,
         this.utilisateur=annonceTrain.utilisateur
 
     });
+    }
 
-}
 
 ngOnInit(): void {
     this.currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
+    //this.getAnnonceTrainById();
 }
 
 }

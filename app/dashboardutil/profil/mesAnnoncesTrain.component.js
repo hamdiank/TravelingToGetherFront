@@ -28,9 +28,9 @@ var MesAnnoncesTrainComponent = (function () {
         this.annonceTrainService = annonceTrainService;
         this.selectedPays = {};
         this.testPaysDepart = false;
-        this.testAeroportDepart = false;
+        this.testStationTrainDepart = false;
         this.testPaysArrivee = false;
-        this.testAeroportArrivee = false;
+        this.testStationTrainArrivee = false;
         ////////////////////////////////////////////
         this.model = {};
         this.selected = {};
@@ -50,7 +50,7 @@ var MesAnnoncesTrainComponent = (function () {
         console.log('idVilleDepart' + this.model.aeroportDepart);
         this.paysService.getById(idPays1).subscribe(function (onePays) {
             _this.onePays = onePays, _this.cities = onePays.cities, _this.paysDepart = onePays.nom,
-                _this.aeroports = onePays.aeroports;
+                _this.aeroports = onePays.aeroports, _this.stations = onePays.stations;
         });
         console.log(JSON.stringify(this.aeroports));
     };
@@ -61,7 +61,7 @@ var MesAnnoncesTrainComponent = (function () {
         console.log('idVilleArrivee' + this.model.villeArrivee);
         this.paysService.getById(idPays2).subscribe(function (onePays2) {
             _this.onePays2 = onePays2, _this.cities2 = onePays2.cities, _this.paysArrivee = onePays2.nom,
-                _this.aeroports2 = onePays2.aeroports;
+                _this.aeroports2 = onePays2.aeroports, _this.stations2 = onePays2.stations;
         });
         console.log(JSON.stringify(this.aeroports2));
     };
@@ -69,22 +69,22 @@ var MesAnnoncesTrainComponent = (function () {
         this.testPaysDepart = true;
     };
     MesAnnoncesTrainComponent.prototype.changeAeroportDepart = function () {
-        this.testAeroportDepart = true;
+        this.testStationTrainDepart = true;
     };
     MesAnnoncesTrainComponent.prototype.changePaysArrivee = function () {
         this.testPaysArrivee = true;
     };
     MesAnnoncesTrainComponent.prototype.changeAeroportArrivee = function () {
-        this.testAeroportArrivee = true;
+        this.testStationTrainArrivee = true;
     };
     ////////////////////////////////////////////////////
-    MesAnnoncesTrainComponent.prototype.onClick = function (annonceVol) {
+    MesAnnoncesTrainComponent.prototype.onClick = function (annonceTrain) {
         this.testPaysDepart = false;
-        this.testAeroportArrivee = false;
+        this.testStationTrainArrivee = false;
         this.testPaysArrivee = false;
-        this.testAeroportArrivee = false;
-        console.log(annonceVol);
-        this.selected = annonceVol;
+        this.testStationTrainArrivee = false;
+        console.log(annonceTrain);
+        this.selected = annonceTrain;
         this.model = this.selected;
         console.log(this.model.id);
         console.log("jjjjjjjjjj");
@@ -96,7 +96,7 @@ var MesAnnoncesTrainComponent = (function () {
             _this.mesAnnoncesTrain = mesAnnoncesTrain;
         });
     };
-    MesAnnoncesTrainComponent.prototype.modifierAnnonceVol = function () {
+    MesAnnoncesTrainComponent.prototype.modifierAnnonceTrain = function () {
         //  let currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
         //  this.idUtilisateur=currentUserId;
         var _this = this;
@@ -109,7 +109,7 @@ var MesAnnoncesTrainComponent = (function () {
         // this.model.paysDepart= this.paysDepart;
         //this.model.paysArrivee= this.paysArrivee;
         console.log(typeof (this.model.paysDepart));
-        this.annonceVolService.modifierAnnonceVol(this.model.id, this.model.heureDepart, this.model.dateDepart, this.model.paysDepart, this.model.aeroportDepart, this.model.paysArrivee, this.model.aeroportArrivee, this.idUtilisateur)
+        this.annonceVolService.modifierAnnonceVol(this.model.id, this.model.heureDepart, this.model.dateDepart, this.model.paysDepart, this.model.stationTrainDepart, this.model.paysArrivee, this.model.stationTrainArrivee, this.idUtilisateur)
             .subscribe(function (data) {
             _this.router.navigate(['dashboardutil/MesAnnoncesVol']);
         });

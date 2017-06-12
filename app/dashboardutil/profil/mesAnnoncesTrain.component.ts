@@ -10,6 +10,7 @@ import { ReservationService } from "../../_services/reservation.service";
 import { AnnonceVolService } from "../../_services/annonceVol.service";
 import { Aeroport } from "../../_models/aeroport";
 import { AnnonceTrainService } from "../../_services/annonceTrain.service";
+import { Station } from "../../_models/Station";
 
 declare var $:any;
 
@@ -41,6 +42,9 @@ export class MesAnnoncesTrainComponent implements OnInit {
     onePays: Pays;
     onePays2: Pays;
 
+    stations: Station[];
+    stations2: Station[];
+
     // model: any={};
 
     // id: string;
@@ -48,10 +52,10 @@ export class MesAnnoncesTrainComponent implements OnInit {
      heureDepart: string;
 
      testPaysDepart: boolean= false;
-     testAeroportDepart: boolean= false;
+     testStationTrainDepart: boolean= false;
 
      testPaysArrivee: boolean= false;
-     testAeroportArrivee: boolean= false;
+     testStationTrainArrivee: boolean= false;
 
      
 
@@ -84,7 +88,7 @@ export class MesAnnoncesTrainComponent implements OnInit {
         
     this.paysService.getById(idPays1).subscribe( onePays => {
         this.onePays= onePays, this.cities= onePays.cities,  this.paysDepart= onePays.nom,
-         this.aeroports=onePays.aeroports
+         this.aeroports=onePays.aeroports, this.stations= onePays.stations
     });
     console.log(JSON.stringify(this.aeroports));
   }
@@ -96,7 +100,7 @@ export class MesAnnoncesTrainComponent implements OnInit {
         console.log('idVilleArrivee'+this.model.villeArrivee);
     this.paysService.getById(idPays2).subscribe( onePays2 => {
         this.onePays2= onePays2, this.cities2= onePays2.cities,  this.paysArrivee= onePays2.nom,
-        this.aeroports2=onePays2.aeroports
+        this.aeroports2=onePays2.aeroports,this.stations2= onePays2.stations
     });
     console.log(JSON.stringify(this.aeroports2));
   }
@@ -105,28 +109,28 @@ export class MesAnnoncesTrainComponent implements OnInit {
       this.testPaysDepart=true;
   }
   changeAeroportDepart(){
-      this.testAeroportDepart=true;
+      this.testStationTrainDepart=true;
   }
 
   changePaysArrivee(){
       this.testPaysArrivee=true;
   }
   changeAeroportArrivee(){
-      this.testAeroportArrivee=true;
+      this.testStationTrainArrivee=true;
   }
 
   
 ////////////////////////////////////////////////////
 
 
-onClick(annonceVol: any){
+onClick(annonceTrain: any){
     this.testPaysDepart=false;
-    this.testAeroportArrivee=false;
+    this.testStationTrainArrivee=false;
     this.testPaysArrivee=false;
-    this.testAeroportArrivee=false;
-    console.log(annonceVol)
+    this.testStationTrainArrivee=false;
+    console.log(annonceTrain)
     
-    this.selected=annonceVol;
+    this.selected=annonceTrain;
     this.model=this.selected
     console.log(this.model.id)
     console.log("jjjjjjjjjj")
@@ -138,7 +142,7 @@ onClick(annonceVol: any){
         } );
 
     }
-modifierAnnonceVol(){
+modifierAnnonceTrain(){
   //  let currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
   //  this.idUtilisateur=currentUserId;
 
@@ -154,7 +158,7 @@ modifierAnnonceVol(){
     console.log(typeof(this.model.paysDepart))
     
     this.annonceVolService.modifierAnnonceVol(this.model.id,this.model.heureDepart,this.model.dateDepart,this.model.paysDepart,
-            this.model.aeroportDepart,this.model.paysArrivee, this.model.aeroportArrivee, this.idUtilisateur )
+            this.model.stationTrainDepart,this.model.paysArrivee, this.model.stationTrainArrivee, this.idUtilisateur )
      .subscribe(
                 data => {
                     this.router.navigate(['dashboardutil/MesAnnoncesVol']);

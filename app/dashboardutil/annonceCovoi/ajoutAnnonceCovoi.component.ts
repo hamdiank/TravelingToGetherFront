@@ -106,6 +106,8 @@ export class AjoutAnnonceCovoiComponent implements OnInit{
             console.log("aaaaaaaaaaaa");
             console.log(this.model.spin);
             console.log(this.model.minutes);
+            console.log(this.model.dateDepart);
+            
             
             
             //console.log(this.user);

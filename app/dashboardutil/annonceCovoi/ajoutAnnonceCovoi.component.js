@@ -77,6 +77,7 @@ var AjoutAnnonceCovoiComponent = (function () {
         console.log("aaaaaaaaaaaa");
         console.log(this.model.spin);
         console.log(this.model.minutes);
+        console.log(this.model.dateDepart);
         //console.log(this.user);
         //this.model.heureDepart= this.model.heure +':'+ this.model.minutes;
         this.model.paysDepart = this.paysDepart;

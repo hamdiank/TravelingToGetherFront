@@ -35,6 +35,7 @@ var AnnonceTrainDetailComponent = (function () {
     }
     AnnonceTrainDetailComponent.prototype.ngOnInit = function () {
         this.currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
+        //this.getAnnonceTrainById();
     };
     AnnonceTrainDetailComponent = __decorate([
         core_1.Component({
