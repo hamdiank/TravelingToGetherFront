@@ -111,71 +111,70 @@ this.annonceTrainService.getAnnoncesTrain().subscribe(annoncesTrain =>{
 onSubmit(){
     console.log("paysDepart:"+ this.model.paysDepart)
     console.log("paysArrivee:"+ this.model.paysArrivee)
-    console.log("aeroportDepart:"+ this.model.aeroportDepart)
-    console.log("aeroportArrivee:"+ this.model.aeroportArrivee)
+    console.log("aeroportDepart:"+ this.model.stationDepart)
+    console.log("aeroportArrivee:"+ this.model.stationArrivee)
 
     /////////////////////////////////////////////
- /*  if(this.model.paysDepart!= 0 && this.model.aeroportDepart != 0) {
+  if(this.model.paysDepart!= 0 && this.model.stationDepart != 0) {
     
          this.annoncesTrain=this.annoncesTrainToFilter;
 
-        var aDepart = this.model.aeroportDepart;
+        var sDepart = this.model.stationDepart;
         //this.annoncesCovoi=this.annoncesCovoiToFilter;
         console.log('22222222');
       //  this.annoncesCovoi=this.annoncesCovoiToFilter;
       //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
-        this.annoncesVol= this.annoncesVol.filter(
+        this.annoncesTrain= this.annoncesTrain.filter(
         (result) => {
-                return (result.aeroportDepart.toLowerCase().indexOf(aDepart.toLowerCase()) > -1 )
+                return (result.stationTrainDepart.toLowerCase().indexOf(sDepart.toLowerCase()) > -1 )
             }
         );
 
         console.log('333333333333')
-        console.log(this.annoncesVol)
+        console.log(this.annoncesTrain)
    }
-       if(this.model.paysArrivee!= 0 && this.model.aeroportArrivee != 0){
-            this.annoncesVol=this.annoncesVolToFilter;
+       if(this.model.paysArrivee!= 0 && this.model.stationArrivee != 0){
+            this.annoncesTrain=this.annoncesTrainToFilter;
 
-            var aArrivee = this.model.aeroportArrivee;
+            var sArrivee = this.model.stationArrivee;
 
-       console.log(aArrivee)
+       console.log(sArrivee)
 
-               this.annoncesVol= this.annoncesVol.filter(
+               this.annoncesTrain= this.annoncesTrain.filter(
         (result) => {
-                return (result.aeroportArrivee.toLowerCase().indexOf(aArrivee.toLowerCase()) > -1 )
+                return (result.stationTrainArrivee.toLowerCase().indexOf(sArrivee.toLowerCase()) > -1 )
             }
         );
        }
-   if(this.model.paysDepart!= 0 && this.model.aeroportDepart != 0 && this.model.paysArrivee!= 0 && this.model.aeroportArrivee != 0 ){
+   if(this.model.paysDepart!= 0 && this.model.stationDepart != 0 && this.model.paysArrivee!= 0 && this.model.stationArrivee != 0 ){
        
-         this.annoncesVol=this.annoncesVolToFilter;
+         this.annoncesTrain=this.annoncesTrainToFilter;
 
-        var aDepart = this.model.aeroportDepart;
+        var sDepart = this.model.stationDepart;
         //this.annoncesCovoi=this.annoncesCovoiToFilter;
         console.log('22222222');
       //  this.annoncesCovoi=this.annoncesCovoiToFilter;
       //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
-        this.annoncesVol= this.annoncesVol.filter(
+        this.annoncesTrain= this.annoncesTrain.filter(
         (result) => {
-                return (result.aeroportDepart.toLowerCase().indexOf(aDepart.toLowerCase()) > -1 )
+                return (result.stationTrainDepart.toLowerCase().indexOf(sDepart.toLowerCase()) > -1 )
             }
         );
 
         console.log('333333333333')
-        console.log(this.annoncesVol)
+        console.log(this.annoncesTrain)
 
-         var aArrivee = this.model.aeroportArrivee;
+         var sArrivee = this.model.stationArrivee;
 
-       console.log(aArrivee)
+       console.log(sArrivee)
 
-               this.annoncesVol= this.annoncesVol.filter(
+               this.annoncesTrain= this.annoncesTrain.filter(
         (result) => {
-                return (result.aeroportArrivee.toLowerCase().indexOf(aArrivee.toLowerCase()) > -1 )
+                return (result.stationTrainArrivee.toLowerCase().indexOf(sArrivee.toLowerCase()) > -1 )
             }
         );
-   }*/
-}
-
+   }
+    }
 
 
      ngOnInit() {

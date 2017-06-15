@@ -29,9 +29,9 @@
 								</div>
 								<div class="col-sm-4">
 									<div class="form-group form-black label-floating is-empty">
-										<label> <i class="material-icons" style="font-size:25px;">place</i> &nbsp;Ville Départ</label>
+										<label> <i class="material-icons" style="font-size:25px;">place</i> &nbsp;Station Train Départ</label>
 										<br>
-										<select [(ngModel)]="model.aeroportDepart"   name="aeroportDepart"   #aeroportDepart="ngModel" style="width: 200px; height: 30px;">
+										<select [(ngModel)]="model.stationDepart"   name="stationDepart"   #stationDepart="ngModel" style="width: 200px; height: 30px;">
 											<option value="0"></option>
 											<option *ngFor="let station of stations " value= {{station.nom}}>{{station.nom}}</option>
 										</select> 
@@ -54,11 +54,11 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group form-black label-floating is-empty">
-                                    <label> <i class="material-icons" style="font-size:25px;">place</i> &nbsp;Ville Arrivée</label>
+                                    <label> <i class="material-icons" style="font-size:25px;">place</i> &nbsp;Station Train Arrivée</label>
                                     <br>
-                                    <select [(ngModel)]="model.aeroportArrivee"  name="aeroportArrivee"   #aeroportArrivee="ngModel" style="width: 200px; height: 30px;">
+                                    <select [(ngModel)]="model.stationArrivee"  name="stationArrivee"   #stationArrivee="ngModel" style="width: 200px; height: 30px;">
                                         <option  value="0"></option>
-                                        <option *ngFor="let aeroport of aeroports2" value= {{aeroport.nom}}>{{aeroport.nom}}</option>
+                                        <option *ngFor="let station of stations2" value= {{station.nom}}>{{station.nom}}</option>
                                     </select> 
                                 </div>
                             </div>

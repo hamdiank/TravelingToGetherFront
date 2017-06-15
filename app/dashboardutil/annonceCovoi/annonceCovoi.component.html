@@ -21,7 +21,7 @@
 										<label> <i class="material-icons" style="font-size:25px;">place</i> &nbsp; Pays Départ</label>
 										<br>
 										<select class="selectpicker" [(ngModel)]="model.paysDepart"  (change)="onSelect1($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;">
-											<option value="0">--Select--</option>
+											<option value="0"></option>
 											<option *ngFor="let pay of pays" value= {{pay.idPays}}>{{pay.nom}}</option>
 										</select> 
 									</div>
@@ -31,7 +31,7 @@
 										<label> <i class="material-icons" style="font-size:25px;">place</i> &nbsp;Ville Départ</label>
 										<br>
 										<select [(ngModel)]="model.villeDepart"   name="villeDepart"   #villeDepart="ngModel" style="width: 200px; height: 30px;">
-											<option value="0">Select Ville Depart</option>
+											<option value="0"></option>
 											<option *ngFor="let city of cities " value= {{city.nom}}>{{city.nom}}</option>
 										</select> 
 									</div>
@@ -45,8 +45,8 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <label><i class="material-icons" style="font-size:25px;">place</i> &nbsp; Pays Arrivée</label>
                                     <br>
-                                    <select [(ngModel)]="model.paysArrivee" (change)="onSelect2($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;">
-                                        <option value="0">--Select--</option>
+                                    <select [(ngModel)]="model.paysArrivee" (change)="onSelect2($event.target.value)"  name="paysArrivee"   #paysArrivee="ngModel" style="width: 200px; height: 30px;">
+                                       <option value="0"></option>
                                         <option *ngFor="let pay of pays" value= {{pay.idPays}}>{{pay.nom}}</option>
                                     </select> 
                                 </div>
@@ -56,7 +56,7 @@
                                     <label> <i class="material-icons" style="font-size:25px;">place</i> &nbsp;Ville Arrivée</label>
                                     <br>
                                     <select [(ngModel)]="model.villeArrivee"  name="villeArrivee"   #villeArrivee="ngModel" style="width: 200px; height: 30px;">
-                                        <option  value="0">--Select--</option>
+                                        <option value="0"></option>
                                         <option *ngFor="let city of cities2 " value= {{city.nom}}>{{city.nom}}</option>
                                     </select> 
                                 </div>

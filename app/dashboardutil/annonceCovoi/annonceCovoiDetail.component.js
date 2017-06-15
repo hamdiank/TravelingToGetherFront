@@ -32,16 +32,6 @@ var AnnonceCovoiDetailComponent = (function () {
             console.log(_this.id);
             console.log('dddddddd');
         });
-        console.log('I am here ' + this.id);
-        this.annonceCovoiService.getAnnonceCovoi(this.id).subscribe(function (annonceCovoi) {
-            _this.annonceCovoi = annonceCovoi,
-                _this.utilisateur = annonceCovoi.utilisateur, _this.reservations = annonceCovoi.reservations,
-                _this.preferences = _this.utilisateur.preferences, _this.voiture = _this.utilisateur.voiture;
-            console.log("idutilisateur" + _this.utilisateur.idUtilisateur);
-            console.log("idutilisateur" + _this.preferences.fumeur);
-            // console.log(JSON.stringify(this.annonceCovoi))
-            // console.log(JSON.stringify(this.utilisateur))
-        });
     }
     /////////////////////////////////////
     AnnonceCovoiDetailComponent.prototype.showImage = function (filename) {
@@ -51,6 +41,38 @@ var AnnonceCovoiDetailComponent = (function () {
             _this.image = file;
             console.log("imagee  " + _this.image);
         });
+    };
+    AnnonceCovoiDetailComponent.prototype.showPath = function (villeDepart, villeArrivee) {
+        var Depart = villeDepart;
+        var Arrivee = villeArrivee;
+        console.log('eeeeee' + Depart);
+        console.log('eeeeee' + Arrivee);
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 7,
+            center: { lat: 41.85, lng: -87.65 }
+        });
+        directionsDisplay.setMap(map);
+        calculateAndDisplayRoute(directionsService, directionsDisplay, Depart, Arrivee);
+        function calculateAndDisplayRoute(directionsService, directionsDisplay, Depart, Arrivee) {
+            var waypts = [];
+            //  var stringDep:String; 
+            directionsService.route({
+                origin: Depart,
+                destination: Arrivee,
+                waypoints: waypts,
+                optimizeWaypoints: true,
+                travelMode: 'DRIVING'
+            }, function (response, status) {
+                if (status === 'OK') {
+                    directionsDisplay.setDirections(response);
+                }
+                else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+        }
     };
     ////////////////////////////////////////////////
     AnnonceCovoiDetailComponent.prototype.reserver = function () {
@@ -69,24 +91,24 @@ var AnnonceCovoiDetailComponent = (function () {
             }
         });
     };
-    /*   ngOnInit() : void{
-        
-             
-   
-           this.route.params
-         .switchMap((params: Params) => this.annonceCovoiService.getAnnonceCovoi(+params['id']))
-         .subscribe( annonceCovoi => { this.annonceCovoi = annonceCovoi});
-           this.getAnnonceCovoi();
-           console.log(typeof(this.annonceCovoi))
-           console.log(JSON.stringify(this.annonceCovoi));
-           */
     /////////////////////////////////////////////////////////
     AnnonceCovoiDetailComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        console.log('I am here ' + this.id);
+        this.annonceCovoiService.getAnnonceCovoi(this.id).subscribe(function (annonceCovoi) {
+            _this.annonceCovoi = annonceCovoi,
+                _this.utilisateur = annonceCovoi.utilisateur, _this.reservations = annonceCovoi.reservations,
+                _this.preferences = _this.utilisateur.preferences, _this.voiture = _this.utilisateur.voiture,
+                _this.villeDepart = annonceCovoi.villeDepart, _this.villeArrivee = annonceCovoi.villeArrivee,
+                _this.showPath(annonceCovoi.villeDepart, annonceCovoi.villeArrivee);
+            console.log("idutilisateur" + _this.utilisateur.idUtilisateur);
+            console.log("idutilisateur" + _this.preferences.fumeur);
+            console.log("villeDepart" + _this.villeDepart);
+            console.log("villeArrivee" + _this.villeArrivee);
+        });
         console.log(typeof (this.utilisateur.idUtilisateur));
         this.currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
-        //console.log("mmmmmmmmmmmm"+this.utilisateur.id)
-        //this.showImage(this.utilisateur.idUtilisateur);
-        // console.log('my id'+this.currentUserId)
+        ////////////////////////////////////////////////////////////
     };
     AnnonceCovoiDetailComponent = __decorate([
         core_1.Component({

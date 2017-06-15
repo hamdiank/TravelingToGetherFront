@@ -48,6 +48,9 @@ var AnnonceTrainService = (function () {
         return this.http.put(this.config.apiUrl + '/updateAnnonceTrain/' + idUtilisateur, body, this.jwt())
             .map(function (res) { return res.json(); });
     };
+    AnnonceTrainService.prototype.supprimerAnnonceTrain = function (id) {
+        return this.http.delete(this.config.apiUrl + '/deleteAnnonceTrain/' + id, this.jwt());
+    };
     AnnonceTrainService.prototype.jwt = function () {
         // create authorization header with jwt token
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));

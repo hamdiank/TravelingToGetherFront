@@ -20,6 +20,7 @@ declare var $:any;
 })
 
 export class AnnonceVolComponent implements OnInit {
+
 public id: string;
 annoncesVol: any=[];
 
@@ -28,7 +29,7 @@ selectedPays:Pays= new Pays();
 
     idUtilisateur: any;
     utilisateur: any={};
-     public model : any ={};
+    public model : any ={};
 
     paysDepart: Pays;
     paysArrivee: Pays;

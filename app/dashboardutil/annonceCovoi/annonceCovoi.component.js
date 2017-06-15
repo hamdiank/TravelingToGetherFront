@@ -62,109 +62,15 @@ var AnnonceCovoiComponent = (function () {
         });
         console.log(JSON.stringify(this.cities));
     };
-    ///////////////////////////////////////////////////////////////
-    /*onChange($eventChange){
-          $eventChange.preventDefault();
-        console.log('selectedchange: ' + $eventChange.target.value);
-        this.getAnnoncesCovoi();
-    
-    }*/
-    /* onInput($event) {
-       //  this.annoncesCovoiToFilter=this.annoncesCovoi;
-         console.log(JSON.stringify('111111'+this.annoncesCovoiToFilter))
-       $event.preventDefault();
-       console.log('selected11111: ' + $event.target.value);
-       console.log(typeof($event.target.value))
-       
-       var vDepart = $event.target.value;
-       if(this.test==true){
-           this.annoncesCovoi=this.annoncesCovoiToFilter;
-           //this.annoncesCovoi=this.annoncesCovoiToFilter;
-           console.log('22222222')
-         //  this.annoncesCovoi=this.annoncesCovoiToFilter;
-         //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
-           this.annoncesCovoi= this.annoncesCovoi.filter(
-           (result) => {
-                   return (result.villeDepart.toLowerCase().indexOf(vDepart.toLowerCase()) > -1 )
-               }
-           );
-           //console.log(JSON.stringify(this.annoncesCovoi))
-   
-       }
-       else{
-   
-               if (vDepart && vDepart.trim() != "0"){
-                   console.log('33333333')
-           this.annoncesCovoi= this.annoncesCovoi.filter(
-               (result) => {
-                   return (result.villeDepart.toLowerCase().indexOf(vDepart.toLowerCase()) > -1 )
-               }
-           );
-           this.test=true;
-           
-           console.log(this.test)
-   
-       } else{
-           this.getAnnoncesCovoi();
-       }
-   
-       }
-   
-   
-   
-   
-     }
-       onInput2($event) {
-       $event.preventDefault();
-       console.log('selected44444: ' + $event.target.value);
-       console.log(typeof($event.target.value))
-       
-       var vArrivee = $event.target.value;
-       if(this.test2==true){
-           this.annoncesCovoi=this.annoncesCovoiToFilter;
-           //this.annoncesCovoi=this.annoncesCovoiToFilter;
-           console.log('22222222')
-         //  this.annoncesCovoi=this.annoncesCovoiToFilter;
-         //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
-           this.annoncesCovoi= this.annoncesCovoi.filter(
-           (result) => {
-                   return (result.villeArrivee.toLowerCase().indexOf(vArrivee.toLowerCase()) > -1 )
-               }
-           );
-           //console.log(JSON.stringify(this.annoncesCovoi))
-   
-       }
-       else{
-   
-               if (vArrivee && vArrivee.trim() != "0"){
-                   console.log('33333333')
-           this.annoncesCovoi= this.annoncesCovoi.filter(
-               (result) => {
-                   return (result.villeArrivee.toLowerCase().indexOf(vArrivee.toLowerCase()) > -1 )
-               }
-           );
-           this.test2=true;
-           
-           console.log(this.test2)
-   
-       } else{
-          // this.getAnnoncesCovoi();
-       }
-   
-       }
-   
-   
-   
-     }*/
     AnnonceCovoiComponent.prototype.onSubmit = function () {
         console.log("paysDepart:" + this.model.paysDepart);
         console.log("paysArrivee:" + this.model.paysArrivee);
-        console.log("villeDepart:" + this.model.villeDepart);
-        console.log("villeArrivee:" + this.model.villeArrivee);
+        console.log("aeroportDepart:" + this.model.villeDepart);
+        console.log("aeroportArrivee:" + this.model.villeArrivee);
         /////////////////////////////////////////////
-        var vDepart = this.model.villeDepart;
-        if (this.test == true) {
+        if (this.model.paysDepart != 0 && this.model.villeDepart != 0) {
             this.annoncesCovoi = this.annoncesCovoiToFilter;
+            var vDepart = this.model.villeDepart;
             //this.annoncesCovoi=this.annoncesCovoiToFilter;
             console.log('22222222');
             //  this.annoncesCovoi=this.annoncesCovoiToFilter;
@@ -172,45 +78,51 @@ var AnnonceCovoiComponent = (function () {
             this.annoncesCovoi = this.annoncesCovoi.filter(function (result) {
                 return (result.villeDepart.toLowerCase().indexOf(vDepart.toLowerCase()) > -1);
             });
+            console.log('333333333333');
+            console.log(this.annoncesCovoi);
         }
-        else {
-            if (vDepart && vDepart.trim() != "0") {
-                console.log('33333333');
-                this.annoncesCovoi = this.annoncesCovoi.filter(function (result) {
-                    return (result.villeDepart.toLowerCase().indexOf(vDepart.toLowerCase()) > -1);
-                });
-                this.test = true;
-                console.log(this.test);
+        /*
+            if(this.model.paysArrivee!= 0 && this.model.villeArrivee != 0){
+                 this.annoncesCovoi=this.annoncesCovoiToFilter;
+     
+                 var vArrivee = this.model.villeArrivee;
+     
+            console.log(vArrivee)
+     
+                    this.annoncesCovoi= this.annoncesCovoi.filter(
+             (result) => {
+                     return (result.villeArrivee.toLowerCase().indexOf(vArrivee.toLowerCase()) > -1 )
+                 }
+             );
             }
-            else {
-                this.getAnnoncesCovoi();
-            }
-        }
-        ////////////////////////////////////////////
-        var vArrivee = this.model.villeArrivee;
-        if (this.test2 == true) {
-            this.annoncesCovoi = this.annoncesCovoiToFilter;
-            //this.annoncesCovoi=this.annoncesCovoiToFilter;
-            console.log('22222222');
-            //  this.annoncesCovoi=this.annoncesCovoiToFilter;
-            //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
-            this.annoncesCovoi = this.annoncesCovoi.filter(function (result) {
-                return (result.villeArrivee.toLowerCase().indexOf(vArrivee.toLowerCase()) > -1);
-            });
-        }
-        else {
-            if (vArrivee && vArrivee.trim() != "0") {
-                console.log('33333333');
-                this.annoncesCovoi = this.annoncesCovoi.filter(function (result) {
-                    return (result.villeArrivee.toLowerCase().indexOf(vArrivee.toLowerCase()) > -1);
-                });
-                this.test2 = true;
-                console.log(this.test2);
-            }
-            else {
-            }
-        }
-        ///////////////////////////////////////////
+        if(this.model.paysDepart!= 0 && this.model.villeDepart != 0 && this.model.paysArrivee!= 0 && this.model.villeArrivee != 0 ){
+            
+              this.annoncesCovoi=this.annoncesCovoiToFilter;
+     
+             var a=vDepart = this.model.villeDepart;
+             //this.annoncesCovoi=this.annoncesCovoiToFilter;
+             console.log('22222222');
+           //  this.annoncesCovoi=this.annoncesCovoiToFilter;
+           //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
+             this.annoncesCovoi= this.annoncesCovoi.filter(
+             (result) => {
+                     return (result.villeDepart.toLowerCase().indexOf(vDepart.toLowerCase()) > -1 )
+                 }
+             );
+     
+             console.log('333333333333')
+             console.log(this.annoncesCovoi)
+     
+              var vArrivee = this.model.villeArrivee;
+     
+            console.log(vArrivee)
+     
+                    this.annoncesCovoi= this.annoncesCovoi.filter(
+             (result) => {
+                     return (result.villeArrivee.toLowerCase().indexOf(vArrivee.toLowerCase()) > -1 )
+                 }
+             );
+        }*/
     };
     //////////////////////////////////////////////////////////
     AnnonceCovoiComponent.prototype.getAnnoncesCovoi = function () {
@@ -225,11 +137,6 @@ var AnnonceCovoiComponent = (function () {
         var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
         this.id = currentUserId;
         console.log(this.id);
-        /*   console.log (localStorage.getItem('currentUser'));
-                    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-                    console.log(currentUser)
-                      this.id=currentUser;
-                   //   console.log(currentUser.json().idUtilisateur)   */
     };
     /////////////////////////////////////////////////
     AnnonceCovoiComponent.prototype.onKey = function (event) {
@@ -237,10 +144,6 @@ var AnnonceCovoiComponent = (function () {
         console.log(event.target.value);
         //console.log(typeof($event.target.value))
     };
-    /* onChange(idUtilisateur) {
-            console.log('idUtilisateur'+idUtilisateur)
-    
-      }*/
     /////////////////////////////////////////////////
     AnnonceCovoiComponent.prototype.ngOnInit = function () {
         var currentUserId = JSON.parse(localStorage.getItem('currentUserId'));

@@ -3375,7 +3375,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   color: #ffffff;
 }
 .navbar.navbar-danger {
-  background-color: #f44336;
+  background-color: red;
   color: #ffffff;
 }
 .navbar.navbar-danger .navbar-form .form-group input.form-control::-moz-placeholder,

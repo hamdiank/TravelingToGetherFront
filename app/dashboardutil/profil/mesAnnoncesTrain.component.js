@@ -109,16 +109,16 @@ var MesAnnoncesTrainComponent = (function () {
         // this.model.paysDepart= this.paysDepart;
         //this.model.paysArrivee= this.paysArrivee;
         console.log(typeof (this.model.paysDepart));
-        this.annonceVolService.modifierAnnonceVol(this.model.id, this.model.heureDepart, this.model.dateDepart, this.model.paysDepart, this.model.stationTrainDepart, this.model.paysArrivee, this.model.stationTrainArrivee, this.idUtilisateur)
+        this.annonceTrainService.modifierAnnonceTrain(this.model.id, this.model.heureDepart, this.model.dateDepart, this.model.paysDepart, this.model.stationTrainDepart, this.model.paysArrivee, this.model.stationTrainArrivee, this.idUtilisateur)
             .subscribe(function (data) {
-            _this.router.navigate(['dashboardutil/MesAnnoncesVol']);
+            _this.router.navigate(['dashboardutil/MesAnnoncesTrain']);
         });
     };
-    MesAnnoncesTrainComponent.prototype.supprimerAnnonceVol = function () {
+    MesAnnoncesTrainComponent.prototype.supprimerAnnonceTrain = function () {
         var _this = this;
-        this.annonceVolService.supprimerAnnonceVol(this.model.id)
+        this.annonceTrainService.supprimerAnnonceTrain(this.model.id)
             .subscribe(function (data) {
-            _this.router.navigate(['dashboardutil/MesAnnoncesVol']);
+            _this.router.navigate(['dashboardutil/MesAnnoncesTrain']);
         });
     };
     MesAnnoncesTrainComponent.prototype.ngOnInit = function () {

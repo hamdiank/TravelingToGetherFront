@@ -44,6 +44,10 @@ modifierAnnonceTrain(id: string,heureDepart: string,dateDepart: string, paysDepa
     .map((res: Response) => res.json());
 
  }
+  supprimerAnnonceTrain( id : string){
+return this.http.delete(this.config.apiUrl+'/deleteAnnonceTrain/'+id,this.jwt())
+  
+ }
 
 private jwt() {
         // create authorization header with jwt token

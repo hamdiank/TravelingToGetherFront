@@ -157,18 +157,18 @@ modifierAnnonceTrain(){
     //this.model.paysArrivee= this.paysArrivee;
     console.log(typeof(this.model.paysDepart))
     
-    this.annonceVolService.modifierAnnonceVol(this.model.id,this.model.heureDepart,this.model.dateDepart,this.model.paysDepart,
+    this.annonceTrainService.modifierAnnonceTrain(this.model.id,this.model.heureDepart,this.model.dateDepart,this.model.paysDepart,
             this.model.stationTrainDepart,this.model.paysArrivee, this.model.stationTrainArrivee, this.idUtilisateur )
      .subscribe(
                 data => {
-                    this.router.navigate(['dashboardutil/MesAnnoncesVol']);
+                    this.router.navigate(['dashboardutil/MesAnnoncesTrain']);
                 });
 }
-supprimerAnnonceVol(){
-    this.annonceVolService.supprimerAnnonceVol(this.model.id)
+supprimerAnnonceTrain(){
+    this.annonceTrainService.supprimerAnnonceTrain(this.model.id)
          .subscribe(
                 data => {
-                    this.router.navigate(['dashboardutil/MesAnnoncesVol']);
+                    this.router.navigate(['dashboardutil/MesAnnoncesTrain']);
                 });
 }
     

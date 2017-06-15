@@ -6,6 +6,8 @@ import { ReservationService } from "../../_services/reservation.service";
 import { AlertService } from "../../_services/alert.service";
 import { UserService } from "../../_services/user.service";
 
+declare var google: any;
+
 @Component({
     selector: 'annonce-covoi-detail-cmp',
     moduleId: module.id,
@@ -15,6 +17,15 @@ import { UserService } from "../../_services/user.service";
 })
 
 export class AnnonceCovoiDetailComponent implements OnInit {
+
+
+    paysDepart : string;
+    villeDepart: string;
+
+    paysArrivee : string;
+    villeArrivee : string;
+    
+
     image: any;
     
     message: string;
@@ -37,17 +48,7 @@ export class AnnonceCovoiDetailComponent implements OnInit {
        console.log('dddddddd')
     });
   
-    console.log('I am here '+this.id)
-    this.annonceCovoiService.getAnnonceCovoi(this.id).subscribe( annonceCovoi=> { this.annonceCovoi = annonceCovoi,
-        this.utilisateur= annonceCovoi.utilisateur, this.reservations= annonceCovoi.reservations,
-        this.preferences= this.utilisateur.preferences, this.voiture= this.utilisateur.voiture
-       console.log("idutilisateur"+this.utilisateur.idUtilisateur)
-        console.log("idutilisateur"+this.preferences.fumeur)
-       // console.log(JSON.stringify(this.annonceCovoi))
-     // console.log(JSON.stringify(this.utilisateur))
-    });
-
-}
+  }
 
 /////////////////////////////////////
 
@@ -57,6 +58,49 @@ export class AnnonceCovoiDetailComponent implements OnInit {
         this.image = file;
         console.log("imagee  " + this.image);
       });
+  }
+  showPath(villeDepart, villeArrivee){
+
+
+var Depart= villeDepart;
+var Arrivee= villeArrivee;
+
+console.log('eeeeee'+Depart)
+console.log('eeeeee'+Arrivee)
+
+
+
+
+
+ var directionsService = new google.maps.DirectionsService;
+       var directionsDisplay = new google.maps.DirectionsRenderer;
+       var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: {lat: 41.85, lng: -87.65}
+        });
+        directionsDisplay.setMap(map);
+        calculateAndDisplayRoute(directionsService, directionsDisplay, Depart, Arrivee);
+
+      function calculateAndDisplayRoute(directionsService, directionsDisplay, Depart, Arrivee) {
+
+          var waypts = [];
+        //  var stringDep:String; 
+
+
+        directionsService.route({
+          origin: Depart,
+          destination: Arrivee,
+          waypoints: waypts,
+          optimizeWaypoints: true,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+}
   }
 ////////////////////////////////////////////////
 reserver(){
@@ -79,26 +123,28 @@ this.reservationService.reserver(this.annonceCovoi.id, this.currentUserId)
   
 }
 
- /*   ngOnInit() : void{
-     
-          
-
-        this.route.params
-      .switchMap((params: Params) => this.annonceCovoiService.getAnnonceCovoi(+params['id']))
-      .subscribe( annonceCovoi => { this.annonceCovoi = annonceCovoi});
-        this.getAnnonceCovoi();
-        console.log(typeof(this.annonceCovoi))
-        console.log(JSON.stringify(this.annonceCovoi));
-        */
 /////////////////////////////////////////////////////////
 
 ngOnInit(): void {
+    console.log('I am here '+this.id)
+    this.annonceCovoiService.getAnnonceCovoi(this.id).subscribe( annonceCovoi=> { this.annonceCovoi = annonceCovoi,
+        this.utilisateur= annonceCovoi.utilisateur, this.reservations= annonceCovoi.reservations,
+        this.preferences= this.utilisateur.preferences, this.voiture= this.utilisateur.voiture,
+        this.villeDepart=annonceCovoi.villeDepart, this.villeArrivee=annonceCovoi.villeArrivee,
+        this.showPath(annonceCovoi.villeDepart, annonceCovoi.villeArrivee)
+       
+        console.log("idutilisateur"+this.utilisateur.idUtilisateur)
+        console.log("idutilisateur"+this.preferences.fumeur)
+        console.log("villeDepart"+ this.villeDepart)
+        console.log("villeArrivee"+ this.villeArrivee)
+    });
+
+
     
     console.log(typeof(this.utilisateur.idUtilisateur))
     this.currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
-    //console.log("mmmmmmmmmmmm"+this.utilisateur.id)
-    //this.showImage(this.utilisateur.idUtilisateur);
-         // console.log('my id'+this.currentUserId)
-        }
+
 ////////////////////////////////////////////////////////////
+
+    }
 }
