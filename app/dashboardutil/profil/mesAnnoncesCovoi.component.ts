@@ -7,6 +7,7 @@ import { City } from "../../_models/city";
 import { PaysService } from "../../_services/pays.service";
 import { CityService } from "../../_services/city.service";
 import { ReservationService } from "../../_services/reservation.service";
+import { AlertService } from "../../_services/alert.service";
 
 
 declare var $:any;
@@ -20,6 +21,8 @@ declare var $:any;
 })
 
 export class MesAnnoncesCovoiComponent implements OnInit {
+
+    message: string;
 
     etat: boolean;
 
@@ -66,7 +69,7 @@ export class MesAnnoncesCovoiComponent implements OnInit {
     public selected: any={};
     annonceCovoi: AnnonceCovoi;
 
-    constructor(private annonceCovoiService: AnnonceCovoiService , private router: Router, private paysService: PaysService, private cityService : CityService, private reservationService: ReservationService ){
+    constructor(private annonceCovoiService: AnnonceCovoiService , private router: Router, private paysService: PaysService, private cityService : CityService, private reservationService: ReservationService,private alertService: AlertService ){
       this.selectedPays.idPays='0';
     this.paysService.getAll().subscribe( pays=> { this.pays=pays 
     
@@ -194,14 +197,26 @@ accepterReservation(){
     let etat= true;
     console.log(this.idReservation)
     this.reservationService.accepterReservation(this.idReservation, etat)
-    .subscribe(data => {
-            console.log("dddddddddd")
-            this.accepted=true;
-    });
+    .subscribe(
+                                   data => { 
+                  if(data !== null){
+                  // this.router.navigate(['dashboardutil/Accueil']);
+                    console.log("ffffffffff"+data);
+
+                 }else {
+                     console.log("ssssssss")
+                    this.message = "Nombre de places n'est pas disponible pour le moment   Complet ";
+                    console.log(this.message)
+                    this.alertService.error(this.message);
+                    console.log(data)
+
+                }
+            }
+    );
 
 }
 refuserReservation(){
-    let etat= false;
+    let etat= '';
     this.reservationService.refuserReservation(this.idReservation, etat)
         .subscribe(data=>{
             this.refused=true;

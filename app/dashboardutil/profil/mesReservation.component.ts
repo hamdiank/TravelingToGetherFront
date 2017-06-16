@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ReservationService } from "../../_services/reservation.service";
+import { AlertService } from "../../_services/alert.service";
 
 @Component({
     selector: 'mes-reservations-covoi-cmp',
@@ -13,8 +14,9 @@ export class MesReservationsComponent implements OnInit {
     id: string;
     reservations: any[];
     idReservation: string;
+    message: string;
     
-constructor(private reservationService: ReservationService){}
+constructor(private reservationService: ReservationService, private alertService : AlertService){}
 getReservationsByUtilisateurReservation(){
     console.log("here")
     this.reservationService.getReservationsByUtilisateurReservation(this.id)
@@ -25,6 +27,31 @@ getReservationsByUtilisateurReservation(){
     
     });
 
+}
+confirmerReservation(){
+    console.log("ggggggggg")
+    this.reservationService.confirmerReservation(this.idReservation).subscribe(
+                           data => { 
+                  if(data !== null){
+                  // this.router.navigate(['dashboardutil/Accueil']);
+                    console.log("ffffffffff"+data);
+
+                 }else {
+                     console.log("ssssssss")
+                    this.message = " Vous êtes déjà inscrit";
+                    console.log(this.message)
+                    this.alertService.error(this.message);
+                    console.log(data)
+
+                }
+            },  error => {
+                if(error){
+                    console.log("ssssssss")
+                    this.message = " Ce login déjà existe ";
+                    console.log(this.message)
+                    this.alertService.error(this.message);
+                }}
+    );
 }
 
 annulerReservation(){

@@ -7,7 +7,7 @@ import { URLSearchParams } from "@angular/http";
 
 export class ReservationService{
 
-    etat: boolean= false;
+    etat: string= 'false';
     constructor(private http: Http, private config: AppConfig ){}
 
     reserver(idAnnonceCovoi: string, idUtilisateurReservation: string){
@@ -17,8 +17,8 @@ export class ReservationService{
         urlSearchParams.append('idAnnonceCovoi', idAnnonceCovoi);
         urlSearchParams.append('idUtilisateurReservation', idUtilisateurReservation);
          urlSearchParams.append('etat', this.etat.toString()); 
-         let body = urlSearchParams.toString();
-          return this.http.put(this.config.apiUrl+'/reservation?'+body, body, this.jwt())
+         let requestParams = urlSearchParams.toString();
+          return this.http.put(this.config.apiUrl+'/reservation?'+requestParams,this.jwt())
                         .map((res: Response) => res.json());
     }
     getReservationsByAnnonceCovoi(idAnnonceCovoi){
@@ -50,6 +50,10 @@ export class ReservationService{
     annulerReservation(idReservation){
 
           return this.http.delete(this.config.apiUrl + '/annulerReservation/'+ idReservation, this.jwt());
+    }
+
+    confirmerReservation(idReservation){
+        return this.http.put(this.config.apiUrl + '/confirmerReservation/'+ idReservation, this.jwt());
     }
 accepterReservation(idReservation, etat){
         console.log(' accepter reservation ')

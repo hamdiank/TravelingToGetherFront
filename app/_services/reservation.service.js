@@ -16,7 +16,7 @@ var ReservationService = (function () {
     function ReservationService(http, config) {
         this.http = http;
         this.config = config;
-        this.etat = false;
+        this.etat = 'false';
     }
     ReservationService.prototype.reserver = function (idAnnonceCovoi, idUtilisateurReservation) {
         var headers = new http_1.Headers();
@@ -25,8 +25,8 @@ var ReservationService = (function () {
         urlSearchParams.append('idAnnonceCovoi', idAnnonceCovoi);
         urlSearchParams.append('idUtilisateurReservation', idUtilisateurReservation);
         urlSearchParams.append('etat', this.etat.toString());
-        var body = urlSearchParams.toString();
-        return this.http.put(this.config.apiUrl + '/reservation?' + body, body, this.jwt())
+        var requestParams = urlSearchParams.toString();
+        return this.http.put(this.config.apiUrl + '/reservation?' + requestParams, this.jwt())
             .map(function (res) { return res.json(); });
     };
     ReservationService.prototype.getReservationsByAnnonceCovoi = function (idAnnonceCovoi) {
@@ -51,6 +51,9 @@ var ReservationService = (function () {
     };
     ReservationService.prototype.annulerReservation = function (idReservation) {
         return this.http.delete(this.config.apiUrl + '/annulerReservation/' + idReservation, this.jwt());
+    };
+    ReservationService.prototype.confirmerReservation = function (idReservation) {
+        return this.http.put(this.config.apiUrl + '/confirmerReservation/' + idReservation, this.jwt());
     };
     ReservationService.prototype.accepterReservation = function (idReservation, etat) {
         console.log(' accepter reservation ');

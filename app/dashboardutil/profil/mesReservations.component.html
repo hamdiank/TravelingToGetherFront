@@ -1,38 +1,5 @@
 <div class="container" style="margin-top: 120px; margin-left: 200px;">
-	<div class="row">
-        <div class="col-sm-6">
-            <div class="business-card">
-                <div class="media">
-                    <div class="media-left">
-                        <img class="media-object img-circle profile-img" src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png">
-                    </div>
-                    <div class="media-body">
-                        <div class="row" style="margin-top: 25px;">
-                            <div class="col-sm-4">
-                                <h2 class="media-heading">Daniel</h2>
-                                <div class="job">CEO</div>
-                                <div class="mail"><a href="mailto:daniel@bla.ch">daniel@bla.ch</a> </div>
-                            </div>
-                            <div class="col-sm-4">	
-                                <p><span class="glyphicon glyphicon-map-marker"></span> Tunisie, Tunis</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <p><span class="glyphicon glyphicon-map-marker"></span> Tunisie, Tunis</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <p>Date: 23/05/2017</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <p><span class="glyphicon glyphicon-time"></span> 12:00</p>
-                            </div>                      	
-                        </div>
-                    </div>
-                    <div class="col-sm-4" style="margin-left: 50px;"> <button type="button" class="btn btn-danger pull-right">Annuler</button> </div>
-                     <div class="col-sm-4" style="margin-left: 120px; padding-left: 40px;" > <p><span style="color: red">En Attente</span><br><span style="color: green">Accepté</span> </p> </div>
-                </div>
-            </div>
-        </div>
-	</div>
+
 <div class="row" *ngFor="let reservation of reservations">
         <div class="col-sm-6">
             <div class="business-card">
@@ -60,9 +27,14 @@
                                 <p><span class="glyphicon glyphicon-time"></span> {{reservation.annonceCovoi.heureDepart}}</p>
                             </div>                      	
                         </div>
+                        <div class="row" style="margin-left: 50px;">
+                            <div class="col-sm-4" style="margin-left: 120px; padding-left: 40px;" > <p><span style="color: red" *ngIf="reservation.etat==false">En Attente</span><br><span style="color:orange" *ngIf="reservation.etat== null">Refusé</span><span style="color: green"  *ngIf="reservation.etat==true">Accepté</span> </p> </div>
+                            <div class="col-sm-4" style="margin-left: 50px;"> <button type="button" class="btn btn-danger pull-right" (click)="onClick(reservation)" (click)="annulerReservation()">Annuler</button> </div>
+                            <div class="col-sm-4" style="margin-left: 50px;"> <button  *ngIf="reservation.etat==true" type="button" class="btn btn-success pull-right" (click)="onClick(reservation)" (click)="confirmerReservation()">confirmer</button> </div>
+                        </div>
                     </div>
-                    <div class="col-sm-4" style="margin-left: 50px;"> <button type="button" class="btn btn-danger pull-right" (click)="onClick(reservation)" (click)="annulerReservation()">Annuler</button> </div>
-                     <div class="col-sm-4" style="margin-left: 120px; padding-left: 40px;" > <p><span style="color: red" *ngIf="reservation.etat==false">En Attente</span><br><span style="color: green"  *ngIf="reservation.etat==true">Accepté</span> </p> </div>
+                   
+                     
                 </div>
             </div>
         </div>

@@ -20,6 +20,9 @@
 
 
 <!-- ***************************Row*********************************************** -->
+    <div style="width:800px;">
+     <alert></alert>
+    </div>
 	<div class="row" *ngFor="let annonceCovoi of annoncesCovoi | paginate: {itemsPerPage: 5, currentPage:page, id: '1'}; let i = index" >
         <div class="col-md-4 col-sm-6">
             <div class="card-container1 manual-flip">
@@ -146,7 +149,7 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <label> <i class="material-icons" style="font-size:20px;">place</i>Ville Départ</label>
                                     <br>
-                                    <select [(ngModel)]="model.villeDepart" (input)="onInput($event)" name="villeDepart"   #villeDepart="ngModel" style="width: 200px; height: 30px;" required>
+                                    <select [(ngModel)]="model.villeDepart"  name="villeDepart"   #villeDepart="ngModel" style="width: 200px; height: 30px;" required>
                                         <option value="0">Select Ville Depart</option>
                                          <option value= {{model.villeDepart}} *ngIf="testVilleDepart===false">{{model.villeDepart}}</option>
                                         <option *ngFor="let city of cities " value= {{city.nom}}>{{city.nom}}</option>
@@ -172,7 +175,7 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <label> <i class="material-icons" style="font-size:20px;">place</i>Ville Arrivée</label>
                                     <br>
-                                    <select [(ngModel)]="model.villeArrivee" (input)="onInput2($event)" name="villeArrivee"   #villeArrivee="ngModel" style="width: 200px; height: 30px;" required>
+                                    <select [(ngModel)]="model.villeArrivee"  name="villeArrivee"   #villeArrivee="ngModel" style="width: 200px; height: 30px;" required>
                                         <option  value="0">--Select--</option>
                                         <option value= {{model.villeArrivee}} *ngIf="testVilleArrivee===false">{{model.villeArrivee}}</option>
                                         <option *ngFor="let city of cities2 " value= {{city.nom}}>{{city.nom}}</option>
@@ -214,6 +217,26 @@
                                 </div>
                             </div>   
     <!-- fin   modal -->
+    <div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Suppression</h4>
+      </div>
+      <div class="modal-body">
+        <p>Voulez-vous vraiment supprimer cette Annonce ?</p>
+      </div>
+      <div class="modal-footer">
+        <button (click)="supprimerAnnonceCovoi()" type="button" class="btn btn-success" data-dismiss="modal" >Oui</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+      </div>
+    </div>
+
+  </div>
+</div>
    <!-- Affichage Modal3 -->
 <div id="myModal3" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -222,12 +245,12 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Les Réservations</h4>
+        <h4 class="modal-title">Les Réservations en attente</h4>
       </div>
       <div class="modal-body">
 <div class="container">
-	<div class="row" *ngFor="let reservation of reservations">
-        <div class="col-sm-6">
+	<div class="row" *ngFor="let reservation of reservations ; let i= index" >
+        <div class="col-sm-6" *ngIf="reservation.etat== false">
             <div class="business-card">
                 <div class="media">
                     <div class="media-left">
@@ -240,7 +263,7 @@
                         <div class="mail"><a href="mailto:daniel@bla.ch">voir profil</a> </div>
                         </div>
                         <div class="col-sm-8">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="refuserReservation()" (click)="onClickReservation(reservation)" [disabled]="reservation.etat==false">Refuser</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="refuserReservation()" (click)="onClickReservation(reservation)" [disabled]="reservation.etat==true">Refuser</button>
                         </div>  
                         <div class="col-sm-8">
                          <button type="button" class="btn btn-success" data-dismiss="modal"  (click)="onClickReservation(reservation)" (click)="accepterReservation()" [disabled]="reservation.etat==true" >Accepter</button>
@@ -249,6 +272,8 @@
                 </div>
             </div>
         </div>
+
+
 	</div>
 </div>
         
@@ -275,7 +300,7 @@
       </div>
       <div class="modal-body">
 <div class="container">
-	<div class="row" *ngFor="let reservation of reservations" >
+	<div class="row" *ngFor="let reservation of reservations; let i = index" >
         <div class="col-sm-6" *ngIf="reservation.etat==true" >
             <div class="business-card">
                 <div class="media">
@@ -288,14 +313,14 @@
                             <div class="job">{{reservation.utilisateurReservation.profession}}</div>
                         <div class="mail"><a href="#">voir profil</a> </div>
                         </div>
-                        <div class="col-sm-8">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="refuserReservation()" (click)="onClickReservation(reservation)" [disabled]="reservation.etat==false">Refuser</button>
-                        </div>  
+                        <div class="col-sm-4" style="margin-top:80px ;margin-left: 120px; padding-left: 40px;" > <p><span style="color: red" *ngIf="reservation.confirmation==false">Non confirmé</span><br><span style="color: green"  *ngIf="reservation.confirmation==true">Confirmé</span> </p> </div>
+  
                     </div>
                 </div>
             </div>
         </div>
 	</div>
+
 </div>
         
       </div>

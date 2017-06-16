@@ -10,9 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var reservation_service_1 = require("../../_services/reservation.service");
+var alert_service_1 = require("../../_services/alert.service");
 var MesReservationsComponent = (function () {
-    function MesReservationsComponent(reservationService) {
+    function MesReservationsComponent(reservationService, alertService) {
         this.reservationService = reservationService;
+        this.alertService = alertService;
     }
     MesReservationsComponent.prototype.getReservationsByUtilisateurReservation = function () {
         var _this = this;
@@ -22,6 +24,30 @@ var MesReservationsComponent = (function () {
             _this.reservations = reservations,
                 console.log("hhhh");
             console.log(_this.reservations);
+        });
+    };
+    MesReservationsComponent.prototype.confirmerReservation = function () {
+        var _this = this;
+        console.log("ggggggggg");
+        this.reservationService.confirmerReservation(this.idReservation).subscribe(function (data) {
+            if (data !== null) {
+                // this.router.navigate(['dashboardutil/Accueil']);
+                console.log("ffffffffff" + data);
+            }
+            else {
+                console.log("ssssssss");
+                _this.message = " Vous êtes déjà inscrit";
+                console.log(_this.message);
+                _this.alertService.error(_this.message);
+                console.log(data);
+            }
+        }, function (error) {
+            if (error) {
+                console.log("ssssssss");
+                _this.message = " Ce login déjà existe ";
+                console.log(_this.message);
+                _this.alertService.error(_this.message);
+            }
         });
     };
     MesReservationsComponent.prototype.annulerReservation = function () {
@@ -47,7 +73,7 @@ var MesReservationsComponent = (function () {
             providers: [],
             styleUrls: ['mesReservations.component.css']
         }), 
-        __metadata('design:paramtypes', [reservation_service_1.ReservationService])
+        __metadata('design:paramtypes', [reservation_service_1.ReservationService, alert_service_1.AlertService])
     ], MesReservationsComponent);
     return MesReservationsComponent;
 }());

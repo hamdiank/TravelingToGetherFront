@@ -14,14 +14,16 @@ var router_1 = require("@angular/router");
 var pays_service_1 = require("../../_services/pays.service");
 var city_service_1 = require("../../_services/city.service");
 var reservation_service_1 = require("../../_services/reservation.service");
+var alert_service_1 = require("../../_services/alert.service");
 var MesAnnoncesCovoiComponent = (function () {
-    function MesAnnoncesCovoiComponent(annonceCovoiService, router, paysService, cityService, reservationService) {
+    function MesAnnoncesCovoiComponent(annonceCovoiService, router, paysService, cityService, reservationService, alertService) {
         var _this = this;
         this.annonceCovoiService = annonceCovoiService;
         this.router = router;
         this.paysService = paysService;
         this.cityService = cityService;
         this.reservationService = reservationService;
+        this.alertService = alertService;
         this.accepted = false;
         this.refused = false;
         this.selectedPays = {};
@@ -142,13 +144,22 @@ var MesAnnoncesCovoiComponent = (function () {
         console.log(this.idReservation);
         this.reservationService.accepterReservation(this.idReservation, etat)
             .subscribe(function (data) {
-            console.log("dddddddddd");
-            _this.accepted = true;
+            if (data !== null) {
+                // this.router.navigate(['dashboardutil/Accueil']);
+                console.log("ffffffffff" + data);
+            }
+            else {
+                console.log("ssssssss");
+                _this.message = "Nombre de places n'est pas disponible pour le moment   Complet ";
+                console.log(_this.message);
+                _this.alertService.error(_this.message);
+                console.log(data);
+            }
         });
     };
     MesAnnoncesCovoiComponent.prototype.refuserReservation = function () {
         var _this = this;
-        var etat = false;
+        var etat = '';
         this.reservationService.refuserReservation(this.idReservation, etat)
             .subscribe(function (data) {
             _this.refused = true;
@@ -169,7 +180,7 @@ var MesAnnoncesCovoiComponent = (function () {
             providers: [annonceCovoi_service_1.AnnonceCovoiService, reservation_service_1.ReservationService],
             styleUrls: ['myModal3.css']
         }), 
-        __metadata('design:paramtypes', [annonceCovoi_service_1.AnnonceCovoiService, router_1.Router, pays_service_1.PaysService, city_service_1.CityService, reservation_service_1.ReservationService])
+        __metadata('design:paramtypes', [annonceCovoi_service_1.AnnonceCovoiService, router_1.Router, pays_service_1.PaysService, city_service_1.CityService, reservation_service_1.ReservationService, alert_service_1.AlertService])
     ], MesAnnoncesCovoiComponent);
     return MesAnnoncesCovoiComponent;
 }());
