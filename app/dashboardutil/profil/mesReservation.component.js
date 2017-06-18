@@ -36,7 +36,7 @@ var MesReservationsComponent = (function () {
             }
             else {
                 console.log("ssssssss");
-                _this.message = " Vous êtes déjà inscrit";
+                _this.message = " nombre de places indisponibles ";
                 console.log(_this.message);
                 _this.alertService.error(_this.message);
                 console.log(data);
@@ -44,7 +44,7 @@ var MesReservationsComponent = (function () {
         }, function (error) {
             if (error) {
                 console.log("ssssssss");
-                _this.message = " Ce login déjà existe ";
+                _this.message = "Complet pas de places disponibles ";
                 console.log(_this.message);
                 _this.alertService.error(_this.message);
             }

@@ -110,26 +110,77 @@
 										<p class="cotisation" > {{annonceCovoi.cotisation}},<span class="cotisation1" >00</span>
 										<span class="glyphicon glyphicon-euro"></span> </p>
 										<p class="cotisation2"> par Place </p>
-										
-										<p class="places">{{annonceCovoi.nombrePlaces}}
+										<p class="places" *ngIf="annonceCovoi.nombrePlaces==0">
+											Complet
+											<a href="#" style="color: red">
+											<span class="glyphicon glyphicon-ok"></span>
+											</a>
+										</p>
+										<div *ngIf="annonceCovoi.nombrePlaces!=0">
+										<p class="places" >{{annonceCovoi.nombrePlaces}}
 											<a href="#" style="color: dodgerblue">
 											<span class="glyphicon glyphicon-user places1"></span>
 											</a>
 										</p>
 										
 										<p class="places2 "> Places restantes </p>
+										</div>
 								  </div>
 								</div>
                             </div>
                             <div class="footer">
+								<button class="btn btn-simple" style=" width:50px;" (click)="commentaire()" >
+                                    <i class="material-icons" style="color:#1ab394;">comment</i> &nbsp;&nbsp;<a style="color: gray" >Commentaires </a>
+                                </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <button class="btn btn-simple" >
-                                    <i class="fa fa-mail-forward"></i> &nbsp;&nbsp;<a [routerLink]="['/dashboardutil/detail', annonceCovoi.id]">Show Detail </a>
+                                    <i class="fa fa-mail-forward" style="color:#1ab394 "></i> &nbsp;&nbsp;<a style="color:gray " [routerLink]="['/dashboardutil/detail', annonceCovoi.id]">Les détails </a>
                                 </button>
+								
                             </div>
                         </div>
                     </div> <!-- end front panel -->
                 </div> <!-- end card -->
             </div> <!-- end card-container -->
+			<div class="container" style="width: 1150px; " *ngIf="commentAppear==true">
+    <div class="col-sm-8">
+        <div class="panel panel-white post panel-shadow">
+            <div class="post-footer">
+                <div class="input-group"> 
+                    <input class="form-control" placeholder="Add a comment" type="text">
+                    <span class="input-group-addon">
+                        <a href="#"><i class="fa fa-edit"></i></a>  
+                    </span>
+                </div>
+                <ul class="comments-list">
+                    <li class="comment">
+                        <a class="pull-left" href="#">
+                            <img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+                        </a>
+                        <div class="comment-body">
+                            <div class="comment-heading">
+                                <h4 class="user">Gavino Free</h4>
+                                <h5 class="time">5 minutes ago</h5>
+                            </div>
+                            <p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p>
+                        </div>
+                    </li>
+                    <li class="comment">
+                        <a class="pull-left" href="#">
+                            <img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+                        </a>
+                        <div class="comment-body">
+                            <div class="comment-heading">
+                                <h4 class="user">Gavino Free</h4>
+                                <h5 class="time">5 minutes ago</h5>
+                            </div>
+                            <p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
         </div> <!-- end col sm 3 -->
 	</div>
 

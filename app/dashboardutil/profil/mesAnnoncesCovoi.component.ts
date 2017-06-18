@@ -194,9 +194,8 @@ supprimerAnnonceCovoi(){
 }
 
 accepterReservation(){
-    let etat= true;
     console.log(this.idReservation)
-    this.reservationService.accepterReservation(this.idReservation, etat)
+    this.reservationService.accepterReservation(this.idReservation)
     .subscribe(
                                    data => { 
                   if(data !== null){
@@ -217,7 +216,7 @@ accepterReservation(){
 }
 refuserReservation(){
     let etat= '';
-    this.reservationService.refuserReservation(this.idReservation, etat)
+    this.reservationService.refuserReservation(this.idReservation)
         .subscribe(data=>{
             this.refused=true;
             console.log("refused")

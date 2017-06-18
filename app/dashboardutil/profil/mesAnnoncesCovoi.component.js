@@ -140,9 +140,8 @@ var MesAnnoncesCovoiComponent = (function () {
     };
     MesAnnoncesCovoiComponent.prototype.accepterReservation = function () {
         var _this = this;
-        var etat = true;
         console.log(this.idReservation);
-        this.reservationService.accepterReservation(this.idReservation, etat)
+        this.reservationService.accepterReservation(this.idReservation)
             .subscribe(function (data) {
             if (data !== null) {
                 // this.router.navigate(['dashboardutil/Accueil']);
@@ -160,7 +159,7 @@ var MesAnnoncesCovoiComponent = (function () {
     MesAnnoncesCovoiComponent.prototype.refuserReservation = function () {
         var _this = this;
         var etat = '';
-        this.reservationService.refuserReservation(this.idReservation, etat)
+        this.reservationService.refuserReservation(this.idReservation)
             .subscribe(function (data) {
             _this.refused = true;
             console.log("refused");

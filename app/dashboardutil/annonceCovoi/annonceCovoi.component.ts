@@ -13,10 +13,13 @@ declare var $:any;
     selector: 'annonce-covoi-cmp',
     moduleId: module.id,
     templateUrl: 'annonceCovoi.component.html',
-    providers:[AnnonceCovoiService]
+    providers:[AnnonceCovoiService],
+    styleUrls: ['annonceCovoi.component.css']
 })
 
 export class AnnonceCovoiComponent implements OnInit {
+
+    commentAppear: boolean;
     idUtilisateur: any;
     utilisateur: any={};
     annoncesCovoi: AnnonceCovoi[];
@@ -61,7 +64,9 @@ export class AnnonceCovoiComponent implements OnInit {
         //event.pageCount = Total number of pages
     }
 */
-
+commentaire(){
+    this.commentAppear=true;
+}
 //////////////////////////////////////////////////
 
  onSelect1(idPays1) {

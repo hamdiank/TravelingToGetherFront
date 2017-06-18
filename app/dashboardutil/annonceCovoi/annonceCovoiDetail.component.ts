@@ -106,20 +106,30 @@ console.log('eeeeee'+Arrivee)
 reserver(){
 this.reservationService.reserver(this.annonceCovoi.id, this.currentUserId)
 .subscribe(
-                data => { 
+                   data => { 
                   if(data !== null){
-                       console.log("jjjjj"+data)
+                  // this.router.navigate(['dashboardutil/Accueil']);
+                    console.log("ffffffffff"+data);
+                    this.message = "Votre réservation est validée";
+                     this.alertService.success(this.message);
+                    
 
-
-                }else {
-                    this.message = " Vous avez déjà réservé ";
+                 }else {
+                     console.log("ssssssss")
+                    this.message = " Vous avez déjà réservé";
                     console.log(this.message)
-                    this.alertService.error(" Vous avez déjà réservé ");
-                    this.reserved=false;
+                    this.alertService.error(this.message);
                     console.log(data)
+                     this.reserved=false;
 
                 }
-                });
+            },  error => {
+                if(error){
+                    console.log("ssssssss")
+                    this.message = "Complet pas de places disponibles ";
+                    console.log(this.message)
+                    this.alertService.error(this.message);
+                }});
   
 }
 

@@ -80,14 +80,25 @@ var AnnonceCovoiDetailComponent = (function () {
         this.reservationService.reserver(this.annonceCovoi.id, this.currentUserId)
             .subscribe(function (data) {
             if (data !== null) {
-                console.log("jjjjj" + data);
+                // this.router.navigate(['dashboardutil/Accueil']);
+                console.log("ffffffffff" + data);
+                _this.message = "Votre réservation est validée";
+                _this.alertService.success(_this.message);
             }
             else {
-                _this.message = " Vous avez déjà réservé ";
+                console.log("ssssssss");
+                _this.message = " Vous avez déjà réservé";
                 console.log(_this.message);
-                _this.alertService.error(" Vous avez déjà réservé ");
-                _this.reserved = false;
+                _this.alertService.error(_this.message);
                 console.log(data);
+                _this.reserved = false;
+            }
+        }, function (error) {
+            if (error) {
+                console.log("ssssssss");
+                _this.message = "Complet pas de places disponibles ";
+                console.log(_this.message);
+                _this.alertService.error(_this.message);
             }
         });
     };

@@ -53,28 +53,20 @@ export class ReservationService{
     }
 
     confirmerReservation(idReservation){
-        return this.http.put(this.config.apiUrl + '/confirmerReservation/'+ idReservation, this.jwt());
+        return this.http.put(this.config.apiUrl + '/confirmerReservation/'+ idReservation, this.jwt())
+         .map((res: Response) => res.json());;
     }
-accepterReservation(idReservation, etat){
-        console.log(' accepter reservation ')
-        let urlSearchParams = new URLSearchParams();
-        urlSearchParams.append('idReservation', idReservation); 
-        urlSearchParams.append('etat', etat); 
-        let requestParams= urlSearchParams.toString();
-        console.log(requestParams)
-     return this.http.put(this.config.apiUrl+'/accepterReservation?'+requestParams, this.jwt())
+accepterReservation(idReservation){
+        
+     return this.http.put(this.config.apiUrl+'/accepterReservation/'+idReservation, this.jwt())
         .map((res: Response) => res.json());
 
 }
 
-refuserReservation(idReservation, etat){
-        console.log(' accepter reservation ')
-        let urlSearchParams = new URLSearchParams();
-        urlSearchParams.append('idReservation', idReservation); 
-        urlSearchParams.append('etat', etat); 
-        let requestParams= urlSearchParams.toString();
-        console.log(requestParams)
-     return this.http.put(this.config.apiUrl+'/refuserReservation?'+requestParams, this.jwt())
+refuserReservation(idReservation){
+        console.log(' refuser reservation ')
+
+     return this.http.put(this.config.apiUrl+'/refuserReservation/'+idReservation, this.jwt())
         .map((res: Response) => res.json());
 
 }

@@ -31,14 +31,14 @@ getReservationsByUtilisateurReservation(){
 confirmerReservation(){
     console.log("ggggggggg")
     this.reservationService.confirmerReservation(this.idReservation).subscribe(
-                           data => { 
+                   data => { 
                   if(data !== null){
                   // this.router.navigate(['dashboardutil/Accueil']);
                     console.log("ffffffffff"+data);
 
                  }else {
                      console.log("ssssssss")
-                    this.message = " Vous êtes déjà inscrit";
+                    this.message = " nombre de places indisponibles ";
                     console.log(this.message)
                     this.alertService.error(this.message);
                     console.log(data)
@@ -47,7 +47,7 @@ confirmerReservation(){
             },  error => {
                 if(error){
                     console.log("ssssssss")
-                    this.message = " Ce login déjà existe ";
+                    this.message = "Complet pas de places disponibles ";
                     console.log(this.message)
                     this.alertService.error(this.message);
                 }}

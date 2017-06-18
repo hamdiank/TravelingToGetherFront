@@ -41,6 +41,9 @@ var AnnonceCovoiComponent = (function () {
             //event.pageCount = Total number of pages
         }
     */
+    AnnonceCovoiComponent.prototype.commentaire = function () {
+        this.commentAppear = true;
+    };
     //////////////////////////////////////////////////
     AnnonceCovoiComponent.prototype.onSelect1 = function (idPays1) {
         var _this = this;
@@ -157,7 +160,8 @@ var AnnonceCovoiComponent = (function () {
             selector: 'annonce-covoi-cmp',
             moduleId: module.id,
             templateUrl: 'annonceCovoi.component.html',
-            providers: [annonceCovoi_service_1.AnnonceCovoiService]
+            providers: [annonceCovoi_service_1.AnnonceCovoiService],
+            styleUrls: ['annonceCovoi.component.css']
         }), 
         __metadata('design:paramtypes', [annonceCovoi_service_1.AnnonceCovoiService, router_1.Router, pays_service_1.PaysService, city_service_1.CityService])
     ], AnnonceCovoiComponent);
