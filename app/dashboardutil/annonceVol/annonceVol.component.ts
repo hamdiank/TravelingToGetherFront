@@ -8,6 +8,7 @@ import { Pays } from "../../_models/Pays";
 import { City } from "../../_models/city";
 import { AnnonceVolService } from "../../_services/annonceVol.service";
 import { Aeroport } from "../../_models/aeroport";
+import { CommentaireService } from "../../_services/commentaire.service";
 
 declare var $:any;
 
@@ -16,16 +17,23 @@ declare var $:any;
     moduleId: module.id,
     templateUrl: 'annonceVol.component.html',
     styleUrls:['annonceVol.component.css'],
-    providers:[AnnonceVolService]
+    providers:[AnnonceVolService, CommentaireService]
 })
 
 export class AnnonceVolComponent implements OnInit {
+
+
+    idCommentaire:string;
+
+    commentaires: any[];
+    idAnnonceVol: string;
 
 public id: string;
 annoncesVol: any=[];
 
 selectedPays:Pays= new Pays();
 /////////////////////////////////////////////////
+
 
     idUtilisateur: any;
     utilisateur: any={};
@@ -51,7 +59,7 @@ selectedPays:Pays= new Pays();
 
   ///////////////////////////////////////////////////////////////
 
-constructor(private annonceVolService: AnnonceVolService, private annonceCovoiService: AnnonceCovoiService , private router: Router, private paysService: PaysService, private cityService : CityService){
+constructor(private annonceVolService: AnnonceVolService, private annonceCovoiService: AnnonceCovoiService , private router: Router, private paysService: PaysService, private cityService : CityService, private commentaireService: CommentaireService){
 this.selectedPays.idPays="0";
     this.paysService.getAll().subscribe( pays=> { this.pays=pays 
     
@@ -59,6 +67,35 @@ this.selectedPays.idPays="0";
     console.log(JSON.stringify(this.pays));
 
 }
+onClick(commentaire){
+console.log("ttttttttttttt"+commentaire.id)
+this.idCommentaire= commentaire.id
+}
+supprimerCommentaire(){
+    this.commentaireService.deleteCommentaire(this.idCommentaire).subscribe(data=> {
+        console.log("rrrrrrr"),
+         this.getCommentairesByAnnonce(this.idAnnonceVol);
+    })
+}
+getCommentairesByAnnonce(id){
+    console.log("vvvvvvvvvvvv"+ id)
+    this.idAnnonceVol= id;
+       this.commentaireService.getCommentairesByAnnonceVol(id).subscribe( commentaires=> { this.commentaires=commentaires,
+         console.log(commentaires)
+        
+    });
+}
+addCommentaire(){
+console.log("fffffffff"+ this.model.text)
+console.log("hhh"+ this.id);
+console.log("zzzzzz"+ this.idAnnonceVol)
+this.commentaireService.addCommentaireAnnonceVol(this.model.text, this.idAnnonceVol, this.id).subscribe( data => { 
+                    console.log("model=>"+this.model.text)
+                   this.getCommentairesByAnnonce(this.idAnnonceVol);
+                })
+}
+//////////////////////////////////////////////////
+
 getAnnoncesVol(){
 this.annonceVolService.getAnnoncesVol().subscribe(annoncesVol =>{
     this.annoncesVol=annoncesVol, this.annoncesVolToFilter= annoncesVol
@@ -106,6 +143,8 @@ onSubmit(){
     console.log("paysArrivee:"+ this.model.paysArrivee)
     console.log("aeroportDepart:"+ this.model.aeroportDepart)
     console.log("aeroportArrivee:"+ this.model.aeroportArrivee)
+    console.log("dateDepart:"+ this.model.dateDepart)
+    
 
     /////////////////////////////////////////////
    if(this.model.paysDepart!= 0 && this.model.aeroportDepart != 0) {
@@ -126,6 +165,36 @@ onSubmit(){
         console.log('333333333333')
         console.log(this.annoncesVol)
    }
+   ///////////////date depart //////////////////////////
+   if(this.model.paysDepart!= 0 && this.model.aeroportDepart != 0 && this.model.dateDepart != 0) {
+    
+         this.annoncesVol=this.annoncesVolToFilter;
+
+        var aDepart = this.model.aeroportDepart;
+        //this.annoncesCovoi=this.annoncesCovoiToFilter;
+        console.log('22222222');
+      //  this.annoncesCovoi=this.annoncesCovoiToFilter;
+      //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
+        this.annoncesVol= this.annoncesVol.filter(
+        (result) => {
+                return (result.aeroportDepart.toLowerCase().indexOf(aDepart.toLowerCase()) > -1 )
+            }
+        );
+     var dDepart = this.model.dateDepart;
+        //this.annoncesCovoi=this.annoncesCovoiToFilter;
+        console.log('4444444444');
+      //  this.annoncesCovoi=this.annoncesCovoiToFilter;
+      //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
+        this.annoncesVol= this.annoncesVol.filter(
+        (result) => {
+                return (result.dateDepart.toLowerCase().indexOf(dDepart.toLowerCase()) > -1 )
+            }
+        );  
+
+        console.log('333333333333')
+        console.log(this.annoncesVol)
+   }
+
        if(this.model.paysArrivee!= 0 && this.model.aeroportArrivee != 0){
             this.annoncesVol=this.annoncesVolToFilter;
 
@@ -139,6 +208,32 @@ onSubmit(){
             }
         );
        }
+       //////////////////date depart /////////////////////////
+       if(this.model.paysArrivee!= 0 && this.model.aeroportArrivee != 0 && this.model.dateDepart!= 0){
+            this.annoncesVol=this.annoncesVolToFilter;
+
+            var aArrivee = this.model.aeroportArrivee;
+
+       console.log(aArrivee)
+
+               this.annoncesVol= this.annoncesVol.filter(
+        (result) => {
+                return (result.aeroportArrivee.toLowerCase().indexOf(aArrivee.toLowerCase()) > -1 )
+            }
+        );
+             var dDepart = this.model.dateDepart;
+        //this.annoncesCovoi=this.annoncesCovoiToFilter;
+        console.log('4444444444');
+      //  this.annoncesCovoi=this.annoncesCovoiToFilter;
+      //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
+        this.annoncesVol= this.annoncesVol.filter(
+        (result) => {
+                return (result.dateDepart.toLowerCase().indexOf(dDepart.toLowerCase()) > -1 )
+            }
+        );  
+        
+       }
+
    if(this.model.paysDepart!= 0 && this.model.aeroportDepart != 0 && this.model.paysArrivee!= 0 && this.model.aeroportArrivee != 0 ){
        
          this.annoncesVol=this.annoncesVolToFilter;
@@ -167,24 +262,26 @@ onSubmit(){
             }
         );
    }
+   ////////////////////date Depart///////////////////
+     if(this.model.paysDepart!= 0 && this.model.aeroportDepart != 0 && this.model.paysArrivee!= 0 && this.model.aeroportArrivee != 0 && this.model.dateDepart != 0 ){
+       
+         this.annoncesVol=this.annoncesVolToFilter;
 
-
-     /*   //this.annoncesCovoi=this.annoncesCovoiToFilter;
+        var aDepart = this.model.aeroportDepart;
+        //this.annoncesCovoi=this.annoncesCovoiToFilter;
         console.log('22222222');
       //  this.annoncesCovoi=this.annoncesCovoiToFilter;
       //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
         this.annoncesVol= this.annoncesVol.filter(
         (result) => {
-                return (result.aeroportArrivee.toLowerCase().indexOf(vArrivee.toLowerCase()) > -1 )
+                return (result.aeroportDepart.toLowerCase().indexOf(aDepart.toLowerCase()) > -1 )
             }
         );
-       }
-   }
-   
 
+        console.log('333333333333')
+        console.log(this.annoncesVol)
 
-
-   /*    var aArrivee = this.model.aeroportArrivee;
+         var aArrivee = this.model.aeroportArrivee;
 
        console.log(aArrivee)
 
@@ -193,21 +290,17 @@ onSubmit(){
                 return (result.aeroportArrivee.toLowerCase().indexOf(aArrivee.toLowerCase()) > -1 )
             }
         );
-
-
-     /*   //this.annoncesCovoi=this.annoncesCovoiToFilter;
-        console.log('22222222');
+             var dDepart = this.model.dateDepart;
+        //this.annoncesCovoi=this.annoncesCovoiToFilter;
+        console.log('4444444444');
       //  this.annoncesCovoi=this.annoncesCovoiToFilter;
       //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
         this.annoncesVol= this.annoncesVol.filter(
         (result) => {
-                return (result.aeroportArrivee.toLowerCase().indexOf(vArrivee.toLowerCase()) > -1 )
+                return (result.dateDepart.toLowerCase().indexOf(dDepart.toLowerCase()) > -1 )
             }
-        );*/
-
-        
-        //console.log(JSON.stringify(this.annoncesCovoi))
-
+        );  
+   } 
     }
 
      ngOnInit() {
@@ -219,5 +312,6 @@ onSubmit(){
         this.model.paysArrivee=0;
         this.model.aeroportDepart=0;
         this.model.aeroportArrivee=0;
+        this.model.dateDepart=0;
         }
 }

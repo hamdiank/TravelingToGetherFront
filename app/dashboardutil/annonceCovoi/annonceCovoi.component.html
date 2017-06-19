@@ -36,6 +36,14 @@
 										</select> 
 									</div>
 								</div>
+								<div class="col-sm-4">
+									<div class="form-group form-black label-floating is-empty">
+										<label>  <span class="glyphicon glyphicon-calendar"></span> &nbsp;Date de Départ</label>
+										<br>
+										<input type="date" [(ngModel)]="model.dateDepart"   name="dateDepart"   #dateDepart="ngModel" style="width: 200px; height: 30px;">
+
+									</div>
+								</div>
 								
 							</div>
                          <hr>
@@ -62,7 +70,7 @@
                                 </div>
                             </div>
 							<div class="col-sm-4">
-										<button type="submit" class="btn btn-success pull-right">chercher Annonce</button>
+								<button  style="margin-right: 150px; margin-top: 50px;" type="submit" class="btn btn-success pull-right">chercher Annonce</button>
 							</div>
                         </div>								
 
@@ -129,7 +137,7 @@
 								</div>
                             </div>
                             <div class="footer">
-								<button class="btn btn-simple" style=" width:50px;" (click)="commentaire()" >
+								<button class="btn btn-simple" style=" width:50px;" (click)="getCommentairesByAnnonce(annonceCovoi.id)"  >
                                     <i class="material-icons" style="color:#1ab394;">comment</i> &nbsp;&nbsp;<a style="color: gray" >Commentaires </a>
                                 </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <button class="btn btn-simple" >
@@ -141,39 +149,40 @@
                     </div> <!-- end front panel -->
                 </div> <!-- end card -->
             </div> <!-- end card-container -->
-			<div class="container" style="width: 1150px; " *ngIf="commentAppear==true">
+			<div class="container" style="width: 1150px; " *ngIf="idAnnonceCovoi==annonceCovoi.id">
     <div class="col-sm-8">
         <div class="panel panel-white post panel-shadow">
             <div class="post-footer">
+				 <form #myForm="ngForm" (ngSubmit)="addCommentaire()">
                 <div class="input-group"> 
-                    <input class="form-control" placeholder="Add a comment" type="text">
+					<input class="form-control" placeholder="Ajouter commentaire" type="text"  [(ngModel)]="model.text" name="text"   #text="ngModel"  required>
                     <span class="input-group-addon">
-                        <a href="#"><i class="fa fa-edit"></i></a>  
+                        <a > <i class="material-icons" style="color:#1ab394;">comment</i><button type="submit" style="height: 40px;"> Commenter</button> </a>  
                     </span>
+					
                 </div>
-                <ul class="comments-list">
+				 </form>
+                <ul class="comments-list" *ngFor="let commentaire of commentaires">
+					
                     <li class="comment">
                         <a class="pull-left" href="#">
-                            <img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+                           <img class="avatar" src="https://www2.mmu.ac.uk/media/mmuacuk/style-assets/images/r-research/profile-Zeyad.jpg"/>
                         </a>
                         <div class="comment-body">
                             <div class="comment-heading">
-                                <h4 class="user">Gavino Free</h4>
-                                <h5 class="time">5 minutes ago</h5>
+                                <h4 class="user">{{commentaire.author.prenom}}</h4>
+                                <h5 class="time">{{commentaire.date}}</h5>
                             </div>
-                            <p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p>
-                        </div>
-                    </li>
-                    <li class="comment">
-                        <a class="pull-left" href="#">
-                            <img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar">
-                        </a>
-                        <div class="comment-body">
-                            <div class="comment-heading">
-                                <h4 class="user">Gavino Free</h4>
-                                <h5 class="time">5 minutes ago</h5>
-                            </div>
-                            <p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p>
+							<div class="row">
+								<div class="col-md-6">
+									<p style="display: inline-block;">{{commentaire.text}}</p>
+								</div>
+								<div class="col-md-6" *ngIf="id==annonceCovoi.utilisateur.idUtilisateur || commentaire.author.idUtilisateur==id">
+									<button style="display: inline-block; margin-left: 200px;" type="button" rel="tooltip" title="Supprimer Commentaire" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal" (click)="onClick(commentaire)">
+										<i class="fa fa-times"></i>
+									</button>
+								</div>
+							</div>
                         </div>
                     </li>
                 </ul>
@@ -183,6 +192,26 @@
 </div>
         </div> <!-- end col sm 3 -->
 	</div>
+	    <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Suppression Commentaire</h4>
+      </div>
+      <div class="modal-body">
+        <p>Voulez-vous vraiment supprimer ce comentaire ?</p>
+      </div>
+      <div class="modal-footer">
+        <button (click)="supprimerCommentaire()" type="button" class="btn btn-success" data-dismiss="modal" >Oui</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <pagination-controls class=" pull-right" (pageChange)="page = $event" id="1" maxSize="3" directionLinks="true" autoHide="true">
 </pagination-controls>

@@ -15,8 +15,9 @@ var pays_service_1 = require("../../_services/pays.service");
 var city_service_1 = require("../../_services/city.service");
 var reservation_service_1 = require("../../_services/reservation.service");
 var annonceVol_service_1 = require("../../_services/annonceVol.service");
+var commentaire_service_1 = require("../../_services/commentaire.service");
 var MesAnnoncesVolComponent = (function () {
-    function MesAnnoncesVolComponent(annonceVolService, annonceCovoiService, router, paysService, cityService, reservationService) {
+    function MesAnnoncesVolComponent(annonceVolService, annonceCovoiService, router, paysService, cityService, reservationService, commentaireService) {
         var _this = this;
         this.annonceVolService = annonceVolService;
         this.annonceCovoiService = annonceCovoiService;
@@ -24,6 +25,7 @@ var MesAnnoncesVolComponent = (function () {
         this.paysService = paysService;
         this.cityService = cityService;
         this.reservationService = reservationService;
+        this.commentaireService = commentaireService;
         this.selectedPays = {};
         this.testPaysDepart = false;
         this.testAeroportDepart = false;
@@ -40,6 +42,36 @@ var MesAnnoncesVolComponent = (function () {
         });
         console.log(JSON.stringify(this.pays));
     }
+    /////////////////////////////////////////////////////
+    MesAnnoncesVolComponent.prototype.onClickCommentaire = function (commentaire) {
+        console.log("ttttttttttttt" + commentaire.id);
+        this.idCommentaire = commentaire.id;
+    };
+    MesAnnoncesVolComponent.prototype.supprimerCommentaire = function () {
+        var _this = this;
+        this.commentaireService.deleteCommentaire(this.idCommentaire.toString()).subscribe(function (data) {
+            console.log("rrrrrrr"),
+                _this.getCommentairesByAnnonce(_this.idAnnonceVol);
+        });
+    };
+    MesAnnoncesVolComponent.prototype.getCommentairesByAnnonce = function (id) {
+        var _this = this;
+        console.log("vvvvvvvvvvvv" + id);
+        this.idAnnonceVol = id;
+        this.commentaireService.getCommentairesByAnnonceVol(id).subscribe(function (commentaires) {
+            _this.commentaires = commentaires,
+                console.log(commentaires);
+        });
+    };
+    MesAnnoncesVolComponent.prototype.addCommentaire = function () {
+        var _this = this;
+        console.log("fffffffff" + this.model.text);
+        this.commentaireService.addCommentaireAnnonceVol(this.model.text, this.idAnnonceVol, this.id).subscribe(function (data) {
+            console.log("model=>" + _this.model.text),
+                _this.getCommentairesByAnnonce(_this.idAnnonceVol);
+        });
+    };
+    //////////////////////////////////////////////////
     /////////////////////////////////////////////////////
     MesAnnoncesVolComponent.prototype.onSelect1 = function (idPays1) {
         var _this = this;
@@ -130,10 +162,10 @@ var MesAnnoncesVolComponent = (function () {
             selector: 'mes-annonces-vol-cmp',
             moduleId: module.id,
             templateUrl: 'mesAnnoncesVol.component.html',
-            providers: [annonceVol_service_1.AnnonceVolService],
+            providers: [annonceVol_service_1.AnnonceVolService, commentaire_service_1.CommentaireService],
             styleUrls: ['mesAnnoncesVol.component.css']
         }), 
-        __metadata('design:paramtypes', [annonceVol_service_1.AnnonceVolService, annonceCovoi_service_1.AnnonceCovoiService, router_1.Router, pays_service_1.PaysService, city_service_1.CityService, reservation_service_1.ReservationService])
+        __metadata('design:paramtypes', [annonceVol_service_1.AnnonceVolService, annonceCovoi_service_1.AnnonceCovoiService, router_1.Router, pays_service_1.PaysService, city_service_1.CityService, reservation_service_1.ReservationService, commentaire_service_1.CommentaireService])
     ], MesAnnoncesVolComponent);
     return MesAnnoncesVolComponent;
 }());

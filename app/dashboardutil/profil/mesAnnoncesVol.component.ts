@@ -9,6 +9,7 @@ import { CityService } from "../../_services/city.service";
 import { ReservationService } from "../../_services/reservation.service";
 import { AnnonceVolService } from "../../_services/annonceVol.service";
 import { Aeroport } from "../../_models/aeroport";
+import { CommentaireService } from "../../_services/commentaire.service";
 
 declare var $:any;
 
@@ -16,12 +17,18 @@ declare var $:any;
     selector: 'mes-annonces-vol-cmp',
     moduleId: module.id,
     templateUrl: 'mesAnnoncesVol.component.html',
-    providers:[AnnonceVolService],
+    providers:[AnnonceVolService, CommentaireService],
     styleUrls:['mesAnnoncesVol.component.css']
 
 })
 
 export class MesAnnoncesVolComponent implements OnInit {
+        
+    idCommentaire:string;
+
+    commentaires: any[];
+    idAnnonceVol: string;
+    commentAppear: boolean;
 
     aeroports:Aeroport[];
     aeroports2:Aeroport[];
@@ -67,13 +74,40 @@ export class MesAnnoncesVolComponent implements OnInit {
     mesAnnoncesVol:any=[];
     id:string;
 
-    constructor(private annonceVolService: AnnonceVolService,private annonceCovoiService: AnnonceCovoiService , private router: Router, private paysService: PaysService, private cityService : CityService, private reservationService: ReservationService ){
+    constructor(private annonceVolService: AnnonceVolService,private annonceCovoiService: AnnonceCovoiService , private router: Router, private paysService: PaysService, private cityService : CityService, private reservationService: ReservationService, private commentaireService: CommentaireService ){
       this.selectedPays.idPays='0';
     this.paysService.getAll().subscribe( pays=> { this.pays=pays 
     
     });
     console.log(JSON.stringify(this.pays));   
-    }
+}
+/////////////////////////////////////////////////////
+onClickCommentaire(commentaire){
+console.log("ttttttttttttt"+commentaire.id)
+this.idCommentaire= commentaire.id
+}
+supprimerCommentaire(){
+    this.commentaireService.deleteCommentaire(this.idCommentaire.toString()).subscribe(data=> {
+        console.log("rrrrrrr"),
+         this.getCommentairesByAnnonce(this.idAnnonceVol);
+    })
+}
+getCommentairesByAnnonce(id){
+    console.log("vvvvvvvvvvvv"+ id)
+    this.idAnnonceVol= id;
+       this.commentaireService.getCommentairesByAnnonceVol(id).subscribe( commentaires=> { this.commentaires=commentaires,
+         console.log(commentaires)
+        
+    });
+}
+addCommentaire(){
+console.log("fffffffff"+ this.model.text)
+this.commentaireService.addCommentaireAnnonceVol(this.model.text, this.idAnnonceVol, this.id).subscribe( data => { 
+                    console.log("model=>"+this.model.text),
+                    this.getCommentairesByAnnonce(this.idAnnonceVol);
+                })
+}
+//////////////////////////////////////////////////
 /////////////////////////////////////////////////////
 
     onSelect1(idPays1) {

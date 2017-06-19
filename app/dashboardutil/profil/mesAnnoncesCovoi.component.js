@@ -15,8 +15,9 @@ var pays_service_1 = require("../../_services/pays.service");
 var city_service_1 = require("../../_services/city.service");
 var reservation_service_1 = require("../../_services/reservation.service");
 var alert_service_1 = require("../../_services/alert.service");
+var commentaire_service_1 = require("../../_services/commentaire.service");
 var MesAnnoncesCovoiComponent = (function () {
-    function MesAnnoncesCovoiComponent(annonceCovoiService, router, paysService, cityService, reservationService, alertService) {
+    function MesAnnoncesCovoiComponent(annonceCovoiService, router, paysService, cityService, reservationService, alertService, commentaireService) {
         var _this = this;
         this.annonceCovoiService = annonceCovoiService;
         this.router = router;
@@ -24,6 +25,7 @@ var MesAnnoncesCovoiComponent = (function () {
         this.cityService = cityService;
         this.reservationService = reservationService;
         this.alertService = alertService;
+        this.commentaireService = commentaireService;
         this.accepted = false;
         this.refused = false;
         this.selectedPays = {};
@@ -42,6 +44,35 @@ var MesAnnoncesCovoiComponent = (function () {
         console.log(JSON.stringify(this.pays));
     }
     /////////////////////////////////////////////////////
+    MesAnnoncesCovoiComponent.prototype.onClickCommentaire = function (commentaire) {
+        console.log("ttttttttttttt" + commentaire.id);
+        this.idCommentaire = commentaire.id;
+    };
+    MesAnnoncesCovoiComponent.prototype.supprimerCommentaire = function () {
+        var _this = this;
+        this.commentaireService.deleteCommentaire(this.idCommentaire.toString()).subscribe(function (data) {
+            console.log("rrrrrrr"),
+                _this.getCommentairesByAnnonce(_this.idAnnonceCovoi);
+        });
+    };
+    MesAnnoncesCovoiComponent.prototype.getCommentairesByAnnonce = function (id) {
+        var _this = this;
+        console.log("vvvvvvvvvvvv" + id);
+        this.idAnnonceCovoi = id;
+        this.commentaireService.getCommentairesByAnnonce(id).subscribe(function (commentaires) {
+            _this.commentaires = commentaires,
+                console.log(commentaires);
+        });
+    };
+    MesAnnoncesCovoiComponent.prototype.addCommentaire = function () {
+        var _this = this;
+        console.log("fffffffff" + this.model.text);
+        this.commentaireService.addCommentaire(this.model.text, this.idAnnonceCovoi, this.id).subscribe(function (data) {
+            console.log("model=>" + _this.model.text),
+                _this.getCommentairesByAnnonce(_this.idAnnonceCovoi);
+        });
+    };
+    //////////////////////////////////////////////////
     MesAnnoncesCovoiComponent.prototype.onSelect1 = function (idPays1) {
         var _this = this;
         //this.model.paysDepart= idPays1;
@@ -176,10 +207,10 @@ var MesAnnoncesCovoiComponent = (function () {
             selector: 'mes-annonces-covoi-cmp',
             moduleId: module.id,
             templateUrl: 'mesAnnoncesCovoi.component.html',
-            providers: [annonceCovoi_service_1.AnnonceCovoiService, reservation_service_1.ReservationService],
+            providers: [annonceCovoi_service_1.AnnonceCovoiService, reservation_service_1.ReservationService, commentaire_service_1.CommentaireService],
             styleUrls: ['myModal3.css']
         }), 
-        __metadata('design:paramtypes', [annonceCovoi_service_1.AnnonceCovoiService, router_1.Router, pays_service_1.PaysService, city_service_1.CityService, reservation_service_1.ReservationService, alert_service_1.AlertService])
+        __metadata('design:paramtypes', [annonceCovoi_service_1.AnnonceCovoiService, router_1.Router, pays_service_1.PaysService, city_service_1.CityService, reservation_service_1.ReservationService, alert_service_1.AlertService, commentaire_service_1.CommentaireService])
     ], MesAnnoncesCovoiComponent);
     return MesAnnoncesCovoiComponent;
 }());

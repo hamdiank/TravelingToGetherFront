@@ -6,6 +6,7 @@ import { PaysService } from "../../_services/pays.service";
 import { CityService } from "../../_services/city.service";
 import { Pays } from "../../_models/Pays";
 import { City } from "../../_models/city";
+import { CommentaireService } from "../../_services/commentaire.service";
 
 declare var $:any;
 
@@ -13,12 +14,15 @@ declare var $:any;
     selector: 'annonce-covoi-cmp',
     moduleId: module.id,
     templateUrl: 'annonceCovoi.component.html',
-    providers:[AnnonceCovoiService],
+    providers:[AnnonceCovoiService, CommentaireService],
     styleUrls: ['annonceCovoi.component.css']
 })
 
 export class AnnonceCovoiComponent implements OnInit {
+    idCommentaire:string;
 
+    commentaires: any[];
+    idAnnonceCovoi: string;
     commentAppear: boolean;
     idUtilisateur: any;
     utilisateur: any={};
@@ -48,7 +52,7 @@ export class AnnonceCovoiComponent implements OnInit {
 
   ///////////////////////////////////////////////////////////////
   
-    constructor(private annonceCovoiService: AnnonceCovoiService , private router: Router, private paysService: PaysService, private cityService : CityService){
+    constructor(private annonceCovoiService: AnnonceCovoiService , private router: Router, private paysService: PaysService, private cityService : CityService, private commentaireService: CommentaireService){
     this.selectedPays.idPays='0';
     this.paysService.getAll().subscribe( pays=> { this.pays=pays 
     
@@ -64,8 +68,30 @@ export class AnnonceCovoiComponent implements OnInit {
         //event.pageCount = Total number of pages
     }
 */
-commentaire(){
-    this.commentAppear=true;
+onClick(commentaire){
+console.log("ttttttttttttt"+commentaire.id)
+this.idCommentaire= commentaire.id
+}
+supprimerCommentaire(){
+    this.commentaireService.deleteCommentaire(this.idCommentaire).subscribe(data=> {
+        console.log("rrrrrrr"),
+         this.getCommentairesByAnnonce(this.idAnnonceCovoi);
+    })
+}
+getCommentairesByAnnonce(id){
+    console.log("vvvvvvvvvvvv"+ id)
+    this.idAnnonceCovoi= id;
+       this.commentaireService.getCommentairesByAnnonce(id).subscribe( commentaires=> { this.commentaires=commentaires,
+         console.log(commentaires)
+        
+    });
+}
+addCommentaire(){
+console.log("fffffffff"+ this.model.text)
+this.commentaireService.addCommentaire(this.model.text, this.idAnnonceCovoi, this.id).subscribe( data => { 
+                    console.log("model=>"+this.model.text),
+                    this.getCommentairesByAnnonce(this.idAnnonceCovoi);
+                })
 }
 //////////////////////////////////////////////////
 
@@ -97,6 +123,7 @@ onSubmit(){
     console.log("paysArrivee:"+ this.model.paysArrivee)
     console.log("aeroportDepart:"+ this.model.villeDepart)
     console.log("aeroportArrivee:"+ this.model.villeArrivee)
+    console.log("dateDepart: " + this.model.dateDepart)
 
     /////////////////////////////////////////////
   if(this.model.paysDepart != 0 && this.model.villeDepart != 0) {
@@ -117,25 +144,12 @@ onSubmit(){
         console.log('333333333333')
         console.log(this.annoncesCovoi)
    }
-   /*
-       if(this.model.paysArrivee!= 0 && this.model.villeArrivee != 0){
-            this.annoncesCovoi=this.annoncesCovoiToFilter;
-
-            var vArrivee = this.model.villeArrivee;
-
-       console.log(vArrivee)
-
-               this.annoncesCovoi= this.annoncesCovoi.filter(
-        (result) => {
-                return (result.villeArrivee.toLowerCase().indexOf(vArrivee.toLowerCase()) > -1 )
-            }
-        );
-       }
-   if(this.model.paysDepart!= 0 && this.model.villeDepart != 0 && this.model.paysArrivee!= 0 && this.model.villeArrivee != 0 ){
-       
+   ////////////////////date depart////////////////////
+     if(this.model.paysDepart != 0 && this.model.villeDepart != 0  && this.model.dateDepart != 0) {
+    
          this.annoncesCovoi=this.annoncesCovoiToFilter;
 
-        var a=vDepart = this.model.villeDepart;
+        var vDepart = this.model.villeDepart;
         //this.annoncesCovoi=this.annoncesCovoiToFilter;
         console.log('22222222');
       //  this.annoncesCovoi=this.annoncesCovoiToFilter;
@@ -148,17 +162,127 @@ onSubmit(){
 
         console.log('333333333333')
         console.log(this.annoncesCovoi)
+                var dDepart = this.model.dateDepart;
+        //this.annoncesCovoi=this.annoncesCovoiToFilter;
+        console.log('4444444444');
+      //  this.annoncesCovoi=this.annoncesCovoiToFilter;
+      //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
+        this.annoncesCovoi= this.annoncesCovoi.filter(
+        (result) => {
+                return (result.dateDepart.toLowerCase().indexOf(dDepart.toLowerCase()) > -1 )
+            }
+        );
 
-         var vArrivee = this.model.villeArrivee;
+        console.log('333333333333')
+        console.log(this.annoncesCovoi)
+   }
+     if(this.model.paysArrivee!= 0 && this.model.villeArrivee != 0){
+            this.annoncesCovoi=this.annoncesCovoiToFilter;
 
-       console.log(vArrivee)
+            var aArrivee = this.model.villeArrivee;
+
+       console.log(aArrivee)
 
                this.annoncesCovoi= this.annoncesCovoi.filter(
         (result) => {
-                return (result.villeArrivee.toLowerCase().indexOf(vArrivee.toLowerCase()) > -1 )
+                return (result.villeArrivee.toLowerCase().indexOf(aArrivee.toLowerCase()) > -1 )
             }
         );
-   }*/
+
+        
+       }
+       /////////////////////////////date depart/////////////
+         if(this.model.paysArrivee!= 0 && this.model.villeArrivee != 0 && this.model.dateDepart != 0){
+            this.annoncesCovoi=this.annoncesCovoiToFilter;
+
+            var aArrivee = this.model.villeArrivee;
+
+       console.log(aArrivee)
+
+               this.annoncesCovoi= this.annoncesCovoi.filter(
+        (result) => {
+                return (result.villeArrivee.toLowerCase().indexOf(aArrivee.toLowerCase()) > -1 )
+            }
+        );
+        var dDepart = this.model.dateDepart;
+        //this.annoncesCovoi=this.annoncesCovoiToFilter;
+        console.log('4444444444');
+      //  this.annoncesCovoi=this.annoncesCovoiToFilter;
+      //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
+        this.annoncesCovoi= this.annoncesCovoi.filter(
+        (result) => {
+                return (result.dateDepart.toLowerCase().indexOf(dDepart.toLowerCase()) > -1 )
+            }
+        );
+       }
+  if(this.model.paysDepart!= 0 && this.model.villeDepart != 0 && this.model.paysArrivee!= 0 && this.model.villeArrivee != 0 ){
+       
+         this.annoncesCovoi=this.annoncesCovoiToFilter;
+
+        var aDepart = this.model.villeDepart;
+        //this.annoncesCovoi=this.annoncesCovoiToFilter;
+        console.log('22222222');
+      //  this.annoncesCovoi=this.annoncesCovoiToFilter;
+      //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
+        this.annoncesCovoi= this.annoncesCovoi.filter(
+        (result) => {
+                return (result.villeDepart.toLowerCase().indexOf(aDepart.toLowerCase()) > -1 )
+            }
+        );
+
+        console.log('333333333333')
+        console.log(this.annoncesCovoi)
+
+         var aArrivee = this.model.villeArrivee;
+
+       console.log(aArrivee)
+
+               this.annoncesCovoi= this.annoncesCovoi.filter(
+        (result) => {
+                return (result.villeArrivee.toLowerCase().indexOf(aArrivee.toLowerCase()) > -1 )
+            }
+        );
+   }
+   //////////////////date depart //////////////
+  if(this.model.paysDepart!= 0 && this.model.villeDepart != 0 && this.model.paysArrivee!= 0 && this.model.villeArrivee != 0  && this.model.dateDepart != 0){
+       
+         this.annoncesCovoi=this.annoncesCovoiToFilter;
+
+        var aDepart = this.model.villeDepart;
+        //this.annoncesCovoi=this.annoncesCovoiToFilter;
+        console.log('22222222');
+      //  this.annoncesCovoi=this.annoncesCovoiToFilter;
+      //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
+        this.annoncesCovoi= this.annoncesCovoi.filter(
+        (result) => {
+                return (result.villeDepart.toLowerCase().indexOf(aDepart.toLowerCase()) > -1 )
+            }
+        );
+
+        console.log('333333333333')
+        console.log(this.annoncesCovoi)
+
+         var aArrivee = this.model.villeArrivee;
+
+       console.log(aArrivee)
+
+               this.annoncesCovoi= this.annoncesCovoi.filter(
+        (result) => {
+                return (result.villeArrivee.toLowerCase().indexOf(aArrivee.toLowerCase()) > -1 )
+            }
+        );
+     var dDepart = this.model.dateDepart;
+        //this.annoncesCovoi=this.annoncesCovoiToFilter;
+        console.log('4444444444');
+      //  this.annoncesCovoi=this.annoncesCovoiToFilter;
+      //  console.log('22222222'+JSON.stringify(this.annoncesCovoi))
+        this.annoncesCovoi= this.annoncesCovoi.filter(
+        (result) => {
+                return (result.dateDepart.toLowerCase().indexOf(dDepart.toLowerCase()) > -1 )
+            }
+        );    
+   }
+
     }
   //////////////////////////////////////////////////////////
 
@@ -188,6 +312,11 @@ onKey(event: any){
                console.log(this.id)
             console.log("ngOnInit")
            this.getAnnoncesCovoi();
+        this.model.paysDepart=0;
+        this.model.paysArrivee=0;
+        this.model.villeDepart=0;
+        this.model.villeArrivee=0;
+        this.model.dateDepart=0;
         }
 
 ///////////////////////////////////////////////////////////////
