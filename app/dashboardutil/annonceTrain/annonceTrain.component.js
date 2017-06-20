@@ -16,15 +16,17 @@ var city_service_1 = require("../../_services/city.service");
 var Pays_1 = require("../../_models/Pays");
 var annonceVol_service_1 = require("../../_services/annonceVol.service");
 var annonceTrain_service_1 = require("../../_services/annonceTrain.service");
+var commentaire_service_1 = require("../../_services/commentaire.service");
 var AnnonceTrainComponent = (function () {
     ///////////////////////////////////////////////////////////////
-    function AnnonceTrainComponent(annonceTrainService, annonceCovoiService, router, paysService, cityService) {
+    function AnnonceTrainComponent(annonceTrainService, annonceCovoiService, router, paysService, cityService, commentaireService) {
         var _this = this;
         this.annonceTrainService = annonceTrainService;
         this.annonceCovoiService = annonceCovoiService;
         this.router = router;
         this.paysService = paysService;
         this.cityService = cityService;
+        this.commentaireService = commentaireService;
         this.annoncesTrain = [];
         this.selectedPays = new Pays_1.Pays();
         this.utilisateur = {};
@@ -37,6 +39,36 @@ var AnnonceTrainComponent = (function () {
         });
         console.log(JSON.stringify(this.pays));
     }
+    AnnonceTrainComponent.prototype.onClick = function (commentaire) {
+        console.log("ttttttttttttt" + commentaire.id);
+        this.idCommentaire = commentaire.id;
+    };
+    AnnonceTrainComponent.prototype.supprimerCommentaire = function () {
+        var _this = this;
+        this.commentaireService.deleteCommentaire(this.idCommentaire).subscribe(function (data) {
+            console.log("rrrrrrr"),
+                _this.getCommentairesByAnnonce(_this.idAnnonceTrain);
+        });
+    };
+    AnnonceTrainComponent.prototype.getCommentairesByAnnonce = function (id) {
+        var _this = this;
+        console.log("vvvvvvvvvvvv" + id);
+        this.idAnnonceTrain = id;
+        this.commentaireService.getCommentairesByAnnonceTrain(id).subscribe(function (commentaires) {
+            _this.commentaires = commentaires,
+                console.log(commentaires);
+        });
+    };
+    AnnonceTrainComponent.prototype.addCommentaire = function () {
+        var _this = this;
+        console.log("fffffffff" + this.model.text);
+        console.log("hhh" + this.id);
+        console.log("zzzzzz" + this.idAnnonceTrain);
+        this.commentaireService.addCommentaireAnnonceTrain(this.model.text, this.idAnnonceTrain, this.id).subscribe(function (data) {
+            console.log("model=>" + _this.model.text);
+            _this.getCommentairesByAnnonce(_this.idAnnonceTrain);
+        });
+    };
     AnnonceTrainComponent.prototype.getAnnoncesTrain = function () {
         var _this = this;
         this.annonceTrainService.getAnnoncesTrain().subscribe(function (annoncesTrain) {
@@ -134,9 +166,9 @@ var AnnonceTrainComponent = (function () {
             moduleId: module.id,
             templateUrl: 'annonceTrain.component.html',
             styleUrls: ['annonceTrain.component.css'],
-            providers: [annonceVol_service_1.AnnonceVolService]
+            providers: [annonceVol_service_1.AnnonceVolService, commentaire_service_1.CommentaireService]
         }), 
-        __metadata('design:paramtypes', [annonceTrain_service_1.AnnonceTrainService, annonceCovoi_service_1.AnnonceCovoiService, router_1.Router, pays_service_1.PaysService, city_service_1.CityService])
+        __metadata('design:paramtypes', [annonceTrain_service_1.AnnonceTrainService, annonceCovoi_service_1.AnnonceCovoiService, router_1.Router, pays_service_1.PaysService, city_service_1.CityService, commentaire_service_1.CommentaireService])
     ], AnnonceTrainComponent);
     return AnnonceTrainComponent;
 }());

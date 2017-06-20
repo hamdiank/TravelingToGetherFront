@@ -11,6 +11,7 @@ import { AlertService } from "../../_services/alert.service";
 })
 
 export class MesReservationsComponent implements OnInit {
+    length:number;
     id: string;
     reservations: any[];
     idReservation: string;
@@ -22,7 +23,12 @@ getReservationsByUtilisateurReservation(){
     this.reservationService.getReservationsByUtilisateurReservation(this.id)
    .subscribe( reservations=> { this.reservations=reservations,
        console.log("hhhh")
-       console.log(this.reservations)
+       console.log(this.reservations.length)
+       console.log(typeof(this.reservations))
+       this.length=this.reservations.length,
+       console.log("typ"+typeof(reservations.length))
+    this.message = " La Liste de vos réservation est vide !! ",
+    this.alertService.error(this.message);
        
     
     });
@@ -35,6 +41,7 @@ confirmerReservation(){
                   if(data !== null){
                   // this.router.navigate(['dashboardutil/Accueil']);
                     console.log("ffffffffff"+data);
+                    this.getReservationsByUtilisateurReservation();
 
                  }else {
                      console.log("ssssssss")
@@ -47,7 +54,7 @@ confirmerReservation(){
             },  error => {
                 if(error){
                     console.log("ssssssss")
-                    this.message = "Complet pas de places disponibles ";
+                    this.message = "Complet!!! pas de places disponibles ";
                     console.log(this.message)
                     this.alertService.error(this.message);
                 }}
@@ -56,7 +63,7 @@ confirmerReservation(){
 
 annulerReservation(){
     this.reservationService.annulerReservation(this.idReservation).subscribe(data=>{
-        //this.getReservationsByUtilisateurReservation();
+        this.getReservationsByUtilisateurReservation();
     });
 }
 

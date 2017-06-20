@@ -22,6 +22,8 @@
             <div class="card-container1 manual-flip">
                 <div class="card1">
                     <div class="front">
+                        <div class="cover">
+                        </div>
                         <div class="content">
                             <div class="main">
 								<div class="row" >
@@ -40,7 +42,7 @@
 										</p>
 								  </div>
 								  <div class="col-sm-9 col-md-6 col-lg-8 block2">
-										<h3 class="date"> <span class="glyphicon glyphicon-calendar"></span> {{annonceVol.dateDepart}}<span class="block21">  <span class="glyphicon glyphicon-time"></span>{{annonceVol.heureDepart}} </span> </h3>
+										<h3 class="date"> <span class="glyphicon glyphicon-calendar"></span> {{annonceVol.dateDepart}}<span class="block21">  <span class="glyphicon glyphicon-time"></span>&nbsp;&nbsp;&nbsp;&nbsp;{{annonceVol.heureDepart}} </span> </h3>
 										<p class="adresse">
 											<span class="adresseDepart">{{annonceVol.paysDepart}},{{annonceVol.aeroportDepart}}</span>
 											<span class="glyphicon glyphicon-arrow-right" ></span>
@@ -72,7 +74,7 @@
                     </div> <!-- end front panel -->
                 </div> <!-- end card -->
             </div> <!-- end card-container -->
-			<div class="container" style="width: 1100px; " *ngIf="idAnnonceVol==annonceVol.id">
+			<div class="container" style="width: 950px; " *ngIf="idAnnonceVol==annonceVol.id">
     <div class="col-sm-8">
         <div class="panel panel-white post panel-shadow">
             <div class="post-footer">
@@ -100,7 +102,7 @@
 								<div class="col-md-6">
 									<p style="display: inline-block;">{{commentaire.text}}</p>
 								</div>
-								<div class="col-md-6" *ngIf="id==annonceVol.utilisateur.idUtilisateur || commentaire.author.idUtilisateur==id">
+								<div class="col-md-6" *ngIf="idUtilisateur==annonceVol.utilisateur.idUtilisateur || commentaire.author.idUtilisateur==idUtilisateur">
 									<button style="display: inline-block; margin-left: 200px;" type="button" rel="tooltip" title="Supprimer Commentaire" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal" (click)="onClickCommentaire(commentaire)">
 										<i class="fa fa-times"></i>
 									</button>
@@ -226,6 +228,26 @@
       </div>
       <div class="modal-footer">
         <button (click)="supprimerAnnonceVol()" type="button" class="btn btn-success" data-dismiss="modal" >Oui</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+	    <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Suppression Commentaire</h4>
+      </div>
+      <div class="modal-body">
+        <p>Voulez-vous vraiment supprimer ce comentaire ?</p>
+      </div>
+      <div class="modal-footer">
+        <button (click)="supprimerCommentaire()" type="button" class="btn btn-success" data-dismiss="modal" >Oui</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
       </div>
     </div>

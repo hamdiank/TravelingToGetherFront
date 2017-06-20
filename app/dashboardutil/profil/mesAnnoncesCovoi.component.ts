@@ -214,7 +214,7 @@ modifierAnnonceCovoi(){
     
     this.annonceCovoiService.modifierAnnonceCovoi(this.model.heureDepart,this.model.dateDepart,this.model.paysDepart,
             this.model.villeDepart,this.model.paysArrivee, this.model.villeArrivee,this.model.nombrePlaces,
-            this.model.cotisation, this.model.id, this.idUtilisateur)
+            this.model.cotisation, this.model.cotType,this.model.description, this.model.id, this.idUtilisateur)
      .subscribe(
                 data => {
                     this.router.navigate(['dashboardutil/MesAnnoncesCovoi']);
@@ -223,8 +223,9 @@ modifierAnnonceCovoi(){
 supprimerAnnonceCovoi(){
     this.annonceCovoiService.supprimerAnnonceCovoi(this.model.id)
     .subscribe(data => {
-        this.router.navigate(['dashboardutil/MesAnnoncesCovoi'])
-    });
+        this.router.navigate(['dashboardutil/MesAnnoncesCovoi']),
+        this.getMesAnnoncesCovoi();
+        });
     
 }
 

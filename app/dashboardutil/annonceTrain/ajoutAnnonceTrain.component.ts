@@ -10,6 +10,7 @@ import { Aeroport } from "../../_models/aeroport";
 import { AnnonceCovoiService } from "../../_services/annonceCovoi.service";
 import { AnnonceTrainService } from "../../_services/annonceTrain.service";
 import { Station } from "../../_models/Station";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -54,7 +55,7 @@ export class AjoutAnnonceTrainComponent implements OnInit{
     val4: number = 100;
 ///////////////////////////////////////////////////////////////////
 
-    constructor(  private annonceTrainService: AnnonceTrainService ,private paysService: PaysService, private cityService : CityService,private annonceVolService: AnnonceVolService) {
+    constructor(  private annonceTrainService: AnnonceTrainService ,private paysService: PaysService, private cityService : CityService,private annonceVolService: AnnonceVolService, private router :Router) {
     this.selectedPays.idPays='0';
     this.paysService.getAll().subscribe( pays=> { this.pays=pays 
     
@@ -132,6 +133,7 @@ export class AjoutAnnonceTrainComponent implements OnInit{
                     console.log("model=>"+this.model.dateDepart)
                     console.log("model=>"+this.model.stationDepart)
                     console.log("model=>"+this.model.stationArrivee)
+                    this.router.navigate(['/dashboardutil/AnnonceVol'])
                     
                 });
         }

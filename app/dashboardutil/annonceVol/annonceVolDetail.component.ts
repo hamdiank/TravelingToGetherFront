@@ -4,7 +4,7 @@ import { AnnonceCovoiService } from "../../_services/annonceCovoi.service";
 import { ActivatedRoute, Params } from "@angular/router";
 import { UserService } from "../../_services/user.service";
 import { AnnonceVolService } from "../../_services/annonceVol.service";
-
+declare var google: any;
 @Component({
     selector: 'annonce-vol-detail-cmp',
     moduleId: module.id,
@@ -13,7 +13,6 @@ import { AnnonceVolService } from "../../_services/annonceVol.service";
 })
 
 export class AnnonceVolDetailComponent implements OnInit {
-
     message: string;
 
     currentUserId: string;
@@ -36,9 +35,52 @@ export class AnnonceVolDetailComponent implements OnInit {
     });
 
 }
+  showPath(){
 
+/*
+var Depart= villeDepart;
+var Arrivee= villeArrivee;
+
+console.log('eeeeee'+Depart)
+console.log('eeeeee'+Arrivee)*/
+
+
+
+
+
+ var directionsService = new google.maps.DirectionsService;
+       var directionsDisplay = new google.maps.DirectionsRenderer;
+       var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: {lat: 41.85, lng: -87.65}
+        });
+        directionsDisplay.setMap(map);
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
+
+      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+
+          var waypts = [];
+        //  var stringDep:String; 
+
+
+        directionsService.route({
+          origin: 'Aéroport de Paris-Orly, Orly',
+          destination: 'Aéroport Tunis Carthage Terminal 2, Tunis, Tunisie',
+          waypoints: waypts,
+          optimizeWaypoints: true,
+          travelMode: 'WALKING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+}
+  }
 ngOnInit(): void {
     this.currentUserId = JSON.parse(localStorage.getItem('currentUserId'));
+    this.showPath();
 }
 
 }

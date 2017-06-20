@@ -18,7 +18,8 @@ var AccueilComponent = (function () {
         core_1.Component({
             selector: 'accueil-cmp',
             moduleId: module.id,
-            templateUrl: 'accueil.component.html'
+            templateUrl: 'accueil.component.html',
+            styleUrls: ['../../../assets/css/pe-icon-7-stroke.css', 'http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css', 'http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css', 'https://fonts.googleapis.com/css?family=Cambo|Poppins:400,600', '../../../assets/css/gaia.css']
         }), 
         __metadata('design:paramtypes', [])
     ], AccueilComponent);

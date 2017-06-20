@@ -69,10 +69,10 @@ import { ActivatedRoute } from "@angular/router";
     right: 0;
 }
 .card.hovercard .useravatar img {
-    width: 100px;
-    height: 100px;
-    max-width: 100px;
-    max-height: 100px;
+    width: 300px;
+    height: 300px;
+    max-width: 220px;
+    max-height: 220px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;

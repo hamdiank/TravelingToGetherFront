@@ -10,6 +10,7 @@ import { AnnonceVolService } from "../../_services/annonceVol.service";
 import { Aeroport } from "../../_models/aeroport";
 import { AnnonceTrainService } from "../../_services/annonceTrain.service";
 import { Station } from "../../_models/Station";
+import { CommentaireService } from "../../_services/commentaire.service";
 
 declare var $:any;
 
@@ -18,12 +19,14 @@ declare var $:any;
     moduleId: module.id,
     templateUrl: 'annonceTrain.component.html',
     styleUrls:['annonceTrain.component.css'],
-    providers:[AnnonceVolService]
+    providers:[AnnonceVolService, CommentaireService]
 })
 
 export class AnnonceTrainComponent implements OnInit {
+    idCommentaire:string;
 
-
+    commentaires: any[];
+    idAnnonceTrain: string;
 
 public id: string;
 annoncesTrain: any=[];
@@ -58,13 +61,40 @@ selectedPays:Pays= new Pays();
 
   ///////////////////////////////////////////////////////////////
 
-constructor(private annonceTrainService: AnnonceTrainService, private annonceCovoiService: AnnonceCovoiService , private router: Router, private paysService: PaysService, private cityService : CityService){
+constructor(private annonceTrainService: AnnonceTrainService, private annonceCovoiService: AnnonceCovoiService , private router: Router, private paysService: PaysService, private cityService : CityService, private commentaireService: CommentaireService){
 this.selectedPays.idPays="0";
     this.paysService.getAll().subscribe( pays=> { this.pays=pays 
     
     });
     console.log(JSON.stringify(this.pays));
 
+}
+onClick(commentaire){
+console.log("ttttttttttttt"+commentaire.id)
+this.idCommentaire= commentaire.id
+}
+supprimerCommentaire(){
+    this.commentaireService.deleteCommentaire(this.idCommentaire).subscribe(data=> {
+        console.log("rrrrrrr"),
+         this.getCommentairesByAnnonce(this.idAnnonceTrain);
+    })
+}
+getCommentairesByAnnonce(id){
+    console.log("vvvvvvvvvvvv"+ id)
+    this.idAnnonceTrain= id;
+       this.commentaireService.getCommentairesByAnnonceTrain(id).subscribe( commentaires=> { this.commentaires=commentaires,
+         console.log(commentaires)
+        
+    });
+}
+addCommentaire(){
+console.log("fffffffff"+ this.model.text)
+console.log("hhh"+ this.id);
+console.log("zzzzzz"+ this.idAnnonceTrain)
+this.commentaireService.addCommentaireAnnonceTrain(this.model.text, this.idAnnonceTrain, this.id).subscribe( data => { 
+                    console.log("model=>"+this.model.text)
+                   this.getCommentairesByAnnonce(this.idAnnonceTrain);
+                })
 }
 getAnnoncesTrain(){
 this.annonceTrainService.getAnnoncesTrain().subscribe(annoncesTrain =>{

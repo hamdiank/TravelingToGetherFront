@@ -28,18 +28,18 @@ var AnnonceVolService = (function () {
         return this.http.get(this.config.apiUrl + '/AnnoncesVol', this.jwt())
             .map(function (res) { return res.json(); });
     };
-    AnnonceVolService.prototype.ajouterAnnonceVol = function (heureDepart, dateDepart, paysDepart, aeroportDepart, paysArrivee, aeroportArrivee, id) {
+    AnnonceVolService.prototype.ajouterAnnonceVol = function (heureDepart, dateDepart, paysDepart, aeroportDepart, paysArrivee, aeroportArrivee, description, id) {
         var body = {
             "heureDepart": heureDepart, "dateDepart": dateDepart, "paysDepart": paysDepart, "aeroportDepart": aeroportDepart,
-            "paysArrivee": paysArrivee, "aeroportArrivee": aeroportArrivee
+            "paysArrivee": paysArrivee, "aeroportArrivee": aeroportArrivee, "description": description
         };
         return this.http.put(this.config.apiUrl + '/AjouterAnnonceVol/' + id, body, this.jwt())
             .map(function (res) { return res.json(); });
     };
-    AnnonceVolService.prototype.modifierAnnonceVol = function (id, heureDepart, dateDepart, paysDepart, aeroportDepart, paysArrivee, aeroportArrivee, idUtilisateur) {
+    AnnonceVolService.prototype.modifierAnnonceVol = function (id, heureDepart, dateDepart, paysDepart, aeroportDepart, paysArrivee, aeroportArrivee, description, idUtilisateur) {
         var body = {
             "id": id, "heureDepart": heureDepart, "dateDepart": dateDepart, "paysDepart": paysDepart, "aeroportDepart": aeroportDepart,
-            "paysArrivee": paysArrivee, "aeroportArrivee": aeroportArrivee
+            "paysArrivee": paysArrivee, "aeroportArrivee": aeroportArrivee, "description": description
         };
         return this.http.put(this.config.apiUrl + '/updateAnnonceVol/' + idUtilisateur, body, this.jwt())
             .map(function (res) { return res.json(); });

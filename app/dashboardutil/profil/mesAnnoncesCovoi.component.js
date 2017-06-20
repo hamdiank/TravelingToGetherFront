@@ -157,7 +157,7 @@ var MesAnnoncesCovoiComponent = (function () {
         // this.model.paysDepart= this.paysDepart;
         //this.model.paysArrivee= this.paysArrivee;
         console.log(typeof (this.model.paysDepart));
-        this.annonceCovoiService.modifierAnnonceCovoi(this.model.heureDepart, this.model.dateDepart, this.model.paysDepart, this.model.villeDepart, this.model.paysArrivee, this.model.villeArrivee, this.model.nombrePlaces, this.model.cotisation, this.model.id, this.idUtilisateur)
+        this.annonceCovoiService.modifierAnnonceCovoi(this.model.heureDepart, this.model.dateDepart, this.model.paysDepart, this.model.villeDepart, this.model.paysArrivee, this.model.villeArrivee, this.model.nombrePlaces, this.model.cotisation, this.model.cotType, this.model.description, this.model.id, this.idUtilisateur)
             .subscribe(function (data) {
             _this.router.navigate(['dashboardutil/MesAnnoncesCovoi']);
         });
@@ -166,7 +166,8 @@ var MesAnnoncesCovoiComponent = (function () {
         var _this = this;
         this.annonceCovoiService.supprimerAnnonceCovoi(this.model.id)
             .subscribe(function (data) {
-            _this.router.navigate(['dashboardutil/MesAnnoncesCovoi']);
+            _this.router.navigate(['dashboardutil/MesAnnoncesCovoi']),
+                _this.getMesAnnoncesCovoi();
         });
     };
     MesAnnoncesCovoiComponent.prototype.accepterReservation = function () {

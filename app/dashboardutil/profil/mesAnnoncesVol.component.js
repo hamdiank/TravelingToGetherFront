@@ -139,7 +139,7 @@ var MesAnnoncesVolComponent = (function () {
         // this.model.paysDepart= this.paysDepart;
         //this.model.paysArrivee= this.paysArrivee;
         console.log(typeof (this.model.paysDepart));
-        this.annonceVolService.modifierAnnonceVol(this.model.id, this.model.heureDepart, this.model.dateDepart, this.model.paysDepart, this.model.aeroportDepart, this.model.paysArrivee, this.model.aeroportArrivee, this.idUtilisateur)
+        this.annonceVolService.modifierAnnonceVol(this.model.id, this.model.heureDepart, this.model.dateDepart, this.model.paysDepart, this.model.aeroportDepart, this.model.paysArrivee, this.model.aeroportArrivee, this.model.description, this.idUtilisateur)
             .subscribe(function (data) {
             _this.router.navigate(['dashboardutil/MesAnnoncesVol']);
         });

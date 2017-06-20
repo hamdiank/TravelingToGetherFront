@@ -92,7 +92,7 @@
 	width: 190%;
 }
 .card-container1, .front, .back {
-	height: 400px;
+	height: 360px;
 	border-radius: 4px;
 	-webkit-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
 	-moz-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
@@ -100,9 +100,10 @@
 	width:105%;
 }
 .card1 .cover{
-    height: 105px;
+    height: 60px;
     overflow: hidden;
     border-radius: 4px 4px 0 0;
+    background-color:#1ab394
 }
 .card1 .cover img{
     width: 100%;

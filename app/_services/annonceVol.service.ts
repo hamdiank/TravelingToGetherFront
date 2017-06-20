@@ -22,20 +22,20 @@ getAnnoncesVol(){
 }
 
 ajouterAnnonceVol(heureDepart: string,dateDepart: string, paysDepart: string, aeroportDepart: string,
- paysArrivee: string, aeroportArrivee: string, id: string ){
+ paysArrivee: string, aeroportArrivee: string, description: string, id: string ){
      let body= {
          "heureDepart": heureDepart ,"dateDepart": dateDepart, "paysDepart": paysDepart, "aeroportDepart": aeroportDepart,
- "paysArrivee": paysArrivee, "aeroportArrivee": aeroportArrivee
+ "paysArrivee": paysArrivee, "aeroportArrivee": aeroportArrivee, "description": description
      }
     return this.http.put(this.config.apiUrl+'/AjouterAnnonceVol/'+id, body,  this.jwt())
     .map((res: Response) => res.json());
 }
 
 modifierAnnonceVol(id: string,heureDepart: string,dateDepart: string, paysDepart: string, aeroportDepart: string,
- paysArrivee: string, aeroportArrivee: string, idUtilisateur: string){
+ paysArrivee: string, aeroportArrivee: string,description: string, idUtilisateur: string){
  let body= {
        "id": id , "heureDepart": heureDepart ,"dateDepart": dateDepart, "paysDepart": paysDepart, "aeroportDepart": aeroportDepart,
- "paysArrivee": paysArrivee, "aeroportArrivee": aeroportArrivee
+ "paysArrivee": paysArrivee, "aeroportArrivee": aeroportArrivee, "description": description
      }
          return this.http.put(this.config.apiUrl+'/updateAnnonceVol/'+idUtilisateur, body,  this.jwt())
     .map((res: Response) => res.json());

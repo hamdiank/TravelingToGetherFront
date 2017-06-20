@@ -47,6 +47,22 @@ export class CommentaireService {
         .map((response: Response) => response.json());
     }
 ///////////////////////////////////////////////////////////
+  //////////////////Annonce Train////////////////////////
+       addCommentaireAnnonceTrain(text:string, idAnnonce : string, id:string){
+         console.log(text);
+         console.log(id);
+         console.log(idAnnonce)
+         let body={"text": text,  'id': id };
+   return this.http.post(this.config.apiUrl+'/commentaire/addCommAnnonceTrain/'+idAnnonce, body, this.jwt())
+   .map((response: Response) => response.json());
+
+  }
+       getCommentairesByAnnonceTrain(idAnnonce: string) {
+    
+        return this.http.get(this.config.apiUrl +'/commentaire/commentaireAnnonceTrain/'+idAnnonce,this.jwt())
+        .map((response: Response) => response.json());
+    }
+///////////////////////////////////////////////////////////
 private jwt() {
         // create a uthorization header with jwt token
         let currentUser = JSON.parse(localStorage.getItem('currentToken'));

@@ -46,13 +46,13 @@ export class ProfilComponent implements OnInit {
     ngOnInit() {
         let emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
         this.myForm = this._fb.group({
-            login: ['', []],
-            email: ['', []],
-            nom: ['', []],
-            prenom: ['', []],
-            password: ['', []],
-            numTelephone: ['', []],
-            dateNaissance: ['', []],
+            login: ['', [<any>Validators.minLength(3), <any>Validators.maxLength(10)]],
+            email: ['', [<any>Validators.pattern(emailRegex)]],
+            nom: ['', [<any>Validators.minLength(3), <any>Validators.maxLength(10)]],
+            prenom: ['', [<any>Validators.minLength(3), <any>Validators.maxLength(10)]],
+            password: ['', [<any>Validators.maxLength(15)]],
+            numTelephone: ['', [<any>Validators.maxLength(15)]],
+            dateNaissance: ['', [<any>Validators.maxLength(15)]],
         });
         this.myForm2 = this._fb2.group({
             marque: ['', [<any>Validators.minLength(2), <any>Validators.maxLength(10)]],
@@ -120,8 +120,8 @@ export class ProfilComponent implements OnInit {
             console.log("numTelephone " + this.u.dateNaissance);
 
             this.userService.update(this.u).subscribe(result => {
-                console.log(result);
-            })
+               console.log(result);
+           })
 
         }
     }

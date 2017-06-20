@@ -8,6 +8,7 @@ import { CityService } from "../../_services/city.service";
 import { AnnonceVolService } from "../../_services/annonceVol.service";
 import { Aeroport } from "../../_models/aeroport";
 import { AnnonceCovoiService } from "../../_services/annonceCovoi.service";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -49,7 +50,7 @@ export class AjoutAnnonceVolComponent implements OnInit{
     val4: number = 100;
 ///////////////////////////////////////////////////////////////////
 
-    constructor( private paysService: PaysService, private cityService : CityService,private annonceVolService: AnnonceVolService) {
+    constructor( private paysService: PaysService, private cityService : CityService,private annonceVolService: AnnonceVolService, private router: Router) {
     this.selectedPays.idPays='0';
     this.paysService.getAll().subscribe( pays=> { this.pays=pays 
     
@@ -113,6 +114,8 @@ export class AjoutAnnonceVolComponent implements OnInit{
             console.log("aaaaaaaaaaaa");
             console.log(this.model.spin);
             console.log(this.model.minutes);
+            console.log(this.model.description);
+            
             
             
             //console.log(this.user);
@@ -121,10 +124,11 @@ export class AjoutAnnonceVolComponent implements OnInit{
             this.model.paysArrivee= this.paysArrivee;
             
             this.annonceVolService.ajouterAnnonceVol(this.model.heureDepart,this.model.dateDepart,this.model.paysDepart,
-            this.model.aeroportDepart,this.model.paysArrivee, this.model.aeroportArrivee, this.id )
+            this.model.aeroportDepart,this.model.paysArrivee, this.model.aeroportArrivee,this.model.description, this.id )
              .subscribe(
                 data => { 
-                    console.log("model=>"+this.model.dateDepart)
+                    console.log("model=>"+this.model.dateDepart),
+                    this.router.navigate(['/dashboardutil/AnnonceVol'])
                 });
         }
 ///////////////////////////////////////////////////////////////

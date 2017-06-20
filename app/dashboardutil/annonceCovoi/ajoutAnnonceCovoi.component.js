@@ -13,13 +13,15 @@ var dataService_1 = require("./dataService");
 var pays_service_1 = require("../../_services/pays.service");
 var city_service_1 = require("../../_services/city.service");
 var annonceCovoi_service_1 = require("../../_services/annonceCovoi.service");
+var router_1 = require("@angular/router");
 var AjoutAnnonceCovoiComponent = (function () {
     ///////////////////////////////////////////////////////////////////
-    function AjoutAnnonceCovoiComponent(paysService, cityService, annonceCovoiService) {
+    function AjoutAnnonceCovoiComponent(paysService, cityService, annonceCovoiService, router) {
         var _this = this;
         this.paysService = paysService;
         this.cityService = cityService;
         this.annonceCovoiService = annonceCovoiService;
+        this.router = router;
         this.selectedPays = {};
         this.model = {};
         this.val4 = 100;
@@ -78,13 +80,16 @@ var AjoutAnnonceCovoiComponent = (function () {
         console.log(this.model.spin);
         console.log(this.model.minutes);
         console.log(this.model.dateDepart);
+        console.log(this.model.description);
+        console.log(this.model.cotType);
         //console.log(this.user);
         //this.model.heureDepart= this.model.heure +':'+ this.model.minutes;
         this.model.paysDepart = this.paysDepart;
         this.model.paysArrivee = this.paysArrivee;
-        this.annonceCovoiService.ajouterAnnonceCovoi(this.model.heureDepart, this.model.dateDepart, this.model.paysDepart, this.model.villeDepart, this.model.paysArrivee, this.model.villeArrivee, this.model.nombrePlaces, this.model.cotisation, this.id)
+        this.annonceCovoiService.ajouterAnnonceCovoi(this.model.heureDepart, this.model.dateDepart, this.model.paysDepart, this.model.villeDepart, this.model.paysArrivee, this.model.villeArrivee, this.model.nombrePlaces, this.model.cotisation, this.model.cotType, this.model.description, this.id)
             .subscribe(function (data) {
             console.log("model=>" + _this.model.dateDepart);
+            _this.router.navigate(['/dashboardutil/AnnonceCovoi']);
         });
     };
     ///////////////////////////////////////////////////////////////
@@ -102,7 +107,7 @@ var AjoutAnnonceCovoiComponent = (function () {
             providers: [dataService_1.DataService, annonceCovoi_service_1.AnnonceCovoiService],
             styleUrls: ['styleValid.css']
         }), 
-        __metadata('design:paramtypes', [pays_service_1.PaysService, city_service_1.CityService, annonceCovoi_service_1.AnnonceCovoiService])
+        __metadata('design:paramtypes', [pays_service_1.PaysService, city_service_1.CityService, annonceCovoi_service_1.AnnonceCovoiService, router_1.Router])
     ], AjoutAnnonceCovoiComponent);
     return AjoutAnnonceCovoiComponent;
 }());

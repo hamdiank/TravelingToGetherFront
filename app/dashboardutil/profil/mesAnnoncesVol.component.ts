@@ -187,7 +187,7 @@ modifierAnnonceVol(){
     console.log(typeof(this.model.paysDepart))
     
     this.annonceVolService.modifierAnnonceVol(this.model.id,this.model.heureDepart,this.model.dateDepart,this.model.paysDepart,
-            this.model.aeroportDepart,this.model.paysArrivee, this.model.aeroportArrivee, this.idUtilisateur )
+            this.model.aeroportDepart,this.model.paysArrivee, this.model.aeroportArrivee,this.model.description, this.idUtilisateur )
      .subscribe(
                 data => {
                     this.router.navigate(['dashboardutil/MesAnnoncesVol']);

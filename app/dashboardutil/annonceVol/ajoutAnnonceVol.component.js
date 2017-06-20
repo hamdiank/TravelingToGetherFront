@@ -12,13 +12,15 @@ var core_1 = require('@angular/core');
 var pays_service_1 = require("../../_services/pays.service");
 var city_service_1 = require("../../_services/city.service");
 var annonceVol_service_1 = require("../../_services/annonceVol.service");
+var router_1 = require("@angular/router");
 var AjoutAnnonceVolComponent = (function () {
     ///////////////////////////////////////////////////////////////////
-    function AjoutAnnonceVolComponent(paysService, cityService, annonceVolService) {
+    function AjoutAnnonceVolComponent(paysService, cityService, annonceVolService, router) {
         var _this = this;
         this.paysService = paysService;
         this.cityService = cityService;
         this.annonceVolService = annonceVolService;
+        this.router = router;
         this.selectedPays = {};
         this.model = {};
         this.val4 = 100;
@@ -78,13 +80,15 @@ var AjoutAnnonceVolComponent = (function () {
         console.log("aaaaaaaaaaaa");
         console.log(this.model.spin);
         console.log(this.model.minutes);
+        console.log(this.model.description);
         //console.log(this.user);
         //this.model.heureDepart= this.model.heure +':'+ this.model.minutes;
         this.model.paysDepart = this.paysDepart;
         this.model.paysArrivee = this.paysArrivee;
-        this.annonceVolService.ajouterAnnonceVol(this.model.heureDepart, this.model.dateDepart, this.model.paysDepart, this.model.aeroportDepart, this.model.paysArrivee, this.model.aeroportArrivee, this.id)
+        this.annonceVolService.ajouterAnnonceVol(this.model.heureDepart, this.model.dateDepart, this.model.paysDepart, this.model.aeroportDepart, this.model.paysArrivee, this.model.aeroportArrivee, this.model.description, this.id)
             .subscribe(function (data) {
-            console.log("model=>" + _this.model.dateDepart);
+            console.log("model=>" + _this.model.dateDepart),
+                _this.router.navigate(['/dashboardutil/AnnonceVol']);
         });
     };
     ///////////////////////////////////////////////////////////////
@@ -101,7 +105,7 @@ var AjoutAnnonceVolComponent = (function () {
             templateUrl: 'ajoutAnnonceVol.component.html',
             providers: [annonceVol_service_1.AnnonceVolService]
         }), 
-        __metadata('design:paramtypes', [pays_service_1.PaysService, city_service_1.CityService, annonceVol_service_1.AnnonceVolService])
+        __metadata('design:paramtypes', [pays_service_1.PaysService, city_service_1.CityService, annonceVol_service_1.AnnonceVolService, router_1.Router])
     ], AjoutAnnonceVolComponent);
     return AjoutAnnonceVolComponent;
 }());

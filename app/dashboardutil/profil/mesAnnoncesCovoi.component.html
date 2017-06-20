@@ -29,7 +29,6 @@
                 <div class="card1">
                     <div class="front">
                         <div class="cover">
-                            <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg"/>
                         </div>
                         <div class="user">
                             <img class="img-circle" src="https://www2.mmu.ac.uk/media/mmuacuk/style-assets/images/r-research/profile-Zeyad.jpg"/>
@@ -64,7 +63,7 @@
                                   </div>
 								  <div class="col-sm-3 block3" >
 										<p class="cotisation" > {{annonceCovoi.cotisation}},<span class="cotisation1" >00</span>
-										<span class="glyphicon glyphicon-euro"></span> </p>
+										<span *ngIf="annonceCovoi.cotType==0"class="glyphicon">TND</span><span *ngIf="annonceCovoi.cotType==1" class="glyphicon glyphicon-euro"></span> </p>
 										<p class="cotisation2"> par Place </p>
 										<p class="places" *ngIf="annonceCovoi.nombrePlaces==0">
 											Complet
@@ -246,7 +245,19 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <h6 > Cotisation </h6>
                                     <p-spinner size="10"  [min]="1" [max]="1000"  [(ngModel)]="model.cotisation"  name="cotisation"   #cotisation="ngModel" required ></p-spinner>
-                
+                                    <select [(ngModel)]="model.cotType" name="cotType"   #cotType="ngModel" style="width: 100px; height: 28px;" required>
+                                        <option  value="0">TND</option>
+                                        <option value="1">Euro</option>
+                                    </select>  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <h6>Description </h6>
+                                    <textarea rows="4" cols="50" [(ngModel)]="model.description"  name="description"   #description="ngModel" required>
+                                    </textarea>
                                 </div>
                             </div>
                         </div>

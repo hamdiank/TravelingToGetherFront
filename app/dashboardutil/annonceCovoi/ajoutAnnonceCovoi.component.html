@@ -5,8 +5,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8"  style="padding-top: 70px;">
-            <div class="card">
-                <div class="card-header" data-background-color="red">
+            <div class="card" style="width: 1000px;">
+                <div class="card-header" style=" background: linear-gradient(60deg,  #1ab394, #e53935);">
                     <h4 class="title">Ajout Annonce Covoiturage</h4>
                     <p class="category">Compléter L'Annonce</p>
                 </div>
@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group form-black label-floating is-empty">
-                                    <label><i class="material-icons" style="font-size:20px;">place</i>Pays Départ</label>
+                                    <label><i class="material-icons" style="font-size:20px;color: green;">place</i>Pays Départ</label>
                                     <br>
                                     <select class="selectpicker" [(ngModel)]="model.paysDepart"  (change)="onSelect1($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;" required>
                                         <option value="0">--Select--</option>
@@ -43,7 +43,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group form-black label-floating is-empty">
-                                    <label> <i class="material-icons" style="font-size:20px;">place</i>Ville Départ</label>
+                                    <label> <i class="material-icons" style="font-size:20px;color:green;">place</i>Ville Départ</label>
                                     <br>
                                     <select [(ngModel)]="model.villeDepart" (input)="onInput($event)" name="villeDepart"   #villeDepart="ngModel" style="width: 200px; height: 30px;" required>
                                         <option value="0">Select Ville Depart</option>
@@ -57,7 +57,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group form-black label-floating is-empty">
-                                    <label> <i class="material-icons" style="font-size:20px;">place</i>Pays Arrivée</label>
+                                    <label> <i class="material-icons" style="font-size:20px; color: red;">place</i>Pays Arrivée</label>
                                     <br>
                                     <select [(ngModel)]="model.paysArrivee" (change)="onSelect2($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;" required>
                                         <option value="0">--Select--</option>
@@ -67,7 +67,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group form-black label-floating is-empty">
-                                    <label> <i class="material-icons" style="font-size:20px;">place</i>Ville Arrivée</label>
+                                    <label> <i class="material-icons" style="font-size:20px;color: red;">place</i>Ville Arrivée</label>
                                     <br>
                                     <select [(ngModel)]="model.villeArrivee" (input)="onInput2($event)" name="villeArrivee"   #villeArrivee="ngModel" style="width: 200px; height: 30px;" required>
                                         <option  value="0">--Select--</option>
@@ -90,14 +90,26 @@
                                 <div class="form-group form-black label-floating is-empty">
                                     <h6 > Cotisation </h6>
                                     <p-spinner size="10"  [min]="1" [max]="1000"  [(ngModel)]="model.cotisation"  name="cotisation"   #cotisation="ngModel" required ></p-spinner>
-                
+                                    <select [(ngModel)]="model.cotType" name="cotType"   #cotType="ngModel" style="width: 100px; height: 28px;" required>
+                                        <option  value="0">TND</option>
+                                        <option value="1">Euro</option>
+                                    </select>      
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <h6>Description </h6>
+                                    <textarea rows="4" cols="50" [(ngModel)]="model.description"  name="description"   #description="ngModel" required>
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
   
     
 
-                        <button type="submit" class="btn btn-danger pull-right">Publier Annonce</button>
+                        <button type="submit" style="background-color: #1ab394;"class="btn  pull-right">Publier Annonce</button>
                         <div class="clearfix"></div>
                     </form>
                 </div>

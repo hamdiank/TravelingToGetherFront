@@ -11,6 +11,7 @@ import { AnnonceVolService } from "../../_services/annonceVol.service";
 import { Aeroport } from "../../_models/aeroport";
 import { AnnonceTrainService } from "../../_services/annonceTrain.service";
 import { Station } from "../../_models/Station";
+import { CommentaireService } from "../../_services/commentaire.service";
 
 declare var $:any;
 
@@ -18,12 +19,17 @@ declare var $:any;
     selector: 'mes-annonces-trin-cmp',
     moduleId: module.id,
     templateUrl: 'mesAnnoncesTrain.component.html',
-    providers:[AnnonceVolService],
+    providers:[AnnonceVolService, CommentaireService],
     styleUrls:['mesAnnoncesTrain.component.css']
 
 })
 
 export class MesAnnoncesTrainComponent implements OnInit {
+    
+    idCommentaire:string;
+    commentaires: any[];
+    idAnnonceTrain: string;
+    commentAppear: boolean;
 
     aeroports:Aeroport[];
     aeroports2:Aeroport[];
@@ -72,13 +78,40 @@ export class MesAnnoncesTrainComponent implements OnInit {
     mesAnnoncesTrain:any=[];
     id:string;
 
-    constructor(private annonceVolService: AnnonceVolService,private annonceCovoiService: AnnonceCovoiService , private router: Router, private paysService: PaysService, private cityService : CityService, private reservationService: ReservationService, private annonceTrainService: AnnonceTrainService ){
+    constructor(private annonceVolService: AnnonceVolService,private annonceCovoiService: AnnonceCovoiService , private router: Router, private paysService: PaysService, private cityService : CityService, private reservationService: ReservationService, private annonceTrainService: AnnonceTrainService, private commentaireService: CommentaireService ){
       this.selectedPays.idPays='0';
     this.paysService.getAll().subscribe( pays=> { this.pays=pays 
     
     });
     console.log(JSON.stringify(this.pays));   
-    }
+}
+/////////////////////////////////////////////////////
+onClickCommentaire(commentaire){
+console.log("ttttttttttttt"+commentaire.id)
+this.idCommentaire= commentaire.id
+}
+supprimerCommentaire(){
+    this.commentaireService.deleteCommentaire(this.idCommentaire.toString()).subscribe(data=> {
+        console.log("rrrrrrr"),
+         this.getCommentairesByAnnonce(this.idAnnonceTrain);
+    })
+}
+getCommentairesByAnnonce(id){
+    console.log("vvvvvvvvvvvv"+ id)
+    this.idAnnonceTrain= id;
+       this.commentaireService.getCommentairesByAnnonceTrain(id).subscribe( commentaires=> { this.commentaires=commentaires,
+         console.log(commentaires)
+        
+    });
+}
+addCommentaire(){
+console.log("fffffffff"+ this.model.text)
+this.commentaireService.addCommentaireAnnonceTrain(this.model.text, this.idAnnonceTrain, this.idUtilisateur).subscribe( data => { 
+                    console.log("model=>"+this.model.text),
+                    this.getCommentairesByAnnonce(this.idAnnonceTrain);
+                })
+}
+//////////////////////////////////////////////////
 /////////////////////////////////////////////////////
 
     onSelect1(idPays1) {

@@ -18,7 +18,7 @@
 							<div class="row" style="padding: 5px 30px 0px 80px;">
 								<div class="col-sm-4">
 									<div class="form-group form-black label-floating is-empty">
-										<label> <i class="material-icons" style="font-size:25px;">place</i> &nbsp; Pays Départ</label>
+										<label> <i class="material-icons" style="font-size:25px;color: green;">place</i> &nbsp; Pays Départ</label>
 										<br>
 										<select class="selectpicker" [(ngModel)]="model.paysDepart"  (change)="onSelect1($event.target.value)"  name="paysDepart"   #paysDepart="ngModel" style="width: 200px; height: 30px;">
 											<option value="0"></option>
@@ -28,7 +28,7 @@
 								</div>
 								<div class="col-sm-4">
 									<div class="form-group form-black label-floating is-empty">
-										<label> <i class="material-icons" style="font-size:25px;">place</i> &nbsp;Ville Départ</label>
+										<label> <i class="material-icons" style="font-size:25px;color: green;">place</i> &nbsp;Ville Départ</label>
 										<br>
 										<select [(ngModel)]="model.villeDepart"   name="villeDepart"   #villeDepart="ngModel" style="width: 200px; height: 30px;">
 											<option value="0"></option>
@@ -38,7 +38,7 @@
 								</div>
 								<div class="col-sm-4">
 									<div class="form-group form-black label-floating is-empty">
-										<label>  <span class="glyphicon glyphicon-calendar"></span> &nbsp;Date de Départ</label>
+										<label>  <span style="color: dodgerblue;"class="glyphicon glyphicon-calendar"></span> &nbsp;Date de Départ</label>
 										<br>
 										<input type="date" [(ngModel)]="model.dateDepart"   name="dateDepart"   #dateDepart="ngModel" style="width: 200px; height: 30px;">
 
@@ -51,7 +51,7 @@
                         <div class="row"  style="padding: 0px 30px 0px 80px;">
                             <div class="col-sm-4">
                                 <div class="form-group form-black label-floating is-empty">
-                                    <label><i class="material-icons" style="font-size:25px;">place</i> &nbsp; Pays Arrivée</label>
+                                    <label><i class="material-icons" style="font-size:25px;color: red;">place</i> &nbsp; Pays Arrivée</label>
                                     <br>
                                     <select [(ngModel)]="model.paysArrivee" (change)="onSelect2($event.target.value)"  name="paysArrivee"   #paysArrivee="ngModel" style="width: 200px; height: 30px;">
                                        <option value="0"></option>
@@ -61,7 +61,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group form-black label-floating is-empty">
-                                    <label> <i class="material-icons" style="font-size:25px;">place</i> &nbsp;Ville Arrivée</label>
+                                    <label> <i class="material-icons" style="font-size:25px;color: red;">place</i> &nbsp;Ville Arrivée</label>
                                     <br>
                                     <select [(ngModel)]="model.villeArrivee"  name="villeArrivee"   #villeArrivee="ngModel" style="width: 200px; height: 30px;">
                                         <option value="0"></option>
@@ -70,7 +70,7 @@
                                 </div>
                             </div>
 							<div class="col-sm-4">
-								<button  style="margin-right: 150px; margin-top: 50px;" type="submit" class="btn btn-success pull-right">chercher Annonce</button>
+								<button    style="margin-right: 120px; margin-top: 50px; background-color:dodgerblue; " type="submit" class="btn  pull-right"><span class="glyphicon glyphicon-search"></span> &nbsp;  &nbsp; &nbsp; chercher Annonce</button>
 							</div>
                         </div>								
 
@@ -86,7 +86,6 @@
                 <div class="card1">
                     <div class="front">
                         <div class="cover">
-                            <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg"/>
                         </div>
                         <div class="user">
                             <img class="img-circle" src="https://www2.mmu.ac.uk/media/mmuacuk/style-assets/images/r-research/profile-Zeyad.jpg"/>
@@ -116,7 +115,8 @@
 								  </div>
 								  <div class="col-sm-3 block3" >
 										<p class="cotisation" > {{annonceCovoi.cotisation}},<span class="cotisation1" >00</span>
-										<span class="glyphicon glyphicon-euro"></span> </p>
+										<span *ngIf="annonceCovoi.cotType==0"class="glyphicon">TND</span><span *ngIf="annonceCovoi.cotType==1" class="glyphicon glyphicon-euro"></span>  </p>
+
 										<p class="cotisation2"> par Place </p>
 										<p class="places" *ngIf="annonceCovoi.nombrePlaces==0">
 											Complet
@@ -137,7 +137,7 @@
 								</div>
                             </div>
                             <div class="footer">
-								<button class="btn btn-simple" style=" width:50px;" (click)="getCommentairesByAnnonce(annonceCovoi.id)"  >
+								<button class="btn btn-simple" style=" width:50px; margin-right: 230px;" (click)="getCommentairesByAnnonce(annonceCovoi.id)"  >
                                     <i class="material-icons" style="color:#1ab394;">comment</i> &nbsp;&nbsp;<a style="color: gray" >Commentaires </a>
                                 </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <button class="btn btn-simple" >

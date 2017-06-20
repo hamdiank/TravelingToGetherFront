@@ -85,25 +85,21 @@
 /*        Style       */
 
 
-.card1{
-    background: none repeat scroll 0 0 #FFFFFF;
-    border-radius: 4px;
-    color: #444444;
-	width: 190%;
+.card1 .cover{
+    height: 60px;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0;
+    background-color:#1ab394
 }
 .card-container1, .front, .back {
-	height: 240px;
+	height: 300px;
 	border-radius: 4px;
 	-webkit-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
 	-moz-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
 	box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
-	width:97%;
+	width:135%;
 }
-.card1 .cover{
-    height: 105px;
-    overflow: hidden;
-    border-radius: 4px 4px 0 0;
-}
+
 .card1 .cover img{
     width: 100%;
 }

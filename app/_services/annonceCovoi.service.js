@@ -35,7 +35,7 @@ var AnnonceCovoiService = (function () {
         return this.http.get(this.config.apiUrl + '/getAnnonceCovoiById/' + idAnnonceCovoi, this.jwt()).map(function (res) { return res.json(); });
     };
     /****************************************************** */
-    AnnonceCovoiService.prototype.ajouterAnnonceCovoi = function (heureDepart, dateDepart, paysDepart, villeDepart, paysArrivee, villeArrivee, nombrePlaces, cotisation, id) {
+    AnnonceCovoiService.prototype.ajouterAnnonceCovoi = function (heureDepart, dateDepart, paysDepart, villeDepart, paysArrivee, villeArrivee, nombrePlaces, cotisation, cotType, description, id) {
         console.log("qqqqqqqqq");
         var headers = new http_1.Headers();
         var options = new http_1.RequestOptions({ headers: headers });
@@ -49,6 +49,8 @@ var AnnonceCovoiService = (function () {
         urlSearchParams.append('villeArrivee', villeArrivee);
         urlSearchParams.append('nombrePlaces', nombrePlaces);
         urlSearchParams.append('cotisation', cotisation);
+        urlSearchParams.append('cotType', cotType);
+        urlSearchParams.append('description', description);
         urlSearchParams.append('id', id);
         var body = urlSearchParams.toString();
         //let body={"datePublication": datePublication, "dateDepart": dateDepart , "adresseDepart": adresseDepart , "adresseArrivee": adresseArrivee , "nombrePlaces": nombrePlaces , "cotisation": cotisation, "id": id };
@@ -57,7 +59,7 @@ var AnnonceCovoiService = (function () {
             .map(function (res) { return res.json(); });
     };
     //////////////////////////////////////
-    AnnonceCovoiService.prototype.modifierAnnonceCovoi = function (heureDepart, dateDepart, paysDepart, villeDepart, paysArrivee, villeArrivee, nombrePlaces, cotisation, id, idUtilisateur) {
+    AnnonceCovoiService.prototype.modifierAnnonceCovoi = function (heureDepart, dateDepart, paysDepart, villeDepart, paysArrivee, villeArrivee, nombrePlaces, cotisation, cotType, description, id, idUtilisateur) {
         console.log("i am here");
         var headers = new http_1.Headers();
         var options = new http_1.RequestOptions({ headers: headers });
@@ -71,6 +73,8 @@ var AnnonceCovoiService = (function () {
         urlSearchParams.append('villeArrivee', villeArrivee);
         urlSearchParams.append('nombrePlaces', nombrePlaces);
         urlSearchParams.append('cotisation', cotisation);
+        urlSearchParams.append('cotType', cotType);
+        urlSearchParams.append('description', description);
         urlSearchParams.append('id', id);
         urlSearchParams.append('idUtilisateur', idUtilisateur);
         var body = urlSearchParams.toString();

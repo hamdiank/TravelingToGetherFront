@@ -13,14 +13,16 @@ var pays_service_1 = require("../../_services/pays.service");
 var city_service_1 = require("../../_services/city.service");
 var annonceVol_service_1 = require("../../_services/annonceVol.service");
 var annonceTrain_service_1 = require("../../_services/annonceTrain.service");
+var router_1 = require("@angular/router");
 var AjoutAnnonceTrainComponent = (function () {
     ///////////////////////////////////////////////////////////////////
-    function AjoutAnnonceTrainComponent(annonceTrainService, paysService, cityService, annonceVolService) {
+    function AjoutAnnonceTrainComponent(annonceTrainService, paysService, cityService, annonceVolService, router) {
         var _this = this;
         this.annonceTrainService = annonceTrainService;
         this.paysService = paysService;
         this.cityService = cityService;
         this.annonceVolService = annonceVolService;
+        this.router = router;
         this.selectedPays = {};
         this.model = {};
         this.val4 = 100;
@@ -89,6 +91,7 @@ var AjoutAnnonceTrainComponent = (function () {
             console.log("model=>" + _this.model.dateDepart);
             console.log("model=>" + _this.model.stationDepart);
             console.log("model=>" + _this.model.stationArrivee);
+            _this.router.navigate(['/dashboardutil/AnnonceVol']);
         });
     };
     ///////////////////////////////////////////////////////////////
@@ -105,7 +108,7 @@ var AjoutAnnonceTrainComponent = (function () {
             templateUrl: 'ajoutAnnonceTrain.component.html',
             providers: [annonceTrain_service_1.AnnonceTrainService, annonceVol_service_1.AnnonceVolService]
         }), 
-        __metadata('design:paramtypes', [annonceTrain_service_1.AnnonceTrainService, pays_service_1.PaysService, city_service_1.CityService, annonceVol_service_1.AnnonceVolService])
+        __metadata('design:paramtypes', [annonceTrain_service_1.AnnonceTrainService, pays_service_1.PaysService, city_service_1.CityService, annonceVol_service_1.AnnonceVolService, router_1.Router])
     ], AjoutAnnonceTrainComponent);
     return AjoutAnnonceTrainComponent;
 }());

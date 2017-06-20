@@ -37,7 +37,7 @@ getAnnonceCovoi(id :number){
 
 
 ajouterAnnonceCovoi(heureDepart: string,dateDepart: string, paysDepart: string, villeDepart: string,
- paysArrivee: string, villeArrivee: string,nombrePlaces:string, cotisation: string, id: string ){
+ paysArrivee: string, villeArrivee: string,nombrePlaces:string, cotisation: string, cotType: string, description: string, id: string ){
     console.log("qqqqqqqqq")
     let headers= new Headers();
     let options= new RequestOptions ({headers: headers});
@@ -51,6 +51,8 @@ ajouterAnnonceCovoi(heureDepart: string,dateDepart: string, paysDepart: string, 
      urlSearchParams.append('villeArrivee', villeArrivee);
      urlSearchParams.append('nombrePlaces', nombrePlaces);
      urlSearchParams.append('cotisation', cotisation);
+     urlSearchParams.append('cotType', cotType);
+     urlSearchParams.append('description', description);
      urlSearchParams.append('id', id);
      
         let body = urlSearchParams.toString();
@@ -64,7 +66,7 @@ ajouterAnnonceCovoi(heureDepart: string,dateDepart: string, paysDepart: string, 
 //////////////////////////////////////
 
 modifierAnnonceCovoi(heureDepart: string,dateDepart: string, paysDepart: string, villeDepart: string,
- paysArrivee: string, villeArrivee: string,nombrePlaces:string, cotisation: string, id: string, idUtilisateur: string){
+ paysArrivee: string, villeArrivee: string,nombrePlaces:string, cotisation: string,cotType : string, description: string, id: string, idUtilisateur: string){
     console.log("i am here")
     let headers= new Headers();
     let options= new RequestOptions ({headers: headers});
@@ -78,6 +80,8 @@ modifierAnnonceCovoi(heureDepart: string,dateDepart: string, paysDepart: string,
      urlSearchParams.append('villeArrivee', villeArrivee);
      urlSearchParams.append('nombrePlaces', nombrePlaces);
      urlSearchParams.append('cotisation', cotisation);
+     urlSearchParams.append('cotType', cotType);
+     urlSearchParams.append('description', description);
      urlSearchParams.append('id', id);
     urlSearchParams.append('idUtilisateur', idUtilisateur);
 

@@ -35,13 +35,13 @@ var ProfilComponent = (function () {
     ProfilComponent.prototype.ngOnInit = function () {
         var emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
         this.myForm = this._fb.group({
-            login: ['', []],
-            email: ['', []],
-            nom: ['', []],
-            prenom: ['', []],
-            password: ['', []],
-            numTelephone: ['', []],
-            dateNaissance: ['', []],
+            login: ['', [forms_1.Validators.minLength(3), forms_1.Validators.maxLength(10)]],
+            email: ['', [forms_1.Validators.pattern(emailRegex)]],
+            nom: ['', [forms_1.Validators.minLength(3), forms_1.Validators.maxLength(10)]],
+            prenom: ['', [forms_1.Validators.minLength(3), forms_1.Validators.maxLength(10)]],
+            password: ['', [forms_1.Validators.maxLength(15)]],
+            numTelephone: ['', [forms_1.Validators.maxLength(15)]],
+            dateNaissance: ['', [forms_1.Validators.maxLength(15)]],
         });
         this.myForm2 = this._fb2.group({
             marque: ['', [forms_1.Validators.minLength(2), forms_1.Validators.maxLength(10)]],

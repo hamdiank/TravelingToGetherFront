@@ -7,6 +7,7 @@ import { Pays } from "../../_models/Pays";
 import { City } from "../../_models/city";
 import { CityService } from "../../_services/city.service";
 import { AnnonceCovoiService } from "../../_services/annonceCovoi.service";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -44,7 +45,7 @@ export class AjoutAnnonceCovoiComponent implements OnInit{
     val4: number = 100;
 ///////////////////////////////////////////////////////////////////
 
-    constructor( private paysService: PaysService, private cityService : CityService, private annonceCovoiService: AnnonceCovoiService) {
+    constructor( private paysService: PaysService, private cityService : CityService, private annonceCovoiService: AnnonceCovoiService,private router : Router) {
     this.selectedPays.idPays='0';
     this.paysService.getAll().subscribe( pays=> { this.pays=pays 
     
@@ -107,6 +108,10 @@ export class AjoutAnnonceCovoiComponent implements OnInit{
             console.log(this.model.spin);
             console.log(this.model.minutes);
             console.log(this.model.dateDepart);
+            console.log(this.model.description);
+            console.log(this.model.cotType);
+            
+            
             
             
             
@@ -117,10 +122,11 @@ export class AjoutAnnonceCovoiComponent implements OnInit{
             
             this.annonceCovoiService.ajouterAnnonceCovoi(this.model.heureDepart,this.model.dateDepart,this.model.paysDepart,
             this.model.villeDepart,this.model.paysArrivee, this.model.villeArrivee,this.model.nombrePlaces,
-            this.model.cotisation, this.id )
+            this.model.cotisation,this.model.cotType, this.model.description, this.id )
              .subscribe(
                 data => { 
                     console.log("model=>"+this.model.dateDepart)
+                    this.router.navigate(['/dashboardutil/AnnonceCovoi'])
                 });
         }
 ///////////////////////////////////////////////////////////////

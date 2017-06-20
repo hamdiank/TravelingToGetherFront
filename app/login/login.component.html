@@ -6,18 +6,10 @@
                 <alert></alert>
                 <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
                     <div class="card card-login card-hidden">
-                        <div class="card-header text-center" data-background-color="purple">
-                            <h4 class="card-title">CONNEXION</h4>
-                            <div class="social-line">
-                                <a href="#btn" class="btn btn-just-icon btn-simple">
-                                    <i class="fa fa-facebook-square"></i>
-                                </a>
-                                <a href="#pablo" class="btn btn-just-icon btn-simple">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                                <a href="#eugen" class="btn btn-just-icon btn-simple">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
+                        <div class="card-header text-center" style="background-color: #1ab394;">
+                            <h4 class="card-title" style="color: white;">CONNEXION</h4>
+                            <div class="social-line" >
+
                             </div>
                         </div>
 
@@ -48,7 +40,7 @@
                             </div>
                         </div>
                         <div class="form-group footer text-center ">
-                            <button type="submit" [disabled]="loading" class="btn btn-primary btn-round btn-wd ">se Connecter</button>
+                            <button  style="background-color: #1ab394;" type="submit" [disabled]="loading" class="btn btn-round btn-wd ">se Connecter</button>
 
                             <div class="center">
 

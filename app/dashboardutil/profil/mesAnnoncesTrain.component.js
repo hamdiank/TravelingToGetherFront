@@ -16,8 +16,9 @@ var city_service_1 = require("../../_services/city.service");
 var reservation_service_1 = require("../../_services/reservation.service");
 var annonceVol_service_1 = require("../../_services/annonceVol.service");
 var annonceTrain_service_1 = require("../../_services/annonceTrain.service");
+var commentaire_service_1 = require("../../_services/commentaire.service");
 var MesAnnoncesTrainComponent = (function () {
-    function MesAnnoncesTrainComponent(annonceVolService, annonceCovoiService, router, paysService, cityService, reservationService, annonceTrainService) {
+    function MesAnnoncesTrainComponent(annonceVolService, annonceCovoiService, router, paysService, cityService, reservationService, annonceTrainService, commentaireService) {
         var _this = this;
         this.annonceVolService = annonceVolService;
         this.annonceCovoiService = annonceCovoiService;
@@ -26,6 +27,7 @@ var MesAnnoncesTrainComponent = (function () {
         this.cityService = cityService;
         this.reservationService = reservationService;
         this.annonceTrainService = annonceTrainService;
+        this.commentaireService = commentaireService;
         this.selectedPays = {};
         this.testPaysDepart = false;
         this.testStationTrainDepart = false;
@@ -42,6 +44,36 @@ var MesAnnoncesTrainComponent = (function () {
         });
         console.log(JSON.stringify(this.pays));
     }
+    /////////////////////////////////////////////////////
+    MesAnnoncesTrainComponent.prototype.onClickCommentaire = function (commentaire) {
+        console.log("ttttttttttttt" + commentaire.id);
+        this.idCommentaire = commentaire.id;
+    };
+    MesAnnoncesTrainComponent.prototype.supprimerCommentaire = function () {
+        var _this = this;
+        this.commentaireService.deleteCommentaire(this.idCommentaire.toString()).subscribe(function (data) {
+            console.log("rrrrrrr"),
+                _this.getCommentairesByAnnonce(_this.idAnnonceTrain);
+        });
+    };
+    MesAnnoncesTrainComponent.prototype.getCommentairesByAnnonce = function (id) {
+        var _this = this;
+        console.log("vvvvvvvvvvvv" + id);
+        this.idAnnonceTrain = id;
+        this.commentaireService.getCommentairesByAnnonceTrain(id).subscribe(function (commentaires) {
+            _this.commentaires = commentaires,
+                console.log(commentaires);
+        });
+    };
+    MesAnnoncesTrainComponent.prototype.addCommentaire = function () {
+        var _this = this;
+        console.log("fffffffff" + this.model.text);
+        this.commentaireService.addCommentaireAnnonceTrain(this.model.text, this.idAnnonceTrain, this.idUtilisateur).subscribe(function (data) {
+            console.log("model=>" + _this.model.text),
+                _this.getCommentairesByAnnonce(_this.idAnnonceTrain);
+        });
+    };
+    //////////////////////////////////////////////////
     /////////////////////////////////////////////////////
     MesAnnoncesTrainComponent.prototype.onSelect1 = function (idPays1) {
         var _this = this;
@@ -132,10 +164,10 @@ var MesAnnoncesTrainComponent = (function () {
             selector: 'mes-annonces-trin-cmp',
             moduleId: module.id,
             templateUrl: 'mesAnnoncesTrain.component.html',
-            providers: [annonceVol_service_1.AnnonceVolService],
+            providers: [annonceVol_service_1.AnnonceVolService, commentaire_service_1.CommentaireService],
             styleUrls: ['mesAnnoncesTrain.component.css']
         }), 
-        __metadata('design:paramtypes', [annonceVol_service_1.AnnonceVolService, annonceCovoi_service_1.AnnonceCovoiService, router_1.Router, pays_service_1.PaysService, city_service_1.CityService, reservation_service_1.ReservationService, annonceTrain_service_1.AnnonceTrainService])
+        __metadata('design:paramtypes', [annonceVol_service_1.AnnonceVolService, annonceCovoi_service_1.AnnonceCovoiService, router_1.Router, pays_service_1.PaysService, city_service_1.CityService, reservation_service_1.ReservationService, annonceTrain_service_1.AnnonceTrainService, commentaire_service_1.CommentaireService])
     ], MesAnnoncesTrainComponent);
     return MesAnnoncesTrainComponent;
 }());

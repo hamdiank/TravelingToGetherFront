@@ -23,7 +23,12 @@ var MesReservationsComponent = (function () {
             .subscribe(function (reservations) {
             _this.reservations = reservations,
                 console.log("hhhh");
-            console.log(_this.reservations);
+            console.log(_this.reservations.length);
+            console.log(typeof (_this.reservations));
+            _this.length = _this.reservations.length,
+                console.log("typ" + typeof (reservations.length));
+            _this.message = " La Liste de vos réservation est vide !! ",
+                _this.alertService.error(_this.message);
         });
     };
     MesReservationsComponent.prototype.confirmerReservation = function () {
@@ -33,6 +38,7 @@ var MesReservationsComponent = (function () {
             if (data !== null) {
                 // this.router.navigate(['dashboardutil/Accueil']);
                 console.log("ffffffffff" + data);
+                _this.getReservationsByUtilisateurReservation();
             }
             else {
                 console.log("ssssssss");
@@ -44,15 +50,16 @@ var MesReservationsComponent = (function () {
         }, function (error) {
             if (error) {
                 console.log("ssssssss");
-                _this.message = "Complet pas de places disponibles ";
+                _this.message = "Complet!!! pas de places disponibles ";
                 console.log(_this.message);
                 _this.alertService.error(_this.message);
             }
         });
     };
     MesReservationsComponent.prototype.annulerReservation = function () {
+        var _this = this;
         this.reservationService.annulerReservation(this.idReservation).subscribe(function (data) {
-            //this.getReservationsByUtilisateurReservation();
+            _this.getReservationsByUtilisateurReservation();
         });
     };
     MesReservationsComponent.prototype.onClick = function (reservation) {

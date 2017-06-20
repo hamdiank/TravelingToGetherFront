@@ -2293,7 +2293,7 @@ legend {
   color: #ffffff;
 }
 .navbar.navbar-danger {
-  background-color: #f44336;
+  background-color: #1ab394;
   color: #ffffff;
 }
 .navbar.navbar-danger .navbar-form .form-group input.form-control::-moz-placeholder,
@@ -2313,10 +2313,10 @@ legend {
 }
 .navbar.navbar-danger .dropdown-menu li > a:hover, .navbar.navbar-danger .dropdown-menu li > a:focus {
   color: #FFFFFF;
-  background-color: #f44336;
+  background-color: #1ab394;
 }
 .navbar.navbar-danger .dropdown-menu .active > a {
-  background-color: #f44336;
+  background-color: #1ab394;
   color: #ffffff;
 }
 .navbar.navbar-danger .dropdown-menu .active > a:hover, .navbar.navbar-danger .dropdown-menu .active > a:focus {

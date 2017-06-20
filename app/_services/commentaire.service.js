@@ -46,6 +46,20 @@ var CommentaireService = (function () {
             .map(function (response) { return response.json(); });
     };
     ///////////////////////////////////////////////////////////
+    //////////////////Annonce Train////////////////////////
+    CommentaireService.prototype.addCommentaireAnnonceTrain = function (text, idAnnonce, id) {
+        console.log(text);
+        console.log(id);
+        console.log(idAnnonce);
+        var body = { "text": text, 'id': id };
+        return this.http.post(this.config.apiUrl + '/commentaire/addCommAnnonceTrain/' + idAnnonce, body, this.jwt())
+            .map(function (response) { return response.json(); });
+    };
+    CommentaireService.prototype.getCommentairesByAnnonceTrain = function (idAnnonce) {
+        return this.http.get(this.config.apiUrl + '/commentaire/commentaireAnnonceTrain/' + idAnnonce, this.jwt())
+            .map(function (response) { return response.json(); });
+    };
+    ///////////////////////////////////////////////////////////
     CommentaireService.prototype.jwt = function () {
         // create a uthorization header with jwt token
         var currentUser = JSON.parse(localStorage.getItem('currentToken'));
